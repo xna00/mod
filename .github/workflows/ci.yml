@@ -1,0 +1,73 @@
+name: Deploy To Github pages
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      
+      - name: Set-up OCaml 5.1.1
+        uses: ocaml/setup-ocaml@v2
+        with:
+          ocaml-compiler: 5.1.1
+      - run: opam install . --deps-only --with-test
+
+      - run: opam exec -- dune build
+      - name: Install yarn
+        run: npm i yarn -g
+
+      - name: Build extension
+        run: |
+          cd vscode-web-playground
+          yarn
+          yarn build
+      
+      - run: cp -r vscode-web-playground buildvscode
+
+      - name: Restore cached vscode
+        id: cache-vscode
+        uses: actions/cache/restore@v4
+        with:
+          path: buildvscode/vscode
+          key: vscode@1.88.1
+      - name: Setup Build Environment
+        if: steps.cache-vscode.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libxkbfile-dev pkg-config libkrb5-dev libxss1 dbus xvfb libgtk-3-0 libgbm1
+
+      - name: Clone and build vscode
+        if: steps.cache-vscode.outputs.cache-hit != 'true'
+        run: |
+          cd buildvscode
+          git clone --branch 1.88-web --depth 1 https://github.com/xna00/vscode.git
+          cd vscode
+          yarn
+          yarn gulp vscode-web-min
+
+      - name: Save vscode
+        if: steps.cache-vscode.outputs.cache-hit != 'true'
+        id: cache-primes-save
+        uses: actions/cache/save@v4
+        with:
+          path: buildvscode/vscode
+          key: vscode@1.88.1
+      
+      - name: Build dist
+        run: |
+          cd buildvscode
+          node --max-old-space-size=8192 build.js
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4.2.2
+        with:
+          branch: gh-pages
+          folder: buildvscode/dist

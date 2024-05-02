@@ -1,0 +1,7 @@
+(executable
+ (public_name type_demos)
+ (name main)
+ (modes js byte)
+ (libraries parsing)
+ (preprocess
+  (pps ppx_deriving.enum ppx_deriving.show)))

@@ -1,0 +1,10 @@
+(library
+ (name typing)
+ (modes byte)
+ (libraries ppx_deriving_yojson.runtime parsing)
+ (preprocess
+  (pps
+   js_of_ocaml-ppx
+   ppx_deriving.enum
+   ppx_deriving.show
+   ppx_deriving_yojson)))

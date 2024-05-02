@@ -1,0 +1,11 @@
+(executable
+ (public_name jslib)
+ (name main)
+ (modes js byte)
+ (libraries parsing typing js_of_ocaml ppx_deriving_yojson.runtime)
+ (preprocess
+  (pps
+   ppx_deriving.enum
+   ppx_deriving.show
+   js_of_ocaml-ppx
+   ppx_deriving_yojson)))

@@ -1,0 +1,48 @@
+{
+  "name": "vscode-web-playground",
+  "description": "Web playground for VS Code",
+  "version": "0.0.13",
+  "publisher": "vscode",
+  "license": "MIT",
+  "enabledApiProposals": [
+    "fileSearchProvider",
+    "textSearchProvider"
+  ],
+  "private": true,
+  "activationEvents": [
+    "onFileSystem:memfs",
+    "onDebug"
+  ],
+  "browser": "./dist/extension",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "mod",
+        "extensions": [
+          ".mod"
+        ]
+      }
+    ],
+    "configurationDefaults": {
+      "[mod]": {
+        "editor.semanticHighlighting.enabled": true
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsup"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/vscode": "^1.75.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "tsup": "^8.0.2",
+    "typescript": "^5",
+    "vscode-languageclient": "^9.0.1",
+    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.11"
+  }
+}
