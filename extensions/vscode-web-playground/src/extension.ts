@@ -14,13 +14,13 @@ export function activate(context: vscode.ExtensionContext) {
 		enableProblems(context);
 		// enableTasks();
 
-		vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(`memfs:/sample-folder/test.f`));
+		vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(`memfs:/sample-folder/test.mod`));
 	}
 
 	const serverMain = vscode.Uri.joinPath(context.extensionUri, './dist/server.js');
 
 	const clientOptions: LanguageClientOptions = {
-		documentSelector: [{ language: 'f' }],
+		documentSelector: [{ language: 'mod' }],
 		synchronize: {},
 		diagnosticCollectionName: 'test',
 	};

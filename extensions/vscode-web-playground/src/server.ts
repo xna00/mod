@@ -65,7 +65,7 @@ connection.onInitialize((params: InitializeParams) => {
 			},
 			semanticTokensProvider: {
 				legend: { tokenTypes, tokenModifiers },
-				documentSelector: [{ language: 'f' }],
+				documentSelector: [{ language: 'mod' }],
 				full: true,
 			},
 			hoverProvider: true

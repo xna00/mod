@@ -16434,11 +16434,11 @@ function activate(context) {
     const memFs = enableFs(context);
     memFs.seed();
     enableProblems(context);
-    vscode.commands.executeCommand("vscode.open", vscode.Uri.parse(`memfs:/sample-folder/test.f`));
+    vscode.commands.executeCommand("vscode.open", vscode.Uri.parse(`memfs:/sample-folder/test.mod`));
   }
   const serverMain = vscode.Uri.joinPath(context.extensionUri, "./dist/server.js");
   const clientOptions = {
-    documentSelector: [{ language: "f" }],
+    documentSelector: [{ language: "mod" }],
     synchronize: {},
     diagnosticCollectionName: "test"
   };
