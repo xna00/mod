@@ -1,0 +1,23 @@
+{
+	"compilerOptions": {
+		"target": "es6",
+		"module": "CommonJS",
+		"moduleResolution": "Node",
+		// "outFile": "out/extension.js",
+		"outDir": "out",
+		"lib": [
+			"ESNext",
+			"WebWorker"
+		],
+		"sourceMap": true,
+		"paths": {
+			"@jslib": [
+				"../_build/default/js/main.bc.js"
+			]
+		}
+	},
+	"include": [
+		"src",
+		"./*.d.ts"
+	]
+}

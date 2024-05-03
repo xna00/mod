@@ -20,57 +20,20 @@
   "contributes": {
     "languages": [
       {
-        "id": "f",
+        "id": "mod",
         "extensions": [
-          ".f"
+          ".mod"
         ]
       }
     ],
-    "grammars": [
-      {
-        "language": "f",
-        "scopeName": "source.f",
-        "path": "./syntaxes/f.tmGrammar.json"
-      }
-    ],
     "configurationDefaults": {
-      "[f]": {
+      "[mod]": {
         "editor.semanticHighlighting.enabled": true
       }
-    },
-    "viewsWelcome": [
-      {
-        "view": "debug",
-        "contents": "In order to run and debug you'll need to create a local workspace."
-      },
-      {
-        "view": "terminal",
-        "contents": "In order to run and debug you'll need to create a local workspace."
-      }
-    ],
-    "taskDefinitions": [
-      {
-        "type": "custombuildscript",
-        "required": [
-          "flavor"
-        ],
-        "properties": {
-          "flavor": {
-            "type": "string",
-            "description": "The build flavor. Should be either '32' or '64'."
-          },
-          "flags": {
-            "type": "array",
-            "description": "Additional build flags."
-          }
-        }
-      }
-    ]
+    }
   },
   "scripts": {
-    "compile": "yarn webpack-cli --config extension.webpack.config --mode production",
-    "watch": "yarn webpack-cli --config extension.webpack.config --mode production --watch --info-verbosity verbose",
-    "prepublish": "yarn webpack-cli --config extension.webpack.config --mode production"
+    "build": "tsup"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.1.6",
