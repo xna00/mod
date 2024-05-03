@@ -40,21 +40,26 @@
 				"authority": location.host,
 				"path": "/mod/extensions/theme-defaults"
 			}],
+			productConfiguration: {
+				extensionEnabledApiProposals: {
+					"vscode.vscode-web-playground": ["fileSearchProvider", "textSearchProvider"]
+				}
+			}
 		})
 	</script>
 	<!-- Workbench Icon/Manifest/CSS -->
 	<link rel="icon" href="./resources/server/favicon.ico" type="image/x-icon" />
 	<link rel="manifest" href="./resources/server/manifest.json">
 	<link data-name="vs/workbench/workbench.web.main" rel="stylesheet"
-		href="./out/vs/workbench/workbench.web.main.css" />
+		href="./out-vscode-web-min/vs/workbench/workbench.web.main.css" />
 </head>
 
 <body aria-label="">
 </body>
 
 <!-- Startup (do not modify order of script tags!) -->
-<script src="./out/vs/loader.js"></script>
-<script src="./out/vs/webPackagePaths.js"></script>
+<script src="./out-vscode-web-min/vs/loader.js"></script>
+<script src="./out-vscode-web-min/vs/webPackagePaths.js"></script>
 <script>
 	let baseUrl = location.origin + location.pathname;
 	console.log(JSON.stringify(self.webPackagePaths))
@@ -72,7 +77,7 @@
 	// }
 	console.log(self.webPackagePaths)
 	require.config({
-		baseUrl: `${baseUrl}/out`,
+		baseUrl: `${baseUrl}/out-vscode-web-min`,
 		recordStats: true,
 		trustedTypesPolicy: window.trustedTypes?.createPolicy('amdLoader', {
 			createScriptURL(value) {
@@ -89,7 +94,9 @@
 <script>
 	performance.mark('code/willLoadWorkbenchMain');
 </script>
-<script> require(['vs/code/browser/workbench/workbench'], function () { }); </script>
 
+<script src="./out-vscode-web-min/vs/workbench/workbench.web.main.nls.js"></script>
+<script src="./out-vscode-web-min/vs/workbench/workbench.web.main.js"></script>
+<script src="./out-vscode-web-min/vs/code/browser/workbench/workbench.js"></script>
 
 </html>
