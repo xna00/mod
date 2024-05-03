@@ -1,0 +1,19 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+define(["require", "exports", "vs/nls", "vs/platform/actions/common/actions", "vs/platform/contextkey/common/contextkey"], function (require, exports, nls_1, actions_1, contextkey_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MENU_CELL_CHAT_WIDGET_TOOLBAR = exports.MENU_CELL_CHAT_WIDGET_FEEDBACK = exports.MENU_CELL_CHAT_WIDGET_STATUS = exports.MENU_CELL_CHAT_WIDGET = exports.MENU_CELL_CHAT_INPUT = exports.CTX_NOTEBOOK_CHAT_OUTER_FOCUS_POSITION = exports.CTX_NOTEBOOK_CHAT_USER_DID_EDIT = exports.CTX_NOTEBOOK_CHAT_HAS_ACTIVE_REQUEST = exports.CTX_NOTEBOOK_CELL_CHAT_FOCUSED = void 0;
+    exports.CTX_NOTEBOOK_CELL_CHAT_FOCUSED = new contextkey_1.RawContextKey('notebookCellChatFocused', false, (0, nls_1.localize)('notebookCellChatFocused', "Whether the cell chat editor is focused"));
+    exports.CTX_NOTEBOOK_CHAT_HAS_ACTIVE_REQUEST = new contextkey_1.RawContextKey('notebookChatHasActiveRequest', false, (0, nls_1.localize)('notebookChatHasActiveRequest', "Whether the cell chat editor has an active request"));
+    exports.CTX_NOTEBOOK_CHAT_USER_DID_EDIT = new contextkey_1.RawContextKey('notebookChatUserDidEdit', false, (0, nls_1.localize)('notebookChatUserDidEdit', "Whether the user did changes ontop of the notebook cell chat"));
+    exports.CTX_NOTEBOOK_CHAT_OUTER_FOCUS_POSITION = new contextkey_1.RawContextKey('notebookChatOuterFocusPosition', '', (0, nls_1.localize)('notebookChatOuterFocusPosition', "Whether the focus of the notebook editor is above or below the cell chat"));
+    exports.MENU_CELL_CHAT_INPUT = actions_1.MenuId.for('cellChatInput');
+    exports.MENU_CELL_CHAT_WIDGET = actions_1.MenuId.for('cellChatWidget');
+    exports.MENU_CELL_CHAT_WIDGET_STATUS = actions_1.MenuId.for('cellChatWidget.status');
+    exports.MENU_CELL_CHAT_WIDGET_FEEDBACK = actions_1.MenuId.for('cellChatWidget.feedback');
+    exports.MENU_CELL_CHAT_WIDGET_TOOLBAR = actions_1.MenuId.for('cellChatWidget.toolbar');
+});
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibm90ZWJvb2tDaGF0Q29udGV4dC5qcyIsInNvdXJjZVJvb3QiOiJmaWxlOi8vL2hvbWUvcnVubmVyL3dvcmsvbW9kL21vZC9idWlsZHZzY29kZS92c2NvZGUvc3JjLyIsInNvdXJjZXMiOlsidnMvd29ya2JlbmNoL2NvbnRyaWIvbm90ZWJvb2svYnJvd3Nlci9jb250cm9sbGVyL2NoYXQvbm90ZWJvb2tDaGF0Q29udGV4dC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7O2dHQUdnRzs7Ozs7SUFNbkYsUUFBQSw4QkFBOEIsR0FBRyxJQUFJLDBCQUFhLENBQVUseUJBQXlCLEVBQUUsS0FBSyxFQUFFLElBQUEsY0FBUSxFQUFDLHlCQUF5QixFQUFFLHlDQUF5QyxDQUFDLENBQUMsQ0FBQztJQUM5SyxRQUFBLG9DQUFvQyxHQUFHLElBQUksMEJBQWEsQ0FBVSw4QkFBOEIsRUFBRSxLQUFLLEVBQUUsSUFBQSxjQUFRLEVBQUMsOEJBQThCLEVBQUUsb0RBQW9ELENBQUMsQ0FBQyxDQUFDO0lBQ3pNLFFBQUEsK0JBQStCLEdBQUcsSUFBSSwwQkFBYSxDQUFVLHlCQUF5QixFQUFFLEtBQUssRUFBRSxJQUFBLGNBQVEsRUFBQyx5QkFBeUIsRUFBRSw4REFBOEQsQ0FBQyxDQUFDLENBQUM7SUFDcE0sUUFBQSxzQ0FBc0MsR0FBRyxJQUFJLDBCQUFhLENBQXlCLGdDQUFnQyxFQUFFLEVBQUUsRUFBRSxJQUFBLGNBQVEsRUFBQyxnQ0FBZ0MsRUFBRSwwRUFBMEUsQ0FBQyxDQUFDLENBQUM7SUFFalAsUUFBQSxvQkFBb0IsR0FBRyxnQkFBTSxDQUFDLEdBQUcsQ0FBQyxlQUFlLENBQUMsQ0FBQztJQUNuRCxRQUFBLHFCQUFxQixHQUFHLGdCQUFNLENBQUMsR0FBRyxDQUFDLGdCQUFnQixDQUFDLENBQUM7SUFDckQsUUFBQSw0QkFBNEIsR0FBRyxnQkFBTSxDQUFDLEdBQUcsQ0FBQyx1QkFBdUIsQ0FBQyxDQUFDO0lBQ25FLFFBQUEsOEJBQThCLEdBQUcsZ0JBQU0sQ0FBQyxHQUFHLENBQUMseUJBQXlCLENBQUMsQ0FBQztJQUN2RSxRQUFBLDZCQUE2QixHQUFHLGdCQUFNLENBQUMsR0FBRyxDQUFDLHdCQUF3QixDQUFDLENBQUMifQ==
