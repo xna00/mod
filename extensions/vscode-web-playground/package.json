@@ -1,0 +1,85 @@
+{
+  "name": "vscode-web-playground",
+  "description": "Web playground for VS Code",
+  "version": "0.0.13",
+  "publisher": "vscode",
+  "license": "MIT",
+  "enabledApiProposals": [
+    "fileSearchProvider",
+    "textSearchProvider"
+  ],
+  "private": true,
+  "activationEvents": [
+    "onFileSystem:memfs",
+    "onDebug"
+  ],
+  "browser": "./dist/extension",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "f",
+        "extensions": [
+          ".f"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "f",
+        "scopeName": "source.f",
+        "path": "./syntaxes/f.tmGrammar.json"
+      }
+    ],
+    "configurationDefaults": {
+      "[f]": {
+        "editor.semanticHighlighting.enabled": true
+      }
+    },
+    "viewsWelcome": [
+      {
+        "view": "debug",
+        "contents": "In order to run and debug you'll need to create a local workspace."
+      },
+      {
+        "view": "terminal",
+        "contents": "In order to run and debug you'll need to create a local workspace."
+      }
+    ],
+    "taskDefinitions": [
+      {
+        "type": "custombuildscript",
+        "required": [
+          "flavor"
+        ],
+        "properties": {
+          "flavor": {
+            "type": "string",
+            "description": "The build flavor. Should be either '32' or '64'."
+          },
+          "flags": {
+            "type": "array",
+            "description": "Additional build flags."
+          }
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "yarn webpack-cli --config extension.webpack.config --mode production",
+    "watch": "yarn webpack-cli --config extension.webpack.config --mode production --watch --info-verbosity verbose",
+    "prepublish": "yarn webpack-cli --config extension.webpack.config --mode production"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/vscode": "^1.75.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "tsup": "^8.0.2",
+    "typescript": "^5",
+    "vscode-languageclient": "^9.0.1",
+    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.11"
+  }
+}
