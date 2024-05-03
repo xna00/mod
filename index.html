@@ -25,12 +25,17 @@
 	<meta id="vscode-workbench-auth-session" data-settings="">
 
 	<!-- Builtin Extensions (running out of sources) -->
-	<meta id="vscode-workbench-builtin-extensions" data-settings="">
+	<!-- <meta id="vscode-workbench-builtin-extensions" data-settings=""> -->
 
 	<script>
 		const configuration = document.getElementById("vscode-workbench-web-configuration")
 		configuration.dataset.settings = JSON.stringify({
-			enabledExtensions: []
+			"folderUri": { "$mid": 1, "path": "/sample-folder", "scheme": "memfs" },
+			"additionalBuiltinExtensions": [{
+				"scheme": location.protocol.replace(':', ''),
+				"authority": location.host,
+				"path": "/mod/extensions/vscode-web-playground"
+			}],
 		})
 	</script>
 	<!-- Workbench Icon/Manifest/CSS -->
