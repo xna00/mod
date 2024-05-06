@@ -6,10 +6,7 @@ let src =
 
 let src =
   {|
-  (*  *)
-  let a = 1
-
-  module M = (struct end: sig end)
+  let (
          |} |> String.trim
 
 let p = Parser.make "test.mod" src

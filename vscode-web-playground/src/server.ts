@@ -114,7 +114,13 @@ const documentSettings: Map<string, Thenable<ExampleSettings>> = new Map();
 connection.languages.semanticTokens.on(async ({ textDocument }) => {
 	const doc = documents.get(textDocument.uri)
 	const text = doc.getText()
-	const t: { start: [number, number], end: [number, number]; type: string }[] = JSON.parse(lib.tokeninfo(text))
+
+	let t: { start: [number, number], end: [number, number]; type: string }[] = []
+	try {
+		t = JSON.parse(lib.tokeninfo(text))
+	} catch (e) {
+		console.log(e)
+	}
 	const data = t.map((e, i) => {
 		const len = doc.offsetAt({ line: e.end[0], character: e.end[1] })
 			- doc.offsetAt({ line: e.start[0], character: e.start[1] })

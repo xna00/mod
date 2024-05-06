@@ -120,7 +120,9 @@ let rec skip_whitesapce scanner =
         advance scanner;
         skip_whitesapce scanner
     | '(' ->
-        if (not (at_end scanner)) && peek1 scanner = '*' then (
+        if
+          String.length scanner.src - scanner.offset >= 2 && peek1 scanner = '*'
+        then (
           advance scanner;
           advance scanner;
 
