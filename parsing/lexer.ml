@@ -34,6 +34,7 @@ let make filename src =
 let clone scanner = { scanner with src = scanner.src }
 let at_end scanner = scanner.offset >= String.length scanner.src
 let peek scanner = scanner.src.[scanner.offset]
+let peek1 scanner = scanner.src.[scanner.offset + 1]
 
 let advance scanner =
   let offset = scanner.offset + 1 in
@@ -118,6 +119,24 @@ let rec skip_whitesapce scanner =
     | '\n' | ' ' | '\r' | '\t' ->
         advance scanner;
         skip_whitesapce scanner
+    | '(' ->
+        if (not (at_end scanner)) && peek1 scanner = '*' then (
+          advance scanner;
+          advance scanner;
+
+          let rec loop () =
+            if at_end scanner then ()
+            else if String.length scanner.src - scanner.offset = 1 then
+              advance scanner
+            else if scanner.ch = '*' && peek1 scanner = ')' then (
+              advance scanner;
+              advance scanner)
+            else (
+              advance scanner;
+              loop ())
+          in
+          loop ();
+          skip_whitesapce scanner)
     | _ -> ()
 
 let rec scan scanner =

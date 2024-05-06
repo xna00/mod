@@ -6,25 +6,21 @@ let src =
 
 let src =
   {|
-struct
-  module M: sig
+  (*  *)
+  let a = 1
 
-  end = struct
-    let c = 3
-  end
-end
-         |}
-  |> String.trim
+  module M = (struct end: sig end)
+         |} |> String.trim
 
 let p = Parser.make "test.mod" src
 let e = Parser.parse p
 
 (* let _ = print_endline (Syntax.show_simple_type e) *)
 
-let _ =
+(* let _ =
   List.iter (fun d -> print_endline (Parser.show_diagnostic d)) p.diagnostics
 
-let _ = print_endline src
+let _ = print_endline src *)
 
 (* let _ = print_endline (Syntax.show_mod_expr e) *)
 let _ = print_endline (Syntax.print_definition_list e)
