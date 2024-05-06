@@ -178,7 +178,8 @@ and op_expr p =
     let lhs = apply_expr p in
     let rec loop (lhs : expr) =
       match p.token with
-      | INFIX1 s | INFIX2 s | INFIX3 s ->
+      | INFIX1 _ | INFIX2 _ | INFIX3 _ | STAR | EQUAL ->
+          let s = string_of_infix p.token in
           let op =
             {
               desc =

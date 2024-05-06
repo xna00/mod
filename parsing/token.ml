@@ -37,11 +37,17 @@ type t =
 
 let precedence token =
   match token with
-  | INFIX3 _ -> 3
-  | INFIX2 _ -> 2
-  | INFIX1 _ -> 1
+  | INFIX3 _ | STAR -> 3 (* * / *)
+  | INFIX2 _ -> 2 (* + - *)
+  | INFIX1 _ | EQUAL -> 1 (* > < = *)
   | _ -> assert false
 
+let string_of_infix token =
+  match token with
+  | INFIX1 s | INFIX2 s | INFIX3 s -> s
+  | STAR -> "*"
+  | EQUAL -> "="
+  | _ -> assert false
 
 let keywords =
   [
