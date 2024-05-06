@@ -1,4 +1,4 @@
-open Parsing.Syntax
+(* open Parsing.Syntax
 
 let rec print_ty ty =
   match ty with
@@ -174,4 +174,4 @@ let initialenv : env = [ ("true", TyBool); ("false", TyBool) ]
 let type_expr e =
   let typed, _, c = gen_constr initialenv uvargen e in
   let s = unify c in
-  subst_typed s typed
+  subst_typed s typed *)
