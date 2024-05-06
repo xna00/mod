@@ -56,7 +56,7 @@ end
 let parser =
   "parser"
   >::: [
-         test_case (expr_test "1 + 2" ~expect:"+ 1 2");
+         test_case (expr_test "1 + 2");
          "test1" >:: expr_test "let a = 1 in a";
          test_case (expr_test "fun x -> x");
          test_case (expr_test "let id = fun x -> x in id (fun x -> x)");

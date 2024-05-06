@@ -17,6 +17,11 @@ and expr_desc =
    | Case of expr * (string * string * expr) list * (string * expr) option *)
 [@@deriving show { with_path = false }]
 
+let is_infix s =
+  match s.[0] with
+  | '*' | '/' | '+' | '-' | '>' | '<' | '=' -> true
+  | _ -> false
+
 let rec print_expr ?(parenthesis = false) e =
   match e.desc with
   | EConstant i -> string_of_int i
@@ -27,11 +32,10 @@ let rec print_expr ?(parenthesis = false) e =
       else Printf.sprintf "fun %s -> %s" txt b
   | EApply (f, args) ->
       let fs = print_expr ~parenthesis:true f in
-      let argss =
-        List.map (print_expr ~parenthesis:true) (List.map snd args)
-        |> String.concat " "
-      in
-      fs ^ " " ^ argss
+      let argss = List.map (print_expr ~parenthesis:true) (List.map snd args) in
+
+      if is_infix fs then List.nth argss 0 ^ " " ^ fs ^ " " ^ List.nth argss 1
+      else fs ^ " " ^ String.concat " '" argss
   | ELet ({ txt; _ }, e1, body) ->
       Printf.sprintf "let %s = %s in %s" txt (print_expr e1) (print_expr body)
 

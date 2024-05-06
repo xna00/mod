@@ -42,6 +42,7 @@ let precedence token =
   | INFIX1 _ -> 1
   | _ -> assert false
 
+
 let keywords =
   [
     ("let", LET);
