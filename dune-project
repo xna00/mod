@@ -22,6 +22,7 @@
  (depends
   ocaml
   dune
+  ounit2
   js_of_ocaml
   js_of_ocaml-compiler
   js_of_ocaml-ppx
