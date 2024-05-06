@@ -1,6 +1,5 @@
 open Js_of_ocaml
 open Parsing
-open Monad
 open Parser
 open Typing.Typexpr
 open Syntax
@@ -14,27 +13,15 @@ type loc = {
 
 type loc_list = loc list [@@deriving yojson]
 
-let token_parser : loc parser =
-  wss *> fetch >>= fun (pos1, _) ->
-  (ident *> return "variable")
-  ++ (keyword_parser *> return "keyword")
-  ++ (number *> return "number")
-  ++ (unknown *> return "unknown")
-  >>= fun t ->
-  fetch >>= fun (pos2, _) -> return { start = pos1; _end = pos2; _type = t }
+type diag = { start : int * int; _end : int * int; [@key "end"] msg : string }
+[@@deriving yojson]
 
-let lexing src =
-  match (many token_parser) ((0, 0), explode src) with
-  | Ok (v, _) ->
-      List.filter (fun { _type; _ } -> _type <> "unknown") v
-      |> loc_list_to_yojson |> Yojson.Safe.to_string
-  | Error e -> failwith "fail"
-
-let parse src =
-  match term_parser ((0, 0), explode src) with
-  | Ok (v, _) -> v
-  | Error (Fail (msg, s)) ->
-      failwith ("fail parse" ^ msg ^ show_pos (fst s) ^ implode (snd s))
+type docdata = {
+  tokens : loc_list;
+  formatted : string;
+  diagnostics : diag list;
+}
+[@@deriving yojson]
 
 let in_range ((l, c) as p1) (((l1, c1) as p2), ((l2, c2) as p3)) =
   (* print_endline (show_pos p1);
@@ -45,32 +32,79 @@ let in_range ((l, c) as p1) (((l1, c1) as p2), ((l2, c2) as p3)) =
   || (l1 <> l2 && l2 = l && c2 > c)
   || (l1 = l2 && l1 = l && c1 <= c && c2 > c)
 
-let type_info src pos =
-  let typed_tm = type_expr (parse src) in
-  (* print_endline (show_typed_tm typed_tm); *)
-  let rec find tm =
-    match tm.tm with
-    | Tint | Tbool | Tvar _ -> print_ty tm.ty
-    | Tabs (_, _, body) ->
-        if in_range pos body.loc then find body else print_ty tm.ty
-    | Tapp (t1, t2) ->
-        if in_range pos t1.loc then find t1
-        else if in_range pos t2.loc then find t2
-        else print_ty tm.ty
-    | Tlet (_, _, t1, t2) ->
-        (* print_endline (string_of_bool (in_range pos t1.loc));
-           print_endline (string_of_bool (in_range pos t2.loc)); *)
-        if in_range pos t1.loc then find t1
-        else if in_range pos t2.loc then find t2
-        else print_ty tm.ty
+let pos_of_position (s : Location.position) =
+  (s.pos_lnum - 1, s.pos_cnum - s.pos_bol)
+
+let tokeinfo src =
+  let scanner = Lexer.make "file" src in
+  let rec loop () =
+    let s, e, tok = Lexer.scan scanner in
+    if tok = Token.EOF then [] else (s, e, tok) :: loop ()
   in
-  find typed_tm
+  let tok_list = loop () in
+  let locs =
+    List.map
+      Location.(
+        fun (s, e, tok) ->
+          {
+            start = (s.pos_lnum - 1, s.pos_cnum - s.pos_bol);
+            _end = (e.pos_lnum - 1, e.pos_cnum - e.pos_bol);
+            _type =
+              Token.(
+                match tok with
+                | UIDENT _ | LIDENT _ -> "variable"
+                | NUMBER _ -> "number"
+                | tok when List.mem tok (List.map snd Token.keywords) ->
+                    "keyword"
+                | _ -> "unknown");
+          })
+      tok_list
+  in
+  List.filter (fun { _type; _ } -> _type <> "unknown") locs
+
+let format src =
+  let p = Parser.make "file" src in
+  let mod_expr = Parser.parse p in
+  Syntax.print_definition_list mod_expr
+
+let filechange src =
+  let toks = tokeinfo src in
+  print_endline "toks done";
+  let p = Parser.make "file" src in
+  let mod_expr = Parser.parse p in
+  print_endline "parse done";
+  let ret =
+    if List.length p.diagnostics = 0 then
+      {
+        tokens = toks;
+        formatted = Syntax.print_definition_list mod_expr;
+        diagnostics = [];
+      }
+    else
+      {
+        tokens = toks;
+        formatted = src;
+        diagnostics =
+          List.map
+            (fun (d : diagnostic) ->
+              {
+                start = pos_of_position d.start_pos;
+                _end = pos_of_position d.end_pos;
+                msg = d.msg;
+              })
+            p.diagnostics;
+      }
+  in
+  ret |> docdata_to_yojson |> Yojson.Safe.to_string
+
+let type_info src pos = "unknown"
+let tokeinfo src = tokeinfo src |> loc_list_to_yojson |> Yojson.Safe.to_string
 
 let _ =
   Js.export_all
     (object%js
-       method lexing src = lexing src
+       method tokeninfo src = tokeinfo src
+       method format src = format src
        method typeinfo src l c = type_info src (l, c)
+       method filechange src = filechange src
     end)
-
-(* let _ = print_endline (type_info "let id = fun x -> x in id" (0, 26)) *)

@@ -1,4 +1,4 @@
-const lib = require('../_build/default/js/main.bc.js')
+const lib = require('../_build/default/jslib/main.bc.js')
 
-console.log(JSON.parse(lib.lexing("let a = 1 in a")))
-console.log(lib.typeinfo("let a = fun x -> x in a", 0,0))
+console.log((lib.filechange(" let a = 1 ")))
+console.log(lib.typeinfo("let a = fun x -> x in a", 0, 0))
