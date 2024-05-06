@@ -1,5 +1,5 @@
 (executable
- (public_name type_demos)
+ (public_name mod)
  (name main)
  (modes js byte)
  (libraries parsing)

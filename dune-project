@@ -1,6 +1,6 @@
 (lang dune 3.15)
 
-(name type_demos)
+(name mod)
 
 (generate_opam_files true)
 
@@ -16,7 +16,7 @@
 (documentation https://url/to/documentation)
 
 (package
- (name type_demos)
+ (name mod)
  (synopsis "A short synopsis")
  (description "A longer description")
  (depends
