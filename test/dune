@@ -1,2 +1,4 @@
 (test
- (name test_type_demos))
+ (name test_mod)
+ (modes byte)
+ (libraries ounit2 parsing))
