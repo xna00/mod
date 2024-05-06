@@ -9,6 +9,7 @@ type t = {
   mutable offset : int;
   mutable lnum : int;
   mutable col : int;
+  mutable comments : string list;
 }
 
 let position scanner : Lexing.position =
@@ -29,6 +30,7 @@ let make filename src =
     lnum = 1;
     col = 0;
     err = (fun ~start_pos:_ ~end_pos:_ _ -> ());
+    comments = [];
   }
 
 let clone scanner = { scanner with src = scanner.src }
@@ -126,11 +128,14 @@ let rec skip_whitesapce scanner =
           advance scanner;
           advance scanner;
 
+          let start = scanner.offset in
+          let _end = ref (String.length scanner.src) in
           let rec loop () =
             if at_end scanner then ()
             else if String.length scanner.src - scanner.offset = 1 then
               advance scanner
             else if scanner.ch = '*' && peek1 scanner = ')' then (
+              _end := scanner.offset;
               advance scanner;
               advance scanner)
             else (
@@ -138,6 +143,8 @@ let rec skip_whitesapce scanner =
               loop ())
           in
           loop ();
+          let s = String.sub scanner.src start (!_end - start) in
+          scanner.comments <- scanner.comments @ [ s ];
           skip_whitesapce scanner)
     | _ -> ()
 

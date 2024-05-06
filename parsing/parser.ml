@@ -68,6 +68,7 @@ let lookahead p callback =
   let offset = p.scanner.offset in
   let lnum = p.scanner.lnum in
   let col = p.scanner.col in
+  let comments = p.scanner.comments in
   let token = p.token in
   let start_pos = p.start_pos in
   let end_pos = p.end_pos in
@@ -81,6 +82,7 @@ let lookahead p callback =
   p.scanner.offset <- offset;
   p.scanner.lnum <- lnum;
   p.scanner.col <- col;
+  p.scanner.comments <- comments;
   p.token <- token;
   p.start_pos <- start_pos;
   p.end_pos <- end_pos;
@@ -452,7 +454,8 @@ let rec mod_type p =
         raise Parse_error
   in
   let loc_end = p.prev_end_pos in
-  { mt_desc = desc; loc = { loc_start; loc_end } }
+  let ret = { mt_desc = desc; loc = { loc_start; loc_end } } in
+  ret
 
 and signature p =
   let rec loop () =
@@ -569,32 +572,37 @@ and structure p =
   List.filter_map (fun x -> x) (loop ())
 
 and definition p =
-  match p.token with
-  | LET ->
-      advance p;
-      let lid = lident p in
-      expect EQUAL p;
-      let e = expr p in
-      Value_str (Longident.ident_of_string lid, e)
-  | TYPE ->
-      let lid, def = type_decl p in
-      Type_str (Longident.ident_of_string lid, def)
-  | MODULE ->
-      advance p;
-      let lid = uident p in
-      let mty =
-        match p.token with
-        | COLON ->
-            advance p;
-            Some (mod_type p)
-        | _ -> None
-      in
-      expect EQUAL p;
-      let e = mod_expr p in
-      Module_str (Longident.ident_of_string lid, mty, e)
-  | _ ->
-      report p;
-      raise Parse_error
+  let ret =
+    match p.token with
+    | LET ->
+        advance p;
+        let lid = lident p in
+        expect EQUAL p;
+        let e = expr p in
+        Value_str (Longident.ident_of_string lid, e)
+    | TYPE ->
+        let lid, def = type_decl p in
+        Type_str (Longident.ident_of_string lid, def)
+    | MODULE ->
+        advance p;
+        let lid = uident p in
+        let mty =
+          match p.token with
+          | COLON ->
+              advance p;
+              Some (mod_type p)
+          | _ -> None
+        in
+        expect EQUAL p;
+        let e = mod_expr p in
+        Module_str (Longident.ident_of_string lid, mty, e)
+    | _ ->
+        report p;
+        raise Parse_error
+  in
+  let prev_comments = p.scanner.comments in
+  p.scanner.comments <- [];
+  { definition = ret; prev_comments }
 
 let parse p =
   advance p;

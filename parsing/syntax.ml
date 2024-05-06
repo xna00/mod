@@ -121,13 +121,20 @@ and mod_expr_desc =
   | MEConstraint of mod_expr * mod_type
 [@@deriving show { with_path = false }]
 
-and structure = definition list [@@deriving show { with_path = false }]
+and structure = definition_comment list [@@deriving show { with_path = false }]
+
+and definition_comment = {
+  definition : definition;
+  prev_comments : string list;
+}
 
 and definition =
   | Value_str of Longident.t loc * expr
   | Type_str of Longident.t loc * type_decl
   | Module_str of Longident.t loc * mod_type option * mod_expr
 [@@deriving show { with_path = false }]
+
+let print_comment c = "(*" ^ c ^ "*)"
 
 let print_type_decl id decl =
   "type "
@@ -190,7 +197,7 @@ let rec print_mod_expr ?(offset = 0) mod_expr =
 
 and print_definition ~offset str =
   let ret =
-    match str with
+    match str.definition with
     | Value_str (id, e) ->
         Printf.sprintf "let %s = %s"
           (Longident.string_of_longident id.txt)
@@ -208,7 +215,11 @@ and print_definition ~offset str =
               (print_mod_type ~offset mty)
               (print_mod_expr ~offset mod_e))
   in
-  String.make offset ' ' ^ ret
+  String.concat "\n"
+    (List.map
+       (fun c -> String.make offset ' ' ^ print_comment c)
+       str.prev_comments)
+  ^ "\n" ^ String.make offset ' ' ^ ret
 
 let print_definition_list str =
   String.concat "\n" (List.map (fun x -> print_definition ~offset:0 x) str)
