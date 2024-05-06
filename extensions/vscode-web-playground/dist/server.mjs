@@ -37716,7 +37716,7 @@ var require_main_bc = __commonJS({
     })(globalThis);
     (function(globalThis2) {
       "use strict";
-      var runtime = globalThis2.jsoo_runtime, cst$26 = "", cst$24 = "\n", cst$19 = " ", cst$18 = " -> ", cst$37 = " =", cst$20 = " = ", cst_S = "%S", cst_a = "%a", cst_d = "%d", cst$21 = "'", cst_Some$1 = "(Some ", cst$27 = ")", cst$23 = ") ", cst$31 = "))", cst$22 = ", ", cst$30 = ",@ ", cst$17 = ".", cst$25 = ": ", cst$33 = ";@ ", cst_2 = "<2>", cst$29 = "@ ", cst$39 = "@ }@]", cst$28 = "@,", cst$32 = "@,))@]", cst$34 = "@,]@]", cst_s = "@[%s =@ ", cst_2$0 = "@[<2>[", cst_2$1 = "@[<2>{ ", cst$38 = "@]", cst$35 = "@])", cst_None$1 = "None", cst_end = "end", cst_functor = "functor(", cst_let = "let ", cst_loc$3 = "loc", cst_module = "module ", cst$36 = "{ ", caml_update_dummy2 = runtime.caml_update_dummy;
+      var runtime = globalThis2.jsoo_runtime, cst$28 = "", cst$26 = "\n", cst$21 = " ", cst$20 = " -> ", cst$39 = " =", cst$22 = " = ", cst_S = "%S", cst_a = "%a", cst_d = "%d", cst$23 = "'", cst_Some$1 = "(Some ", cst$29 = ")", cst$25 = ") ", cst$33 = "))", cst$24 = ", ", cst$32 = ",@ ", cst$19 = ".", cst$27 = ": ", cst$35 = ";@ ", cst_2 = "<2>", cst$31 = "@ ", cst$41 = "@ }@]", cst$30 = "@,", cst$34 = "@,))@]", cst$36 = "@,]@]", cst_s = "@[%s =@ ", cst_2$0 = "@[<2>[", cst_2$1 = "@[<2>{ ", cst$40 = "@]", cst$37 = "@])", cst_None$1 = "None", cst_end = "end", cst_functor = "functor(", cst_let = "let ", cst_loc$3 = "loc", cst_module = "module ", cst$38 = "{ ", caml_update_dummy2 = runtime.caml_update_dummy;
       function caml_call1(f, a0) {
         return (f.l >= 0 ? f.l : f.l = f.length) == 1 ? f(a0) : runtime.caml_call_gen(f, [a0]);
       }
@@ -37729,43 +37729,43 @@ var require_main_bc = __commonJS({
       function caml_call4(f, a0, a1, a2, a3) {
         return (f.l >= 0 ? f.l : f.l = f.length) == 4 ? f(a0, a1, a2, a3) : runtime.caml_call_gen(f, [a0, a1, a2, a3]);
       }
-      var global_data = runtime.caml_get_global_data(), cst = cst$17, cst$0 = cst$19, cst$1 = cst$19, cst$2 = cst$21, cst$3 = cst$22, cst$4 = cst$17, cst$14 = cst$24, cst$15 = cst$24, cst$16 = cst$24, cst$9 = cst$21, cst$7 = cst$20, cst$13 = cst$26, cst$8 = cst$26, cst$10 = cst$22, cst$11 = cst$27, cst$12 = "(", cst$6 = cst$27, cst$5 = cst$27, Stdlib = global_data.Stdlib, Parsing_Longident = global_data.Parsing__Longident, Stdlib_String = global_data.Stdlib__String, Stdlib_Printf = global_data.Stdlib__Printf, Stdlib_List = global_data.Stdlib__List, Stdlib_Option = global_data.Stdlib__Option, Stdlib_Format = global_data.Stdlib__Format, Parsing_Asttypes = global_data.Parsing__Asttypes, Parsing_Location = global_data.Parsing__Location, pp_expr = function _dU_(_dS_, _dT_) {
+      var global_data = runtime.caml_get_global_data(), cst = cst$19, cst$0 = cst$21, cst$1 = cst$21, cst$2 = " '", cst$3 = cst$21, cst$4 = cst$23, cst$5 = cst$24, cst$6 = cst$19, cst$16 = cst$26, cst$17 = cst$26, cst$18 = cst$26, cst$11 = cst$23, cst$9 = cst$22, cst$15 = cst$28, cst$10 = cst$28, cst$12 = cst$24, cst$13 = cst$29, cst$14 = "(", cst$8 = cst$29, cst$7 = cst$29, Stdlib = global_data.Stdlib, Parsing_Longident = global_data.Parsing__Longident, Stdlib_String = global_data.Stdlib__String, Stdlib_Printf = global_data.Stdlib__Printf, Stdlib_List = global_data.Stdlib__List, Stdlib_Option = global_data.Stdlib__Option, Stdlib_Format = global_data.Stdlib__Format, Parsing_Asttypes = global_data.Parsing__Asttypes, Parsing_Location = global_data.Parsing__Location, pp_expr = function _dZ_(_dX_, _dY_) {
+        return _dZ_.fun(_dX_, _dY_);
+      }, show_expr = function _dW_(_dV_) {
+        return _dW_.fun(_dV_);
+      }, pp_expr_desc = function _dU_(_dS_, _dT_) {
         return _dU_.fun(_dS_, _dT_);
-      }, show_expr = function _dR_(_dQ_) {
+      }, show_expr_desc = function _dR_(_dQ_) {
         return _dR_.fun(_dQ_);
-      }, pp_expr_desc = function _dP_(_dN_, _dO_) {
-        return _dP_.fun(_dN_, _dO_);
-      }, show_expr_desc = function _dM_(_dL_) {
-        return _dM_.fun(_dL_);
-      }, _a_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [11, cst$36, 0]], cst_2$1], cst_desc = "desc", _b_ = [
+      }, _a_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [11, cst$38, 0]], cst_2$1], cst_desc = "desc", _b_ = [
         0,
         [
           18,
-          [1, [0, 0, cst$26]],
-          [2, 0, [11, cst$37, [17, [0, cst$29, 1, 0], 0]]]
+          [1, [0, 0, cst$28]],
+          [2, 0, [11, cst$39, [17, [0, cst$31, 1, 0], 0]]]
         ],
         cst_s
-      ], _c_ = [0, [17, 0, 0], cst$38], _d_ = [0, [12, 59, [17, [0, cst$29, 1, 0], 0]], cst$33], cst_loc = cst_loc$3, _e_ = [
+      ], _c_ = [0, [17, 0, 0], cst$40], _d_ = [0, [12, 59, [17, [0, cst$31, 1, 0], 0]], cst$35], cst_loc = cst_loc$3, _e_ = [
         0,
         [
           18,
-          [1, [0, 0, cst$26]],
-          [2, 0, [11, cst$37, [17, [0, cst$29, 1, 0], 0]]]
+          [1, [0, 0, cst$28]],
+          [2, 0, [11, cst$39, [17, [0, cst$31, 1, 0], 0]]]
         ],
         cst_s
-      ], _f_ = [0, [17, 0, 0], cst$38], _g_ = [0, [17, [0, cst$29, 1, 0], [12, 125, [17, 0, 0]]], cst$39];
+      ], _f_ = [0, [17, 0, 0], cst$40], _g_ = [0, [17, [0, cst$31, 1, 0], [12, 125, [17, 0, 0]]], cst$41];
       caml_update_dummy2(
         pp_expr,
         function(fmt, x2) {
           caml_call2(Stdlib_Format[137], fmt, _a_);
           caml_call3(Stdlib_Format[137], fmt, _b_, cst_desc);
-          var _dJ_ = x2[1];
-          caml_call1(caml_call1(pp_expr_desc, fmt), _dJ_);
+          var _dO_ = x2[1];
+          caml_call1(caml_call1(pp_expr_desc, fmt), _dO_);
           caml_call2(Stdlib_Format[137], fmt, _c_);
           caml_call2(Stdlib_Format[137], fmt, _d_);
           caml_call3(Stdlib_Format[137], fmt, _e_, cst_loc);
-          var _dK_ = x2[2];
-          caml_call1(caml_call1(Parsing_Location[3], fmt), _dK_);
+          var _dP_ = x2[2];
+          caml_call1(caml_call1(Parsing_Location[3], fmt), _dP_);
           caml_call2(Stdlib_Format[137], fmt, _f_);
           return caml_call2(Stdlib_Format[137], fmt, _g_);
         }
@@ -37785,11 +37785,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "EConstant", [17, [0, cst$29, 1, 0], 0]]
+            [11, "EConstant", [17, [0, cst$31, 1, 0], 0]]
           ]
         ],
         "(@[<2>EConstant@ "
-      ], _j_ = [0, [4, 0, 0, 0, 0], cst_d], _k_ = [0, [17, 0, [12, 41, 0]], cst$35], _l_ = [
+      ], _j_ = [0, [4, 0, 0, 0, 0], cst_d], _k_ = [0, [17, 0, [12, 41, 0]], cst$37], _l_ = [
         0,
         [
           12,
@@ -37797,11 +37797,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "ELongident", [17, [0, cst$29, 1, 0], 0]]
+            [11, "ELongident", [17, [0, cst$31, 1, 0], 0]]
           ]
         ],
         "(@[<2>ELongident@ "
-      ], _m_ = [0, [17, 0, [12, 41, 0]], cst$35], _n_ = [
+      ], _m_ = [0, [17, 0, [12, 41, 0]], cst$37], _n_ = [
         0,
         [
           12,
@@ -37809,11 +37809,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "EFunction (", [17, [0, cst$28, 0, 0], 0]]
+            [11, "EFunction (", [17, [0, cst$30, 0, 0], 0]]
           ]
         ],
         "(@[<2>EFunction (@,"
-      ], _o_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], _p_ = [0, [3, 0, 0], cst_S], _q_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], _r_ = [0, [17, [0, cst$28, 0, 0], [11, cst$31, [17, 0, 0]]], cst$32], _s_ = [
+      ], _o_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], _p_ = [0, [3, 0, 0], cst_S], _q_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], _r_ = [0, [17, [0, cst$30, 0, 0], [11, cst$33, [17, 0, 0]]], cst$34], _s_ = [
         0,
         [
           12,
@@ -37821,11 +37821,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "EApply (", [17, [0, cst$28, 0, 0], 0]]
+            [11, "EApply (", [17, [0, cst$30, 0, 0], 0]]
           ]
         ],
         "(@[<2>EApply (@,"
-      ], _t_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], _u_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [12, 91, 0]], cst_2$0], _v_ = [0, [12, 59, [17, [0, cst$29, 1, 0], 0]], cst$33], _w_ = [0, [12, 40, [18, [1, [0, 0, cst$26]], 0]], "(@["], _x_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], _y_ = [0, [17, 0, [12, 41, 0]], cst$35], _z_ = [0, [17, [0, cst$28, 0, 0], [12, 93, [17, 0, 0]]], cst$34], _A_ = [0, [17, [0, cst$28, 0, 0], [11, cst$31, [17, 0, 0]]], cst$32], _B_ = [
+      ], _t_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], _u_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [12, 91, 0]], cst_2$0], _v_ = [0, [12, 59, [17, [0, cst$31, 1, 0], 0]], cst$35], _w_ = [0, [12, 40, [18, [1, [0, 0, cst$28]], 0]], "(@["], _x_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], _y_ = [0, [17, 0, [12, 41, 0]], cst$37], _z_ = [0, [17, [0, cst$30, 0, 0], [12, 93, [17, 0, 0]]], cst$36], _A_ = [0, [17, [0, cst$30, 0, 0], [11, cst$33, [17, 0, 0]]], cst$34], _B_ = [
         0,
         [
           12,
@@ -37833,11 +37833,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "ELet (", [17, [0, cst$28, 0, 0], 0]]
+            [11, "ELet (", [17, [0, cst$30, 0, 0], 0]]
           ]
         ],
         "(@[<2>ELet (@,"
-      ], _C_ = [0, [3, 0, 0], cst_S], _D_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], _E_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], _F_ = [0, [17, [0, cst$28, 0, 0], [11, cst$31, [17, 0, 0]]], cst$32];
+      ], _C_ = [0, [3, 0, 0], cst_S], _D_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], _E_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], _F_ = [0, [17, [0, cst$30, 0, 0], [11, cst$33, [17, 0, 0]]], cst$34];
       caml_update_dummy2(
         pp_expr_desc,
         function(fmt, param) {
@@ -37933,13 +37933,28 @@ var require_main_bc = __commonJS({
       );
       var _H_ = [
         0,
-        [11, "(fun ", [2, 0, [11, cst$18, [2, 0, [12, 41, 0]]]]],
+        [11, "(fun ", [2, 0, [11, cst$20, [2, 0, [12, 41, 0]]]]],
         "(fun %s -> %s)"
-      ], _I_ = [0, [11, "fun ", [2, 0, [11, cst$18, [2, 0, 0]]]], "fun %s -> %s"], _J_ = [0, 1], _K_ = [0, 1], _L_ = [
+      ], _I_ = [0, [11, "fun ", [2, 0, [11, cst$20, [2, 0, 0]]]], "fun %s -> %s"], _J_ = [0, 1], _K_ = [0, 1], _L_ = [
         0,
-        [11, cst_let, [2, 0, [11, cst$20, [2, 0, [11, " in ", [2, 0, 0]]]]]],
+        [11, cst_let, [2, 0, [11, cst$22, [2, 0, [11, " in ", [2, 0, 0]]]]]],
         "let %s = %s in %s"
       ];
+      function is_infix(s2) {
+        var match = runtime.caml_string_get(s2, 0);
+        a: {
+          if (46 <= match) {
+            if (60 <= match) {
+              if (63 > match)
+                break a;
+            } else if (47 === match)
+              break a;
+          } else if (44 !== match && 42 <= match)
+            break a;
+          return 0;
+        }
+        return 1;
+      }
       function print_expr(opt, e) {
         if (opt)
           var sth = opt[1], parenthesis = sth;
@@ -37957,19 +37972,24 @@ var require_main_bc = __commonJS({
             var body = match[3], txt = match[2][1], b = print_expr(0, body);
             return parenthesis ? caml_call3(Stdlib_Printf[4], _H_, txt, b) : caml_call3(Stdlib_Printf[4], _I_, txt, b);
           case 3:
-            var args = match[2], f = match[1], fs = print_expr(_J_, f), _dC_ = caml_call2(Stdlib_List[20], function(_dI_) {
-              return _dI_[2];
-            }, args), _dD_ = caml_call2(
+            var args = match[2], f = match[1], fs = print_expr(_J_, f), _dC_ = caml_call2(Stdlib_List[20], function(_dN_) {
+              return _dN_[2];
+            }, args), argss = caml_call2(
               Stdlib_List[20],
-              function(_dH_) {
-                return print_expr(_K_, _dH_);
+              function(_dM_) {
+                return print_expr(_K_, _dM_);
               },
               _dC_
-            ), argss = caml_call1(caml_call1(Stdlib_String[7], cst$0), _dD_), _dE_ = caml_call2(Stdlib[28], cst$1, argss);
-            return caml_call2(Stdlib[28], fs, _dE_);
+            );
+            if (is_infix(fs)) {
+              var _dD_ = caml_call2(Stdlib_List[8], argss, 1), _dE_ = caml_call2(Stdlib[28], cst$0, _dD_), _dF_ = caml_call2(Stdlib[28], fs, _dE_), _dG_ = caml_call2(Stdlib[28], cst$1, _dF_), _dH_ = caml_call2(Stdlib_List[8], argss, 0);
+              return caml_call2(Stdlib[28], _dH_, _dG_);
+            }
+            var _dI_ = caml_call2(Stdlib_String[7], cst$2, argss), _dJ_ = caml_call2(Stdlib[28], cst$3, _dI_);
+            return caml_call2(Stdlib[28], fs, _dJ_);
           default:
-            var body$0 = match[3], e1 = match[2], txt$0 = match[1][1], _dF_ = print_expr(0, body$0), _dG_ = print_expr(0, e1);
-            return caml_call4(Stdlib_Printf[4], _L_, txt$0, _dG_, _dF_);
+            var body$0 = match[3], e1 = match[2], txt$0 = match[1][1], _dK_ = print_expr(0, body$0), _dL_ = print_expr(0, e1);
+            return caml_call4(Stdlib_Printf[4], _L_, txt$0, _dL_, _dK_);
         }
       }
       var pp_simple_type = function _dA_(_dy_, _dz_) {
@@ -37980,23 +38000,23 @@ var require_main_bc = __commonJS({
         return _dv_.fun(_dt_, _du_);
       }, show_simple_type_desc = function _ds_(_dr_) {
         return _ds_.fun(_dr_);
-      }, _M_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [11, cst$36, 0]], cst_2$1], cst_ty_desc = "ty_desc", _N_ = [
+      }, _M_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [11, cst$38, 0]], cst_2$1], cst_ty_desc = "ty_desc", _N_ = [
         0,
         [
           18,
-          [1, [0, 0, cst$26]],
-          [2, 0, [11, cst$37, [17, [0, cst$29, 1, 0], 0]]]
+          [1, [0, 0, cst$28]],
+          [2, 0, [11, cst$39, [17, [0, cst$31, 1, 0], 0]]]
         ],
         cst_s
-      ], _O_ = [0, [17, 0, 0], cst$38], _P_ = [0, [12, 59, [17, [0, cst$29, 1, 0], 0]], cst$33], cst_loc$0 = cst_loc$3, _Q_ = [
+      ], _O_ = [0, [17, 0, 0], cst$40], _P_ = [0, [12, 59, [17, [0, cst$31, 1, 0], 0]], cst$35], cst_loc$0 = cst_loc$3, _Q_ = [
         0,
         [
           18,
-          [1, [0, 0, cst$26]],
-          [2, 0, [11, cst$37, [17, [0, cst$29, 1, 0], 0]]]
+          [1, [0, 0, cst$28]],
+          [2, 0, [11, cst$39, [17, [0, cst$31, 1, 0], 0]]]
         ],
         cst_s
-      ], _R_ = [0, [17, 0, 0], cst$38], _S_ = [0, [17, [0, cst$29, 1, 0], [12, 125, [17, 0, 0]]], cst$39];
+      ], _R_ = [0, [17, 0, 0], cst$40], _S_ = [0, [17, [0, cst$31, 1, 0], [12, 125, [17, 0, 0]]], cst$41];
       caml_update_dummy2(
         pp_simple_type,
         function(fmt, x2) {
@@ -38028,11 +38048,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "TVar", [17, [0, cst$29, 1, 0], 0]]
+            [11, "TVar", [17, [0, cst$31, 1, 0], 0]]
           ]
         ],
         "(@[<2>TVar@ "
-      ], _V_ = [0, [3, 0, 0], cst_S], _W_ = [0, [17, 0, [12, 41, 0]], cst$35], _X_ = [
+      ], _V_ = [0, [3, 0, 0], cst_S], _W_ = [0, [17, 0, [12, 41, 0]], cst$37], _X_ = [
         0,
         [
           12,
@@ -38040,11 +38060,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "Tarrow (", [17, [0, cst$28, 0, 0], 0]]
+            [11, "Tarrow (", [17, [0, cst$30, 0, 0], 0]]
           ]
         ],
         "(@[<2>Tarrow (@,"
-      ], _Y_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], _Z_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], ___ = [0, [17, [0, cst$28, 0, 0], [11, cst$31, [17, 0, 0]]], cst$32], _$_ = [
+      ], _Y_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], _Z_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], ___ = [0, [17, [0, cst$30, 0, 0], [11, cst$33, [17, 0, 0]]], cst$34], _$_ = [
         0,
         [
           12,
@@ -38052,11 +38072,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "Typeconstr (", [17, [0, cst$28, 0, 0], 0]]
+            [11, "Typeconstr (", [17, [0, cst$30, 0, 0], 0]]
           ]
         ],
         "(@[<2>Typeconstr (@,"
-      ], _aa_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], _ab_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [12, 91, 0]], cst_2$0], _ac_ = [0, [12, 59, [17, [0, cst$29, 1, 0], 0]], cst$33], _ad_ = [0, [17, [0, cst$28, 0, 0], [12, 93, [17, 0, 0]]], cst$34], _ae_ = [0, [17, [0, cst$28, 0, 0], [11, cst$31, [17, 0, 0]]], cst$32];
+      ], _aa_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], _ab_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [12, 91, 0]], cst_2$0], _ac_ = [0, [12, 59, [17, [0, cst$31, 1, 0], 0]], cst$35], _ad_ = [0, [17, [0, cst$30, 0, 0], [12, 93, [17, 0, 0]]], cst$36], _ae_ = [0, [17, [0, cst$30, 0, 0], [11, cst$33, [17, 0, 0]]], cst$34];
       caml_update_dummy2(
         pp_simple_type_desc,
         function(fmt, param) {
@@ -38113,7 +38133,7 @@ var require_main_bc = __commonJS({
           return caml_call3(Stdlib_Format[141], _af_, pp_simple_type_desc, x2);
         }
       );
-      var _ag_ = [0, [12, 40, [2, 0, [11, cst$18, [2, 0, [12, 41, 0]]]]], "(%s -> %s)"], _ah_ = [0, [2, 0, [11, cst$18, [2, 0, 0]]], "%s -> %s"], _ai_ = [0, [12, 40, [2, 0, [11, cst$23, [2, 0, 0]]]], "(%s) %s"], _aj_ = [0, [2, 0, [12, 32, [2, 0, 0]]], "%s %s"];
+      var _ag_ = [0, [12, 40, [2, 0, [11, cst$20, [2, 0, [12, 41, 0]]]]], "(%s -> %s)"], _ah_ = [0, [2, 0, [11, cst$20, [2, 0, 0]]], "%s -> %s"], _ai_ = [0, [12, 40, [2, 0, [11, cst$25, [2, 0, 0]]]], "(%s) %s"], _aj_ = [0, [2, 0, [12, 32, [2, 0, 0]]], "%s %s"];
       function print_simple_type(opt, ty) {
         if (opt)
           var sth = opt[1], parenthesis = sth;
@@ -38123,7 +38143,7 @@ var require_main_bc = __commonJS({
         switch (match[0]) {
           case 0:
             var s2 = match[1];
-            return caml_call2(Stdlib[28], cst$2, s2);
+            return caml_call2(Stdlib[28], cst$4, s2);
           case 1:
             var t2 = match[3], t1 = match[2], ty1s = print_simple_type(0, t1), ty2s = print_simple_type(0, t2);
             return parenthesis ? caml_call3(Stdlib_Printf[4], _ag_, ty1s, ty2s) : caml_call3(Stdlib_Printf[4], _ah_, ty1s, ty2s);
@@ -38134,7 +38154,7 @@ var require_main_bc = __commonJS({
                 return print_simple_type(0, eta);
               },
               args
-            ), argss = caml_call1(caml_call1(Stdlib_String[7], cst$3), _dn_), _do_ = caml_call1(Parsing_Longident[4], p[1]), ps = caml_call2(Stdlib_String[7], cst$4, _do_);
+            ), argss = caml_call1(caml_call1(Stdlib_String[7], cst$5), _dn_), _do_ = caml_call1(Parsing_Longident[4], p[1]), ps = caml_call2(Stdlib_String[7], cst$6, _do_);
             return 1 < caml_call1(Stdlib_List[1], args) ? caml_call3(Stdlib_Printf[4], _ai_, argss, ps) : 1 === caml_call1(Stdlib_List[1], args) ? caml_call3(Stdlib_Printf[4], _aj_, argss, ps) : ps;
         }
       }
@@ -38142,23 +38162,23 @@ var require_main_bc = __commonJS({
         return _dm_.fun(_dk_, _dl_);
       }, show_def_type = function _dj_(_di_) {
         return _dj_.fun(_di_);
-      }, _ak_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [11, cst$36, 0]], cst_2$1], cst_params = "params", _al_ = [
+      }, _ak_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [11, cst$38, 0]], cst_2$1], cst_params = "params", _al_ = [
         0,
         [
           18,
-          [1, [0, 0, cst$26]],
-          [2, 0, [11, cst$37, [17, [0, cst$29, 1, 0], 0]]]
+          [1, [0, 0, cst$28]],
+          [2, 0, [11, cst$39, [17, [0, cst$31, 1, 0], 0]]]
         ],
         cst_s
-      ], _am_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [12, 91, 0]], cst_2$0], _an_ = [0, [12, 59, [17, [0, cst$29, 1, 0], 0]], cst$33], _ao_ = [0, [3, 0, 0], cst_S], _ap_ = [0, [17, [0, cst$28, 0, 0], [12, 93, [17, 0, 0]]], cst$34], _aq_ = [0, [17, 0, 0], cst$38], _ar_ = [0, [12, 59, [17, [0, cst$29, 1, 0], 0]], cst$33], cst_defbody = "defbody", _as_ = [
+      ], _am_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [12, 91, 0]], cst_2$0], _an_ = [0, [12, 59, [17, [0, cst$31, 1, 0], 0]], cst$35], _ao_ = [0, [3, 0, 0], cst_S], _ap_ = [0, [17, [0, cst$30, 0, 0], [12, 93, [17, 0, 0]]], cst$36], _aq_ = [0, [17, 0, 0], cst$40], _ar_ = [0, [12, 59, [17, [0, cst$31, 1, 0], 0]], cst$35], cst_defbody = "defbody", _as_ = [
         0,
         [
           18,
-          [1, [0, 0, cst$26]],
-          [2, 0, [11, cst$37, [17, [0, cst$29, 1, 0], 0]]]
+          [1, [0, 0, cst$28]],
+          [2, 0, [11, cst$39, [17, [0, cst$31, 1, 0], 0]]]
         ],
         cst_s
-      ], _at_ = [0, [17, 0, 0], cst$38], _au_ = [0, [17, [0, cst$29, 1, 0], [12, 125, [17, 0, 0]]], cst$39];
+      ], _at_ = [0, [17, 0, 0], cst$40], _au_ = [0, [17, [0, cst$31, 1, 0], [12, 125, [17, 0, 0]]], cst$41];
       caml_update_dummy2(
         pp_def_type,
         function(fmt, x2) {
@@ -38207,23 +38227,23 @@ var require_main_bc = __commonJS({
         return _dg_.fun(_de_, _df_);
       }, show_type_decl = function _dd_(_dc_) {
         return _dd_.fun(_dc_);
-      }, _aw_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [11, cst$36, 0]], cst_2$1], cst_kind = "kind", _ax_ = [
+      }, _aw_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [11, cst$38, 0]], cst_2$1], cst_kind = "kind", _ax_ = [
         0,
         [
           18,
-          [1, [0, 0, cst$26]],
-          [2, 0, [11, cst$37, [17, [0, cst$29, 1, 0], 0]]]
+          [1, [0, 0, cst$28]],
+          [2, 0, [11, cst$39, [17, [0, cst$31, 1, 0], 0]]]
         ],
         cst_s
-      ], _ay_ = [0, [4, 0, 0, 0, 0], cst_d], _az_ = [0, [17, 0, 0], cst$38], _aA_ = [0, [12, 59, [17, [0, cst$29, 1, 0], 0]], cst$33], cst_manifest = "manifest", _aB_ = [
+      ], _ay_ = [0, [4, 0, 0, 0, 0], cst_d], _az_ = [0, [17, 0, 0], cst$40], _aA_ = [0, [12, 59, [17, [0, cst$31, 1, 0], 0]], cst$35], cst_manifest = "manifest", _aB_ = [
         0,
         [
           18,
-          [1, [0, 0, cst$26]],
-          [2, 0, [11, cst$37, [17, [0, cst$29, 1, 0], 0]]]
+          [1, [0, 0, cst$28]],
+          [2, 0, [11, cst$39, [17, [0, cst$31, 1, 0], 0]]]
         ],
         cst_s
-      ], cst_Some = cst_Some$1, cst_None = cst_None$1, _aC_ = [0, [17, 0, 0], cst$38], _aD_ = [0, [17, [0, cst$29, 1, 0], [12, 125, [17, 0, 0]]], cst$39];
+      ], cst_Some = cst_Some$1, cst_None = cst_None$1, _aC_ = [0, [17, 0, 0], cst$40], _aD_ = [0, [17, [0, cst$31, 1, 0], [12, 125, [17, 0, 0]]], cst$41];
       caml_update_dummy2(
         pp_type_decl,
         function(fmt, x2) {
@@ -38239,7 +38259,7 @@ var require_main_bc = __commonJS({
             var x$0 = param[1];
             caml_call2(Stdlib_Format[13], fmt, cst_Some);
             caml_call1(caml_call1(pp_def_type, fmt), x$0);
-            caml_call2(Stdlib_Format[13], fmt, cst$5);
+            caml_call2(Stdlib_Format[13], fmt, cst$7);
           } else
             caml_call2(Stdlib_Format[13], fmt, cst_None);
           caml_call2(Stdlib_Format[137], fmt, _aC_);
@@ -38269,23 +38289,23 @@ var require_main_bc = __commonJS({
         return _cX_.fun(_cV_, _cW_);
       }, show_specification = function _cU_(_cT_) {
         return _cU_.fun(_cT_);
-      }, _aF_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [11, cst$36, 0]], cst_2$1], cst_mt_desc = "mt_desc", _aG_ = [
+      }, _aF_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [11, cst$38, 0]], cst_2$1], cst_mt_desc = "mt_desc", _aG_ = [
         0,
         [
           18,
-          [1, [0, 0, cst$26]],
-          [2, 0, [11, cst$37, [17, [0, cst$29, 1, 0], 0]]]
+          [1, [0, 0, cst$28]],
+          [2, 0, [11, cst$39, [17, [0, cst$31, 1, 0], 0]]]
         ],
         cst_s
-      ], _aH_ = [0, [17, 0, 0], cst$38], _aI_ = [0, [12, 59, [17, [0, cst$29, 1, 0], 0]], cst$33], cst_loc$1 = cst_loc$3, _aJ_ = [
+      ], _aH_ = [0, [17, 0, 0], cst$40], _aI_ = [0, [12, 59, [17, [0, cst$31, 1, 0], 0]], cst$35], cst_loc$1 = cst_loc$3, _aJ_ = [
         0,
         [
           18,
-          [1, [0, 0, cst$26]],
-          [2, 0, [11, cst$37, [17, [0, cst$29, 1, 0], 0]]]
+          [1, [0, 0, cst$28]],
+          [2, 0, [11, cst$39, [17, [0, cst$31, 1, 0], 0]]]
         ],
         cst_s
-      ], _aK_ = [0, [17, 0, 0], cst$38], _aL_ = [0, [17, [0, cst$29, 1, 0], [12, 125, [17, 0, 0]]], cst$39];
+      ], _aK_ = [0, [17, 0, 0], cst$40], _aL_ = [0, [17, [0, cst$31, 1, 0], [12, 125, [17, 0, 0]]], cst$41];
       caml_update_dummy2(
         pp_mod_type,
         function(fmt, x2) {
@@ -38317,11 +38337,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "Signature", [17, [0, cst$29, 1, 0], 0]]
+            [11, "Signature", [17, [0, cst$31, 1, 0], 0]]
           ]
         ],
         "(@[<2>Signature@ "
-      ], _aO_ = [0, [17, 0, [12, 41, 0]], cst$35], _aP_ = [
+      ], _aO_ = [0, [17, 0, [12, 41, 0]], cst$37], _aP_ = [
         0,
         [
           12,
@@ -38329,11 +38349,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "Functor_type (", [17, [0, cst$28, 0, 0], 0]]
+            [11, "Functor_type (", [17, [0, cst$30, 0, 0], 0]]
           ]
         ],
         "(@[<2>Functor_type (@,"
-      ], _aQ_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], _aR_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], _aS_ = [0, [17, [0, cst$28, 0, 0], [11, cst$31, [17, 0, 0]]], cst$32];
+      ], _aQ_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], _aR_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], _aS_ = [0, [17, [0, cst$30, 0, 0], [11, cst$33, [17, 0, 0]]], cst$34];
       caml_update_dummy2(
         pp_mod_type_desc,
         function(fmt, param) {
@@ -38369,7 +38389,7 @@ var require_main_bc = __commonJS({
           return caml_call3(Stdlib_Format[141], _aT_, pp_mod_type_desc, x2);
         }
       );
-      var _aU_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [12, 91, 0]], cst_2$0], _aV_ = [0, [12, 59, [17, [0, cst$29, 1, 0], 0]], cst$33], _aW_ = [0, [17, [0, cst$28, 0, 0], [12, 93, [17, 0, 0]]], cst$34];
+      var _aU_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [12, 91, 0]], cst_2$0], _aV_ = [0, [12, 59, [17, [0, cst$31, 1, 0], 0]], cst$35], _aW_ = [0, [17, [0, cst$30, 0, 0], [12, 93, [17, 0, 0]]], cst$36];
       caml_update_dummy2(
         pp_signature,
         function(fmt, x2) {
@@ -38403,11 +38423,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "Value_sig (", [17, [0, cst$28, 0, 0], 0]]
+            [11, "Value_sig (", [17, [0, cst$30, 0, 0], 0]]
           ]
         ],
         "(@[<2>Value_sig (@,"
-      ], _aZ_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], _a0_ = [0, [17, [0, cst$28, 0, 0], [11, cst$31, [17, 0, 0]]], cst$32], _a1_ = [
+      ], _aZ_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], _a0_ = [0, [17, [0, cst$30, 0, 0], [11, cst$33, [17, 0, 0]]], cst$34], _a1_ = [
         0,
         [
           12,
@@ -38415,11 +38435,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "Type_sig (", [17, [0, cst$28, 0, 0], 0]]
+            [11, "Type_sig (", [17, [0, cst$30, 0, 0], 0]]
           ]
         ],
         "(@[<2>Type_sig (@,"
-      ], _a2_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], _a3_ = [0, [17, [0, cst$28, 0, 0], [11, cst$31, [17, 0, 0]]], cst$32], _a4_ = [
+      ], _a2_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], _a3_ = [0, [17, [0, cst$30, 0, 0], [11, cst$33, [17, 0, 0]]], cst$34], _a4_ = [
         0,
         [
           12,
@@ -38427,11 +38447,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "Module_sig (", [17, [0, cst$28, 0, 0], 0]]
+            [11, "Module_sig (", [17, [0, cst$30, 0, 0], 0]]
           ]
         ],
         "(@[<2>Module_sig (@,"
-      ], _a5_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], _a6_ = [0, [17, [0, cst$28, 0, 0], [11, cst$31, [17, 0, 0]]], cst$32];
+      ], _a5_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], _a6_ = [0, [17, [0, cst$30, 0, 0], [11, cst$33, [17, 0, 0]]], cst$34];
       caml_update_dummy2(
         pp_specification,
         function(fmt, param) {
@@ -38510,23 +38530,23 @@ var require_main_bc = __commonJS({
         return _cB_.fun(_cz_, _cA_);
       }, show_definition = function _cy_(_cx_) {
         return _cy_.fun(_cx_);
-      }, _a8_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [11, cst$36, 0]], cst_2$1], cst_me_desc = "me_desc", _a9_ = [
+      }, _a8_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [11, cst$38, 0]], cst_2$1], cst_me_desc = "me_desc", _a9_ = [
         0,
         [
           18,
-          [1, [0, 0, cst$26]],
-          [2, 0, [11, cst$37, [17, [0, cst$29, 1, 0], 0]]]
+          [1, [0, 0, cst$28]],
+          [2, 0, [11, cst$39, [17, [0, cst$31, 1, 0], 0]]]
         ],
         cst_s
-      ], _a__ = [0, [17, 0, 0], cst$38], _a$_ = [0, [12, 59, [17, [0, cst$29, 1, 0], 0]], cst$33], cst_loc$2 = cst_loc$3, _ba_ = [
+      ], _a__ = [0, [17, 0, 0], cst$40], _a$_ = [0, [12, 59, [17, [0, cst$31, 1, 0], 0]], cst$35], cst_loc$2 = cst_loc$3, _ba_ = [
         0,
         [
           18,
-          [1, [0, 0, cst$26]],
-          [2, 0, [11, cst$37, [17, [0, cst$29, 1, 0], 0]]]
+          [1, [0, 0, cst$28]],
+          [2, 0, [11, cst$39, [17, [0, cst$31, 1, 0], 0]]]
         ],
         cst_s
-      ], _bb_ = [0, [17, 0, 0], cst$38], _bc_ = [0, [17, [0, cst$29, 1, 0], [12, 125, [17, 0, 0]]], cst$39];
+      ], _bb_ = [0, [17, 0, 0], cst$40], _bc_ = [0, [17, [0, cst$31, 1, 0], [12, 125, [17, 0, 0]]], cst$41];
       caml_update_dummy2(
         pp_mod_expr,
         function(fmt, x2) {
@@ -38558,11 +38578,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "MELongident", [17, [0, cst$29, 1, 0], 0]]
+            [11, "MELongident", [17, [0, cst$31, 1, 0], 0]]
           ]
         ],
         "(@[<2>MELongident@ "
-      ], _bf_ = [0, [17, 0, [12, 41, 0]], cst$35], _bg_ = [
+      ], _bf_ = [0, [17, 0, [12, 41, 0]], cst$37], _bg_ = [
         0,
         [
           12,
@@ -38570,11 +38590,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "MEStructure", [17, [0, cst$29, 1, 0], 0]]
+            [11, "MEStructure", [17, [0, cst$31, 1, 0], 0]]
           ]
         ],
         "(@[<2>MEStructure@ "
-      ], _bh_ = [0, [17, 0, [12, 41, 0]], cst$35], _bi_ = [
+      ], _bh_ = [0, [17, 0, [12, 41, 0]], cst$37], _bi_ = [
         0,
         [
           12,
@@ -38582,11 +38602,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "MEFunctor (", [17, [0, cst$28, 0, 0], 0]]
+            [11, "MEFunctor (", [17, [0, cst$30, 0, 0], 0]]
           ]
         ],
         "(@[<2>MEFunctor (@,"
-      ], _bj_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], _bk_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], _bl_ = [0, [17, [0, cst$28, 0, 0], [11, cst$31, [17, 0, 0]]], cst$32], _bm_ = [
+      ], _bj_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], _bk_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], _bl_ = [0, [17, [0, cst$30, 0, 0], [11, cst$33, [17, 0, 0]]], cst$34], _bm_ = [
         0,
         [
           12,
@@ -38594,11 +38614,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "MEApply (", [17, [0, cst$28, 0, 0], 0]]
+            [11, "MEApply (", [17, [0, cst$30, 0, 0], 0]]
           ]
         ],
         "(@[<2>MEApply (@,"
-      ], _bn_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], _bo_ = [0, [17, [0, cst$28, 0, 0], [11, cst$31, [17, 0, 0]]], cst$32], _bp_ = [
+      ], _bn_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], _bo_ = [0, [17, [0, cst$30, 0, 0], [11, cst$33, [17, 0, 0]]], cst$34], _bp_ = [
         0,
         [
           12,
@@ -38606,11 +38626,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "MEConstraint (", [17, [0, cst$28, 0, 0], 0]]
+            [11, "MEConstraint (", [17, [0, cst$30, 0, 0], 0]]
           ]
         ],
         "(@[<2>MEConstraint (@,"
-      ], _bq_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], _br_ = [0, [17, [0, cst$28, 0, 0], [11, cst$31, [17, 0, 0]]], cst$32];
+      ], _bq_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], _br_ = [0, [17, [0, cst$30, 0, 0], [11, cst$33, [17, 0, 0]]], cst$34];
       caml_update_dummy2(
         pp_mod_expr_desc,
         function(fmt, param) {
@@ -38676,7 +38696,7 @@ var require_main_bc = __commonJS({
           return caml_call3(Stdlib_Format[141], _bs_, pp_mod_expr_desc, x2);
         }
       );
-      var _bt_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [12, 91, 0]], cst_2$0], _bu_ = [0, [12, 59, [17, [0, cst$29, 1, 0], 0]], cst$33], _bv_ = [0, [17, [0, cst$28, 0, 0], [12, 93, [17, 0, 0]]], cst$34];
+      var _bt_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [12, 91, 0]], cst_2$0], _bu_ = [0, [12, 59, [17, [0, cst$31, 1, 0], 0]], cst$35], _bv_ = [0, [17, [0, cst$30, 0, 0], [12, 93, [17, 0, 0]]], cst$36];
       caml_update_dummy2(
         pp_structure,
         function(fmt, x2) {
@@ -38710,11 +38730,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "Value_str (", [17, [0, cst$28, 0, 0], 0]]
+            [11, "Value_str (", [17, [0, cst$30, 0, 0], 0]]
           ]
         ],
         "(@[<2>Value_str (@,"
-      ], _by_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], _bz_ = [0, [17, [0, cst$28, 0, 0], [11, cst$31, [17, 0, 0]]], cst$32], _bA_ = [
+      ], _by_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], _bz_ = [0, [17, [0, cst$30, 0, 0], [11, cst$33, [17, 0, 0]]], cst$34], _bA_ = [
         0,
         [
           12,
@@ -38722,11 +38742,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "Type_str (", [17, [0, cst$28, 0, 0], 0]]
+            [11, "Type_str (", [17, [0, cst$30, 0, 0], 0]]
           ]
         ],
         "(@[<2>Type_str (@,"
-      ], _bB_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], _bC_ = [0, [17, [0, cst$28, 0, 0], [11, cst$31, [17, 0, 0]]], cst$32], _bD_ = [
+      ], _bB_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], _bC_ = [0, [17, [0, cst$30, 0, 0], [11, cst$33, [17, 0, 0]]], cst$34], _bD_ = [
         0,
         [
           12,
@@ -38734,11 +38754,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "Module_str (", [17, [0, cst$28, 0, 0], 0]]
+            [11, "Module_str (", [17, [0, cst$30, 0, 0], 0]]
           ]
         ],
         "(@[<2>Module_str (@,"
-      ], _bE_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], cst_Some$0 = cst_Some$1, cst_None$0 = cst_None$1, _bF_ = [0, [12, 44, [17, [0, cst$29, 1, 0], 0]], cst$30], _bG_ = [0, [17, [0, cst$28, 0, 0], [11, cst$31, [17, 0, 0]]], cst$32];
+      ], _bE_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], cst_Some$0 = cst_Some$1, cst_None$0 = cst_None$1, _bF_ = [0, [12, 44, [17, [0, cst$31, 1, 0], 0]], cst$32], _bG_ = [0, [17, [0, cst$30, 0, 0], [11, cst$33, [17, 0, 0]]], cst$34];
       caml_update_dummy2(
         pp_definition,
         function(fmt, param) {
@@ -38793,7 +38813,7 @@ var require_main_bc = __commonJS({
                 var x2 = a1$1[1];
                 caml_call2(Stdlib_Format[13], fmt, cst_Some$0);
                 caml_call1(caml_call1(pp_mod_type, fmt), x2);
-                caml_call2(Stdlib_Format[13], fmt, cst$6);
+                caml_call2(Stdlib_Format[13], fmt, cst$8);
               } else
                 caml_call2(Stdlib_Format[13], fmt, cst_None$0);
               caml_call2(Stdlib_Format[137], fmt, _bF_);
@@ -38818,10 +38838,10 @@ var require_main_bc = __commonJS({
         [
           11,
           cst_functor,
-          [2, 0, [11, cst$25, [2, 0, [11, cst$23, [2, 0, 0]]]]]
+          [2, 0, [11, cst$27, [2, 0, [11, cst$25, [2, 0, 0]]]]]
         ],
         "functor(%s: %s) %s"
-      ], _bK_ = [0, [11, "val ", [2, 0, [11, cst$25, [2, 0, 0]]]], "val %s: %s"], _bL_ = [0, [11, cst_module, [2, 0, [11, cst$25, [2, 0, 0]]]], "module %s: %s"], _bM_ = [
+      ], _bK_ = [0, [11, "val ", [2, 0, [11, cst$27, [2, 0, 0]]]], "val %s: %s"], _bL_ = [0, [11, cst_module, [2, 0, [11, cst$27, [2, 0, 0]]]], "module %s: %s"], _bM_ = [
         0,
         [11, "struct\n", [2, 0, [12, 10, [2, 0, [11, cst_end, 0]]]]],
         "struct\n%s\n%send"
@@ -38830,35 +38850,35 @@ var require_main_bc = __commonJS({
         [
           11,
           cst_functor,
-          [2, 0, [11, cst$25, [2, 0, [11, ") = ", [2, 0, 0]]]]]
+          [2, 0, [11, cst$27, [2, 0, [11, ") = ", [2, 0, 0]]]]]
         ],
         "functor(%s: %s) = %s"
-      ], _bO_ = [0, [2, 0, [12, 40, [2, 0, [12, 41, 0]]]], "%s(%s)"], _bP_ = [0, [12, 40, [2, 0, [11, cst$25, [2, 0, [12, 41, 0]]]]], "(%s: %s)"], _bQ_ = [0, [11, cst_let, [2, 0, [11, cst$20, [2, 0, 0]]]], "let %s = %s"], _bR_ = [
+      ], _bO_ = [0, [2, 0, [12, 40, [2, 0, [12, 41, 0]]]], "%s(%s)"], _bP_ = [0, [12, 40, [2, 0, [11, cst$27, [2, 0, [12, 41, 0]]]]], "(%s: %s)"], _bQ_ = [0, [11, cst_let, [2, 0, [11, cst$22, [2, 0, 0]]]], "let %s = %s"], _bR_ = [
         0,
-        [11, cst_module, [2, 0, [11, cst$25, [2, 0, [11, cst$20, [2, 0, 0]]]]]],
+        [11, cst_module, [2, 0, [11, cst$27, [2, 0, [11, cst$22, [2, 0, 0]]]]]],
         "module %s: %s = %s"
-      ], _bS_ = [0, [11, cst_module, [2, 0, [11, cst$20, [2, 0, 0]]]], "module %s = %s"];
+      ], _bS_ = [0, [11, cst_module, [2, 0, [11, cst$22, [2, 0, 0]]]], "module %s = %s"];
       function print_type_decl(id, decl) {
         var match = decl[2];
         if (match)
-          var ty = match[1], _cm_ = print_simple_type(0, ty[2]), _cn_ = caml_call2(Stdlib[28], cst$7, _cm_);
+          var ty = match[1], _cm_ = print_simple_type(0, ty[2]), _cn_ = caml_call2(Stdlib[28], cst$9, _cm_);
         else
-          var _cn_ = cst$13;
+          var _cn_ = cst$15;
         var _co_ = caml_call1(Parsing_Longident[6], id[1]), _cp_ = caml_call2(Stdlib[28], _co_, _cn_);
         if (0 === decl[1])
-          var _cq_ = cst$8;
+          var _cq_ = cst$10;
         else {
           var _cs_ = caml_call1(Stdlib_Option[4], decl[2])[1], _ct_ = caml_call2(
             Stdlib_List[20],
             function(x2) {
-              return caml_call2(Stdlib[28], cst$9, x2[1]);
+              return caml_call2(Stdlib[28], cst$11, x2[1]);
             },
             _cs_
-          ), paramss = caml_call2(Stdlib_String[7], cst$10, _ct_);
+          ), paramss = caml_call2(Stdlib_String[7], cst$12, _ct_);
           if (1 === decl[1])
             var paramss$0 = paramss;
           else
-            var _cu_ = caml_call2(Stdlib[28], paramss, cst$11), paramss$0 = caml_call2(Stdlib[28], cst$12, _cu_);
+            var _cu_ = caml_call2(Stdlib[28], paramss, cst$13), paramss$0 = caml_call2(Stdlib[28], cst$14, _cu_);
           var _cq_ = paramss$0;
         }
         var _cr_ = caml_call2(Stdlib[28], _cq_, _cp_);
@@ -38877,7 +38897,7 @@ var require_main_bc = __commonJS({
               return print_specification(offset + 2 | 0, x2);
             },
             sig
-          ), _ci_ = caml_call2(Stdlib_String[7], cst$14, _ch_);
+          ), _ci_ = caml_call2(Stdlib_String[7], cst$16, _ch_);
           return caml_call3(Stdlib_Printf[4], _bI_, _ci_, _cg_);
         }
         var mty2 = match[3], mty1 = match[2], uid = match[1], _cj_ = print_mod_type(0, mty2), _ck_ = print_mod_type(0, mty1), _cl_ = caml_call1(Parsing_Longident[6], uid[1]);
@@ -38914,7 +38934,7 @@ var require_main_bc = __commonJS({
                 return print_definition(offset + 2 | 0, x2);
               },
               str
-            ), _b5_ = caml_call2(Stdlib_String[7], cst$15, _b4_);
+            ), _b5_ = caml_call2(Stdlib_String[7], cst$17, _b4_);
             return caml_call3(Stdlib_Printf[4], _bM_, _b5_, _b3_);
           case 2:
             var mod_e = match[3], mod_ty = match[2], id = match[1], _b6_ = print_mod_expr(0, mod_e), _b7_ = print_mod_type(0, mod_ty), _b8_ = caml_call1(Parsing_Longident[6], id[1]);
@@ -38950,7 +38970,7 @@ var require_main_bc = __commonJS({
         var _bT_ = caml_call2(Stdlib_List[20], function(x2) {
           return print_definition(0, x2);
         }, str);
-        return caml_call2(Stdlib_String[7], cst$16, _bT_);
+        return caml_call2(Stdlib_String[7], cst$18, _bT_);
       }
       var Parsing_Syntax = [
         0,
@@ -38958,6 +38978,7 @@ var require_main_bc = __commonJS({
         show_expr,
         pp_expr_desc,
         show_expr_desc,
+        is_infix,
         print_expr,
         pp_simple_type,
         show_simple_type,
@@ -38991,7 +39012,7 @@ var require_main_bc = __commonJS({
         print_definition,
         print_definition_list
       ];
-      runtime.caml_register_global(207, Parsing_Syntax, "Parsing__Syntax");
+      runtime.caml_register_global(209, Parsing_Syntax, "Parsing__Syntax");
       return;
     })(globalThis);
     (function(globalThis2) {
@@ -40496,7 +40517,7 @@ var require_main_bc = __commonJS({
         caml_call1(Stdlib[46], cst_toks_done);
         var p = caml_call2(Parsing_Parser[6], cst_file$1, src), mod_expr = caml_call1(Parsing_Parser[38], p);
         caml_call1(Stdlib[46], cst_parse_done);
-        var ret = 0 === caml_call1(Stdlib_List[1], p[6]) ? [0, toks, caml_call1(Parsing_Syntax[36], mod_expr), 0] : [
+        var ret = 0 === caml_call1(Stdlib_List[1], p[6]) ? [0, toks, caml_call1(Parsing_Syntax[37], mod_expr), 0] : [
           0,
           toks,
           src,
@@ -40516,7 +40537,7 @@ var require_main_bc = __commonJS({
       }
       function t7(param, src) {
         var p = caml_call2(Parsing_Parser[6], cst_file$0, src), mod_expr = caml_call1(Parsing_Parser[38], p);
-        return caml_call1(Parsing_Syntax[36], mod_expr);
+        return caml_call1(Parsing_Syntax[37], mod_expr);
       }
       function t6(param, src) {
         var _y_ = caml_call1(loc_list_to_yojson, _x_(src));
