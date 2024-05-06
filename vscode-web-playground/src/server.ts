@@ -68,7 +68,8 @@ connection.onInitialize((params: InitializeParams) => {
 				documentSelector: [{ language: 'mod' }],
 				full: true,
 			},
-			hoverProvider: true
+			hoverProvider: true,
+			documentFormattingProvider: true
 		}
 	};
 	if (hasWorkspaceFolderCapability) {
@@ -80,6 +81,7 @@ connection.onInitialize((params: InitializeParams) => {
 	}
 	return result;
 });
+
 
 connection.onInitialized(() => {
 	console.log('onInitialized')
@@ -112,7 +114,7 @@ const documentSettings: Map<string, Thenable<ExampleSettings>> = new Map();
 connection.languages.semanticTokens.on(async ({ textDocument }) => {
 	const doc = documents.get(textDocument.uri)
 	const text = doc.getText()
-	const t: { start: [number, number], end: [number, number]; type: string }[] = JSON.parse(lib.lexing(text))
+	const t: { start: [number, number], end: [number, number]; type: string }[] = JSON.parse(lib.tokeninfo(text))
 	const data = t.map((e, i) => {
 		const len = doc.offsetAt({ line: e.end[0], character: e.end[1] })
 			- doc.offsetAt({ line: e.start[0], character: e.start[1] })
@@ -155,11 +157,60 @@ connection.languages.diagnostics.on(async (params) => {
 
 });
 
+type Pos = [number, number]
+type DocData = {
+	[K in string]: {
+		tokens: { start: Pos; end: Pos; type: string }[],
+		formatted: string,
+		diagnostics: { start: Pos, end: Pos, msg: string }[]
+	}
+}
+
+const docData: DocData = {}
 // The content of a text document has changed. This event is emitted
 // when the text document first opened or when its content has changed.
 documents.onDidChangeContent(change => {
-	console.log('onDidChangeContent', change)
+	console.log('onDidChangeContent')
+	const doc = change.document
+	try {
+		console.log(doc.getText(), lib.filechange)
+		const json = lib.filechange(doc.getText())
+		console.log(json)
+		let ret: DocData[string] = JSON.parse(json)
+		docData[doc.uri] = ret
+		console.log(ret)
+		connection.sendDiagnostics({
+			'uri': doc.uri,
+			diagnostics: ret.diagnostics.map(d => {
+				return {
+					range: {
+						start: { line: d.start[0], character: d.start[1] },
+						end: { line: d.end[0], character: d.end[1] },
+					},
+					message: d.msg || "Unkonwn error"
+				}
+			})
+		})
+
+	} catch {
+
+	}
+
 });
+
+
+connection.onDocumentFormatting(async ({ textDocument }) => {
+	const doc = documents.get(textDocument.uri)
+	const text = doc.getText()
+	const newText = docData[doc.uri].formatted
+	return [{
+		range: {
+			start: doc.positionAt(0),
+			end: doc.positionAt(text.length)
+		},
+		newText
+	}]
+})
 
 
 
