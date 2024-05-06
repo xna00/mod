@@ -37160,7 +37160,7 @@ var require_main_bc = __commonJS({
     })(globalThis);
     (function(globalThis2) {
       "use strict";
-      var runtime = globalThis2.jsoo_runtime, cst_S = "%S", cst_2 = "<2>", cst = "@ ", cst$0 = "@])", caml_list_of_js_array2 = runtime.caml_list_of_js_array, caml_maybe_attach_backtrace2 = runtime.caml_maybe_attach_backtrace;
+      var runtime = globalThis2.jsoo_runtime, cst_S = "%S", cst_2 = "<2>", cst$1 = "@ ", cst$2 = "@])", cst_parsing_token_ml = "parsing/token.ml", caml_list_of_js_array2 = runtime.caml_list_of_js_array, caml_maybe_attach_backtrace2 = runtime.caml_maybe_attach_backtrace;
       function caml_call1(f, a0) {
         return (f.l >= 0 ? f.l : f.l = f.length) == 1 ? f(a0) : runtime.caml_call_gen(f, [a0]);
       }
@@ -37170,7 +37170,7 @@ var require_main_bc = __commonJS({
       function caml_call3(f, a0, a1, a2) {
         return (f.l >= 0 ? f.l : f.l = f.length) == 3 ? f(a0, a1, a2) : runtime.caml_call_gen(f, [a0, a1, a2]);
       }
-      var global_data = runtime.caml_get_global_data(), keywords = caml_list_of_js_array2([
+      var global_data = runtime.caml_get_global_data(), cst = "=", cst$0 = "*", keywords = caml_list_of_js_array2([
         [0, "let", 10],
         [0, "in", 12],
         [0, "fun", 13],
@@ -37195,11 +37195,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "NUMBER", [17, [0, cst, 1, 0], 0]]
+            [11, "NUMBER", [17, [0, cst$1, 1, 0], 0]]
           ]
         ],
         "(@[<2>NUMBER@ "
-      ], _b_ = [0, [4, 0, 0, 0, 0], "%d"], _c_ = [0, [17, 0, [12, 41, 0]], cst$0], _d_ = [
+      ], _b_ = [0, [4, 0, 0, 0, 0], "%d"], _c_ = [0, [17, 0, [12, 41, 0]], cst$2], _d_ = [
         0,
         [
           12,
@@ -37207,11 +37207,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "UIDENT", [17, [0, cst, 1, 0], 0]]
+            [11, "UIDENT", [17, [0, cst$1, 1, 0], 0]]
           ]
         ],
         "(@[<2>UIDENT@ "
-      ], _e_ = [0, [3, 0, 0], cst_S], _f_ = [0, [17, 0, [12, 41, 0]], cst$0], _g_ = [
+      ], _e_ = [0, [3, 0, 0], cst_S], _f_ = [0, [17, 0, [12, 41, 0]], cst$2], _g_ = [
         0,
         [
           12,
@@ -37219,11 +37219,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "LIDENT", [17, [0, cst, 1, 0], 0]]
+            [11, "LIDENT", [17, [0, cst$1, 1, 0], 0]]
           ]
         ],
         "(@[<2>LIDENT@ "
-      ], _h_ = [0, [3, 0, 0], cst_S], _i_ = [0, [17, 0, [12, 41, 0]], cst$0], _j_ = [
+      ], _h_ = [0, [3, 0, 0], cst_S], _i_ = [0, [17, 0, [12, 41, 0]], cst$2], _j_ = [
         0,
         [
           12,
@@ -37231,11 +37231,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "INFIX1", [17, [0, cst, 1, 0], 0]]
+            [11, "INFIX1", [17, [0, cst$1, 1, 0], 0]]
           ]
         ],
         "(@[<2>INFIX1@ "
-      ], _k_ = [0, [3, 0, 0], cst_S], _l_ = [0, [17, 0, [12, 41, 0]], cst$0], _m_ = [
+      ], _k_ = [0, [3, 0, 0], cst_S], _l_ = [0, [17, 0, [12, 41, 0]], cst$2], _m_ = [
         0,
         [
           12,
@@ -37243,11 +37243,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "INFIX2", [17, [0, cst, 1, 0], 0]]
+            [11, "INFIX2", [17, [0, cst$1, 1, 0], 0]]
           ]
         ],
         "(@[<2>INFIX2@ "
-      ], _n_ = [0, [3, 0, 0], cst_S], _o_ = [0, [17, 0, [12, 41, 0]], cst$0], _p_ = [
+      ], _n_ = [0, [3, 0, 0], cst_S], _o_ = [0, [17, 0, [12, 41, 0]], cst$2], _p_ = [
         0,
         [
           12,
@@ -37255,11 +37255,11 @@ var require_main_bc = __commonJS({
           [
             18,
             [1, [0, [11, cst_2, 0], cst_2]],
-            [11, "INFIX3", [17, [0, cst, 1, 0], 0]]
+            [11, "INFIX3", [17, [0, cst$1, 1, 0], 0]]
           ]
         ],
         "(@[<2>INFIX3@ "
-      ], _q_ = [0, [3, 0, 0], cst_S], _r_ = [0, [17, 0, [12, 41, 0]], cst$0], _s_ = [0, [15, 0], "%a"], _t_ = [0, "parsing/token.ml", 43, 9];
+      ], _q_ = [0, [3, 0, 0], cst_S], _r_ = [0, [17, 0, [12, 41, 0]], cst$2], _s_ = [0, [15, 0], "%a"], _t_ = [0, cst_parsing_token_ml, 43, 9], _u_ = [0, cst_parsing_token_ml, 50, 9];
       function pp(fmt, param) {
         if (typeof param === "number")
           switch (param) {
@@ -37357,19 +37357,50 @@ var require_main_bc = __commonJS({
         return caml_call3(Stdlib_Format[141], _s_, pp, x2);
       }
       function precedence(token) {
-        if (typeof token !== "number")
-          switch (token[0]) {
-            case 3:
-              return 1;
-            case 4:
-              return 2;
-            case 5:
-              return 3;
+        a: {
+          b: {
+            if (typeof token === "number")
+              switch (token) {
+                case 8:
+                  break b;
+                case 4:
+                  break;
+                default:
+                  break a;
+              }
+            else
+              switch (token[0]) {
+                case 4:
+                  return 2;
+                case 5:
+                  break b;
+                case 3:
+                  break;
+                default:
+                  break a;
+              }
+            return 1;
           }
+          return 3;
+        }
         throw caml_maybe_attach_backtrace2([0, Assert_failure, _t_], 1);
       }
-      var Parsing_Token = [0, pp, show, precedence, keywords];
-      runtime.caml_register_global(51, Parsing_Token, "Parsing__Token");
+      function string_of_infix(token) {
+        if (typeof token === "number")
+          switch (token) {
+            case 4:
+              return cst;
+            case 8:
+              return cst$0;
+          }
+        else if (2 < token[0]) {
+          var s2 = token[1];
+          return s2;
+        }
+        throw caml_maybe_attach_backtrace2([0, Assert_failure, _u_], 1);
+      }
+      var Parsing_Token = [0, pp, show, precedence, string_of_infix, keywords];
+      runtime.caml_register_global(54, Parsing_Token, "Parsing__Token");
       return;
     })(globalThis);
     (function(globalThis2) {
@@ -39119,7 +39150,7 @@ var require_main_bc = __commonJS({
             }
           }
           var s2 = caml_call3(Stdlib_String[16], scanner[2], start, scanner[5] - start | 0);
-          return caml_call2(Stdlib_List[53], s2, Parsing_Token[4]) ? caml_call2(Stdlib_List[49], s2, Parsing_Token[4]) : 25 < caml_string_get2(s2, 0) - 97 >>> 0 ? [1, s2] : [2, s2];
+          return caml_call2(Stdlib_List[53], s2, Parsing_Token[5]) ? caml_call2(Stdlib_List[49], s2, Parsing_Token[5]) : 25 < caml_string_get2(s2, 0) - 97 >>> 0 ? [1, s2] : [2, s2];
         }
       }
       function scan_infix_chars(scanner) {
@@ -39274,10 +39305,10 @@ var require_main_bc = __commonJS({
       function caml_call3(f, a0, a1, a2) {
         return (f.l >= 0 ? f.l : f.l = f.length) == 3 ? f(a0, a1, a2) : runtime.caml_call_gen(f, [a0, a1, a2]);
       }
-      var global_data = runtime.caml_get_global_data(), cst$0 = cst$1, cst = cst$1, Parsing_Location = global_data.Parsing__Location, Parsing_Token = global_data.Parsing__Token, Stdlib_List = global_data.Stdlib__List, Stdlib = global_data.Stdlib, Parsing_Longident = global_data.Parsing__Longident, Assert_failure = global_data.Assert_failure, Parsing_Lexer = global_data.Parsing__Lexer, Stdlib_Lexing = global_data.Stdlib__Lexing, Stdlib_Format = global_data.Stdlib__Format, pp_diagnostic = function _ac_(_aa_, _ab_) {
-        return _ac_.fun(_aa_, _ab_);
-      }, show_diagnostic = function _$_(___) {
-        return _$_.fun(___);
+      var global_data = runtime.caml_get_global_data(), cst$0 = cst$1, cst = cst$1, Parsing_Token = global_data.Parsing__Token, Parsing_Location = global_data.Parsing__Location, Stdlib_List = global_data.Stdlib__List, Stdlib = global_data.Stdlib, Parsing_Longident = global_data.Parsing__Longident, Assert_failure = global_data.Assert_failure, Parsing_Lexer = global_data.Parsing__Lexer, Stdlib_Lexing = global_data.Stdlib__Lexing, Stdlib_Format = global_data.Stdlib__Format, pp_diagnostic = function _ad_(_ab_, _ac_) {
+        return _ad_.fun(_ab_, _ac_);
+      }, show_diagnostic = function _aa_(_$_) {
+        return _aa_.fun(_$_);
       }, _a_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [11, "{ ", 0]], "@[<2>{ "], cst_start_pos = "start_pos", _b_ = [
         0,
         [
@@ -39308,18 +39339,18 @@ var require_main_bc = __commonJS({
         function(fmt, x2) {
           caml_call2(Stdlib_Format[137], fmt, _a_);
           caml_call3(Stdlib_Format[137], fmt, _b_, cst_start_pos);
-          var _X_ = x2[1];
-          caml_call1(caml_call1(Parsing_Location[1], fmt), _X_);
+          var _Y_ = x2[1];
+          caml_call1(caml_call1(Parsing_Location[1], fmt), _Y_);
           caml_call2(Stdlib_Format[137], fmt, _c_);
           caml_call2(Stdlib_Format[137], fmt, _d_);
           caml_call3(Stdlib_Format[137], fmt, _e_, cst_end_pos);
-          var _Y_ = x2[2];
-          caml_call1(caml_call1(Parsing_Location[1], fmt), _Y_);
+          var _Z_ = x2[2];
+          caml_call1(caml_call1(Parsing_Location[1], fmt), _Z_);
           caml_call2(Stdlib_Format[137], fmt, _f_);
           caml_call2(Stdlib_Format[137], fmt, _g_);
           caml_call3(Stdlib_Format[137], fmt, _h_, cst_msg);
-          var _Z_ = x2[3];
-          caml_call1(caml_call2(Stdlib_Format[137], fmt, _i_), _Z_);
+          var ___ = x2[3];
+          caml_call1(caml_call2(Stdlib_Format[137], fmt, _i_), ___);
           caml_call2(Stdlib_Format[137], fmt, _j_);
           return caml_call2(Stdlib_Format[137], fmt, _k_);
         }
@@ -39331,7 +39362,7 @@ var require_main_bc = __commonJS({
           return caml_call3(Stdlib_Format[141], _l_, pp_diagnostic, x2);
         }
       );
-      var Parse_error = [248, "Parsing.Parser.Parse_error", runtime.caml_fresh_oo_id(0)], cst_Parse_fail = "Parse fail", cst_Expect_a = "Expect a ", _m_ = [0, "*"], _n_ = [0, cst_parsing_parser_ml, 310, 21], _o_ = [0, cst_parsing_parser_ml, 277, 56], cst_TODO = "TODO";
+      var Parse_error = [248, "Parsing.Parser.Parse_error", runtime.caml_fresh_oo_id(0)], cst_Parse_fail = "Parse fail", cst_Expect_a = "Expect a ", _m_ = [0, "*"], _n_ = [0, cst_parsing_parser_ml, 311, 21], _o_ = [0, cst_parsing_parser_ml, 278, 56], cst_TODO = "TODO";
       function err(start_pos, end_pos, parser, msg) {
         parser[6] = [0, [0, start_pos, end_pos, msg], parser[6]];
         return 0;
@@ -39349,10 +39380,10 @@ var require_main_bc = __commonJS({
           Stdlib_Lexing[1],
           0
         ];
-        scanner[4] = function(_U_) {
-          return function(_V_) {
-            return function(_W_) {
-              return err(_U_, _V_, parser, _W_);
+        scanner[4] = function(_V_) {
+          return function(_W_) {
+            return function(_X_) {
+              return err(_V_, _W_, parser, _X_);
             };
           };
         };
@@ -39372,8 +39403,8 @@ var require_main_bc = __commonJS({
       function expect(token, p) {
         if (caml_equal2(p[2], token))
           return advance(p);
-        var _S_ = caml_call1(Parsing_Token[2], token), _T_2 = caml_call2(Stdlib[28], cst_Expect_a, _S_);
-        err(p[3], p[4], p, _T_2);
+        var _T_2 = caml_call1(Parsing_Token[2], token), _U_ = caml_call2(Stdlib[28], cst_Expect_a, _T_2);
+        err(p[3], p[4], p, _U_);
         throw caml_maybe_attach_backtrace2(Parse_error, 1);
       }
       function optional(token, p) {
@@ -39440,8 +39471,8 @@ var require_main_bc = __commonJS({
         throw caml_maybe_attach_backtrace2(Parse_error, 1);
       }
       function longident_end_lident(p) {
-        var loc_start = p[3], uids = many_uident(p), lid = lident(p), loc_end = p[5], _R_ = caml_call2(Stdlib[37], uids, [0, lid[1], 0]);
-        return [0, caml_call1(Parsing_Longident[3], _R_), [0, loc_start, loc_end]];
+        var loc_start = p[3], uids = many_uident(p), lid = lident(p), loc_end = p[5], _S_ = caml_call2(Stdlib[37], uids, [0, lid[1], 0]);
+        return [0, caml_call1(Parsing_Longident[3], _S_), [0, loc_start, loc_end]];
       }
       function longident_end_uident(p) {
         var loc_start = p[3], uids = many_uident(p), loc_end = p[5];
@@ -39452,10 +39483,10 @@ var require_main_bc = __commonJS({
         ];
       }
       function expr(parser) {
-        var loc_start = parser[3], _Q_ = parser[2];
+        var loc_start = parser[3], _R_ = parser[2];
         a: {
-          if (typeof _Q_ === "number") {
-            if (10 === _Q_) {
+          if (typeof _R_ === "number") {
+            if (10 === _R_) {
               advance(parser);
               var id = lident(parser);
               expect(4, parser);
@@ -39464,7 +39495,7 @@ var require_main_bc = __commonJS({
               var body = expr(parser), desc = [4, id, e1, body];
               break a;
             }
-            if (13 === _Q_) {
+            if (13 === _R_) {
               advance(parser);
               var id$0 = lident(parser);
               expect(3, parser);
@@ -39481,9 +39512,19 @@ var require_main_bc = __commonJS({
         function expr_bp(min_bp) {
           var lhs = apply_expr(p), lhs$0 = lhs;
           for (; ; ) {
-            var match = p[2];
-            if (typeof match !== "number" && 2 < match[0]) {
-              var s2 = match[1], op = [0, [1, [0, [0, s2], Parsing_Location[7]]], [0, p[3], p[4]]], prec = caml_call1(Parsing_Token[3], p[2]);
+            var _Q_ = p[2];
+            a: {
+              if (typeof _Q_ === "number")
+                switch (_Q_) {
+                  case 4:
+                  case 8:
+                    break;
+                  default:
+                    break a;
+                }
+              else if (2 >= _Q_[0])
+                break a;
+              var s2 = caml_call1(Parsing_Token[4], p[2]), op = [0, [1, [0, [0, s2], Parsing_Location[7]]], [0, p[3], p[4]]], prec = caml_call1(Parsing_Token[3], p[2]);
               if (prec < min_bp)
                 return lhs$0;
               advance(p);
@@ -40491,7 +40532,7 @@ var require_main_bc = __commonJS({
                 function(_F_) {
                   return _F_[2];
                 },
-                Parsing_Token[4]
+                Parsing_Token[5]
               ), _D_ = caml_call2(Stdlib_List[37], tok, _C_) ? cst_keyword : cst_unknown, _E_ = _D_;
             }
             return [
