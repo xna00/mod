@@ -16205,7 +16205,7 @@ var MemFS = class _MemFS {
   seed() {
     this.createDirectory(Uri.parse(`memfs:/sample-folder/`));
     this.writeFile(Uri.parse(`memfs:/sample-folder/test.mod`), textEncoder.encode(`
-let a = 1 in a		`.trim()), { create: true, overwrite: true });
+		let a = 1 `.trim()), { create: true, overwrite: true });
   }
   // --- manage file metadata
   stat(uri) {
