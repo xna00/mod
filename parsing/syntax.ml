@@ -25,19 +25,28 @@ let is_infix s =
 let rec print_expr ?(parenthesis = false) e =
   match e.desc with
   | EConstant i -> string_of_int i
-  | ELongident id -> String.concat "." (Longident.flat id.txt)
+  | ELongident id ->
+      Longident.infixify (String.concat "." (Longident.flat id.txt))
   | EFunction (_, { txt; _ }, body) ->
       let b = print_expr body in
       if parenthesis then Printf.sprintf "(fun %s -> %s)" txt b
       else Printf.sprintf "fun %s -> %s" txt b
   | EApply (f, args) ->
-      let fs = print_expr ~parenthesis:true f in
+      let fs =
+        match f with
+        | { desc = ELongident { txt = Longident.Lident s; _ }; _ }
+          when is_infix s ->
+            s
+        | _ -> print_expr ~parenthesis:true f
+      in
       let argss = List.map (print_expr ~parenthesis:true) (List.map snd args) in
 
       if is_infix fs then List.nth argss 0 ^ " " ^ fs ^ " " ^ List.nth argss 1
       else fs ^ " " ^ String.concat " '" argss
   | ELet ({ txt; _ }, e1, body) ->
-      Printf.sprintf "let %s = %s in %s" txt (print_expr e1) (print_expr body)
+      print_endline ("txt:" ^ txt);
+      Printf.sprintf "let %s = %s in %s" (Longident.infixify txt)
+        (print_expr e1) (print_expr body)
 
 type simple_type = { ty_desc : simple_type_desc; loc : Location.t }
 
@@ -60,12 +69,18 @@ let rec print_simple_type ?(parenthesis = false) ty =
       let ty2s = print_simple_type t2 in
       if parenthesis then Printf.sprintf "(%s -> %s)" ty1s ty2s
       else Printf.sprintf "%s -> %s" ty1s ty2s
-  | Typeconstr (p, args) ->
+  | Typeconstr (p, args) -> (
       let argss = List.map print_simple_type args |> String.concat ", " in
-      let ps = String.concat "." (Longident.flat p.txt) in
-      if List.length args > 1 then Printf.sprintf "(%s) %s" argss ps
-      else if List.length args = 1 then Printf.sprintf "%s %s" argss ps
-      else ps
+      match p.txt with
+      | Longident.Lident s when s = "*" ->
+          Printf.sprintf "%s * %s"
+            (print_simple_type ~parenthesis:true (List.nth args 0))
+            (print_simple_type ~parenthesis:true (List.nth args 1))
+      | _ ->
+          let ps = String.concat "." (Longident.flat p.txt) in
+          if List.length args > 1 then Printf.sprintf "(%s) %s" argss ps
+          else if List.length args = 1 then Printf.sprintf "%s %s" argss ps
+          else ps)
 
 (* and row = simple_type [@@deriving show { with_path = false }] *)
 

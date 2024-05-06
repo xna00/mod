@@ -42,6 +42,11 @@ let precedence token =
   | INFIX1 _ | EQUAL -> 1 (* > < = *)
   | _ -> assert false
 
+let is_infix token =
+  match token with
+  | INFIX1 _ | INFIX2 _ | INFIX3 _ | STAR | EQUAL -> true
+  | _ -> false
+
 let string_of_infix token =
   match token with
   | INFIX1 s | INFIX2 s | INFIX3 s -> s

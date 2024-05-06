@@ -10,14 +10,15 @@ let expr_test ?expect s : test_fun =
  fun _ ->
   let p = make_parser s in
   let ret = Syntax.print_expr (Parser.expr p) in
+  (* print_endline ret; *)
   assert_equal (match expect with None -> s | Some s -> s) ret
 
 let test_type ?expect s : test_fun =
  fun _ ->
   let p = make_parser s in
-  assert_equal
-    (match expect with None -> s | Some s -> s)
-    (Syntax.print_simple_type (Parser.simple_type p))
+  let ret = Syntax.print_simple_type (Parser.simple_type p) in
+  (* print_endline ("test_type " ^ ret); *)
+  assert_equal (match expect with None -> s | Some s -> s) ret
 
 let test_mod_expr ?expect s : test_fun =
  fun _ ->
@@ -56,12 +57,14 @@ end
 let parser =
   "parser"
   >::: [
-         test_case (expr_test "1 + 2");
-         "test1" >:: expr_test "let a = 1 in a";
+         "infix + " >:: expr_test "1 + 2";
+         "let" >:: expr_test "let a = 1 in a";
+         "let infix" >:: expr_test "let ( ** ) = 1 in a";
+         "let infix" >:: expr_test "let ( ** ) = ( ** ) in ( ** )";
          test_case (expr_test "fun x -> x");
          test_case (expr_test "let id = fun x -> x in id (fun x -> x)");
          test_case (test_type "'a -> 'a");
-         test_case (test_type "a * b -> 'a" ~expect:"(a, b) * -> 'a");
+         "tuple type" >:: test_type "a * b -> 'a";
          test_case (test_type "a b c");
          test_case (test_mod_expr mod_src1);
          test_case (test_mod_type modt_src1);

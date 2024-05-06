@@ -7,8 +7,18 @@ let make ids =
     (Lident (List.hd ids))
     (List.tl ids)
 
+let is_infix s =
+  match s.[0] with
+  | '*' | '/' | '+' | '-' | '>' | '<' | '=' -> true
+  | _ -> false
+
+let infixify s =
+  if is_infix s then "( " ^ s ^ " )" else s
+
 let rec flat id =
-  match id with Lident s -> [ s ] | Ldot (id1, s) -> flat id1 @ [ s ]
+  match id with
+  | Lident s -> [ infixify s ]
+  | Ldot (id1, s) -> flat id1 @ [ infixify s ]
 
 let ident_of_string s =
   let Location.{ txt; loc } = s in

@@ -114,14 +114,28 @@ let many_uident parser =
 
 let lident parser =
   let loc_start = parser.start_pos in
-  let loc_end = parser.end_pos in
-  match parser.token with
-  | LIDENT s ->
-      advance parser;
-      { txt = s; loc = { loc_start; loc_end } }
-  | _ ->
-      err ~start_pos:loc_start ~end_pos:loc_end parser "";
-      raise Parse_error
+
+  let s =
+    match parser.token with
+    | LIDENT s ->
+        advance parser;
+        s
+    | LPARENT ->
+        advance parser;
+        if is_infix parser.token then (
+          let s = string_of_infix parser.token in
+          advance parser;
+          expect RPARENT parser;
+          s)
+        else (
+          err ~start_pos:loc_start ~end_pos:parser.end_pos parser "";
+          raise Parse_error)
+    | _ ->
+        err ~start_pos:loc_start ~end_pos:parser.end_pos parser "";
+        raise Parse_error
+  in
+  let loc_end = parser.prev_end_pos in
+  { txt = s; loc = { loc_start; loc_end } }
 
 let uident parser =
   let loc_start = parser.start_pos in
@@ -177,31 +191,28 @@ and op_expr p =
   let rec expr_bp min_bp =
     let lhs = apply_expr p in
     let rec loop (lhs : expr) =
-      match p.token with
-      | INFIX1 _ | INFIX2 _ | INFIX3 _ | STAR | EQUAL ->
-          let s = string_of_infix p.token in
-          let op =
+      if is_infix p.token then
+        let s = string_of_infix p.token in
+        let op =
+          {
+            desc =
+              ELongident { txt = Longident.Lident s; loc = Location.dummy_loc };
+            loc = { loc_start = p.start_pos; loc_end = p.end_pos };
+          }
+        in
+        let prec = precedence p.token in
+        if prec < min_bp then lhs
+        else (
+          advance p;
+          let rhs = expr_bp (prec + 1) in
+          let e =
             {
-              desc =
-                ELongident
-                  { txt = Longident.Lident s; loc = Location.dummy_loc };
-              loc = { loc_start = p.start_pos; loc_end = p.end_pos };
+              desc = EApply (op, [ (Nolabel, lhs); (Nolabel, rhs) ]);
+              loc = { loc_start = lhs.loc.loc_start; loc_end = rhs.loc.loc_end };
             }
           in
-          let prec = precedence p.token in
-          if prec < min_bp then lhs
-          else (
-            advance p;
-            let rhs = expr_bp (prec + 1) in
-            let e =
-              {
-                desc = EApply (op, [ (Nolabel, lhs); (Nolabel, rhs) ]);
-                loc =
-                  { loc_start = lhs.loc.loc_start; loc_end = rhs.loc.loc_end };
-              }
-            in
-            loop e)
-      | _ -> lhs
+          loop e)
+      else lhs
     in
     loop lhs
   in
@@ -252,10 +263,17 @@ and atom_expr p =
             report p;
             raise Parse_error)
     | LPARENT ->
-        advance p;
-        let e = expr p in
-        expect RPARENT p;
-        e.desc
+        let infix =
+          lookahead p (fun p ->
+              advance p;
+              is_infix p.token)
+        in
+        if infix then ELongident (Longident.ident_of_string (lident p))
+        else (
+          advance p;
+          let e = expr p in
+          expect RPARENT p;
+          e.desc)
     | _ ->
         report p;
         raise Parse_error
@@ -438,12 +456,14 @@ let rec mod_type p =
 
 and signature p =
   let rec loop () =
-    if p.token = END then []
+    if p.token = END || p.token = EOF then []
     else
       let d =
         try Some (spec p)
         with Parse_error ->
-          skip_to (function VAL | TYPE | MODULE | END -> true | _ -> false) p;
+          skip_to
+            (function VAL | TYPE | MODULE | END | EOF -> true | _ -> false)
+            p;
           None
       in
       d :: loop ()
