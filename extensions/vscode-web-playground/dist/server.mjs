@@ -39261,7 +39261,7 @@ var require_main_bc = __commonJS({
               if (32 !== _g_) {
                 if (40 !== _g_)
                   break a;
-                var _h_ = 1 - at_end(scanner), _i_ = _h_ ? 42 === peek1(scanner) ? 1 : 0 : _h_;
+                var _h_ = 2 <= (caml_ml_string_length2(scanner[2]) - scanner[5] | 0) ? 1 : 0, _i_ = _h_ ? 42 === peek1(scanner) ? 1 : 0 : _h_;
                 if (!_i_)
                   return _i_;
                 advance(scanner);
@@ -41010,7 +41010,12 @@ var documentSettings = /* @__PURE__ */ new Map();
 connection.languages.semanticTokens.on(async ({ textDocument }) => {
   const doc = documents.get(textDocument.uri);
   const text = doc.getText();
-  const t = JSON.parse(lib.tokeninfo(text));
+  let t = [];
+  try {
+    t = JSON.parse(lib.tokeninfo(text));
+  } catch (e) {
+    console.log(e);
+  }
   const data = t.map((e, i) => {
     const len = doc.offsetAt({ line: e.end[0], character: e.end[1] }) - doc.offsetAt({ line: e.start[0], character: e.start[1] });
     const type = tokenTypes.findIndex((t2) => t2 === e.type);
