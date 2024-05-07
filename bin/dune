@@ -2,6 +2,6 @@
  (public_name mod)
  (name main)
  (modes js byte)
- (libraries parsing)
+ (libraries parsing typing)
  (preprocess
   (pps ppx_deriving.enum ppx_deriving.show)))

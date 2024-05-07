@@ -65,7 +65,7 @@ let rec print_simple_type ?(parenthesis = false) ty =
   match ty.ty_desc with
   | TVar s -> "'" ^ s
   | Tarrow (_, t1, t2) ->
-      let ty1s = print_simple_type t1 in
+      let ty1s = print_simple_type ~parenthesis:true t1 in
       let ty2s = print_simple_type t2 in
       if parenthesis then Printf.sprintf "(%s -> %s)" ty1s ty2s
       else Printf.sprintf "%s -> %s" ty1s ty2s
@@ -218,8 +218,8 @@ and print_definition ~offset str =
   String.concat "\n"
     (List.map
        (fun c -> String.make offset ' ' ^ print_comment c)
-       str.prev_comments)
-  ^ "\n" ^ String.make offset ' ' ^ ret
+       str.prev_comments
+    @ [ String.make offset ' ' ^ ret ])
 
 let print_definition_list str =
   String.concat "\n" (List.map (fun x -> print_definition ~offset:0 x) str)

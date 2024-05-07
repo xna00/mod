@@ -1,4 +1,17 @@
 open Parsing
+open Typing
+
+module M = struct
+  type t = A
+end
+
+module N : sig
+  module NN = M
+end = struct
+  module NN = M
+end
+
+let init_scope, init_env = Predef.init_scope_env ()
 
 let src =
   "struct let a = 1 let v = 3 module M = struct let b = 2 module N = struct \
@@ -6,25 +19,31 @@ let src =
 
 let src =
   {|
-  (* aaaaa *)
-  (*aaaaadasdasdas*)
-  let a = 1
   module M = struct
-   (* ccc *)
-   let v = s
+   let b = 1
    end
+let a = M.b
          |}
   |> String.trim
 
 let p = Parser.make "test.mod" src
 let e = Parser.parse p
 
+let _ =
+  let m =
+    Typed.mod_expr_to_typed e
+    |> Typing.Scope.scope_module init_scope
+    |> Infer.type_module init_env
+  in
+  print_endline "AAA";
+  Types.print_mod_type m.mod_term_type |> print_endline
+
 (* let _ = print_endline (Syntax.show_simple_type e) *)
 
 (* let _ =
-     List.iter (fun d -> print_endline (Parser.show_diagnostic d)) p.diagnostics
+   List.iter (fun d -> print_endline (Parser.show_diagnostic d)) p.diagnostics *)
 
-   let _ = print_endline src *)
+(* let _ = print_endline src *)
 
 (* let _ = print_endline (Syntax.show_mod_expr e) *)
-let _ = print_endline (Syntax.print_definition_list e)
+(* let _ = print_endline (Syntax.print_definition_list e) *)

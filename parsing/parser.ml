@@ -107,13 +107,6 @@ let rec many p1 pred p =
     first :: many p1 pred p
   else []
 
-let many_uident parser =
-  let rec loop () =
-    match parser.token with UIDENT s -> s :: loop () | _ -> []
-  in
-  let ids = loop () in
-  ids
-
 let lident parser =
   let loc_start = parser.start_pos in
 
@@ -152,16 +145,41 @@ let uident parser =
 
 let longident_end_lident p =
   let loc_start = p.start_pos in
-  let uids = many_uident p in
+  let uids =
+    sepby1 uident
+      (function
+        | DOT ->
+            lookahead p (fun p ->
+                advance p;
+                match p.token with UIDENT _ -> true | _ -> false)
+        | _ -> false)
+      p
+  in
+  expect DOT p;
   let lid = lident p in
   let loc_end = p.prev_end_pos in
-  { txt = Longident.make (uids @ [ lid.txt ]); loc = { loc_start; loc_end } }
+  {
+    txt = Longident.make (List.map (fun x -> x.txt) uids @ [ lid.txt ]);
+    loc = { loc_start; loc_end };
+  }
 
 let longident_end_uident p =
   let loc_start = p.start_pos in
-  let uids = many_uident p in
+  let uids =
+    sepby1 uident
+      (function
+        | DOT ->
+            lookahead p (fun p ->
+                advance p;
+                match p.token with UIDENT _ -> true | _ -> false)
+        | _ -> false)
+      p
+  in
   let loc_end = p.prev_end_pos in
-  { txt = Longident.make uids; loc = { loc_start; loc_end } }
+  {
+    txt = Longident.make (List.map (fun x -> x.txt) uids);
+    loc = { loc_start; loc_end };
+  }
 
 let rec expr parser =
   let loc_start = parser.start_pos in
@@ -254,16 +272,19 @@ and atom_expr p =
     | LIDENT s ->
         advance p;
         ELongident { txt = Longident.Lident s; loc = Location.dummy_loc }
-    | UIDENT _ -> (
-        let uids = many_uident p in
-        match p.token with
-        | LIDENT s ->
-            advance p;
-            ELongident
-              { txt = Longident.make (uids @ [ s ]); loc = Location.dummy_loc }
-        | _ ->
-            report p;
-            raise Parse_error)
+    | UIDENT _ ->
+        let lid = longident_end_lident p in
+        ELongident lid
+        (* let uids = many_uident p in
+           expect DOT p;
+           print_endline (Token.show p.token);
+           match p.token with
+           | LIDENT s ->
+               advance p;
+               ELongident lid
+           | _ ->
+               report p;
+               raise Parse_error *)
     | LPARENT ->
         let infix =
           lookahead p (fun p ->
@@ -388,13 +409,6 @@ and atom_type p =
   let loc_end = p.prev_end_pos in
   { ty_desc = ty; loc = { loc_start; loc_end } }
 
-let todo () = failwith "TODO"
-
-(*
-   let type_decl p =
-     match p.token with
-     | LPARENT -> advance p;
-      let params =  sepby1 tvar (fun tok -> tok = COMMA) p in *)
 let rec skip_to pred p =
   if pred p.token then ()
   else (
@@ -407,7 +421,8 @@ let type_decl p =
     match p.token with
     | QUOTE -> [ tvar p ]
     | LPARENT ->
-        let ps = many1 tvar (fun x -> x = COMMA) p in
+        advance p;
+        let ps = sepby1 tvar (fun x -> x = COMMA) p in
         expect RPARENT p;
         ps
     | _ -> []
@@ -606,4 +621,7 @@ and definition p =
 
 let parse p =
   advance p;
-  structure p
+  let loc_start = p.start_pos in
+  let str = structure p in
+  let loc_end = p.prev_end_pos in
+  { me_desc = MEStructure str; loc = { loc_start; loc_end } }

@@ -117,7 +117,7 @@ connection.languages.semanticTokens.on(async ({ textDocument }) => {
 
 	let t: { start: [number, number], end: [number, number]; type: string }[] = []
 	try {
-		t = JSON.parse(lib.tokeninfo(text))
+		t = JSON.parse(lib.tokeninfo(textDocument.uri))
 	} catch (e) {
 		console.log(e)
 	}
@@ -147,9 +147,10 @@ documents.onDidClose(e => {
 connection.onHover(async ({ textDocument, position }) => {
 	const text = documents.get(textDocument.uri).getText()
 	console.log(text, position)
-	const ty: string = lib.typeinfo(text, position.line, position.character)
+	const ty: string = lib.typeinfo(textDocument.uri, position.line, position.character)
 	console.log(ty)
 	return {
+
 		'contents': ty
 	}
 })
@@ -178,29 +179,8 @@ const docData: DocData = {}
 documents.onDidChangeContent(change => {
 	console.log('onDidChangeContent')
 	const doc = change.document
-	try {
-		console.log(doc.getText(), lib.filechange)
-		const json = lib.filechange(doc.getText())
-		console.log(json)
-		let ret: DocData[string] = JSON.parse(json)
-		docData[doc.uri] = ret
-		console.log(ret)
-		connection.sendDiagnostics({
-			'uri': doc.uri,
-			diagnostics: ret.diagnostics.map(d => {
-				return {
-					range: {
-						start: { line: d.start[0], character: d.start[1] },
-						end: { line: d.end[0], character: d.end[1] },
-					},
-					message: d.msg || "Unkonwn error"
-				}
-			})
-		})
-
-	} catch {
-
-	}
+	console.log(doc.uri)
+	lib.filechange(doc.uri, doc.getText())
 
 });
 
@@ -208,7 +188,7 @@ documents.onDidChangeContent(change => {
 connection.onDocumentFormatting(async ({ textDocument }) => {
 	const doc = documents.get(textDocument.uri)
 	const text = doc.getText()
-	const newText = docData[doc.uri].formatted
+	const newText = lib.format(textDocument.uri)
 	return [{
 		range: {
 			start: doc.positionAt(0),

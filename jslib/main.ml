@@ -1,32 +1,30 @@
 open Js_of_ocaml
 open Parsing
-open Parser
-open Typing.Typexpr
-open Syntax
+open Typing
 
 type loc = {
   start : int * int;
   _end : int * int; [@key "end"]
   _type : string; [@key "type"]
 }
-[@@deriving yojson]
+[@@deriving yojson, show { with_path = false }]
 
-type loc_list = loc list [@@deriving yojson]
+type loc_list = loc list [@@deriving yojson, show { with_path = false }]
 
 type diag = { start : int * int; _end : int * int; [@key "end"] msg : string }
-[@@deriving yojson]
+[@@deriving yojson, show { with_path = false }]
 
 type docdata = {
   tokens : loc_list;
   formatted : string;
   diagnostics : diag list;
+  mod_term : Typing.Typed.mod_term;
 }
-[@@deriving yojson]
+[@@deriving show { with_path = false }]
 
-let in_range ((l, c) as p1) (((l1, c1) as p2), ((l2, c2) as p3)) =
-  (* print_endline (show_pos p1);
-     print_endline (show_pos p2);
-     print_endline (show_pos p3); *)
+let js_log s = Firebug.console##log (Js.string s)
+
+let in_range (l, c) ((l1, c1), (l2, c2)) =
   (l1 < l && l2 > l)
   || (l1 <> l2 && l1 = l && c1 <= c)
   || (l1 <> l2 && l2 = l && c2 > c)
@@ -62,23 +60,34 @@ let tokeinfo src =
   in
   List.filter (fun { _type; _ } -> _type <> "unknown") locs
 
-let format src =
-  let p = Parser.make "file" src in
-  let mod_expr = Parser.parse p in
-  Syntax.print_definition_list mod_expr
+let files = Hashtbl.create 1
 
-let filechange src =
+let filechange (uri : string) src =
+  js_log "filechange";
+  js_log uri;
+  js_log src;
   let toks = tokeinfo src in
-  print_endline "toks done";
+  js_log "tokeinfo done";
   let p = Parser.make "file" src in
   let mod_expr = Parser.parse p in
-  print_endline "parse done";
+  js_log "parse done";
+  let init_scope, init_env = Predef.init_scope_env () in
+  let m =
+    Typed.mod_expr_to_typed mod_expr
+    |> Typing.Scope.scope_module init_scope
+    |> Infer.type_module init_env
+  in
+  js_log "type done";
   let ret =
     if List.length p.diagnostics = 0 then
       {
         tokens = toks;
-        formatted = Syntax.print_definition_list mod_expr;
+        formatted =
+          (match mod_expr.me_desc with
+          | MEStructure defs -> Syntax.print_definition_list defs
+          | _ -> assert false);
         diagnostics = [];
+        mod_term = m;
       }
     else
       {
@@ -86,25 +95,79 @@ let filechange src =
         formatted = src;
         diagnostics =
           List.map
-            (fun (d : diagnostic) ->
+            (fun (d : Parser.diagnostic) ->
               {
                 start = pos_of_position d.start_pos;
                 _end = pos_of_position d.end_pos;
                 msg = d.msg;
               })
             p.diagnostics;
+        mod_term = m;
       }
   in
-  ret |> docdata_to_yojson |> Yojson.Safe.to_string
+  js_log uri;
+  js_log (show_docdata ret);
+  Hashtbl.add files uri ret
 
-let type_info src pos = "unknown"
-let tokeinfo src = tokeinfo src |> loc_list_to_yojson |> Yojson.Safe.to_string
+let in_mod_term_range pos mod_term =
+  in_range pos
+    ( pos_of_position mod_term.Typed.loc.loc_start,
+      pos_of_position mod_term.Typed.loc.loc_end )
+
+let in_term_range pos (term : Typed.term) =
+  in_range pos
+    ( pos_of_position term.Typed.loc.loc_start,
+      pos_of_position term.Typed.loc.loc_end )
+
+let type_info uri pos =
+  let mod_term = (Hashtbl.find files uri).mod_term in
+  let rec loop_mod_term mod_term =
+    let str = Types.print_mod_type mod_term.Typed.mod_term_type in
+    match mod_term.Typed.mod_term_desc with
+    | Typed.Apply (m1, m2) ->
+        if in_mod_term_range pos m1 then loop_mod_term m1
+        else if in_mod_term_range pos m2 then loop_mod_term m2
+        else str
+    | Typed.Functor (_, _, m1) ->
+        if in_mod_term_range pos m1 then loop_mod_term m1 else str
+    | Typed.Structure structure ->
+        List.fold_left
+          (fun acc def ->
+            match def with
+            | Typed.Value_str (_, term) ->
+                if in_term_range pos term then loop_term pos term else acc
+            | Typed.Module_str (_, m) ->
+                if in_mod_term_range pos m then loop_mod_term m else acc
+            | _ -> acc)
+          str structure
+    | _ -> str
+  and loop_term pos term =
+    let str = Types.print_val_type [] (Types.trivial_scheme term.term_type) in
+    match (term : Typed.term).term_desc with
+    | Apply (tm, tml) ->
+        if in_term_range pos tm then loop_term pos tm
+        else loop_term_list pos str (List.map snd tml)
+    | Function (_, _, tm) ->
+        if in_term_range pos tm then loop_term pos tm else str
+    | Let (_, tm1, tm2) ->
+        Firebug.console##log (Js.string "aaa");
+        loop_term_list pos str [ tm1; tm2 ]
+    | _ -> str
+  and loop_term_list pos str tml =
+    List.fold_left
+      (fun acc tm -> if in_term_range pos tm then loop_term pos tm else acc)
+      str tml
+  in
+  loop_mod_term mod_term
+
+let tokeinfo uri =
+  (Hashtbl.find files uri).tokens |> loc_list_to_yojson |> Yojson.Safe.to_string
 
 let _ =
   Js.export_all
     (object%js
-       method tokeninfo src = tokeinfo src
-       method format src = format src
-       method typeinfo src l c = type_info src (l, c)
-       method filechange src = filechange src
+       method tokeninfo uri = tokeinfo uri
+       method format uri = (Hashtbl.find files uri).formatted
+       method typeinfo uri l c = type_info uri (l, c)
+       method filechange uri src = filechange uri src
     end)
