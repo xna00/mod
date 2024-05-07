@@ -29,7 +29,7 @@ import {
 	Uri,
 	workspace,
 } from 'vscode';
-import { largeTSFile, getImageFile, debuggableFile, windows1251File, gbkFile } from './exampleFiles';
+import { test_mod } from './exampleFiles';
 
 export class File implements FileStat {
 
@@ -95,8 +95,7 @@ export class MemFS implements FileSystemProvider, FileSearchProvider, TextSearch
 		this.createDirectory(Uri.parse(`memfs:/sample-folder/`));
 
 		// most common files types
-		this.writeFile(Uri.parse(`memfs:/sample-folder/test.mod`), textEncoder.encode(`
-		let a = 1 `.trim()), { create: true, overwrite: true });
+		this.writeFile(Uri.parse(`memfs:/sample-folder/test.mod`), textEncoder.encode(test_mod), { create: true, overwrite: true });
 
 	}
 

@@ -16148,6 +16148,19 @@ var vscode = __toESM(require("vscode"));
 
 // src/memfs.ts
 var import_vscode = require("vscode");
+
+// src/exampleFiles.ts
+var test_mod = `
+(* Hover to inspect the type of a expression *)
+
+let a = 1
+module M = struct
+	let b = 2
+	let ( ++ ) = ( + )
+end
+`.trim();
+
+// src/memfs.ts
 var File = class {
   constructor(uri, name) {
     this.uri = uri;
@@ -16192,8 +16205,7 @@ var MemFS = class _MemFS {
   }
   seed() {
     this.createDirectory(import_vscode.Uri.parse(`memfs:/sample-folder/`));
-    this.writeFile(import_vscode.Uri.parse(`memfs:/sample-folder/test.mod`), textEncoder.encode(`
-		let a = 1 `.trim()), { create: true, overwrite: true });
+    this.writeFile(import_vscode.Uri.parse(`memfs:/sample-folder/test.mod`), textEncoder.encode(test_mod), { create: true, overwrite: true });
   }
   // --- manage file metadata
   stat(uri) {
