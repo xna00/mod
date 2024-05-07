@@ -109,6 +109,11 @@ let filechange (uri : string) src =
   js_log (show_docdata ret);
   Hashtbl.add files uri ret
 
+let in_loc_range pos loc =
+  in_range pos
+    ( pos_of_position loc.Location.loc_start,
+      pos_of_position loc.Location.loc_end )
+
 let in_mod_term_range pos mod_term =
   in_range pos
     ( pos_of_position mod_term.Typed.loc.loc_start,
@@ -149,9 +154,12 @@ let type_info uri pos =
         else loop_term_list pos str (List.map snd tml)
     | Function (_, _, tm) ->
         if in_term_range pos tm then loop_term pos tm else str
-    | Let (_, tm1, tm2) ->
-        Firebug.console##log (Js.string "aaa");
-        loop_term_list pos str [ tm1; tm2 ]
+    | Let (id, tm1, tm2) ->
+        js_log (Location.show id.loc);
+        if in_loc_range pos id.loc then
+          Env.find_value (Path.Pident id.txt) tm2.term_env
+          |> Types.print_val_type []
+        else loop_term_list pos str [ tm1; tm2 ]
     | _ -> str
   and loop_term_list pos str tml =
     List.fold_left

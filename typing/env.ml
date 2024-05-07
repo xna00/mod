@@ -2,10 +2,10 @@ open Parsing
 open Types
 
 type binding = Value of val_type | Type of type_decl | Module of mod_type
-(* [@@deriving show { with_path = false }] *)
+[@@deriving show { with_path = false }]
 
 type t = binding Ident.tbl
-(* [@@deriving show { with_path = false }] *)
+[@@deriving show { with_path = false }]
 
 let empty = Ident.emptytbl
 let add_value id vty env = Ident.add id (Value vty) env

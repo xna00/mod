@@ -9,13 +9,13 @@ let rec path p sub =
   | Path.Pdot (root, field) -> Pdot (path root sub, field)
 
 open Types
-open Typed
 
 let rec subst_type subst = function
-  | Var { repres = None } as ty -> ty
-  | Var { repres = Some ty } -> subst_type subst ty
+  | Var { repres = None; _ } as ty -> ty
+  | Var { repres = Some ty; _ } -> subst_type subst ty
   | Typeconstr (p, tl) ->
       Typeconstr (path p subst, List.map (subst_type subst) tl)
+  | Tarrow (l, t1, t2) -> Tarrow (l, subst_type subst t1, subst_type subst t2)
 
 let subst_valtype vty subst =
   { quantif = vty.quantif; body = subst_type subst vty.body }

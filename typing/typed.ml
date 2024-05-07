@@ -1,9 +1,11 @@
 open Types
+module Asttypes = Parsing.Asttypes
 
 type term = {
   term_desc : term_desc;
   loc : Parsing.Location.t;
-  term_type : simple_type; (* term_env : Env.t; *)
+  term_type : simple_type;
+  mutable term_env : Env.t;
 }
 [@@deriving show { with_path = false }]
 
@@ -12,7 +14,7 @@ and term_desc =
   | Longident of Path.t (* id or mod.mod...id *)
   | Function of Parsing.Asttypes.arg_label * Ident.t * term (* fun id -> expr *)
   | Apply of term * (Parsing.Asttypes.arg_label * term) list (* expr(expr) *)
-  | Let of Ident.t * term * term (* let id = expr in expr *)
+  | Let of Ident.t Asttypes.loc * term * term (* let id = expr in expr *)
 [@@deriving show { with_path = false }]
 
 let generalize ty =
@@ -30,6 +32,7 @@ type mod_term = {
   mod_term_desc : mod_term_desc;
   loc : Parsing.Location.t;
   mod_term_type : mod_type;
+  mutable mod_term_env : Env.t;
 }
 
 and mod_term_desc =
@@ -73,35 +76,27 @@ let rec map_simple_type sty =
 
 let rec expr_to_typed expr =
   let open Syntax in
-  match expr.desc with
-  | EConstant i ->
-      { term_desc = Constant i; term_type = unknown (); loc = expr.loc }
-  | ELongident i ->
-      {
-        term_desc = Longident (Path.path_of_longident i.txt);
-        term_type = unknown ();
-        loc = expr.loc;
-      }
-  | EFunction (arg_label, { txt; _ }, expr) ->
-      {
-        term_desc = Function (arg_label, Ident.create txt, expr_to_typed expr);
-        term_type = unknown ();
-        loc = expr.loc;
-      }
-  | EApply (f, args) ->
-      {
-        term_desc =
-          Apply
-            (expr_to_typed f, List.map (fun (l, e) -> (l, expr_to_typed e)) args);
-        term_type = unknown ();
-        loc = expr.loc;
-      }
-  | ELet (s, e1, e2) ->
-      {
-        term_desc = Let (Ident.create s.txt, expr_to_typed e1, expr_to_typed e2);
-        term_type = unknown ();
-        loc = expr.loc;
-      }
+  let ret =
+    match expr.desc with
+    | EConstant i -> Constant i
+    | ELongident i -> Longident (Path.path_of_longident i.txt)
+    | EFunction (arg_label, { txt; _ }, expr) ->
+        Function (arg_label, Ident.create txt, expr_to_typed expr)
+    | EApply (f, args) ->
+        Apply
+          (expr_to_typed f, List.map (fun (l, e) -> (l, expr_to_typed e)) args)
+    | ELet (s, e1, e2) ->
+        Let
+          ( { txt = Ident.create s.txt; loc = s.loc },
+            expr_to_typed e1,
+            expr_to_typed e2 )
+  in
+  {
+    term_desc = ret;
+    term_type = unknown ();
+    loc = expr.loc;
+    term_env = Env.empty;
+  }
 
 let rec mod_type_to_typed mty : mod_type =
   let open Syntax in
@@ -160,7 +155,12 @@ let rec mod_expr_to_typed me : mod_term =
     | Syntax.MEStructure structure -> Structure (mod_structure structure)
   in
 
-  { mod_term_desc = ret; loc = me.loc; mod_term_type = unknown_mod_type () }
+  {
+    mod_term_desc = ret;
+    loc = me.loc;
+    mod_term_type = unknown_mod_type ();
+    mod_term_env = Env.empty;
+  }
 
 and mod_structure defs =
   List.map (fun def -> mod_def_to_typed def.Syntax.definition) defs

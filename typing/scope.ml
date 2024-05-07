@@ -63,7 +63,7 @@ let rec scope_term sc term =
         Apply
           (scope_term sc t1, List.map (fun (l, tm) -> (l, scope_term sc tm)) t2)
     | Let (id, t1, t2) ->
-        Let (id, scope_term sc t1, scope_term (enter_value id sc) t2)
+        Let (id, scope_term sc t1, scope_term (enter_value id.txt sc) t2)
   in
   { term with term_desc = newterm }
 

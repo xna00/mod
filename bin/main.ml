@@ -5,6 +5,7 @@ module M = struct
   type t = A
 end
 
+
 module N : sig
   module NN = M
 end = struct

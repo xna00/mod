@@ -183,11 +183,12 @@ let rec infer_type env term : term =
         let type_arg = infer_type env arg in
         end_def ();
         (infer_type
-           (Env.add_value ident (generalize type_arg.term_type) env)
+           (Env.add_value ident.txt (generalize type_arg.term_type) env)
            body)
           .term_type
   in
   unify env term.term_type ty;
+  term.term_env <- env;
   term
 
 let rec check_simple_type env params ty =
@@ -370,7 +371,7 @@ let rec type_module env mod_term : mod_term =
         modtype_match env (type_module env modl).mod_term_type mty;
         mty
   in
-  { mod_term with mod_term_type = ret }
+  { mod_term with mod_term_type = ret; mod_term_env = env }
 
 and type_structure env seen = function
   | [] -> []
