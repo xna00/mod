@@ -1,6 +1,9 @@
 # Mod
 
 
+## TODO
+* Better support for comments
+* Fix `type 'a tt = 'a M.t`
 ## Reference
 
 * Types and Programming Languages
