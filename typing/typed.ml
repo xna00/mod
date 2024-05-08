@@ -15,6 +15,14 @@ and term_desc =
   | Function of Parsing.Asttypes.arg_label * Ident.t * term (* fun id -> expr *)
   | Apply of term * (Parsing.Asttypes.arg_label * term) list (* expr(expr) *)
   | Let of Ident.t Asttypes.loc * term * term (* let id = expr in expr *)
+  | RecordEmpty
+  | RecordExtend of string Asttypes.loc * term * term
+  | RecordSelect of term * string Asttypes.loc
+  | Variant of string * term
+  | Case of
+      term
+      * (string * Ident.t Asttypes.loc * term) list
+      * (Ident.t Asttypes.loc * term) option
 [@@deriving show { with_path = false }]
 
 let generalize ty =
@@ -25,6 +33,12 @@ let generalize ty =
         else vars
     | Typeconstr (path, tl) -> List.fold_left gen_vars vars tl
     | Tarrow (_, t1, t2) -> gen_vars (gen_vars vars t1) t2
+    | Trecord row -> gen_vars vars row
+    | TRextend (_, t, rest) ->
+        let t_vars = gen_vars vars t in
+        gen_vars t_vars rest
+    | TRempty -> vars
+    | Tvariant row -> gen_vars vars row
   in
   { quantif = gen_vars [] ty; body = ty }
 
@@ -77,6 +91,11 @@ let rec map_simple_type sty =
     | Tarrow (l, t1, t2) -> Tarrow (l, map_simple_type t1, map_simple_type t2)
     | Typeconstr (lid, tyl) ->
         Typeconstr (Path.path_of_longident lid.txt, List.map map_simple_type tyl)
+    | Trecord row -> Trecord (map_simple_type row)
+    | Tvariant row -> Tvariant (map_simple_type row)
+    | TRempty -> TRempty
+    | TRextend (l, t1, t2) ->
+        TRextend (l.txt, map_simple_type t1, map_simple_type t2)
   in
   ret
 
@@ -96,6 +115,25 @@ let rec expr_to_typed expr =
           ( { txt = Ident.create s.txt; loc = s.loc },
             expr_to_typed e1,
             expr_to_typed e2 )
+    | RecordEmpty -> RecordEmpty
+    | RecordExtend (l, e1, e2) ->
+        RecordExtend (l, expr_to_typed e1, expr_to_typed e2)
+    | RecordSelect (e, l) -> RecordSelect (expr_to_typed e, l)
+    | Variant (tag, e) -> Variant (tag, expr_to_typed e)
+    | Case (e1, cases, o) ->
+        Case
+          ( expr_to_typed e1,
+            List.map
+              (fun (tag, (v : string Asttypes.loc), e) ->
+                ( tag,
+                  { Asttypes.txt = Ident.create v.txt; loc = v.loc },
+                  expr_to_typed e ))
+              cases,
+            match o with
+            | None -> None
+            | Some (v, e) ->
+                Some ({ txt = Ident.create v.txt; loc = v.loc }, expr_to_typed e)
+          )
   in
   {
     term_desc = ret;

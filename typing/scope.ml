@@ -64,6 +64,23 @@ let rec scope_term sc term =
           (scope_term sc t1, List.map (fun (l, tm) -> (l, scope_term sc tm)) t2)
     | Let (id, t1, t2) ->
         Let (id, scope_term sc t1, scope_term (enter_value id.txt sc) t2)
+    | RecordEmpty -> RecordEmpty
+    | RecordExtend (l, e1, e2) ->
+        RecordExtend (l, scope_term sc e1, scope_term sc e2)
+    | RecordSelect (e, l) -> RecordSelect (scope_term sc e, l)
+    | Variant (tag, e) -> Variant (tag, scope_term sc e)
+    | Case (e, cases, pat) ->
+        Case
+          ( scope_term sc e,
+            List.map
+              (fun (tag, var, e) ->
+                let new_sc = enter_value var.Asttypes.txt sc in
+                (tag, var, scope_term new_sc e))
+              cases,
+            Option.map
+              (fun (var, e) ->
+                (var, scope_term (enter_value var.Asttypes.txt sc) e))
+              pat )
   in
   { term with term_desc = newterm }
 

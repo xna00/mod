@@ -9,12 +9,12 @@ and expr_desc =
   | EFunction of arg_label * string loc * expr (* fun id -> expr *)
   | EApply of expr * (arg_label * expr) list (* expr(expr) *)
   | ELet of string loc * expr * expr
-(* let id = expr in expr *)
-(* | RecordEmpty
-   | RecordExtend of string * expr * expr
-   | RecordSelect of expr * string
-   | Variant of string * expr
-   | Case of expr * (string * string * expr) list * (string * expr) option *)
+  | RecordEmpty
+  | RecordExtend of string loc * expr * expr
+  | RecordSelect of expr * string loc
+  | Variant of string * expr
+  | Case of
+      expr * (string * string loc * expr) list * (string loc * expr) option
 [@@deriving show { with_path = false }]
 
 let is_infix s =
@@ -22,7 +22,7 @@ let is_infix s =
   | '*' | '/' | '+' | '-' | '>' | '<' | '=' -> true
   | _ -> false
 
-let rec print_expr ?(parenthesis = false) e =
+let rec print_expr ?(parenthesis = false) ?(offset = 0) e =
   match e.desc with
   | EConstant i -> string_of_int i
   | ELongident id ->
@@ -34,7 +34,7 @@ let rec print_expr ?(parenthesis = false) e =
         | Labelled s -> "~" ^ s
         | Optional s -> "?" ^ s
       in
-      let b = print_expr body in
+      let b = print_expr ~offset body in
       if parenthesis then Printf.sprintf "(fun %s -> %s)" ls b
       else Printf.sprintf "fun %s -> %s" ls b
   | EApply (f, args) ->
@@ -43,16 +43,51 @@ let rec print_expr ?(parenthesis = false) e =
         | { desc = ELongident { txt = Longident.Lident s; _ }; _ }
           when is_infix s ->
             s
-        | _ -> print_expr ~parenthesis:true f
+        | _ -> print_expr ~parenthesis:true ~offset f
       in
-      let argss = List.map (print_expr ~parenthesis:true) (List.map snd args) in
+      let argss =
+        List.map (print_expr ~offset ~parenthesis:true) (List.map snd args)
+      in
 
       if is_infix fs then List.nth argss 0 ^ " " ^ fs ^ " " ^ List.nth argss 1
       else fs ^ " " ^ String.concat " '" argss
   | ELet ({ txt; _ }, e1, body) ->
       print_endline ("txt:" ^ txt);
       Printf.sprintf "let %s = %s in %s" (Longident.infixify txt)
-        (print_expr e1) (print_expr body)
+        (print_expr ~offset e1) (print_expr ~offset body)
+  | RecordEmpty -> "{}"
+  | RecordExtend _ as r ->
+      let rec loop r =
+        match r with
+        | RecordExtend (f, e1, e2) ->
+            let rs, res = loop e2.desc in
+            ((f, e1) :: rs, res)
+        | _ -> ([], r)
+      in
+      let fs = loop r in
+      Printf.sprintf "{ %s%s }"
+        (String.concat "; "
+           (List.map
+              (fun (f, e) -> f.txt ^ " = " ^ print_expr ~offset e)
+              (fst fs)))
+        (match snd fs with
+        | RecordEmpty -> ""
+        | e -> " | " ^ print_expr ~offset { desc = e; loc = Location.dummy_loc })
+  | RecordSelect (e, f) -> print_expr ~offset e ^ "." ^ f.txt
+  | Variant (tag, e) -> "`" ^ tag ^ " " ^ print_expr ~offset e
+  | Case (e1, cases, op) ->
+      print_endline ("offset" ^ string_of_int offset);
+      Printf.sprintf "\n%smatch %s with\n%s%s" (String.make offset ' ')
+        (print_expr ~offset e1)
+        (String.concat "\n"
+           (ListLabels.map cases ~f:(fun (tag, v, e) ->
+                String.make offset ' ' ^ "| `" ^ tag ^ " " ^ v.txt ^ " -> "
+                ^ print_expr ~offset e)))
+        (match op with
+        | None -> ""
+        | Some (v, e) ->
+            "\n" ^ String.make offset ' ' ^ "| " ^ v.txt ^ " -> "
+            ^ print_expr ~offset e)
 
 type simple_type = { ty_desc : simple_type_desc; loc : Location.t }
 
@@ -60,12 +95,13 @@ and simple_type_desc =
   | TVar of string (* 'a, 'b *)
   | Tarrow of arg_label * simple_type * simple_type
   | Typeconstr of Longident.t loc * simple_type list
-(* constructed type *)
-(* | TRempty
-   | TRextend of string * simple_type * row
-   | Trecord of row
-   | Tvariant of row *)
+  | TRempty
+  | TRextend of string loc * simple_type * row
+  | Trecord of row
+  | Tvariant of row
 [@@deriving show { with_path = false }]
+
+and row = simple_type [@@deriving show { with_path = false }]
 
 let rec print_simple_type ?(parenthesis = false) ty =
   match ty.ty_desc with
@@ -93,6 +129,27 @@ let rec print_simple_type ?(parenthesis = false) ty =
           if List.length args > 1 then Printf.sprintf "(%s) %s" argss ps
           else if List.length args = 1 then Printf.sprintf "%s %s" argss ps
           else ps)
+  | Trecord row ->
+      let rec loop row =
+        match row with
+        | TRextend (f, ty, tyr) ->
+            let rs, rem = loop tyr.ty_desc in
+            ((f, ty) :: rs, rem)
+        | TVar ".." | TRempty -> ([], row)
+        | _ -> assert false
+      in
+      let fs, res = loop row.ty_desc in
+      if List.length fs = 0 && res = TRempty then "< >"
+      else
+        Printf.sprintf "< %s%s >"
+          (String.concat "; "
+             (List.map (fun (f, ty) -> f.txt ^ " : " ^ print_simple_type ty) fs))
+          (match res with
+          | TVar ".." -> "; .."
+          | TRempty -> ""
+          | _ -> assert false)
+  | TRextend _ | TRempty -> assert false
+  | Tvariant _ -> failwith "TODO"
 
 (* and row = simple_type [@@deriving show { with_path = false }] *)
 
@@ -208,12 +265,13 @@ let rec print_mod_expr ?(offset = 0) mod_expr =
       Printf.sprintf "(%s: %s)" (print_mod_expr e) (print_mod_type t)
 
 and print_definition ~offset str =
+  print_endline ("print_definition" ^ string_of_int offset);
   let ret =
     match str.definition with
     | Value_str (id, e) ->
         Printf.sprintf "let %s = %s"
           (Longident.string_of_longident id.txt)
-          (print_expr e)
+          (print_expr ~offset e)
     | Type_str (id, decl) -> print_type_decl id decl
     | Module_str (id, mod_ty_opt, mod_e) -> (
         match mod_ty_opt with

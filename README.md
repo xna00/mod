@@ -1,10 +1,13 @@
 # Mod
 
 
-<!-- ## TODO
+<!-- 
+## TODO
 * Better support for comments
 * Fix `type 'a tt = 'a M.t`
-* Figure out why `let f g = (g ~x:1 ~y:2, g ~y:1 ~x:2)` is disallowed -->
+* Figure out why `let f g = (g ~x:1 ~y:2, g ~y:1 ~x:2)` is disallowed 
+* 
+-->
 ## Reference
 
 * Types and Programming Languages

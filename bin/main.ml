@@ -9,6 +9,7 @@ module N = struct
   let id ~x = x
 end
 
+let id x = match x with `Int x -> x | `F -> 1
 let init_scope, init_env = Predef.init_scope_env ()
 
 let src =
@@ -18,10 +19,9 @@ let src =
 let src =
   {|
   module M= struct
-   let id = fun ?z ~x ~y -> x + y
+   let f  x = `Int 1
    end
-         |}
-  |> String.trim
+         |} |> String.trim
 
 let p = Parser.make "test.mod" src
 let e = Parser.parse p

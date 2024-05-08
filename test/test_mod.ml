@@ -17,7 +17,7 @@ let test_type ?expect s : test_fun =
  fun _ ->
   let p = make_parser s in
   let ret = Syntax.print_simple_type (Parser.simple_type p) in
-  (* print_endline ("test_type " ^ ret); *)
+  print_endline ("test_type " ^ ret);
   assert_equal (match expect with None -> s | Some s -> s) ret
 
 let test_mod_expr ?expect s : test_fun =
@@ -63,6 +63,14 @@ let parser =
          "let infix" >:: expr_test "let ( ** ) = ( ** ) in ( ** )";
          test_case (expr_test "fun x -> x");
          test_case (expr_test "let id = fun x -> x in id (fun x -> x)");
+         "record empty" >:: expr_test "{}";
+         "record 1" >:: expr_test "{ a = 1 }";
+         "record 2" >:: expr_test "{ a = 1 | {} }" ~expect:"{ a = 1 }";
+         "record 3" >:: expr_test "{ a = 1 | b }";
+         "record select" >:: expr_test "{ a = 1 | b }.a.b.c";
+         "record type" >:: test_type "< >";
+         "record type2" >:: test_type "< a : int; b : int >";
+         "record type3" >:: test_type "< a : int; .. >";
          test_case (test_type "'a -> 'a");
          "tuple type" >:: test_type "a * b -> 'a";
          test_case (test_type "a b c");

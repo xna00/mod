@@ -8,6 +8,11 @@ let rec subst_vars subst ty =
   | Typeconstr (p, tl) -> Typeconstr (p, List.map (subst_vars subst) tl)
   | Tarrow (label, t1, t2) ->
       Tarrow (label, subst_vars subst t1, subst_vars subst t2)
+  | Trecord row -> Trecord (subst_vars subst row)
+  | TRempty -> TRempty
+  | TRextend (label, t1, rest) ->
+      TRextend (label, subst_vars subst t1, subst_vars subst rest)
+  | Tvariant row -> Tvariant (subst_vars subst row)
 
 exception Cannot_expand
 
@@ -51,6 +56,12 @@ let rec occur_check var ty =
   | Tarrow (_, t1, t2) ->
       occur_check var t1;
       occur_check var t2
+  | Trecord row -> occur_check var row
+  | TRempty -> ()
+  | TRextend (_, ty1, rest) ->
+      occur_check var ty1;
+      occur_check var rest
+  | Tvariant row -> occur_check var row
 
 let rec update_levels level_max ty =
   match typerepr ty with
@@ -59,6 +70,12 @@ let rec update_levels level_max ty =
   | Tarrow (_, t1, t2) ->
       update_levels level_max t1;
       update_levels level_max t2
+  | Trecord row -> update_levels level_max row
+  | TRempty -> ()
+  | TRextend (_, ty1, rest) ->
+      update_levels level_max ty1;
+      update_levels level_max rest
+  | Tvariant row -> update_levels level_max row
 
 let rec unify env t1 t2 =
   match scrape_types env t1 t2 with
@@ -81,6 +98,33 @@ let rec unify env t1 t2 =
              (Parsing.Asttypes.show_arg_label arg_label2));
       unify env t11 t21;
       unify env t12 t22
+  | Trecord row1, Trecord row2 -> unify env row1 row2
+  | Tvariant row1, Tvariant row2 -> unify env row1 row2
+  | TRextend (label1, t1, rest1), (TRextend _ as row2) ->
+      let rec rewrite_row row label1 t1 =
+        match row with
+        | TRextend (label2, t2, rest) when label1 = label2 ->
+            unify env t1 t2;
+            rest
+        | TRextend (label2, t2, rest) ->
+            TRextend (label2, t2, rewrite_row rest label1 t1)
+        | TRempty ->
+            failwith (Printf.sprintf "unify: %s does not exsit on empty" label1)
+        | Var { repres = Some row2; _ } -> rewrite_row row2 label1 t1
+        | Var ({ repres = None; level } as varref) ->
+            let var = newvar () in
+            var.level <- level;
+            let rest2 = Var var in
+            varref.repres <- Some (TRextend (label1, t1, rest2));
+            rest2
+        | _ -> failwith "not a row"
+      in
+      let rest2 = rewrite_row row2 label1 t1 in
+      unify env rest1 rest2
+  | TRempty, (TRextend (label, _, _) as r)
+  | (TRextend (label, _, _) as r), TRempty ->
+      print_endline (show_simple_type r);
+      failwith (Printf.sprintf "unify: %s does not exsit on empty" label)
   | _, _ -> failwith "type constructor mismatch in unification"
 
 let instance vty =
@@ -94,6 +138,17 @@ let rec flatten_arrow arrow =
       let args, ret = flatten_arrow t2 in
       ((label, t1) :: args, ret)
   | t -> ([], t)
+
+let rec row_remove_label row label =
+  match typerepr row with
+  | TRempty -> TRempty
+  | TRextend (label1, _, rest) when label = label1 -> rest
+  | TRextend (label1, t, rest) ->
+      TRextend (label1, t, row_remove_label rest label)
+  | Var { repres = None; _ } as var -> var
+  | _ ->
+      print_endline (show_simple_type row);
+      assert false
 
 let rec infer_type env term : term =
   let ty =
@@ -187,6 +242,55 @@ let rec infer_type env term : term =
            (Env.add_value ident.txt (generalize type_arg.term_type) env)
            body)
           .term_type
+    | RecordEmpty -> Trecord TRempty
+    | RecordExtend (label, e1, e2) ->
+        let ty1 = (infer_type env e1).term_type in
+        let ty_e2 =
+          match (infer_type env e2).term_type with
+          | Trecord row -> Trecord (row_remove_label row label.txt)
+          | _ -> assert false
+        in
+        let rest = unknown () in
+        unify env (Trecord rest) ty_e2;
+        let ret = Trecord (TRextend (label.txt, ty1, rest)) in
+        ret
+    | RecordSelect (e, label) ->
+        let field_ty = unknown () in
+        let e_ty = Trecord (TRextend (label.txt, field_ty, unknown ())) in
+        unify env e_ty (infer_type env e).term_type;
+        field_ty
+    | Variant (tag, e) ->
+        let field_ty = infer_type env e in
+        Tvariant (TRextend (tag, field_ty.term_type, unknown ()))
+    | Case (e, cases, pat) ->
+        let ret = unknown () in
+        let var_tys = List.map (fun _ -> unknown ()) cases in
+        let rest_row = unknown () in
+        List.iter2
+          (fun (_, var, e) vat_ty ->
+            let new_env =
+              Env.add_value var.Asttypes.txt (trivial_scheme vat_ty) env
+            in
+            let e_ty = infer_type new_env e in
+            unify env e_ty.term_type ret)
+          cases var_tys;
+        (match pat with
+        | None -> unify env rest_row TRempty
+        | Some (var, e) ->
+            let new_env =
+              Env.add_value var.txt (trivial_scheme (Tvariant rest_row)) env
+            in
+            let e_ty = infer_type new_env e in
+            unify env e_ty.term_type ret);
+        let variant_ty =
+          Tvariant
+            (List.fold_right2
+               (fun (tag, _, _) var_ty ty ->
+                 TRextend (tag, var_ty, row_remove_label ty tag))
+               cases var_tys rest_row)
+        in
+        unify env variant_ty (infer_type env e).term_type;
+        ret
   in
   term.term_type <- ty;
   term.term_env <- env;

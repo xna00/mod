@@ -97,6 +97,15 @@ let rec sepby1 p1 sep p =
     first :: sepby1 p1 sep p)
   else [ first ]
 
+let rec sepby p1 pred sep p =
+  if pred p.token then
+    let first = p1 p in
+    if sep p.token then (
+      advance p;
+      first :: sepby p1 pred sep p)
+    else [ first ]
+  else []
+
 let rec many1 p1 pred p =
   let first = p1 p in
   if pred p.token then first :: many1 p1 pred p else [ first ]
@@ -211,12 +220,35 @@ let rec expr parser =
         ELet (id, e1, body)
     | FUN ->
         advance parser;
-        (* let label_f = arg_label_fun parser in
-           let id = lident parser in
-           expect ARROW parser;
-           let body = expr parser in
-           EFunction (label_f id.txt, id, body) *)
         (valbind1 ARROW parser).desc
+    | MATCH ->
+        advance parser;
+        let e1 = expr parser in
+        expect WITH parser;
+        let _ = optional BAR parser in
+        let cases =
+          sepby
+            (fun p ->
+              expect BACKQOUTE p;
+              let uid = uident p in
+              let lid = lident p in
+              expect ARROW p;
+              let e = expr p in
+              (uid.txt, lid, e))
+            (fun x -> x = BACKQOUTE)
+            (fun x -> x = BAR)
+            parser
+        in
+        let op =
+          match parser.token with
+          | LIDENT _ ->
+              let lid = lident parser in
+              expect ARROW parser;
+              let e = expr parser in
+              Some (lid, e)
+          | _ -> None
+        in
+        Case (e1, cases, op)
     | _ ->
         let { desc; _ } = op_expr parser in
         desc
@@ -271,27 +303,60 @@ and op_expr p =
   expr_bp 0
 
 and apply_expr p =
+  let f = select_expr p in
   let rec loop () =
     match p.token with
-    | NUMBER _ | LIDENT _ | UIDENT _ | LPARENT ->
-        let f = atom_expr p in
-        f :: loop ()
-    | _ -> []
+    | TILDE -> (
+        advance p;
+        let lid = lident p in
+        expect COLON p;
+        match p.token with
+        | NUMBER _ | LIDENT _ | UIDENT _ | LBRACE | LPARENT ->
+            let f = select_expr p in
+            (Labelled lid.txt, f) :: loop ()
+        | _ ->
+            report p;
+            raise Parse_error)
+    | _ -> (
+        match p.token with
+        | NUMBER _ | LIDENT _ | UIDENT _ | LBRACE | LPARENT ->
+            let f = select_expr p in
+            (Nolabel, f) :: loop ()
+        | _ -> [])
   in
-  let es = loop () in
-  if List.length es = 0 then (
-    report p;
-    raise Parse_error)
-  else if List.length es = 1 then List.hd es
+
+  let args = loop () in
+  if List.length args = 0 then f
   else
     {
-      desc = EApply (List.hd es, List.map (fun e -> (Nolabel, e)) (List.tl es));
+      desc = EApply (f, args);
       loc =
         {
-          loc_start = (List.hd es).loc.loc_start;
-          loc_end = (List.nth es (List.length es - 1)).loc.loc_end;
+          loc_start = f.loc.loc_start;
+          loc_end = (snd (List.nth args (List.length args - 1))).loc.loc_end;
         };
     }
+
+and select_expr p =
+  let atom = atom_expr p in
+  match p.token with
+  | DOT ->
+      let fs =
+        many1
+          (fun p ->
+            expect DOT p;
+            lident p)
+          (fun x -> x = DOT)
+          p
+      in
+      List.fold_left
+        (fun acc f ->
+          {
+            desc = RecordSelect (acc, f);
+            loc = { loc_start = acc.loc.loc_start; loc_end = f.loc.loc_end };
+          })
+        atom fs
+  | _ -> atom
 
 and atom_expr p =
   let loc_start = p.start_pos in
@@ -306,6 +371,11 @@ and atom_expr p =
     | UIDENT _ ->
         let lid = longident_end_lident p in
         ELongident lid
+    | BACKQOUTE ->
+        advance p;
+        let uid = uident p in
+        let e = atom_expr p in
+        Variant (uid.txt, e)
     | LPARENT ->
         let infix =
           lookahead p (fun p ->
@@ -318,6 +388,32 @@ and atom_expr p =
           let e = expr p in
           expect RPARENT p;
           e.desc)
+    | LBRACE ->
+        advance p;
+        let fields =
+          sepby
+            (fun p ->
+              let lid = lident p in
+              expect EQUAL p;
+              let e = expr p in
+              (lid, e))
+            (function LIDENT _ -> true | _ -> false)
+            (fun x -> x = SEMICOLON)
+            p
+        in
+        let ext =
+          match p.token with
+          | BAR ->
+              advance p;
+              expr p
+          | _ -> { desc = RecordEmpty; loc = Location.dummy_loc }
+        in
+        expect RBRACE p;
+        (List.fold_left
+           (fun acc (f, e) ->
+             { desc = RecordExtend (f, e, acc); loc = Location.dummy_loc })
+           ext fields)
+          .desc
     | _ ->
         report p;
         raise Parse_error
@@ -385,7 +481,6 @@ and apply_type p =
   let rec loop () =
     match p.token with
     | LIDENT _ | UIDENT _ ->
-        (* TODO: fix *)
         let ty = longident_end_lident p in
         ty :: loop ()
     | _ -> []
@@ -424,6 +519,67 @@ and atom_type p =
     | LIDENT _ | UIDENT _ ->
         let id = longident_end_lident p in
         Typeconstr (id, [])
+    | LESS ->
+        advance p;
+        let fields =
+          sepby
+            (fun p ->
+              let lid = lident p in
+              expect COLON p;
+              let e = simple_type p in
+              (lid, e))
+            (function LIDENT _ -> true | _ -> false)
+            (fun x -> x = SEMICOLON)
+            p
+        in
+        print_token p.token;
+        let ext =
+          match p.token with
+          | DOTDOT ->
+              let loc_start = p.start_pos in
+              advance p;
+              let loc_end = p.end_pos in
+              { ty_desc = TVar ".."; loc = { loc_start; loc_end } }
+          | _ -> { ty_desc = TRempty; loc = Location.dummy_loc }
+        in
+        expect GREATER p;
+        let row =
+          (List.fold_right
+             (fun (f, e) acc ->
+               { ty_desc = TRextend (f, e, acc); loc = Location.dummy_loc })
+             fields ext)
+            .ty_desc
+        in
+        Trecord { ty_desc = row; loc = Location.dummy_loc }
+    | LBRACKET | LBRACKETGREATER ->
+        let op = p.token = LBRACKETGREATER in
+        let ext =
+          {
+            ty_desc = (if op then TVar ".." else TRempty);
+            loc = Location.dummy_loc;
+          }
+        in
+        advance p;
+        let fields =
+          sepby1
+            (fun p ->
+              expect BACKQOUTE p;
+              let uid = uident p in
+              expect OF p;
+              let ty = simple_type p in
+              (uid, ty))
+            (fun x -> x = BAR)
+            p
+        in
+        expect RBRACKET p;
+        let row =
+          (List.fold_right
+             (fun (f, e) acc ->
+               { ty_desc = TRextend (f, e, acc); loc = Location.dummy_loc })
+             fields ext)
+            .ty_desc
+        in
+        Tvariant { ty_desc = row; loc = Location.dummy_loc }
     | _ ->
         report p;
         raise Parse_error

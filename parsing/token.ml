@@ -17,6 +17,17 @@ type t =
   | COLON
   | TILDE
   | QUESTION
+  | LBRACE
+  | RBRACE
+  | BAR
+  | SEMICOLON
+  | LBRACKET
+  | RBRACKET
+  | LESS
+  | GREATER
+  | DOTDOT
+  | BACKQOUTE
+  | LBRACKETGREATER
   | LET
   | REC
   | IN
@@ -41,12 +52,12 @@ let precedence token =
   match token with
   | INFIX3 _ | STAR -> 3 (* * / *)
   | INFIX2 _ -> 2 (* + - *)
-  | INFIX1 _ | EQUAL -> 1 (* > < = *)
+  | INFIX1 _ | EQUAL | LESS | GREATER -> 1 (* > < = *)
   | _ -> assert false
 
 let is_infix token =
   match token with
-  | INFIX1 _ | INFIX2 _ | INFIX3 _ | STAR | EQUAL -> true
+  | INFIX1 _ | INFIX2 _ | INFIX3 _ | STAR | EQUAL | LESS | GREATER -> true
   | _ -> false
 
 let string_of_infix token =
@@ -54,6 +65,8 @@ let string_of_infix token =
   | INFIX1 s | INFIX2 s | INFIX3 s -> s
   | STAR -> "*"
   | EQUAL -> "="
+  | LESS -> "<"
+  | GREATER -> ">"
   | _ -> assert false
 
 let keywords =

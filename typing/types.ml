@@ -2,8 +2,13 @@ type simple_type =
   | Var of type_variable (* 'a, 'b *)
   | Tarrow of Parsing.Asttypes.arg_label * simple_type * simple_type
   | Typeconstr of Path.t * simple_type list
-(* constructed type *)
+  | TRempty
+  | TRextend of string * simple_type * row
+  | Trecord of row
+  | Tvariant of row
 [@@deriving show { with_path = false }]
+
+and row = simple_type [@@deriving show { with_path = false }]
 
 and type_variable = {
   mutable repres : simple_type option; (* representative, for union-find *)
@@ -50,7 +55,7 @@ and specification =
 let unknown_mod_type () = Signature []
 
 let rec typerepr = function
-  | Var ({ repres = Some ty } as var) ->
+  | Var ({ repres = Some ty; _ } as var) ->
       let r = typerepr ty in
       var.repres <- Some r;
       r
@@ -67,6 +72,18 @@ let var_string_of_int ?(quantify = true) i =
   "'"
   ^ (if quantify then "" else "_")
   ^ String.make 1 (Char.chr (Char.code 'a' + i))
+
+let rec row_repr ty =
+  match ty with
+  | TRempty -> ([], TRempty)
+  | TRextend (field, t1, t2) ->
+      let rest, t = row_repr t2 in
+      ((field, t1) :: rest, t)
+  | Var { repres = Some ty; _ } -> row_repr ty
+  | Var { repres = None; _ } -> ([], ty)
+  | t ->
+      print_endline (show_row t);
+      assert false
 
 let rec print_val_type vars ?(parent = false) val_type =
   match typerepr val_type.body with
@@ -125,6 +142,44 @@ let rec print_val_type vars ?(parent = false) val_type =
                        (vars, sl @ [ s ]))
                      (vars, []) tl)))
             ps )
+  | Trecord row ->
+      let fields, rest_row = row_repr row in
+      let vars, fs =
+        List.fold_left
+          (fun (vars, sl) (l, ty) ->
+            let vars, tys =
+              print_val_type vars { quantif = val_type.quantif; body = ty }
+            in
+            (vars, sl @ [ l ^ " : " ^ tys ]))
+          (vars, []) fields
+      in
+      ( vars,
+        if List.length fs = 0 && rest_row = TRempty then "< >"
+        else
+          Printf.sprintf "< %s%s >" (String.concat "; " fs)
+            (match rest_row with
+            | Var _ -> "; .."
+            | TRempty -> ""
+            | _ -> assert false) )
+  | Tvariant row ->
+      let fields, rest_row = row_repr row in
+      let vars, fs =
+        List.fold_left
+          (fun (vars, sl) (l, ty) ->
+            let vars, tys =
+              print_val_type vars { quantif = val_type.quantif; body = ty }
+            in
+            (vars, sl @ [ "\`" ^ l ^ " of " ^ tys ]))
+          (vars, []) fields
+      in
+      ( vars,
+        Printf.sprintf "[%s %s ]"
+          (match rest_row with
+          | Var _ -> ">"
+          | TRempty -> ""
+          | _ -> assert false)
+          (String.concat " | " fs) )
+  | TRempty | TRextend _ -> assert false
 
 let print_val_type vars ?(parent = false) val_type =
   snd (print_val_type vars ~parent val_type)

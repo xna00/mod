@@ -164,6 +164,7 @@ let type_info uri pos =
           Env.find_value (Path.Pident id.txt) tm2.term_env
           |> Types.print_val_type []
         else loop_term_list pos str [ tm1; tm2 ]
+    | RecordExtend (_, tm1, tm2) -> loop_term_list pos str [ tm1; tm2 ]
     | _ -> str
   and loop_term_list pos str tml =
     List.fold_left

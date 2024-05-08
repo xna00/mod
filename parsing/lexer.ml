@@ -166,7 +166,11 @@ let rec scan scanner =
           match s with "->" -> ARROW | _ -> INFIX2 s)
       | '>' | '<' | '=' -> (
           let s = scan_infix_chars scanner in
-          match s with "=" -> EQUAL | _ -> INFIX1 s)
+          match s with
+          | "=" -> EQUAL
+          | "<" -> LESS
+          | ">" -> GREATER
+          | _ -> INFIX1 s)
       | '(' ->
           advance scanner;
           LPARENT
@@ -175,7 +179,10 @@ let rec scan scanner =
           RPARENT
       | '.' ->
           advance scanner;
-          DOT
+          if (not (at_end scanner)) && scanner.ch = '.' then (
+            advance scanner;
+            DOTDOT)
+          else DOT
       | '\'' ->
           advance scanner;
           QUOTE
@@ -191,6 +198,30 @@ let rec scan scanner =
       | '?' ->
           advance scanner;
           QUESTION
+      | '{' ->
+          advance scanner;
+          LBRACE
+      | '}' ->
+          advance scanner;
+          RBRACE
+      | '|' ->
+          advance scanner;
+          BAR
+      | ';' ->
+          advance scanner;
+          SEMICOLON
+      | '`' ->
+          advance scanner;
+          BACKQOUTE
+      | '[' ->
+          advance scanner;
+          if (not (at_end scanner)) && scanner.ch = '>' then (
+            advance scanner;
+            LBRACKETGREATER)
+          else LBRACKET
+      | ']' ->
+          advance scanner;
+          RBRACKET
       | c ->
           advance scanner;
           let end_pos = position scanner in
