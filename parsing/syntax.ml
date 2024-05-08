@@ -27,10 +27,16 @@ let rec print_expr ?(parenthesis = false) e =
   | EConstant i -> string_of_int i
   | ELongident id ->
       Longident.infixify (String.concat "." (Longident.flat id.txt))
-  | EFunction (_, { txt; _ }, body) ->
+  | EFunction (l, { txt; _ }, body) ->
+      let ls =
+        match l with
+        | Nolabel -> txt
+        | Labelled s -> "~" ^ s
+        | Optional s -> "?" ^ s
+      in
       let b = print_expr body in
-      if parenthesis then Printf.sprintf "(fun %s -> %s)" txt b
-      else Printf.sprintf "fun %s -> %s" txt b
+      if parenthesis then Printf.sprintf "(fun %s -> %s)" ls b
+      else Printf.sprintf "fun %s -> %s" ls b
   | EApply (f, args) ->
       let fs =
         match f with
@@ -64,11 +70,17 @@ and simple_type_desc =
 let rec print_simple_type ?(parenthesis = false) ty =
   match ty.ty_desc with
   | TVar s -> "'" ^ s
-  | Tarrow (_, t1, t2) ->
+  | Tarrow (l, t1, t2) ->
+      let ls =
+        match l with
+        | Nolabel -> ""
+        | Labelled s -> s ^ ":"
+        | Optional s -> "?" ^ s ^ ":"
+      in
       let ty1s = print_simple_type ~parenthesis:true t1 in
       let ty2s = print_simple_type t2 in
-      if parenthesis then Printf.sprintf "(%s -> %s)" ty1s ty2s
-      else Printf.sprintf "%s -> %s" ty1s ty2s
+      if parenthesis then Printf.sprintf "(%s%s -> %s)" ls ty1s ty2s
+      else Printf.sprintf "%s%s -> %s" ls ty1s ty2s
   | Typeconstr (p, args) -> (
       let argss = List.map print_simple_type args |> String.concat ", " in
       match p.txt with

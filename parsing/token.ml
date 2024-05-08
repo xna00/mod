@@ -15,6 +15,8 @@ type t =
   | COMMA
   | STAR
   | COLON
+  | TILDE
+  | QUESTION
   | LET
   | REC
   | IN
@@ -73,3 +75,5 @@ let keywords =
     ("with", WITH);
     ("of", OF);
   ]
+
+let print_token t = print_endline (show t)

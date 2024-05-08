@@ -146,22 +146,38 @@ let uident parser =
 let longident_end_lident p =
   let loc_start = p.start_pos in
   let uids =
-    sepby1 uident
-      (function
-        | DOT ->
-            lookahead p (fun p ->
-                advance p;
-                match p.token with UIDENT _ -> true | _ -> false)
-        | _ -> false)
-      p
+    match p.token with
+    | UIDENT _ ->
+        let uids =
+          sepby1 uident
+            (function
+              | DOT ->
+                  lookahead p (fun p ->
+                      advance p;
+                      match p.token with UIDENT _ -> true | _ -> false)
+              | _ -> false)
+            p
+        in
+        expect DOT p;
+        uids
+    | _ -> []
   in
-  expect DOT p;
   let lid = lident p in
   let loc_end = p.prev_end_pos in
   {
     txt = Longident.make (List.map (fun x -> x.txt) uids @ [ lid.txt ]);
     loc = { loc_start; loc_end };
   }
+
+let arg_label_fun p =
+  match p.token with
+  | TILDE ->
+      advance p;
+      fun id -> Labelled id
+  | QUESTION ->
+      advance p;
+      fun id -> Optional id
+  | _ -> fun _ -> Nolabel
 
 let longident_end_uident p =
   let loc_start = p.start_pos in
@@ -189,23 +205,39 @@ let rec expr parser =
         advance parser;
         let is_rec = optional REC in
         let id = lident parser in
-        expect EQUAL parser;
-        let e1 = expr parser in
+        let e1 = valbind1 EQUAL parser in
         expect IN parser;
         let body = expr parser in
         ELet (id, e1, body)
     | FUN ->
         advance parser;
-        let id = lident parser in
-        expect ARROW parser;
-        let body = expr parser in
-        EFunction (Nolabel, id, body)
+        (* let label_f = arg_label_fun parser in
+           let id = lident parser in
+           expect ARROW parser;
+           let body = expr parser in
+           EFunction (label_f id.txt, id, body) *)
+        (valbind1 ARROW parser).desc
     | _ ->
         let { desc; _ } = op_expr parser in
         desc
   in
   let loc_end = parser.prev_end_pos in
   { desc; loc = { loc_start; loc_end } }
+
+and valbind1 token p =
+  if p.token = token then (
+    advance p;
+    expr p)
+  else
+    let loc_start = p.start_pos in
+    let label_f = arg_label_fun p in
+    let lid = lident p in
+    let body = valbind1 token p in
+    let loc_end = p.prev_end_pos in
+    {
+      desc = EFunction (label_f lid.txt, lid, body);
+      loc = { loc_start; loc_end };
+    }
 
 and op_expr p =
   let rec expr_bp min_bp =
@@ -240,7 +272,6 @@ and op_expr p =
 
 and apply_expr p =
   let rec loop () =
-    (* print_endline (Token.show p.token); *)
     match p.token with
     | NUMBER _ | LIDENT _ | UIDENT _ | LPARENT ->
         let f = atom_expr p in
@@ -275,16 +306,6 @@ and atom_expr p =
     | UIDENT _ ->
         let lid = longident_end_lident p in
         ELongident lid
-        (* let uids = many_uident p in
-           expect DOT p;
-           print_endline (Token.show p.token);
-           match p.token with
-           | LIDENT s ->
-               advance p;
-               ELongident lid
-           | _ ->
-               report p;
-               raise Parse_error *)
     | LPARENT ->
         let infix =
           lookahead p (fun p ->
@@ -309,60 +330,62 @@ let tvar p =
   lident p
 
 let rec simple_type p : simple_type =
-  let rec typ_bp min_bp : simple_type =
-    let lhs = apply_type p in
-    let rec loop lhs : simple_type =
-      match p.token with
-      | STAR | ARROW ->
-          let op = p.token in
-          let prec =
-            match op with STAR -> 2 | ARROW -> 1 | _ -> assert false
-          in
-          if prec < min_bp then lhs
-          else (
-            advance p;
-            let rhs = typ_bp prec in
-            (* print_endline (print_simple_type rhs); *)
-            let ty =
-              match op with
-              | STAR ->
-                  {
-                    ty_desc =
-                      Typeconstr
-                        ( {
-                            txt = Longident.Lident "*";
-                            loc = Location.dummy_loc;
-                          },
-                          [ lhs; rhs ] );
-                    loc =
-                      {
-                        loc_start = lhs.loc.loc_start;
-                        loc_end = lhs.loc.loc_end;
-                      };
-                  }
-              | ARROW ->
-                  {
-                    ty_desc = Tarrow (Nolabel, lhs, rhs);
-                    loc =
-                      {
-                        loc_start = lhs.loc.loc_start;
-                        loc_end = lhs.loc.loc_end;
-                      };
-                  }
-              | _ -> assert false
-            in
-            loop ty)
-      | _ -> lhs
-    in
-    loop lhs
+  let mems =
+    List.rev
+      (sepby1
+         (fun p ->
+           let label =
+             match p.token with
+             | QUESTION ->
+                 advance p;
+                 let lid = lident p in
+                 expect COLON p;
+                 Optional lid.txt
+             | _ ->
+                 let labelled =
+                   lookahead p (fun p ->
+                       advance p;
+                       p.token = COLON)
+                 in
+                 if labelled then (
+                   let lid = lident p in
+                   expect COLON p;
+                   Labelled lid.txt)
+                 else Nolabel
+           in
+           let sty = tuple_type p in
+           (label, sty))
+         (fun x -> x = ARROW)
+         p)
   in
-  typ_bp 0
+  List.fold_left
+    (fun acc (l, sty) ->
+      {
+        ty_desc = Tarrow (l, sty, acc);
+        loc = { loc_start = sty.loc.loc_start; loc_end = acc.loc.loc_end };
+      })
+    (snd (List.hd mems))
+    (List.tl mems)
+
+and tuple_type p =
+  let mems = List.rev (sepby1 apply_type (fun x -> x = STAR) p) in
+  List.fold_left
+    (fun acc sty ->
+      {
+        ty_desc =
+          Typeconstr
+            ( { txt = Longident.Lident "*"; loc = Location.dummy_loc },
+              [ sty; acc ] );
+        loc = { loc_start = sty.loc.loc_start; loc_end = acc.loc.loc_end };
+      })
+    (List.hd mems) (List.tl mems)
 
 and apply_type p =
   let ty = atom_type p in
   let rec loop () =
     match p.token with
     | LIDENT _ | UIDENT _ ->
+        (* TODO: fix *)
         let ty = longident_end_lident p in
         ty :: loop ()
     | _ -> []
@@ -592,8 +615,7 @@ and definition p =
     | LET ->
         advance p;
         let lid = lident p in
-        expect EQUAL p;
-        let e = expr p in
+        let e = valbind1 EQUAL p in
         Value_str (Longident.ident_of_string lid, e)
     | TYPE ->
         let lid, def = type_decl p in

@@ -185,6 +185,12 @@ let rec scan scanner =
       | ':' ->
           advance scanner;
           COLON
+      | '~' ->
+          advance scanner;
+          TILDE
+      | '?' ->
+          advance scanner;
+          QUESTION
       | c ->
           advance scanner;
           let end_pos = position scanner in

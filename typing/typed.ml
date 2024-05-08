@@ -202,6 +202,16 @@ and mod_def_to_typed def =
     | Syntax.Module_str (lid, mt, me) ->
         Module_str
           ( Ident.create (Longident.string_of_longident lid.txt),
-            mod_expr_to_typed me )
+            match mt with
+            | None -> mod_expr_to_typed me
+            | Some mty ->
+                print_endline (Syntax.show_mod_type mty);
+                {
+                  mod_term_desc =
+                    Constraint (mod_expr_to_typed me, mod_type_to_typed mty);
+                  loc = Parsing.Location.dummy_loc;
+                  mod_term_type = unknown_mod_type ();
+                  mod_term_env = Env.empty;
+                } )
   in
   { definition_desc = ret; before_env = Env.empty; after_env = Env.empty }

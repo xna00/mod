@@ -89,13 +89,13 @@ let rec print_val_type vars ?(parent = false) val_type =
         | Labelled s -> s ^ ":"
         | Optional s -> "?" ^ s ^ ":"
       in
-      print_endline (show_type_variable_list (List.map fst vars));
+      (* print_endline (show_type_variable_list (List.map fst vars)); *)
       let vars, t1s =
         print_val_type vars ~parent:true
           { quantif = val_type.quantif; body = t1 }
       in
       let vars, t2s =
-        print_val_type vars { quantif = val_type.quantif; body = t1 }
+        print_val_type vars { quantif = val_type.quantif; body = t2 }
       in
       ( vars,
         (if parent then Printf.sprintf "(%s%s -> %s)"
@@ -110,7 +110,7 @@ let rec print_val_type vars ?(parent = false) val_type =
           print_val_type vars
             { quantif = val_type.quantif; body = List.nth tl 0 }
         in
-        (vars, ret ^ ps)
+        (vars, ret ^ " " ^ ps)
       else
         ( vars,
           Printf.sprintf "(%s) %s"

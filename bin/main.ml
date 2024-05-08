@@ -5,10 +5,8 @@ module M = struct
   type t = A
 end
 
-module N : sig
-  module NN = M
-end = struct
-  module NN = M
+module N = struct
+  let id ~x = x
 end
 
 let init_scope, init_env = Predef.init_scope_env ()
@@ -19,8 +17,8 @@ let src =
 
 let src =
   {|
-  module M = struct
-   let id = fun x -> x
+  module M= struct
+   let id = fun ?z ~x ~y -> x + y
    end
          |}
   |> String.trim
@@ -39,8 +37,8 @@ let _ =
 
 (* let _ = print_endline (Syntax.show_simple_type e) *)
 
-(* let _ =
-   List.iter (fun d -> print_endline (Parser.show_diagnostic d)) p.diagnostics *)
+let _ =
+  List.iter (fun d -> print_endline (Parser.show_diagnostic d)) p.diagnostics
 
 (* let _ = print_endline src *)
 
