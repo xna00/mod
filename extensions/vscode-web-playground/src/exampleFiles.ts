@@ -4,7 +4,7 @@ export const test_mod =
 
 let a = 1
 module M = struct
-	let b = 2
+	let id = fun x -> x
 	let ( ++ ) = ( + )
 end
 `.trim()
