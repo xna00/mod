@@ -4,7 +4,7 @@ module Asttypes = Parsing.Asttypes
 type term = {
   term_desc : term_desc;
   loc : Parsing.Location.t;
-  term_type : simple_type;
+  mutable term_type : simple_type;
   mutable term_env : Env.t;
 }
 [@@deriving show { with_path = false }]
@@ -45,8 +45,14 @@ and mod_term_desc =
 
 and structure = definition list [@@deriving show { with_path = false }]
 
-and definition =
-  | Value_str of Ident.t * term (* let x = expr *)
+and definition = {
+  definition_desc : definition_desc;
+  mutable before_env : Env.t;
+  mutable after_env : Env.t;
+}
+
+and definition_desc =
+  | Value_str of Ident.t Asttypes.loc * term (* let x = expr *)
   | Type_str of Ident.t * kind * def_type (* type t :: k = ty *)
   | Module_str of Ident.t * mod_term (* module X = mod *)
 [@@deriving show { with_path = false }]
@@ -166,30 +172,36 @@ and mod_structure defs =
   List.map (fun def -> mod_def_to_typed def.Syntax.definition) defs
 
 and mod_def_to_typed def =
-  match def with
-  | Syntax.Value_str (lid, expr) ->
-      Value_str
-        ( Ident.create (Longident.string_of_longident lid.txt),
-          expr_to_typed expr )
-  | Syntax.Type_str (lid, decl) ->
-      reset_type_variables ();
-      let manifest =
-        match decl.manifest with
-        | None -> failwith "Type_str"
-        | Some def ->
-            let params =
-              List.map
-                (fun (x : string Parsing.Location.loc) ->
-                  find_type_variable x.txt)
-                def.params
-            in
-            { params; defbody = map_simple_type def.defbody }
-      in
-      Type_str
-        ( Ident.create (Longident.string_of_longident lid.txt),
-          { arity = decl.kind },
-          manifest )
-  | Syntax.Module_str (lid, mt, me) ->
-      Module_str
-        ( Ident.create (Longident.string_of_longident lid.txt),
-          mod_expr_to_typed me )
+  let ret =
+    match def with
+    | Syntax.Value_str (lid, expr) ->
+        Value_str
+          ( {
+              txt = Ident.create (Longident.string_of_longident lid.txt);
+              loc = lid.loc;
+            },
+            expr_to_typed expr )
+    | Syntax.Type_str (lid, decl) ->
+        reset_type_variables ();
+        let manifest =
+          match decl.manifest with
+          | None -> failwith "Type_str"
+          | Some def ->
+              let params =
+                List.map
+                  (fun (x : string Parsing.Location.loc) ->
+                    find_type_variable x.txt)
+                  def.params
+              in
+              { params; defbody = map_simple_type def.defbody }
+        in
+        Type_str
+          ( Ident.create (Longident.string_of_longident lid.txt),
+            { arity = decl.kind },
+            manifest )
+    | Syntax.Module_str (lid, mt, me) ->
+        Module_str
+          ( Ident.create (Longident.string_of_longident lid.txt),
+            mod_expr_to_typed me )
+  in
+  { definition_desc = ret; before_env = Env.empty; after_env = Env.empty }

@@ -11,6 +11,9 @@ and type_variable = {
 }
 [@@deriving show { with_path = false }]
 
+and type_variable_list = type_variable list
+[@@deriving show { with_path = false }]
+
 type val_type = {
   quantif : type_variable list; (* quantified variables *)
   body : simple_type;
@@ -59,16 +62,25 @@ let end_def () = decr current_level
 let newvar () = { repres = None; level = !current_level }
 let unknown () = Var (newvar ())
 let trivial_scheme ty = { quantif = []; body = ty }
-let var_string_of_int i = "'" ^ String.make 1 (Char.chr (Char.code 'a' + i))
+
+let var_string_of_int ?(quantify = true) i =
+  "'"
+  ^ (if quantify then "" else "_")
+  ^ String.make 1 (Char.chr (Char.code 'a' + i))
 
 let rec print_val_type vars ?(parent = false) val_type =
   match typerepr val_type.body with
   | Var ({ repres = None; _ } as var) ->
       let vars =
         if List.mem_assq var vars then vars
-        else (var, var_string_of_int (List.length vars)) :: vars
+        else
+          ( var,
+            var_string_of_int
+              ~quantify:(List.memq var val_type.quantif)
+              (List.length vars) )
+          :: vars
       in
-      List.assq var vars
+      (vars, List.assq var vars)
   | Var { repres = Some _; _ } -> assert false
   | Tarrow (l, t1, t2) ->
       let ls =
@@ -77,22 +89,45 @@ let rec print_val_type vars ?(parent = false) val_type =
         | Labelled s -> s ^ ":"
         | Optional s -> "?" ^ s ^ ":"
       in
-      let t1s = print_val_type vars ~parent:true (trivial_scheme t1) in
-      let t2s = print_val_type vars (trivial_scheme t2) in
-      (if parent then Printf.sprintf "(%s%s -> %s)"
-       else Printf.sprintf "%s%s -> %s")
-        ls t1s t2s
+      print_endline (show_type_variable_list (List.map fst vars));
+      let vars, t1s =
+        print_val_type vars ~parent:true
+          { quantif = val_type.quantif; body = t1 }
+      in
+      let vars, t2s =
+        print_val_type vars { quantif = val_type.quantif; body = t1 }
+      in
+      ( vars,
+        (if parent then Printf.sprintf "(%s%s -> %s)"
+         else Printf.sprintf "%s%s -> %s")
+          ls t1s t2s )
   | Typeconstr (p, tl) ->
       let ps = Path.string_of_path p in
       let len = List.length tl in
-      if len = 0 then ps
+      if len = 0 then (vars, ps)
       else if len = 1 then
-        print_val_type vars (trivial_scheme (List.nth tl 0)) ^ ps
+        let vars, ret =
+          print_val_type vars
+            { quantif = val_type.quantif; body = List.nth tl 0 }
+        in
+        (vars, ret ^ ps)
       else
-        Printf.sprintf "(%s) %s"
-          (String.concat ", "
-             (List.map (fun t -> print_val_type vars (trivial_scheme t)) tl))
-          ps
+        ( vars,
+          Printf.sprintf "(%s) %s"
+            (String.concat ", "
+               (snd
+                  (List.fold_left
+                     (fun (vars, sl) t ->
+                       let vars, s =
+                         print_val_type vars
+                           { quantif = val_type.quantif; body = t }
+                       in
+                       (vars, sl @ [ s ]))
+                     (vars, []) tl)))
+            ps )
+
+let print_val_type vars ?(parent = false) val_type =
+  snd (print_val_type vars ~parent val_type)
 
 let rec print_mod_type ?(offset = 0) mod_type =
   (* print_endline (show_mod_type mod_type); *)

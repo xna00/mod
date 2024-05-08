@@ -102,6 +102,7 @@ let rec infer_type env term : term =
     | Longident path -> instance (Env.find_value path env)
     | Function (arg_label, param, body) ->
         let type_param = unknown () in
+        print_endline (show_simple_type type_param);
         let type_body =
           infer_type
             (Env.add_value param
@@ -187,7 +188,7 @@ let rec infer_type env term : term =
            body)
           .term_type
   in
-  unify env term.term_type ty;
+  term.term_type <- ty;
   term.term_env <- env;
   term
 
@@ -214,7 +215,8 @@ let type_term env term =
   begin_def ();
   let ty = infer_type env term in
   end_def ();
-  generalize ty.term_type
+  let ret = generalize ty.term_type in
+  ret
 
 let valtype_match env vty1 vty2 =
   (* TODO *)
@@ -376,13 +378,16 @@ let rec type_module env mod_term : mod_term =
 and type_structure env seen = function
   | [] -> []
   | stritem :: rem ->
-      let sigitem, seen' = type_definition env seen stritem in
-      sigitem :: type_structure (Env.add_spec sigitem env) seen' rem
+      stritem.before_env <- env;
+      let sigitem, seen' = type_definition env seen stritem.definition_desc in
+      let new_env = Env.add_spec sigitem env in
+      stritem.after_env <- new_env;
+      sigitem :: type_structure new_env seen' rem
 
 and type_definition env seen = function
   | Value_str (id, term) ->
-      if List.mem (Ident.name id) seen then failwith "repeated value name";
-      (Value_sig (id, type_term env term), Ident.name id :: seen)
+      if List.mem (Ident.name id.txt) seen then failwith "repeated value name";
+      (Value_sig (id.txt, type_term env term), Ident.name id.txt :: seen)
   | Module_str (id, modl) ->
       if List.mem (Ident.name id) seen then failwith "repeated module name";
       ( Module_sig (id, (type_module env modl).mod_term_type),

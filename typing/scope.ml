@@ -122,13 +122,27 @@ let rec scope_module sc mod_term =
   in
   { mod_term with mod_term_desc = new_mod_term }
 
-and scope_structure sc = function
+and scope_structure sc str =
+  match str with
   | [] -> []
-  | Value_str (id, v) :: rem ->
-      Value_str (id, scope_term sc v) :: scope_structure (enter_value id sc) rem
-  | Type_str (id, kind, dty) :: rem ->
-      Type_str (id, scope_kind sc kind, scope_deftype sc dty)
+  | { definition_desc = Value_str (id, v); _ } :: rem ->
+      {
+        definition_desc = Value_str (id, scope_term sc v);
+        before_env = Env.empty;
+        after_env = Env.empty;
+      }
+      :: scope_structure (enter_value id.txt sc) rem
+  | { definition_desc = Type_str (id, kind, dty); _ } :: rem ->
+      {
+        definition_desc = Type_str (id, scope_kind sc kind, scope_deftype sc dty);
+        before_env = Env.empty;
+        after_env = Env.empty;
+      }
       :: scope_structure (enter_type id sc) rem
-  | Module_str (id, m) :: rem ->
-      Module_str (id, scope_module sc m)
+  | { definition_desc = Module_str (id, m); _ } :: rem ->
+      {
+        definition_desc = Module_str (id, scope_module sc m);
+        before_env = Env.empty;
+        after_env = Env.empty;
+      }
       :: scope_structure (enter_module id sc) rem

@@ -5,7 +5,6 @@ module M = struct
   type t = A
 end
 
-
 module N : sig
   module NN = M
 end = struct
@@ -21,9 +20,8 @@ let src =
 let src =
   {|
   module M = struct
-   let b = 1
+   let id = fun x -> x
    end
-let a = M.b
          |}
   |> String.trim
 

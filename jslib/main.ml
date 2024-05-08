@@ -138,9 +138,13 @@ let type_info uri pos =
     | Typed.Structure structure ->
         List.fold_left
           (fun acc def ->
-            match def with
-            | Typed.Value_str (_, term) ->
-                if in_term_range pos term then loop_term pos term else acc
+            match def.Typed.definition_desc with
+            | Typed.Value_str (id, term) ->
+                if in_loc_range pos id.loc then
+                  Env.find_value (Path.Pident id.txt) def.after_env
+                  |> Types.print_val_type []
+                else if in_term_range pos term then loop_term pos term
+                else acc
             | Typed.Module_str (_, m) ->
                 if in_mod_term_range pos m then loop_mod_term m else acc
             | _ -> acc)
