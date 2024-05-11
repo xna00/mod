@@ -28,6 +28,7 @@ type t =
   | DOTDOT
   | BACKQOUTE
   | LBRACKETGREATER
+  | LESSSLASH
   | LET
   | REC
   | IN

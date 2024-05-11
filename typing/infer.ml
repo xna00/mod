@@ -184,6 +184,7 @@ let rec infer_type env term : term =
             unify env type_funct.term_type type_f;
             type_result
         | _ ->
+            unify env ret_ty jsx_element_type;
             let n = List.length args_tys in
             let sigma = Array.make (List.length args_tys) (-1) in
             List.iteri
@@ -234,6 +235,68 @@ let rec infer_type env term : term =
             List.fold_right
               (fun (label, t1) t2 -> Tarrow (label, t1, t2))
               (erase extra k) ret_ty)
+    | Jsxelement (funct, args) -> (
+        let type_funct = infer_type env funct in
+        let args_tys, ret_ty = flatten_arrow type_funct.term_type in
+        match ret_ty with
+        | Var _ -> failwith "Element type should be known"
+        | _ ->
+            let n = List.length args_tys in
+            let sigma = Array.make (List.length args_tys) (-1) in
+            List.iteri
+              (fun pos (label1, expr) ->
+                let rec loop l i =
+                  match l with
+                  | [] -> failwith "Unkonwn label"
+                  | (label2, ty) :: rest ->
+                      if arg_label_match label1 label2 && sigma.(i) = -1 then (
+                        unify env ty (infer_type env expr).term_type;
+                        sigma.(i) <- pos)
+                      else loop rest (i + 1)
+                in
+                loop args_tys 0)
+              args;
+            let rec fill i pos =
+              if i < Array.length sigma then (
+                if sigma.(i) = -1 then sigma.(i) <- pos;
+                fill (i + 1) (pos + 1))
+            in
+            fill 0 (List.length args);
+            let sigma = Array.to_list sigma in
+            let k =
+              List.filteri
+                (fun i pos ->
+                  pos >= List.length args
+                  && List.exists
+                       (fun j ->
+                         j > i
+                         && fst (List.nth args_tys j) = Nolabel
+                         && List.nth sigma j < List.length args)
+                       (List.init n (fun x -> x)))
+                sigma
+              |> List.length
+            in
+            let extra =
+              List.filteri
+                (fun i _ -> List.nth sigma i >= List.length args)
+                args_tys
+            in
+            let rec erase ty k =
+              match (ty, k) with
+              | _, 0 -> ty
+              | (Parsing.Asttypes.Optional _, _) :: rest, k -> erase rest (k - 1)
+              | t :: rest, k -> t :: erase rest (k - 1)
+              | [], _ -> failwith "erase"
+            in
+            let d = erase extra k in
+            List.iter
+              (fun (l, _) ->
+                match l with
+                | Asttypes.Optional _ -> ()
+                | Asttypes.Nolabel -> failwith "Find a nolabel prop"
+                | Asttypes.Labelled s -> failwith (s ^ " is missing"))
+              d;
+            ret_ty)
     | Let (ident, arg, body) ->
         begin_def ();
         let type_arg = infer_type env arg in

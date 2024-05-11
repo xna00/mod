@@ -16,6 +16,11 @@ let rec subst_type subst = function
   | Typeconstr (p, tl) ->
       Typeconstr (path p subst, List.map (subst_type subst) tl)
   | Tarrow (l, t1, t2) -> Tarrow (l, subst_type subst t1, subst_type subst t2)
+  | TRempty -> TRempty
+  | TRextend (s, ty1, ty2) ->
+      TRextend (s, subst_type subst ty1, subst_type subst ty2)
+  | Tvariant row -> subst_type subst row
+  | Trecord row -> subst_type subst row
 
 let subst_valtype vty subst =
   { quantif = vty.quantif; body = subst_type subst vty.body }

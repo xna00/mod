@@ -9,6 +9,9 @@ let path_star = Path.Pident ident_star
 let ident_option = Ident.create "option"
 let path_option = Path.Pident ident_option
 let option_type ty = Typeconstr (path_option, [ ty ])
+let ident_jsx_element = Ident.create "jsx_element"
+let path_jsx_element = Path.Pident ident_jsx_element
+let jsx_element_type = Typeconstr (path_jsx_element, [])
 
 let init_scope_env () =
   let init_scope = ref Scope.empty in
@@ -33,6 +36,7 @@ let init_scope_env () =
   enter_type ident_int { kind = { arity = 0 }; manifest = None };
   enter_type ident_bool { kind = { arity = 0 }; manifest = None };
   enter_type ident_option { kind = { arity = 1 }; manifest = None };
+  enter_type ident_jsx_element { kind = { arity = 0 }; manifest = None };
   enter_val "false" { quantif = []; body = bool_type };
   enter_val "true" { quantif = []; body = bool_type };
   List.iter
@@ -95,6 +99,12 @@ let init_scope_env () =
     {
       quantif = [ alpha ];
       body = Types.(arrow_type Nolabel talpha (option_type talpha));
+    };
+
+  enter_val "div"
+    {
+      quantif = [ alpha ];
+      body = Types.(arrow_type (Optional "className") talpha jsx_element_type);
     };
 
   (!init_scope, !init_env)

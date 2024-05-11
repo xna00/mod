@@ -68,7 +68,7 @@ let filechange (uri : string) src =
   js_log src;
   let toks = tokeinfo src in
   js_log "tokeinfo done";
-  let p = Parser.make "file" src in
+  let p = Parser_base.make "file" src in
   let mod_expr = Parser.parse p in
   js_log "parse done";
   let init_scope, init_env = Predef.init_scope_env () in
@@ -95,7 +95,7 @@ let filechange (uri : string) src =
         formatted = src;
         diagnostics =
           List.map
-            (fun (d : Parser.diagnostic) ->
+            (fun (d : Parser_base.diagnostic) ->
               {
                 start = pos_of_position d.start_pos;
                 _end = pos_of_position d.end_pos;

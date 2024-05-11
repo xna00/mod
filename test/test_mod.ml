@@ -2,8 +2,8 @@ open OUnit2
 open Parsing
 
 let make_parser s =
-  let p = Parser.make "file" s in
-  Parser.advance p;
+  let p = Parser_base.make "file" s in
+  Parser_base.advance p;
   p
 
 let expr_test ?expect s : test_fun =

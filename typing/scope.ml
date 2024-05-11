@@ -81,6 +81,9 @@ let rec scope_term sc term =
               (fun (var, e) ->
                 (var, scope_term (enter_value var.Asttypes.txt sc) e))
               pat )
+    | Jsxelement (t1, t2) ->
+        Jsxelement
+          (scope_term sc t1, List.map (fun (l, tm) -> (l, scope_term sc tm)) t2)
   in
   { term with term_desc = newterm }
 
@@ -90,6 +93,11 @@ let rec scope_simple_type sc = function
       Typeconstr (type_path path sc, List.map (scope_simple_type sc) args)
   | Tarrow (l, t1, t2) ->
       Tarrow (l, scope_simple_type sc t1, scope_simple_type sc t2)
+  | TRempty -> TRempty
+  | TRextend (s, ty1, ty2) ->
+      TRextend (s, scope_simple_type sc ty1, scope_simple_type sc ty2)
+  | Tvariant ty -> Tvariant (scope_simple_type sc ty)
+  | Trecord ty -> Trecord (scope_simple_type sc ty)
 
 let scope_valtype sc vty =
   { quantif = vty.quantif; body = scope_simple_type sc vty.body }

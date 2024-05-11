@@ -23,6 +23,7 @@ and term_desc =
       term
       * (string * Ident.t Asttypes.loc * term) list
       * (Ident.t Asttypes.loc * term) option
+  | Jsxelement of term * (Asttypes.arg_label * term) list
 [@@deriving show { with_path = false }]
 
 let generalize ty =
@@ -134,6 +135,9 @@ let rec expr_to_typed expr =
             | Some (v, e) ->
                 Some ({ txt = Ident.create v.txt; loc = v.loc }, expr_to_typed e)
           )
+    | Ejsxelement (e, el) ->
+        Jsxelement
+          (expr_to_typed e, List.map (fun (l, e) -> (l, expr_to_typed e)) el)
   in
   {
     term_desc = ret;

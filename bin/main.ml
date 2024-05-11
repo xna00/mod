@@ -18,12 +18,20 @@ let src =
 
 let src =
   {|
-  module M= struct
-   let f  x = `Int 1
-   end
-         |} |> String.trim
+  let a = 1
+module M = struct
+  let id = fun x -> x
+  let ( ++ ) = ( + )
+  let d = <div className={3}></div>
+  module N = struct
+    let make = div
+  end
+  let dd = <N className={3}></N>
+end
+         |}
+  |> String.trim
 
-let p = Parser.make "test.mod" src
+let p = Parser_base.make "test.mod" src
 let e = Parser.parse p
 
 let _ =
@@ -38,7 +46,9 @@ let _ =
 (* let _ = print_endline (Syntax.show_simple_type e) *)
 
 let _ =
-  List.iter (fun d -> print_endline (Parser.show_diagnostic d)) p.diagnostics
+  List.iter
+    (fun d -> print_endline (Parser_base.show_diagnostic d))
+    p.diagnostics
 
 (* let _ = print_endline src *)
 

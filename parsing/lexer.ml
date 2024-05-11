@@ -37,6 +37,7 @@ let clone scanner = { scanner with src = scanner.src }
 let at_end scanner = scanner.offset >= String.length scanner.src
 let peek scanner = scanner.src.[scanner.offset]
 let peek1 scanner = scanner.src.[scanner.offset + 1]
+let peekn n scanner = scanner.src.[scanner.offset + n]
 
 let advance scanner =
   let offset = scanner.offset + 1 in
@@ -164,12 +165,19 @@ let rec scan scanner =
       | '-' | '+' -> (
           let s = scan_infix_chars scanner in
           match s with "->" -> ARROW | _ -> INFIX2 s)
+      | '>'
+        when String.length scanner.src - scanner.offset >= 3
+             && peek1 scanner = '<'
+             && peekn 2 scanner = '/' ->
+          advance scanner;
+          GREATER
       | '>' | '<' | '=' -> (
           let s = scan_infix_chars scanner in
           match s with
           | "=" -> EQUAL
           | "<" -> LESS
           | ">" -> GREATER
+          | "</" -> LESSSLASH
           | _ -> INFIX1 s)
       | '(' ->
           advance scanner;

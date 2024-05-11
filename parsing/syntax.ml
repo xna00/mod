@@ -15,12 +15,16 @@ and expr_desc =
   | Variant of string * expr
   | Case of
       expr * (string * string loc * expr) list * (string loc * expr) option
+  | Ejsxelement of expr * (arg_label * expr) list
 [@@deriving show { with_path = false }]
 
 let is_infix s =
   match s.[0] with
   | '*' | '/' | '+' | '-' | '>' | '<' | '=' -> true
   | _ -> false
+
+let label_name l =
+  match l with Nolabel -> "" | Labelled s -> s | Optional s -> s
 
 let rec print_expr ?(parenthesis = false) ?(offset = 0) e =
   match e.desc with
@@ -46,7 +50,14 @@ let rec print_expr ?(parenthesis = false) ?(offset = 0) e =
         | _ -> print_expr ~parenthesis:true ~offset f
       in
       let argss =
-        List.map (print_expr ~offset ~parenthesis:true) (List.map snd args)
+        List.map
+          (fun (l, e) ->
+            (match l with
+            | Nolabel -> ""
+            | Labelled s -> "~" ^ s ^ ":"
+            | Optional s -> "?" ^ s ^ ":")
+            ^ print_expr ~offset ~parenthesis:true e)
+          args
       in
 
       if is_infix fs then List.nth argss 0 ^ " " ^ fs ^ " " ^ List.nth argss 1
@@ -88,6 +99,15 @@ let rec print_expr ?(parenthesis = false) ?(offset = 0) e =
         | Some (v, e) ->
             "\n" ^ String.make offset ' ' ^ "| " ^ v.txt ^ " -> "
             ^ print_expr ~offset e)
+  | Ejsxelement (e, el) ->
+      let es = print_expr e in
+      let els =
+        String.concat ""
+          (List.map
+             (fun (l, e) -> " " ^ label_name l ^ "={" ^ print_expr e ^ "}")
+             el)
+      in
+      Printf.sprintf "<%s%s></%s>" es els es
 
 type simple_type = { ty_desc : simple_type_desc; loc : Location.t }
 
