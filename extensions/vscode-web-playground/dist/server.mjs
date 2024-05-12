@@ -3381,11 +3381,11 @@ var init_main = __esm({
       }
       DiagnosticRelatedInformation2.is = is;
     })(DiagnosticRelatedInformation || (DiagnosticRelatedInformation = {}));
-    (function(DiagnosticSeverity3) {
-      DiagnosticSeverity3.Error = 1;
-      DiagnosticSeverity3.Warning = 2;
-      DiagnosticSeverity3.Information = 3;
-      DiagnosticSeverity3.Hint = 4;
+    (function(DiagnosticSeverity2) {
+      DiagnosticSeverity2.Error = 1;
+      DiagnosticSeverity2.Warning = 2;
+      DiagnosticSeverity2.Information = 3;
+      DiagnosticSeverity2.Hint = 4;
     })(DiagnosticSeverity || (DiagnosticSeverity = {}));
     (function(DiagnosticTag2) {
       DiagnosticTag2.Unnecessary = 1;
@@ -3398,7 +3398,7 @@ var init_main = __esm({
       }
       CodeDescription2.is = is;
     })(CodeDescription || (CodeDescription = {}));
-    (function(Diagnostic3) {
+    (function(Diagnostic2) {
       function create(range, message, severity, code, source, relatedInformation) {
         let result = { range, message };
         if (Is.defined(severity)) {
@@ -3415,13 +3415,13 @@ var init_main = __esm({
         }
         return result;
       }
-      Diagnostic3.create = create;
+      Diagnostic2.create = create;
       function is(value) {
         var _a;
         let candidate = value;
         return Is.defined(candidate) && Range.is(candidate.range) && Is.string(candidate.message) && (Is.number(candidate.severity) || Is.undefined(candidate.severity)) && (Is.integer(candidate.code) || Is.string(candidate.code) || Is.undefined(candidate.code)) && (Is.undefined(candidate.codeDescription) || Is.string((_a = candidate.codeDescription) === null || _a === void 0 ? void 0 : _a.href)) && (Is.string(candidate.source) || Is.undefined(candidate.source)) && (Is.undefined(candidate.relatedInformation) || Is.typedArray(candidate.relatedInformation, DiagnosticRelatedInformation.is));
       }
-      Diagnostic3.is = is;
+      Diagnostic2.is = is;
     })(Diagnostic || (Diagnostic = {}));
     (function(Command2) {
       function create(title, command, ...args) {
@@ -8156,13 +8156,13 @@ var require_api3 = __commonJS({
       return notebook_1.NotebookDocuments;
     } });
     __exportStar(require_server(), exports2);
-    var ProposedFeatures2;
-    (function(ProposedFeatures3) {
-      ProposedFeatures3.all = {
+    var ProposedFeatures;
+    (function(ProposedFeatures2) {
+      ProposedFeatures2.all = {
         __brand: "features",
         languages: ic.InlineCompletionFeature
       };
-    })(ProposedFeatures2 || (exports2.ProposedFeatures = ProposedFeatures2 = {}));
+    })(ProposedFeatures || (exports2.ProposedFeatures = ProposedFeatures = {}));
   }
 });
 
@@ -17339,11 +17339,11 @@ var require_main_bc = __commonJS({
     })(globalThis);
     (function(a) {
       "use strict";
-      var bG = "Stdlib__Obj", cm = "Typing__Scope", D = "Stdlib__Gc", bF = 129, bZ = "Stdlib__Random", C = 116, au = "Js_of_ocaml__PerformanceObserver", bj = "Stdlib__Either", W = "Stdlib__Map", bY = "Js_of_ocaml__Intl", bE = "Stdlib__Domain", bW = "Stdlib__Array", bX = 137, at = "Assert_failure", B = "Stdlib__Lazy", bU = "Js_of_ocaml__Lib_version", bV = "Jsoo_runtime__", A = "Parsing__Token", V = "Stdlib__Format", aZ = "Stdlib__In_channel", cl = "Js_of_ocaml__EventSource", ar = 131, as = "Stdlib__BytesLabels", bi = "Yojson__Raw", ck = "Stdlib__Bytes", z = "Typing__Types", U = "End_of_file", cj = "Stdlib__Condition", ap = "Stdlib__Marshal", aq = 134, bT = "Js_of_ocaml__CSS", bS = 122, ci = "Out_of_memory", y = "Parsing__Asttypes", ao = "Js_of_ocaml__Url", bh = "Not_found", ch = "Failure", bD = "Yojson", bR = "Jsoo_runtime__Runtime_version", x2 = 121, bQ = "Stdlib__String", cg = "Stdlib__Printf", aY = "Stdlib", bC = 136, bB = "Stdlib__Callback", aX = "Stdlib__Filename", bA = "Stdlib__Hashtbl", bP = "Js_of_ocaml__Geolocation", an = 124, aW = "Yojson__Safe", bz = "Typing__Env", w = "Invalid_argument", by = "Yojson__Basic", cf = "Stdlib__Mutex", T = "Stdlib__Option", am = 141, cd = "Parsing__Parser_base", ce = "Stdlib__ListLabels", al = 120, bO = "Js_of_ocaml__Dom_html", ak = "Js_of_ocaml__Js", aV = 132, bv = "Js_of_ocaml__IntersectionObserver", bw = 125, bx = "Stdlib__MoreLabels", aU = "Js_of_ocaml", cc = "Typing__Infer", v = "Std_exit", S = "Result", bu = "Js_of_ocaml__Jstable", u = "Typing", ca = "Match_failure", cb = "Stdlib__Semaphore", t = "Stdlib__StringLabels", bg = 133, bt = "Js_of_ocaml__File", aT = "Typing__Predef", bs = "Parsing__Parser_jsx", bf = "Js_of_ocaml__Regexp", b_ = 109, b$ = "Yojson__Lexer_utils", s2 = 112, bN = "Stdlib__Complex", aS = "Stdlib__Int64", r = 140, b9 = "Parsing", aj = 118, bM = "Stdlib__Sys", R = "Js_of_ocaml__Dom_svg", be = "CamlinternalLazy", q = "Stdlib__Scanf", bd = "Parsing__Parser", ai = "Js_of_ocaml__Worker", aR = 139, b7 = "Parsing__Lexer", b8 = "Stdlib__Digest", ah = "Stdlib__Char", bc = "Ppx_deriving_yojson_runtime", bL = 144, ag = "Stdlib__Int32", Q = "Sys_error", bK = "Typing__Typed", b5 = "Parsing__Location", b6 = "Stdlib__Type", aQ = 107, bJ = "Stdlib__Unit", b4 = "Stdlib__Nativeint", bb = 126, b3 = "Stdlib__Stack", P = "CamlinternalFormat", af = "Stack_overflow", ba = "Stdlib__ArrayLabels", br = "Stdlib__Printexc", p = 108, O = "Js_of_ocaml__WebSockets", ae = "Stdlib__Arg", a$ = "Js_of_ocaml__", bq = "Js_of_ocaml__Form", ad = "Js_of_ocaml__Dom_events", aP = "Undefined_recursive_module", N = "Js_of_ocaml__ResizeObserver", aN = "CamlinternalFormatBasics", aO = "Js_of_ocaml__WebGL", aM = "Stdlib__Queue", o = "Typing__Ident", n = "Stdlib__Bool", M = "Jsoo_runtime", bp = "Division_by_zero", m = "Js_of_ocaml__Dom", aL = "CamlinternalMod", aK = 114, aJ = "Stdlib__Parsing", bn = 119, bo = "Stdlib__Weak", L = 110, aI = 113, aH = "Stdlib__Effect", bm = 101, l = "Stdlib__Int", J = 128, K = "Stdlib__StdLabels", b2 = "Js_of_ocaml__Typed_array", k = "Stdlib__Oo", aF = "Stdlib__Bigarray", aG = "Stdlib__List", a_ = "Stdlib__Ephemeron", i = 130, j = 138, ac = 145, bI = "Yojson__Common", aE = "Js_of_ocaml__MutationObserver", bl = 100, a9 = "Typing__Path", h = 106, aD = 111, a8 = "Stdlib__Fun", g = 117, ab = "Stdlib__Lexing", aC = "Typing__Subst", I = 102, aB = "Js_of_ocaml__Json", b1 = "Stdlib__Atomic", aA = 135, a7 = "Stdlib__Result", f = "Js_of_ocaml__XmlHttpRequest", az = "Stdlib__Set", ay = 123, a6 = "Stdlib__Buffer", bk = "Js_of_ocaml__Import", bH = "Yojson__", aa = "Dune__exe__Main", H = "Typing__Typexpr", a5 = "Stdlib__Out_channel", b0 = "Ppx_deriving_runtime", G = "Stdlib__Seq", e = 103, $ = 115, ax = 127, aw = "Sys_blocked_io", d = 142, _ = "Stdlib__Float", av = "Stdlib__Uchar", a4 = 105, F = "CamlinternalOO", Y = "Parsing__Syntax", Z = 143, a2 = "Parsing__Longident", a3 = "Yojson__Codec", X = 104, E = "Js_of_ocaml__Firebug", a0 = "Js_of_ocaml__Sys_js", a1 = "Yojson__T", c = a.jsoo_runtime, b = c.caml_get_global_data();
+      var bI = "Stdlib__Obj", co = "Typing__Scope", D = "Stdlib__Gc", bH = 129, b1 = "Stdlib__Random", C = 116, av = "Js_of_ocaml__PerformanceObserver", bl = "Stdlib__Either", X = "Stdlib__Map", b0 = "Js_of_ocaml__Intl", bG = "Stdlib__Domain", bY = "Stdlib__Array", bZ = 137, W = 146, au = "Assert_failure", B = "Stdlib__Lazy", bW = "Js_of_ocaml__Lib_version", bX = "Jsoo_runtime__", A = "Parsing__Token", V = "Stdlib__Format", a1 = "Stdlib__In_channel", cn = "Js_of_ocaml__EventSource", as = 131, at = "Stdlib__BytesLabels", bk = "Yojson__Raw", cm = "Stdlib__Bytes", z = "Typing__Types", U = "End_of_file", cl = "Stdlib__Condition", aq = "Stdlib__Marshal", ar = 134, bV = "Js_of_ocaml__CSS", bU = 122, ck = "Out_of_memory", y = "Parsing__Asttypes", ap = "Js_of_ocaml__Url", bj = "Not_found", cj = "Failure", bF = "Yojson", bT = "Jsoo_runtime__Runtime_version", x2 = 121, bS = "Stdlib__String", ci = "Stdlib__Printf", a0 = "Stdlib", bE = 136, bD = "Stdlib__Callback", aZ = "Stdlib__Filename", bC = "Stdlib__Hashtbl", bR = "Js_of_ocaml__Geolocation", ao = 124, aY = "Yojson__Safe", bB = "Typing__Env", w = "Invalid_argument", bA = "Yojson__Basic", ch = "Stdlib__Mutex", T = "Stdlib__Option", an = 141, cf = "Parsing__Parser_base", cg = "Stdlib__ListLabels", am = 120, bQ = "Js_of_ocaml__Dom_html", al = "Js_of_ocaml__Js", aX = 132, bx = "Js_of_ocaml__IntersectionObserver", by = 125, bz = "Stdlib__MoreLabels", aW = "Js_of_ocaml", ce = "Typing__Infer", v = "Std_exit", S = "Result", bw = "Js_of_ocaml__Jstable", u = "Typing", cc = "Match_failure", cd = "Stdlib__Semaphore", t = "Stdlib__StringLabels", bi = 133, bv = "Js_of_ocaml__File", aV = "Typing__Predef", bu = "Parsing__Parser_jsx", bh = "Js_of_ocaml__Regexp", ca = 109, cb = "Yojson__Lexer_utils", s2 = 112, bP = "Stdlib__Complex", aU = "Stdlib__Int64", r = 140, b$ = "Parsing", ak = 118, bO = "Stdlib__Sys", R = "Js_of_ocaml__Dom_svg", bg = "CamlinternalLazy", q = "Stdlib__Scanf", bf = "Parsing__Parser", aj = "Js_of_ocaml__Worker", aT = 139, b9 = "Parsing__Lexer", b_ = "Stdlib__Digest", ai = "Stdlib__Char", be = "Ppx_deriving_yojson_runtime", bN = 144, ah = "Stdlib__Int32", Q = "Sys_error", bM = "Typing__Typed", b7 = "Parsing__Location", b8 = "Stdlib__Type", aS = 107, bL = "Stdlib__Unit", b6 = "Stdlib__Nativeint", bd = 126, b5 = "Stdlib__Stack", P = "CamlinternalFormat", ag = "Stack_overflow", bc = "Stdlib__ArrayLabels", bt = "Stdlib__Printexc", p = 108, O = "Js_of_ocaml__WebSockets", af = "Stdlib__Arg", bb = "Js_of_ocaml__", bs = "Js_of_ocaml__Form", ae = "Js_of_ocaml__Dom_events", aR = "Undefined_recursive_module", N = "Js_of_ocaml__ResizeObserver", aP = "CamlinternalFormatBasics", aQ = "Js_of_ocaml__WebGL", aO = "Stdlib__Queue", o = "Typing__Ident", n = "Stdlib__Bool", M = "Jsoo_runtime", br = "Division_by_zero", m = "Js_of_ocaml__Dom", aN = "CamlinternalMod", aM = "Typing__Report", aL = 114, aK = "Stdlib__Parsing", bp = 119, bq = "Stdlib__Weak", L = 110, aJ = 113, aI = "Stdlib__Effect", bo = 101, l = "Stdlib__Int", J = 128, K = "Stdlib__StdLabels", b4 = "Js_of_ocaml__Typed_array", k = "Stdlib__Oo", aG = "Stdlib__Bigarray", aH = "Stdlib__List", ba = "Stdlib__Ephemeron", i = 130, j = 138, ad = 145, bK = "Yojson__Common", aF = "Js_of_ocaml__MutationObserver", bn = 100, a$ = "Typing__Path", h = 106, aE = 111, a_ = "Stdlib__Fun", g = 117, ac = "Stdlib__Lexing", aD = "Typing__Subst", I = 102, aC = "Js_of_ocaml__Json", b3 = "Stdlib__Atomic", aB = 135, a9 = "Stdlib__Result", f = "Js_of_ocaml__XmlHttpRequest", aA = "Stdlib__Set", az = 123, a8 = "Stdlib__Buffer", bm = "Js_of_ocaml__Import", bJ = "Yojson__", ab = "Dune__exe__Main", H = "Typing__Typexpr", a7 = "Stdlib__Out_channel", b2 = "Ppx_deriving_runtime", G = "Stdlib__Seq", e = 103, aa = 115, ay = 127, ax = "Sys_blocked_io", d = 142, $ = "Stdlib__Float", aw = "Stdlib__Uchar", a6 = 105, F = "CamlinternalOO", Z = "Parsing__Syntax", _ = 143, a4 = "Parsing__Longident", a5 = "Yojson__Codec", Y = 104, E = "Js_of_ocaml__Firebug", a2 = "Js_of_ocaml__Sys_js", a3 = "Yojson__T", c = a.jsoo_runtime, b = c.caml_get_global_data();
       b.prim_count = 864;
-      b.tocjs = [0, [0, a1, 88], [0, aW, 87], [0, bi, 86], [0, b$, 84], [0, bI, 83], [0, a3, 82], [0, by, 85], [0, bH, 81], [0, bD, 89], [0, aP, 11], [0, H, aq], [0, z, bX], [0, bK, r], [0, aC, j], [0, cm, am], [0, aT, d], [0, a9, bC], [0, cc, Z], [0, o, aA], [0, bz, aR], [0, u, bg], [0, Q, 10], [0, aw, 9], [0, bo, 59], [0, bJ, 31], [0, av, 26], [0, b6, 17], [0, bM, 15], [0, t, 72], [0, bQ, 30], [0, K, 74], [0, b3, 42], [0, az, 40], [0, G, 21], [0, cb, 47], [0, q, 61], [0, a7, 23], [0, bZ, 57], [0, aM, 43], [0, cg, 50], [0, br, 52], [0, aJ, 39], [0, a5, 76], [0, T, 22], [0, k, 64], [0, bG, 16], [0, b4, 37], [0, cf, 45], [0, bx, 73], [0, ap, 32], [0, W, 41], [0, ce, 70], [0, aG, 27], [0, ab, 38], [0, B, 20], [0, aS, 36], [0, ag, 35], [0, l, 28], [0, aZ, 75], [0, bA, 58], [0, D, 54], [0, a8, 53], [0, V, 60], [0, _, 34], [0, aX, 67], [0, a_, 66], [0, bj, 14], [0, aH, 77], [0, bE, 48], [0, b8, 55], [0, cj, 46], [0, bN, 68], [0, ah, 25], [0, bB, 62], [0, as, 71], [0, ck, 29], [0, a6, 44], [0, n, 24], [0, aF, 56], [0, b1, 18], [0, ba, 69], [0, bW, 33], [0, ae, 51], [0, aY, 13], [0, v, ac], [0, af, 8], [0, S, 78], [0, bc, 80], [0, b0, 79], [0, A, an], [0, Y, J], [0, bs, ar], [0, cd, i], [0, bd, aV], [0, a2, ax], [0, b5, bw], [0, b7, bF], [0, y, bb], [0, b9, ay], [0, ci, 7], [0, bh, 6], [0, ca, 5], [0, bR, 91], [0, bV, 90], [0, M, 92], [0, f, bm], [0, ai, I], [0, O, e], [0, aO, X], [0, ao, h], [0, b2, 97], [0, a0, p], [0, N, b_], [0, bf, a4], [0, au, L], [0, aE, aD], [0, bU, aQ], [0, bu, s2], [0, aB, aI], [0, ak, 95], [0, bY, x2], [0, bv, al], [0, bk, 94], [0, bP, bn], [0, bq, bl], [0, E, aj], [0, bt, 98], [0, cl, g], [0, R, C], [0, bO, 99], [0, ad, $], [0, m, 96], [0, bT, aK], [0, a$, 93], [0, aU, bS], [0, w, 4], [0, ch, 3], [0, U, 2], [0, aa, bL], [0, bp, 1], [0, F, 63], [0, aL, 65], [0, be, 19], [0, aN, 12], [0, P, 49], [0, at, 0]];
-      var cn = [2, cl], co = [2, bY], cp = [2, aB], cq = [2, b7], cr = [2, bd], cs = [2, bs], ct = [2, v], cu = [2, bz], cv = [2, cc], cw = [2, cm], cx = [0, 0, [2, aT], d, 0, 1], cy = [2, bK], cz = [2, a1];
-      b.toc = [0, [0, 146, [0, [0, [0, [0, [0, [0, [0, 0, [2, at], 0, [0, 0, [2, P], 49, 0, 1], 2], [2, aN], 12, 0, 3], [2, be], 19, [0, [0, [0, 0, [2, aL], 65, 0, 1], [2, F], 63, 0, 2], [2, bp], 1, [0, [0, 0, [2, aa], bL, 0, 1], [2, U], 2, 0, 2], 3], 4], [2, ch], 3, [0, [0, [0, 0, [2, w], 4, [0, 0, [2, aU], bS, 0, 1], 2], [2, a$], 93, [0, 0, [2, bT], aK, 0, 1], 3], [2, m], 96, [0, [0, [0, 0, [2, ad], $, 0, 1], [2, bO], 99, [0, 0, [2, R], C, [0, 0, cn, g, 0, 1], 2], 3], [2, bt], 98, [0, [0, 0, [2, E], aj, 0, 1], [2, bq], bl, [0, 0, [2, bP], bn, 0, 1], 2], 4], 5], 6], [2, bk], 94, [0, [0, [0, [0, [0, 0, [2, bv], al, [0, 0, co, x2, 0, 1], 2], [2, ak], 95, [0, [0, 0, cp, aI, 0, 1], [2, bu], s2, 0, 2], 3], [2, bU], aQ, [0, [0, 0, [2, aE], aD, 0, 1], [2, au], L, 0, 2], 4], [2, bf], a4, [0, [0, 0, [2, N], b_, 0, 1], [2, a0], p, 0, 2], 5], [2, b2], 97, [0, [0, [0, [0, 0, [2, ao], h, 0, 1], [2, aO], X, 0, 2], [2, O], e, 0, 3], [2, ai], I, [0, 0, [2, f], bm, 0, 1], 4], 6], 7], [2, M], 92, [0, [0, [0, [0, 0, [2, bV], 90, [0, 0, [2, bR], 91, 0, 1], 2], [2, ca], 5, [0, 0, [2, bh], 6, 0, 1], 3], [2, ci], 7, [0, [0, [0, 0, [2, b9], ay, [0, 0, [2, y], bb, [0, 0, cq, bF, 0, 1], 2], 3], [2, b5], bw, [0, 0, [2, a2], ax, [0, [0, 0, cr, aV, 0, 1], [2, cd], i, [0, 0, cs, ar, 0, 1], 2], 3], 4], [2, Y], J, [0, [0, 0, [2, A], an, 0, 1], [2, b0], 79, [0, [0, 0, [2, bc], 80, 0, 1], [2, S], 78, [0, 0, [2, af], 8, [0, 0, ct, ac, 0, 1], 2], 3], 4], 5], 6], [2, aY], 13, [0, [0, [0, [0, 0, [2, ae], 51, 0, 1], [2, bW], 33, [0, 0, [2, ba], 69, 0, 1], 2], [2, b1], 18, [0, 0, [2, aF], 56, 0, 1], 3], [2, n], 24, [0, [0, [0, 0, [2, a6], 44, 0, 1], [2, ck], 29, [0, [0, 0, [2, as], 71, 0, 1], [2, bB], 62, 0, 2], 3], [2, ah], 25, [0, [0, 0, [2, bN], 68, 0, 1], [2, cj], 46, [0, [0, 0, [2, b8], 55, 0, 1], [2, bE], 48, [0, 0, [2, aH], 77, 0, 1], 2], 3], 4], 5], 7], 8], [2, bj], 14, [0, [0, [0, [0, [0, [0, 0, [2, a_], 66, [0, 0, [2, aX], 67, 0, 1], 2], [2, _], 34, [0, 0, [2, V], 60, 0, 1], 3], [2, a8], 53, [0, 0, [2, D], 54, [0, 0, [2, bA], 58, [0, 0, [2, aZ], 75, 0, 1], 2], 3], 4], [2, l], 28, [0, 0, [2, ag], 35, [0, 0, [2, aS], 36, 0, 1], 2], 5], [2, B], 20, [0, [0, [0, 0, [2, ab], 38, 0, 1], [2, aG], 27, [0, [0, 0, [2, ce], 70, 0, 1], [2, W], 41, 0, 2], 3], [2, ap], 32, [0, [0, [0, 0, [2, bx], 73, 0, 1], [2, cf], 45, 0, 2], [2, b4], 37, 0, 3], 4], 6], [2, bG], 16, [0, [0, [0, [0, [0, [0, 0, [2, k], 64, 0, 1], [2, T], 22, [0, 0, [2, a5], 76, 0, 1], 2], [2, aJ], 39, [0, [0, 0, [2, br], 52, 0, 1], [2, cg], 50, 0, 2], 3], [2, aM], 43, [0, [0, 0, [2, bZ], 57, 0, 1], [2, a7], 23, [0, [0, 0, [2, q], 61, 0, 1], [2, cb], 47, 0, 2], 3], 4], [2, G], 21, [0, [0, 0, [2, az], 40, [0, 0, [2, b3], 42, [0, 0, [2, K], 74, 0, 1], 2], 3], [2, bQ], 30, [0, 0, [2, t], 72, 0, 1], 4], 5], [2, bM], 15, [0, [0, [0, [0, 0, [2, b6], 17, 0, 1], [2, av], 26, [0, 0, [2, bJ], 31, [0, 0, [2, bo], 59, 0, 1], 2], 3], [2, aw], 9, [0, [0, [0, 0, [2, Q], 10, 0, 1], [2, u], bg, [0, [0, 0, cu, aR, 0, 1], [2, o], aA, [0, 0, cv, Z, 0, 1], 2], 3], [2, a9], bC, [0, [0, [0, cx, cw, am, 0, 2], [2, aC], j, [0, 0, cy, r, 0, 1], 3], [2, z], bX, [0, 0, [2, H], aq, 0, 1], 4], 5], 6], [2, aP], 11, [0, [0, [0, 0, [2, bD], 89, 0, 1], [2, bH], 81, [0, 0, [2, by], 85, 0, 1], 2], [2, a3], 82, [0, [0, 0, [2, bI], 83, 0, 1], [2, b$], 84, [0, 0, [2, bi], 86, [0, 0, [2, aW], 87, [0, 0, cz, 88, 0, 1], 2], 3], 4], 5], 7], 8], 9], 10]], 0, c.caml_list_of_js_array(["%caml_format_int_special", "%direct_int_div", "%direct_int_mod", "%direct_int_mul", "%direct_obj_tag", "%identity", "%int_add", "%int_and", "%int_asr", "%int_div", "%int_lsl", "%int_lsr", "%int_mod", "%int_mul", "%int_neg", "%int_or", "%int_sub", "%int_xor", "BigStringReader", "MlBytes", "MlFakeDevice", "MlFakeFd", "MlFakeFd_out", "MlFakeFile", "MlFile", "MlInt64", "MlMutex", "MlNat", "MlNodeDevice", "MlNodeFd", "MlObjectTable", "MlStringReader", "Ml_Bigarray", "Ml_Bigarray_c_1_1", "UInt8ArrayReader", "add_nat", "bigstring_of_array_buffer", "bigstring_of_typed_array", "bigstring_to_array_buffer", "bigstring_to_typed_array", "blit_nat", "caml_MD5Final", "caml_MD5Init", "caml_MD5Transform", "caml_MD5Update", "caml_abs_float", "caml_acos_float", "caml_acosh_float", "caml_add_float", "caml_alloc_dummy", "caml_alloc_dummy_float", "caml_alloc_dummy_infix", "caml_alloc_stack", "caml_argv", "caml_array_append", "caml_array_blit", "caml_array_bound_error", "caml_array_concat", "caml_array_fill", "caml_array_get", "caml_array_get_addr", "caml_array_get_float", "caml_array_of_bytes", "caml_array_of_string", "caml_array_set", "caml_array_set_addr", "caml_array_set_float", "caml_array_sub", "caml_array_unsafe_get", "caml_array_unsafe_get_float", "caml_array_unsafe_set", "caml_array_unsafe_set_float", "caml_asin_float", "caml_asinh_float", "caml_atan2_float", "caml_atan_float", "caml_atanh_float", "caml_atomic_cas", "caml_atomic_exchange", "caml_atomic_fetch_add", "caml_atomic_load", "caml_atomic_make_contended", "caml_ba_blit", "caml_ba_change_layout", "caml_ba_compare", "caml_ba_create", "caml_ba_create_buffer", "caml_ba_create_from", "caml_ba_create_unsafe", "caml_ba_custom_name", "caml_ba_deserialize", "caml_ba_dim", "caml_ba_dim_1", "caml_ba_dim_2", "caml_ba_dim_3", "caml_ba_fill", "caml_ba_from_typed_array", "caml_ba_get_1", "caml_ba_get_2", "caml_ba_get_3", "caml_ba_get_generic", "caml_ba_get_size", "caml_ba_get_size_per_element", "caml_ba_hash", "caml_ba_init", "caml_ba_kind", "caml_ba_kind_of_typed_array", "caml_ba_layout", "caml_ba_map_file", "caml_ba_map_file_bytecode", "caml_ba_num_dims", "caml_ba_reshape", "caml_ba_serialize", "caml_ba_set_1", "caml_ba_set_2", "caml_ba_set_3", "caml_ba_set_generic", "caml_ba_slice", "caml_ba_sub", "caml_ba_to_typed_array", "caml_ba_uint8_get16", "caml_ba_uint8_get32", "caml_ba_uint8_get64", "caml_ba_uint8_set16", "caml_ba_uint8_set32", "caml_ba_uint8_set64", "caml_backtrace_status", "caml_bigstring_blit_ba_to_ba", "caml_bigstring_blit_ba_to_bytes", "caml_bigstring_blit_bytes_to_ba", "caml_bigstring_blit_string_to_ba", "caml_bigstring_memcmp", "caml_blit_bytes", "caml_blit_string", "caml_bswap16", "caml_build_symbols", "caml_bytes_bound_error", "caml_bytes_compare", "caml_bytes_equal", "caml_bytes_get", "caml_bytes_get16", "caml_bytes_get32", "caml_bytes_get64", "caml_bytes_greaterequal", "caml_bytes_greaterthan", "caml_bytes_lessequal", "caml_bytes_lessthan", "caml_bytes_notequal", "caml_bytes_of_array", "caml_bytes_of_jsbytes", "caml_bytes_of_string", "caml_bytes_of_utf16_jsstring", "caml_bytes_set", "caml_bytes_set16", "caml_bytes_set32", "caml_bytes_set64", "caml_bytes_unsafe_get", "caml_bytes_unsafe_set", "caml_call_gen", "caml_callback", "caml_cbrt_float", "caml_ceil_float", "caml_channel_descriptor", "caml_check_bound", "caml_classify_float", "caml_compare", "caml_compare_val", "caml_compare_val_get_custom", "caml_compare_val_number_custom", "caml_compare_val_tag", "caml_continuation_use_and_update_handler_noexc", "caml_continuation_use_noexc", "caml_convert_bytes_to_array", "caml_convert_raw_backtrace", "caml_convert_raw_backtrace_slot", "caml_convert_string_to_bytes", "caml_copysign_float", "caml_cos_float", "caml_cosh_float", "caml_create_bytes", "caml_create_file", "caml_create_string", "caml_current_dir", "caml_custom_event_index", "caml_custom_ops", "caml_decompress_input", "caml_div", "caml_div_float", "caml_domain_dls", "caml_domain_dls_get", "caml_domain_dls_set", "caml_domain_id", "caml_domain_spawn", "caml_ensure_stack_capacity", "caml_ephe_blit_data", "caml_ephe_blit_key", "caml_ephe_check_data", "caml_ephe_check_key", "caml_ephe_create", "caml_ephe_data_offset", "caml_ephe_get_data", "caml_ephe_get_data_copy", "caml_ephe_get_key", "caml_ephe_get_key_copy", "caml_ephe_key_offset", "caml_ephe_set_data", "caml_ephe_set_key", "caml_ephe_unset_data", "caml_ephe_unset_key", "caml_eq_float", "caml_equal", "caml_erf_float", "caml_erfc_float", "caml_eventlog_pause", "caml_eventlog_resume", "caml_executable_name", "caml_exn_with_js_backtrace", "caml_exp2_float", "caml_exp_float", "caml_expm1_float", "caml_failwith", "caml_fatal_uncaught_exception", "caml_fill_bytes", "caml_fill_string", "caml_final_register", "caml_final_register_called_without_value", "caml_final_release", "caml_finish_formatting", "caml_float_compare", "caml_float_of_bytes", "caml_float_of_int", "caml_float_of_string", "caml_floatarray_blit", "caml_floatarray_create", "caml_floatarray_get", "caml_floatarray_set", "caml_floatarray_unsafe_get", "caml_floatarray_unsafe_set", "caml_floor_float", "caml_fma_float", "caml_fmod_float", "caml_format_exception", "caml_format_float", "caml_format_int", "caml_fresh_oo_id", "caml_frexp_float", "caml_fs_init", "caml_gc_compaction", "caml_gc_counters", "caml_gc_full_major", "caml_gc_get", "caml_gc_huge_fallback_count", "caml_gc_major", "caml_gc_major_slice", "caml_gc_minor", "caml_gc_minor_words", "caml_gc_quick_stat", "caml_gc_set", "caml_gc_stat", "caml_ge_float", "caml_get_continuation_callstack", "caml_get_current_callstack", "caml_get_exception_backtrace", "caml_get_exception_raw_backtrace", "caml_get_global_data", "caml_get_major_bucket", "caml_get_major_credit", "caml_get_minor_free", "caml_get_public_method", "caml_get_root", "caml_global_data", "caml_gr_arc_aux", "caml_gr_blit_image", "caml_gr_clear_graph", "caml_gr_close_graph", "caml_gr_close_subwindow", "caml_gr_create_image", "caml_gr_current_x", "caml_gr_current_y", "caml_gr_display_mode", "caml_gr_doc_of_state", "caml_gr_draw_arc", "caml_gr_draw_char", "caml_gr_draw_image", "caml_gr_draw_rect", "caml_gr_draw_str", "caml_gr_draw_string", "caml_gr_dump_image", "caml_gr_fill_arc", "caml_gr_fill_poly", "caml_gr_fill_rect", "caml_gr_lineto", "caml_gr_make_image", "caml_gr_moveto", "caml_gr_open_graph", "caml_gr_open_subwindow", "caml_gr_plot", "caml_gr_point_color", "caml_gr_remember_mode", "caml_gr_resize_window", "caml_gr_set_color", "caml_gr_set_font", "caml_gr_set_line_width", "caml_gr_set_text_size", "caml_gr_set_window_title", "caml_gr_sigio_handler", "caml_gr_sigio_signal", "caml_gr_size_x", "caml_gr_size_y", "caml_gr_state", "caml_gr_state_create", "caml_gr_state_get", "caml_gr_state_init", "caml_gr_state_set", "caml_gr_synchronize", "caml_gr_text_size", "caml_gr_wait_event", "caml_gr_window_id", "caml_greaterequal", "caml_greaterthan", "caml_gt_float", "caml_hash", "caml_hash_mix_bigstring", "caml_hash_mix_bytes", "caml_hash_mix_bytes_arr", "caml_hash_mix_final", "caml_hash_mix_float", "caml_hash_mix_int", "caml_hash_mix_int64", "caml_hash_mix_jsbytes", "caml_hash_mix_string", "caml_hash_nat", "caml_hexstring_of_float", "caml_hypot_float", "caml_input_value", "caml_input_value_from_bytes", "caml_input_value_from_reader", "caml_input_value_from_string", "caml_input_value_to_outside_heap", "caml_install_signal_handler", "caml_int32_add", "caml_int32_and", "caml_int32_bits_of_float", "caml_int32_bswap", "caml_int32_compare", "caml_int32_div", "caml_int32_float_of_bits", "caml_int32_format", "caml_int32_mod", "caml_int32_mul", "caml_int32_neg", "caml_int32_of_float", "caml_int32_of_int", "caml_int32_of_string", "caml_int32_or", "caml_int32_shift_left", "caml_int32_shift_right", "caml_int32_shift_right_unsigned", "caml_int32_sub", "caml_int32_to_float", "caml_int32_to_int", "caml_int32_unmarshal", "caml_int32_xor", "caml_int64_add", "caml_int64_and", "caml_int64_bits_of_float", "caml_int64_bswap", "caml_int64_compare", "caml_int64_create_lo_hi", "caml_int64_create_lo_mi_hi", "caml_int64_div", "caml_int64_float_of_bits", "caml_int64_format", "caml_int64_hash", "caml_int64_hi32", "caml_int64_is_negative", "caml_int64_is_zero", "caml_int64_lo32", "caml_int64_marshal", "caml_int64_mod", "caml_int64_mul", "caml_int64_neg", "caml_int64_of_bytes", "caml_int64_of_float", "caml_int64_of_int", "caml_int64_of_int32", "caml_int64_of_nativeint", "caml_int64_of_string", "caml_int64_offset", "caml_int64_or", "caml_int64_shift_left", "caml_int64_shift_right", "caml_int64_shift_right_unsigned", "caml_int64_sub", "caml_int64_to_bytes", "caml_int64_to_float", "caml_int64_to_int", "caml_int64_to_int32", "caml_int64_to_nativeint", "caml_int64_ult", "caml_int64_unmarshal", "caml_int64_xor", "caml_int_compare", "caml_int_of_float", "caml_int_of_string", "caml_invalid_argument", "caml_is_continuation_tag", "caml_is_js", "caml_is_ml_bytes", "caml_is_ml_string", "caml_is_printable", "caml_is_special_exception", "caml_js_call", "caml_js_delete", "caml_js_equals", "caml_js_error_of_exception", "caml_js_error_option_of_exception", "caml_js_eval_string", "caml_js_expr", "caml_js_from_array", "caml_js_from_bool", "caml_js_from_float", "caml_js_from_int32", "caml_js_from_nativeint", "caml_js_from_string", "caml_js_fun_call", "caml_js_function_arity", "caml_js_get", "caml_js_get_console", "caml_js_html_entities", "caml_js_html_escape", "caml_js_instanceof", "caml_js_meth_call", "caml_js_new", "caml_js_object", "caml_js_on_ie", "caml_js_pure_expr", "caml_js_set", "caml_js_strict_equals", "caml_js_to_array", "caml_js_to_bool", "caml_js_to_byte_string", "caml_js_to_float", "caml_js_to_int32", "caml_js_to_nativeint", "caml_js_to_string", "caml_js_typeof", "caml_js_var", "caml_js_wrap_callback", "caml_js_wrap_callback_arguments", "caml_js_wrap_callback_strict", "caml_js_wrap_callback_unsafe", "caml_js_wrap_meth_callback", "caml_js_wrap_meth_callback_arguments", "caml_js_wrap_meth_callback_strict", "caml_js_wrap_meth_callback_unsafe", "caml_jsbytes_of_string", "caml_jsoo_flags_effects", "caml_jsoo_flags_use_js_string", "caml_jsstring_of_string", "caml_lazy_make_forward", "caml_lazy_read_result", "caml_lazy_reset_to_lazy", "caml_lazy_update_to_forcing", "caml_lazy_update_to_forward", "caml_ldexp_float", "caml_le_float", "caml_lessequal", "caml_lessthan", "caml_lex_array", "caml_lex_engine", "caml_list_mount_point", "caml_list_of_js_array", "caml_list_to_js_array", "caml_log10_float", "caml_log1p_float", "caml_log2_float", "caml_log_float", "caml_lt_float", "caml_lxm_next", "caml_make_array", "caml_make_float_vect", "caml_make_path", "caml_make_vect", "caml_marshal_constants", "caml_marshal_data_size", "caml_marshal_header_size", "caml_maybe_attach_backtrace", "caml_maybe_print_stats", "caml_md5_bytes", "caml_md5_chan", "caml_md5_string", "caml_memprof_discard", "caml_memprof_set", "caml_memprof_start", "caml_memprof_stop", "caml_ml_bytes_content", "caml_ml_bytes_length", "caml_ml_channel_size", "caml_ml_channel_size_64", "caml_ml_channels", "caml_ml_close_channel", "caml_ml_condition_broadcast", "caml_ml_condition_new", "caml_ml_condition_signal", "caml_ml_condition_wait", "caml_ml_debug_info_status", "caml_ml_domain_cpu_relax", "caml_ml_domain_id", "caml_ml_domain_set_name", "caml_ml_domain_unique_token", "caml_ml_enable_runtime_warnings", "caml_ml_flush", "caml_ml_input", "caml_ml_input_bigarray", "caml_ml_input_block", "caml_ml_input_char", "caml_ml_input_int", "caml_ml_input_scan_line", "caml_ml_is_buffered", "caml_ml_mutex_lock", "caml_ml_mutex_new", "caml_ml_mutex_try_lock", "caml_ml_mutex_unlock", "caml_ml_open_descriptor_in", "caml_ml_open_descriptor_in_with_flags", "caml_ml_open_descriptor_out", "caml_ml_open_descriptor_out_with_flags", "caml_ml_out_channels_list", "caml_ml_output", "caml_ml_output_bigarray", "caml_ml_output_bytes", "caml_ml_output_char", "caml_ml_output_int", "caml_ml_output_ta", "caml_ml_pos_in", "caml_ml_pos_in_64", "caml_ml_pos_out", "caml_ml_pos_out_64", "caml_ml_runtime_events_pause", "caml_ml_runtime_events_resume", "caml_ml_runtime_events_start", "caml_ml_runtime_warnings_enabled", "caml_ml_seek_in", "caml_ml_seek_in_64", "caml_ml_seek_out", "caml_ml_seek_out_64", "caml_ml_set_binary_mode", "caml_ml_set_buffered", "caml_ml_set_channel_name", "caml_ml_set_channel_output", "caml_ml_set_channel_refill", "caml_ml_string_length", "caml_mod", "caml_modf_float", "caml_mount_autoload", "caml_mul", "caml_mul_float", "caml_named_value", "caml_named_values", "caml_nativeint_add", "caml_nativeint_and", "caml_nativeint_bswap", "caml_nativeint_compare", "caml_nativeint_div", "caml_nativeint_format", "caml_nativeint_mod", "caml_nativeint_mul", "caml_nativeint_neg", "caml_nativeint_of_float", "caml_nativeint_of_int", "caml_nativeint_of_int32", "caml_nativeint_of_string", "caml_nativeint_or", "caml_nativeint_shift_left", "caml_nativeint_shift_right", "caml_nativeint_shift_right_unsigned", "caml_nativeint_sub", "caml_nativeint_to_float", "caml_nativeint_to_int", "caml_nativeint_to_int32", "caml_nativeint_unmarshal", "caml_nativeint_xor", "caml_neg_float", "caml_neq_float", "caml_new_lex_engine", "caml_new_string", "caml_nextafter_float", "caml_notequal", "caml_obj_add_offset", "caml_obj_block", "caml_obj_compare_and_swap", "caml_obj_dup", "caml_obj_is_block", "caml_obj_is_shared", "caml_obj_make_forward", "caml_obj_raw_field", "caml_obj_reachable_words", "caml_obj_set_raw_field", "caml_obj_set_tag", "caml_obj_tag", "caml_obj_truncate", "caml_obj_update_tag", "caml_obj_with_tag", "caml_ojs_new_arr", "caml_oo_last_id", "caml_output_val", "caml_output_value", "caml_output_value_to_buffer", "caml_output_value_to_bytes", "caml_output_value_to_string", "caml_parse_digit", "caml_parse_engine", "caml_parse_format", "caml_parse_sign_and_base", "caml_parser_trace", "caml_pos_in", "caml_pos_out", "caml_power_float", "caml_pure_js_expr", "caml_raise_constant", "caml_raise_end_of_file", "caml_raise_no_such_file", "caml_raise_not_a_dir", "caml_raise_not_found", "caml_raise_sys_error", "caml_raise_with_arg", "caml_raise_with_args", "caml_raise_with_string", "caml_raise_zero_divide", "caml_raw_backtrace_length", "caml_raw_backtrace_next_slot", "caml_raw_backtrace_slot", "caml_read_file_content", "caml_recommended_domain_count", "caml_record_backtrace", "caml_record_backtrace_flag", "caml_refill", "caml_register_channel_for_spacetime", "caml_register_global", "caml_register_named_value", "caml_restore_raw_backtrace", "caml_root", "caml_round_float", "caml_runtime_events_create_cursor", "caml_runtime_events_free_cursor", "caml_runtime_events_pause", "caml_runtime_events_read_poll", "caml_runtime_events_resume", "caml_runtime_events_start", "caml_runtime_events_user_register", "caml_runtime_events_user_resolve", "caml_runtime_events_user_write", "caml_runtime_parameters", "caml_runtime_variant", "caml_runtime_warnings", "caml_seek_in", "caml_seek_out", "caml_set_oo_id", "caml_set_parser_trace", "caml_set_static_env", "caml_signbit_float", "caml_sin_float", "caml_sinh_float", "caml_spacetime_enabled", "caml_spacetime_only_works_for_native_code", "caml_sqrt_float", "caml_str_initialize", "caml_str_repeat", "caml_string_bound_error", "caml_string_compare", "caml_string_equal", "caml_string_get", "caml_string_get16", "caml_string_get32", "caml_string_get64", "caml_string_greaterequal", "caml_string_greaterthan", "caml_string_hash", "caml_string_lessequal", "caml_string_lessthan", "caml_string_notequal", "caml_string_of_array", "caml_string_of_bytes", "caml_string_of_jsbytes", "caml_string_of_jsstring", "caml_string_set", "caml_string_set16", "caml_string_set32", "caml_string_set64", "caml_string_unsafe_get", "caml_string_unsafe_set", "caml_sub_float", "caml_subarray_to_jsbytes", "caml_sys_argv", "caml_sys_chdir", "caml_sys_close", "caml_sys_const_backend_type", "caml_sys_const_big_endian", "caml_sys_const_int_size", "caml_sys_const_max_wosize", "caml_sys_const_naked_pointers_checked", "caml_sys_const_ostype_cygwin", "caml_sys_const_ostype_unix", "caml_sys_const_ostype_win32", "caml_sys_const_word_size", "caml_sys_executable_name", "caml_sys_exit", "caml_sys_fds", "caml_sys_file_exists", "caml_sys_get_argv", "caml_sys_get_config", "caml_sys_getcwd", "caml_sys_getenv", "caml_sys_is_directory", "caml_sys_is_regular_file", "caml_sys_isatty", "caml_sys_mkdir", "caml_sys_modify_argv", "caml_sys_open", "caml_sys_open_for_node", "caml_sys_random_seed", "caml_sys_read_directory", "caml_sys_remove", "caml_sys_rename", "caml_sys_rmdir", "caml_sys_system_command", "caml_sys_time", "caml_sys_time_include_children", "caml_sys_unsafe_getenv", "caml_tan_float", "caml_tanh_float", "caml_to_js_string", "caml_trailing_slash", "caml_trampoline", "caml_trampoline_return", "caml_trunc_float", "caml_uint8_array_of_bytes", "caml_uint8_array_of_string", "caml_unix_cleanup", "caml_unix_closedir", "caml_unix_filedescr_of_fd", "caml_unix_findclose", "caml_unix_findfirst", "caml_unix_findnext", "caml_unix_getpwuid", "caml_unix_gettimeofday", "caml_unix_getuid", "caml_unix_gmtime", "caml_unix_has_symlink", "caml_unix_inet_addr_of_string", "caml_unix_isatty", "caml_unix_localtime", "caml_unix_lstat", "caml_unix_lstat_64", "caml_unix_mkdir", "caml_unix_mktime", "caml_unix_opendir", "caml_unix_readdir", "caml_unix_readlink", "caml_unix_rewinddir", "caml_unix_rmdir", "caml_unix_startup", "caml_unix_stat", "caml_unix_stat_64", "caml_unix_symlink", "caml_unix_time", "caml_unix_unlink", "caml_unmount", "caml_update_dummy", "caml_utf16_of_utf8", "caml_utf8_of_utf16", "caml_weak_blit", "caml_weak_check", "caml_weak_create", "caml_weak_get", "caml_weak_get_copy", "caml_weak_set", "caml_wrap_exception", "caml_xmlhttprequest_create", "caml_zstd_initialize", "compare_digits_nat", "compare_nat", "compare_nat_real", "complement_nat", "create_nat", "decr_nat", "deserialize_nat", "div_digit_nat", "div_helper", "div_nat", "fs_node_supported", "incr_nat", "initialize_nat", "is_digit_int", "is_digit_odd", "is_digit_zero", "jsoo_create_file", "jsoo_create_file_extern", "jsoo_effect_not_supported", "jsoo_floor_log2", "jsoo_is_ascii", "jsoo_mount_point", "jsoo_sys_getenv", "land_digit_nat", "length_nat", "lor_digit_nat", "lxor_digit_nat", "make_unix_err_args", "mult_digit_nat", "mult_nat", "nat_of_array", "nth_digit_nat", "nth_digit_nat_native", "num_digits_nat", "num_leading_zero_bits_in_digit", "os_type", "path_is_absolute", "re_match", "re_partial_match", "re_replacement_text", "re_search_backward", "re_search_forward", "re_string_match", "resolve_fs_device", "serialize_nat", "set_digit_nat", "set_digit_nat_native", "set_to_zero_nat", "shift_left_nat", "shift_right_nat", "square_nat", "sub_nat", "unix_closedir", "unix_getpwuid", "unix_gettimeofday", "unix_getuid", "unix_gmtime", "unix_has_symlink", "unix_inet_addr_of_string", "unix_isatty", "unix_localtime", "unix_lstat", "unix_lstat_64", "unix_mkdir", "unix_mktime", "unix_opendir", "unix_readdir", "unix_readlink", "unix_rewinddir", "unix_rmdir", "unix_stat", "unix_stat_64", "unix_symlink", "unix_time", "unix_unlink", "win_cleanup", "win_filedescr_of_channel", "win_findclose", "win_findfirst", "win_findnext", "win_handle_fd", "win_startup", "zstd_decompress"]), 0];
+      b.tocjs = [0, [0, a3, 88], [0, aY, 87], [0, bk, 86], [0, cb, 84], [0, bK, 83], [0, a5, 82], [0, bA, 85], [0, bJ, 81], [0, bF, 89], [0, aR, 11], [0, H, ar], [0, z, bZ], [0, bM, r], [0, aD, j], [0, co, d], [0, aM, an], [0, aV, _], [0, a$, bE], [0, ce, bN], [0, o, aB], [0, bB, aT], [0, u, bi], [0, Q, 10], [0, ax, 9], [0, bq, 59], [0, bL, 31], [0, aw, 26], [0, b8, 17], [0, bO, 15], [0, t, 72], [0, bS, 30], [0, K, 74], [0, b5, 42], [0, aA, 40], [0, G, 21], [0, cd, 47], [0, q, 61], [0, a9, 23], [0, b1, 57], [0, aO, 43], [0, ci, 50], [0, bt, 52], [0, aK, 39], [0, a7, 76], [0, T, 22], [0, k, 64], [0, bI, 16], [0, b6, 37], [0, ch, 45], [0, bz, 73], [0, aq, 32], [0, X, 41], [0, cg, 70], [0, aH, 27], [0, ac, 38], [0, B, 20], [0, aU, 36], [0, ah, 35], [0, l, 28], [0, a1, 75], [0, bC, 58], [0, D, 54], [0, a_, 53], [0, V, 60], [0, $, 34], [0, aZ, 67], [0, ba, 66], [0, bl, 14], [0, aI, 77], [0, bG, 48], [0, b_, 55], [0, cl, 46], [0, bP, 68], [0, ai, 25], [0, bD, 62], [0, at, 71], [0, cm, 29], [0, a8, 44], [0, n, 24], [0, aG, 56], [0, b3, 18], [0, bc, 69], [0, bY, 33], [0, af, 51], [0, a0, 13], [0, v, W], [0, ag, 8], [0, S, 78], [0, be, 80], [0, b2, 79], [0, A, ao], [0, Z, J], [0, bu, as], [0, cf, i], [0, bf, aX], [0, a4, ay], [0, b7, by], [0, b9, bH], [0, y, bd], [0, b$, az], [0, ck, 7], [0, bj, 6], [0, cc, 5], [0, bT, 91], [0, bX, 90], [0, M, 92], [0, f, bo], [0, aj, I], [0, O, e], [0, aQ, Y], [0, ap, h], [0, b4, 97], [0, a2, p], [0, N, ca], [0, bh, a6], [0, av, L], [0, aF, aE], [0, bW, aS], [0, bw, s2], [0, aC, aJ], [0, al, 95], [0, b0, x2], [0, bx, am], [0, bm, 94], [0, bR, bp], [0, bs, bn], [0, E, ak], [0, bv, 98], [0, cn, g], [0, R, C], [0, bQ, 99], [0, ae, aa], [0, m, 96], [0, bV, aL], [0, bb, 93], [0, aW, bU], [0, w, 4], [0, cj, 3], [0, U, 2], [0, ab, ad], [0, br, 1], [0, F, 63], [0, aN, 65], [0, bg, 19], [0, aP, 12], [0, P, 49], [0, au, 0]];
+      var cp = [2, cn], cq = [2, b0], cr = [2, aC], cs = [2, b9], ct = [2, bf], cu = [2, bu], cv = [2, v], cw = [2, bB], cx = [2, ce], cy = [0, 0, [2, co], d, 0, 1], cz = [2, aM], cA = [0, 0, [2, aV], _, 0, 1], cB = [2, bM], cC = [2, a3];
+      b.toc = [0, [0, 147, [0, [0, [0, [0, [0, [0, [0, 0, [2, au], 0, [0, 0, [2, P], 49, 0, 1], 2], [2, aP], 12, 0, 3], [2, bg], 19, [0, [0, [0, 0, [2, aN], 65, 0, 1], [2, F], 63, 0, 2], [2, br], 1, [0, [0, 0, [2, ab], ad, 0, 1], [2, U], 2, 0, 2], 3], 4], [2, cj], 3, [0, [0, [0, 0, [2, w], 4, [0, 0, [2, aW], bU, 0, 1], 2], [2, bb], 93, [0, 0, [2, bV], aL, 0, 1], 3], [2, m], 96, [0, [0, [0, 0, [2, ae], aa, 0, 1], [2, bQ], 99, [0, 0, [2, R], C, [0, 0, cp, g, 0, 1], 2], 3], [2, bv], 98, [0, [0, 0, [2, E], ak, 0, 1], [2, bs], bn, [0, 0, [2, bR], bp, 0, 1], 2], 4], 5], 6], [2, bm], 94, [0, [0, [0, [0, [0, 0, [2, bx], am, [0, 0, cq, x2, 0, 1], 2], [2, al], 95, [0, [0, 0, cr, aJ, 0, 1], [2, bw], s2, 0, 2], 3], [2, bW], aS, [0, [0, 0, [2, aF], aE, 0, 1], [2, av], L, 0, 2], 4], [2, bh], a6, [0, [0, 0, [2, N], ca, 0, 1], [2, a2], p, 0, 2], 5], [2, b4], 97, [0, [0, [0, [0, 0, [2, ap], h, 0, 1], [2, aQ], Y, 0, 2], [2, O], e, 0, 3], [2, aj], I, [0, 0, [2, f], bo, 0, 1], 4], 6], 7], [2, M], 92, [0, [0, [0, [0, 0, [2, bX], 90, [0, 0, [2, bT], 91, 0, 1], 2], [2, cc], 5, [0, 0, [2, bj], 6, 0, 1], 3], [2, ck], 7, [0, [0, [0, 0, [2, b$], az, [0, 0, [2, y], bd, [0, 0, cs, bH, 0, 1], 2], 3], [2, b7], by, [0, 0, [2, a4], ay, [0, [0, 0, ct, aX, 0, 1], [2, cf], i, [0, 0, cu, as, 0, 1], 2], 3], 4], [2, Z], J, [0, [0, 0, [2, A], ao, 0, 1], [2, b2], 79, [0, [0, 0, [2, be], 80, 0, 1], [2, S], 78, [0, 0, [2, ag], 8, [0, 0, cv, W, 0, 1], 2], 3], 4], 5], 6], [2, a0], 13, [0, [0, [0, [0, 0, [2, af], 51, 0, 1], [2, bY], 33, [0, 0, [2, bc], 69, 0, 1], 2], [2, b3], 18, [0, 0, [2, aG], 56, 0, 1], 3], [2, n], 24, [0, [0, [0, 0, [2, a8], 44, 0, 1], [2, cm], 29, [0, [0, 0, [2, at], 71, 0, 1], [2, bD], 62, 0, 2], 3], [2, ai], 25, [0, [0, 0, [2, bP], 68, 0, 1], [2, cl], 46, [0, [0, 0, [2, b_], 55, 0, 1], [2, bG], 48, [0, 0, [2, aI], 77, 0, 1], 2], 3], 4], 5], 7], 8], [2, bl], 14, [0, [0, [0, [0, [0, [0, 0, [2, ba], 66, [0, 0, [2, aZ], 67, 0, 1], 2], [2, $], 34, [0, 0, [2, V], 60, 0, 1], 3], [2, a_], 53, [0, 0, [2, D], 54, [0, 0, [2, bC], 58, [0, 0, [2, a1], 75, 0, 1], 2], 3], 4], [2, l], 28, [0, 0, [2, ah], 35, [0, 0, [2, aU], 36, 0, 1], 2], 5], [2, B], 20, [0, [0, [0, 0, [2, ac], 38, 0, 1], [2, aH], 27, [0, [0, 0, [2, cg], 70, 0, 1], [2, X], 41, 0, 2], 3], [2, aq], 32, [0, [0, [0, 0, [2, bz], 73, 0, 1], [2, ch], 45, 0, 2], [2, b6], 37, 0, 3], 4], 6], [2, bI], 16, [0, [0, [0, [0, [0, [0, 0, [2, k], 64, 0, 1], [2, T], 22, [0, 0, [2, a7], 76, 0, 1], 2], [2, aK], 39, [0, [0, 0, [2, bt], 52, 0, 1], [2, ci], 50, 0, 2], 3], [2, aO], 43, [0, [0, 0, [2, b1], 57, 0, 1], [2, a9], 23, [0, [0, 0, [2, q], 61, 0, 1], [2, cd], 47, 0, 2], 3], 4], [2, G], 21, [0, [0, 0, [2, aA], 40, [0, 0, [2, b5], 42, [0, 0, [2, K], 74, 0, 1], 2], 3], [2, bS], 30, [0, 0, [2, t], 72, 0, 1], 4], 5], [2, bO], 15, [0, [0, [0, [0, 0, [2, b8], 17, 0, 1], [2, aw], 26, [0, 0, [2, bL], 31, [0, 0, [2, bq], 59, 0, 1], 2], 3], [2, ax], 9, [0, [0, [0, 0, [2, Q], 10, 0, 1], [2, u], bi, [0, [0, 0, cw, aT, 0, 1], [2, o], aB, [0, 0, cx, bN, 0, 1], 2], 3], [2, a$], bE, [0, [0, [0, cA, cz, an, cy, 2], [2, aD], j, [0, 0, cB, r, 0, 1], 3], [2, z], bZ, [0, 0, [2, H], ar, 0, 1], 4], 5], 6], [2, aR], 11, [0, [0, [0, 0, [2, bF], 89, 0, 1], [2, bJ], 81, [0, 0, [2, bA], 85, 0, 1], 2], [2, a5], 82, [0, [0, 0, [2, bK], 83, 0, 1], [2, cb], 84, [0, 0, [2, bk], 86, [0, 0, [2, aY], 87, [0, 0, cC, 88, 0, 1], 2], 3], 4], 5], 7], 8], 9], 10]], 0, c.caml_list_of_js_array(["%caml_format_int_special", "%direct_int_div", "%direct_int_mod", "%direct_int_mul", "%direct_obj_tag", "%identity", "%int_add", "%int_and", "%int_asr", "%int_div", "%int_lsl", "%int_lsr", "%int_mod", "%int_mul", "%int_neg", "%int_or", "%int_sub", "%int_xor", "BigStringReader", "MlBytes", "MlFakeDevice", "MlFakeFd", "MlFakeFd_out", "MlFakeFile", "MlFile", "MlInt64", "MlMutex", "MlNat", "MlNodeDevice", "MlNodeFd", "MlObjectTable", "MlStringReader", "Ml_Bigarray", "Ml_Bigarray_c_1_1", "UInt8ArrayReader", "add_nat", "bigstring_of_array_buffer", "bigstring_of_typed_array", "bigstring_to_array_buffer", "bigstring_to_typed_array", "blit_nat", "caml_MD5Final", "caml_MD5Init", "caml_MD5Transform", "caml_MD5Update", "caml_abs_float", "caml_acos_float", "caml_acosh_float", "caml_add_float", "caml_alloc_dummy", "caml_alloc_dummy_float", "caml_alloc_dummy_infix", "caml_alloc_stack", "caml_argv", "caml_array_append", "caml_array_blit", "caml_array_bound_error", "caml_array_concat", "caml_array_fill", "caml_array_get", "caml_array_get_addr", "caml_array_get_float", "caml_array_of_bytes", "caml_array_of_string", "caml_array_set", "caml_array_set_addr", "caml_array_set_float", "caml_array_sub", "caml_array_unsafe_get", "caml_array_unsafe_get_float", "caml_array_unsafe_set", "caml_array_unsafe_set_float", "caml_asin_float", "caml_asinh_float", "caml_atan2_float", "caml_atan_float", "caml_atanh_float", "caml_atomic_cas", "caml_atomic_exchange", "caml_atomic_fetch_add", "caml_atomic_load", "caml_atomic_make_contended", "caml_ba_blit", "caml_ba_change_layout", "caml_ba_compare", "caml_ba_create", "caml_ba_create_buffer", "caml_ba_create_from", "caml_ba_create_unsafe", "caml_ba_custom_name", "caml_ba_deserialize", "caml_ba_dim", "caml_ba_dim_1", "caml_ba_dim_2", "caml_ba_dim_3", "caml_ba_fill", "caml_ba_from_typed_array", "caml_ba_get_1", "caml_ba_get_2", "caml_ba_get_3", "caml_ba_get_generic", "caml_ba_get_size", "caml_ba_get_size_per_element", "caml_ba_hash", "caml_ba_init", "caml_ba_kind", "caml_ba_kind_of_typed_array", "caml_ba_layout", "caml_ba_map_file", "caml_ba_map_file_bytecode", "caml_ba_num_dims", "caml_ba_reshape", "caml_ba_serialize", "caml_ba_set_1", "caml_ba_set_2", "caml_ba_set_3", "caml_ba_set_generic", "caml_ba_slice", "caml_ba_sub", "caml_ba_to_typed_array", "caml_ba_uint8_get16", "caml_ba_uint8_get32", "caml_ba_uint8_get64", "caml_ba_uint8_set16", "caml_ba_uint8_set32", "caml_ba_uint8_set64", "caml_backtrace_status", "caml_bigstring_blit_ba_to_ba", "caml_bigstring_blit_ba_to_bytes", "caml_bigstring_blit_bytes_to_ba", "caml_bigstring_blit_string_to_ba", "caml_bigstring_memcmp", "caml_blit_bytes", "caml_blit_string", "caml_bswap16", "caml_build_symbols", "caml_bytes_bound_error", "caml_bytes_compare", "caml_bytes_equal", "caml_bytes_get", "caml_bytes_get16", "caml_bytes_get32", "caml_bytes_get64", "caml_bytes_greaterequal", "caml_bytes_greaterthan", "caml_bytes_lessequal", "caml_bytes_lessthan", "caml_bytes_notequal", "caml_bytes_of_array", "caml_bytes_of_jsbytes", "caml_bytes_of_string", "caml_bytes_of_utf16_jsstring", "caml_bytes_set", "caml_bytes_set16", "caml_bytes_set32", "caml_bytes_set64", "caml_bytes_unsafe_get", "caml_bytes_unsafe_set", "caml_call_gen", "caml_callback", "caml_cbrt_float", "caml_ceil_float", "caml_channel_descriptor", "caml_check_bound", "caml_classify_float", "caml_compare", "caml_compare_val", "caml_compare_val_get_custom", "caml_compare_val_number_custom", "caml_compare_val_tag", "caml_continuation_use_and_update_handler_noexc", "caml_continuation_use_noexc", "caml_convert_bytes_to_array", "caml_convert_raw_backtrace", "caml_convert_raw_backtrace_slot", "caml_convert_string_to_bytes", "caml_copysign_float", "caml_cos_float", "caml_cosh_float", "caml_create_bytes", "caml_create_file", "caml_create_string", "caml_current_dir", "caml_custom_event_index", "caml_custom_ops", "caml_decompress_input", "caml_div", "caml_div_float", "caml_domain_dls", "caml_domain_dls_get", "caml_domain_dls_set", "caml_domain_id", "caml_domain_spawn", "caml_ensure_stack_capacity", "caml_ephe_blit_data", "caml_ephe_blit_key", "caml_ephe_check_data", "caml_ephe_check_key", "caml_ephe_create", "caml_ephe_data_offset", "caml_ephe_get_data", "caml_ephe_get_data_copy", "caml_ephe_get_key", "caml_ephe_get_key_copy", "caml_ephe_key_offset", "caml_ephe_set_data", "caml_ephe_set_key", "caml_ephe_unset_data", "caml_ephe_unset_key", "caml_eq_float", "caml_equal", "caml_erf_float", "caml_erfc_float", "caml_eventlog_pause", "caml_eventlog_resume", "caml_executable_name", "caml_exn_with_js_backtrace", "caml_exp2_float", "caml_exp_float", "caml_expm1_float", "caml_failwith", "caml_fatal_uncaught_exception", "caml_fill_bytes", "caml_fill_string", "caml_final_register", "caml_final_register_called_without_value", "caml_final_release", "caml_finish_formatting", "caml_float_compare", "caml_float_of_bytes", "caml_float_of_int", "caml_float_of_string", "caml_floatarray_blit", "caml_floatarray_create", "caml_floatarray_get", "caml_floatarray_set", "caml_floatarray_unsafe_get", "caml_floatarray_unsafe_set", "caml_floor_float", "caml_fma_float", "caml_fmod_float", "caml_format_exception", "caml_format_float", "caml_format_int", "caml_fresh_oo_id", "caml_frexp_float", "caml_fs_init", "caml_gc_compaction", "caml_gc_counters", "caml_gc_full_major", "caml_gc_get", "caml_gc_huge_fallback_count", "caml_gc_major", "caml_gc_major_slice", "caml_gc_minor", "caml_gc_minor_words", "caml_gc_quick_stat", "caml_gc_set", "caml_gc_stat", "caml_ge_float", "caml_get_continuation_callstack", "caml_get_current_callstack", "caml_get_exception_backtrace", "caml_get_exception_raw_backtrace", "caml_get_global_data", "caml_get_major_bucket", "caml_get_major_credit", "caml_get_minor_free", "caml_get_public_method", "caml_get_root", "caml_global_data", "caml_gr_arc_aux", "caml_gr_blit_image", "caml_gr_clear_graph", "caml_gr_close_graph", "caml_gr_close_subwindow", "caml_gr_create_image", "caml_gr_current_x", "caml_gr_current_y", "caml_gr_display_mode", "caml_gr_doc_of_state", "caml_gr_draw_arc", "caml_gr_draw_char", "caml_gr_draw_image", "caml_gr_draw_rect", "caml_gr_draw_str", "caml_gr_draw_string", "caml_gr_dump_image", "caml_gr_fill_arc", "caml_gr_fill_poly", "caml_gr_fill_rect", "caml_gr_lineto", "caml_gr_make_image", "caml_gr_moveto", "caml_gr_open_graph", "caml_gr_open_subwindow", "caml_gr_plot", "caml_gr_point_color", "caml_gr_remember_mode", "caml_gr_resize_window", "caml_gr_set_color", "caml_gr_set_font", "caml_gr_set_line_width", "caml_gr_set_text_size", "caml_gr_set_window_title", "caml_gr_sigio_handler", "caml_gr_sigio_signal", "caml_gr_size_x", "caml_gr_size_y", "caml_gr_state", "caml_gr_state_create", "caml_gr_state_get", "caml_gr_state_init", "caml_gr_state_set", "caml_gr_synchronize", "caml_gr_text_size", "caml_gr_wait_event", "caml_gr_window_id", "caml_greaterequal", "caml_greaterthan", "caml_gt_float", "caml_hash", "caml_hash_mix_bigstring", "caml_hash_mix_bytes", "caml_hash_mix_bytes_arr", "caml_hash_mix_final", "caml_hash_mix_float", "caml_hash_mix_int", "caml_hash_mix_int64", "caml_hash_mix_jsbytes", "caml_hash_mix_string", "caml_hash_nat", "caml_hexstring_of_float", "caml_hypot_float", "caml_input_value", "caml_input_value_from_bytes", "caml_input_value_from_reader", "caml_input_value_from_string", "caml_input_value_to_outside_heap", "caml_install_signal_handler", "caml_int32_add", "caml_int32_and", "caml_int32_bits_of_float", "caml_int32_bswap", "caml_int32_compare", "caml_int32_div", "caml_int32_float_of_bits", "caml_int32_format", "caml_int32_mod", "caml_int32_mul", "caml_int32_neg", "caml_int32_of_float", "caml_int32_of_int", "caml_int32_of_string", "caml_int32_or", "caml_int32_shift_left", "caml_int32_shift_right", "caml_int32_shift_right_unsigned", "caml_int32_sub", "caml_int32_to_float", "caml_int32_to_int", "caml_int32_unmarshal", "caml_int32_xor", "caml_int64_add", "caml_int64_and", "caml_int64_bits_of_float", "caml_int64_bswap", "caml_int64_compare", "caml_int64_create_lo_hi", "caml_int64_create_lo_mi_hi", "caml_int64_div", "caml_int64_float_of_bits", "caml_int64_format", "caml_int64_hash", "caml_int64_hi32", "caml_int64_is_negative", "caml_int64_is_zero", "caml_int64_lo32", "caml_int64_marshal", "caml_int64_mod", "caml_int64_mul", "caml_int64_neg", "caml_int64_of_bytes", "caml_int64_of_float", "caml_int64_of_int", "caml_int64_of_int32", "caml_int64_of_nativeint", "caml_int64_of_string", "caml_int64_offset", "caml_int64_or", "caml_int64_shift_left", "caml_int64_shift_right", "caml_int64_shift_right_unsigned", "caml_int64_sub", "caml_int64_to_bytes", "caml_int64_to_float", "caml_int64_to_int", "caml_int64_to_int32", "caml_int64_to_nativeint", "caml_int64_ult", "caml_int64_unmarshal", "caml_int64_xor", "caml_int_compare", "caml_int_of_float", "caml_int_of_string", "caml_invalid_argument", "caml_is_continuation_tag", "caml_is_js", "caml_is_ml_bytes", "caml_is_ml_string", "caml_is_printable", "caml_is_special_exception", "caml_js_call", "caml_js_delete", "caml_js_equals", "caml_js_error_of_exception", "caml_js_error_option_of_exception", "caml_js_eval_string", "caml_js_expr", "caml_js_from_array", "caml_js_from_bool", "caml_js_from_float", "caml_js_from_int32", "caml_js_from_nativeint", "caml_js_from_string", "caml_js_fun_call", "caml_js_function_arity", "caml_js_get", "caml_js_get_console", "caml_js_html_entities", "caml_js_html_escape", "caml_js_instanceof", "caml_js_meth_call", "caml_js_new", "caml_js_object", "caml_js_on_ie", "caml_js_pure_expr", "caml_js_set", "caml_js_strict_equals", "caml_js_to_array", "caml_js_to_bool", "caml_js_to_byte_string", "caml_js_to_float", "caml_js_to_int32", "caml_js_to_nativeint", "caml_js_to_string", "caml_js_typeof", "caml_js_var", "caml_js_wrap_callback", "caml_js_wrap_callback_arguments", "caml_js_wrap_callback_strict", "caml_js_wrap_callback_unsafe", "caml_js_wrap_meth_callback", "caml_js_wrap_meth_callback_arguments", "caml_js_wrap_meth_callback_strict", "caml_js_wrap_meth_callback_unsafe", "caml_jsbytes_of_string", "caml_jsoo_flags_effects", "caml_jsoo_flags_use_js_string", "caml_jsstring_of_string", "caml_lazy_make_forward", "caml_lazy_read_result", "caml_lazy_reset_to_lazy", "caml_lazy_update_to_forcing", "caml_lazy_update_to_forward", "caml_ldexp_float", "caml_le_float", "caml_lessequal", "caml_lessthan", "caml_lex_array", "caml_lex_engine", "caml_list_mount_point", "caml_list_of_js_array", "caml_list_to_js_array", "caml_log10_float", "caml_log1p_float", "caml_log2_float", "caml_log_float", "caml_lt_float", "caml_lxm_next", "caml_make_array", "caml_make_float_vect", "caml_make_path", "caml_make_vect", "caml_marshal_constants", "caml_marshal_data_size", "caml_marshal_header_size", "caml_maybe_attach_backtrace", "caml_maybe_print_stats", "caml_md5_bytes", "caml_md5_chan", "caml_md5_string", "caml_memprof_discard", "caml_memprof_set", "caml_memprof_start", "caml_memprof_stop", "caml_ml_bytes_content", "caml_ml_bytes_length", "caml_ml_channel_size", "caml_ml_channel_size_64", "caml_ml_channels", "caml_ml_close_channel", "caml_ml_condition_broadcast", "caml_ml_condition_new", "caml_ml_condition_signal", "caml_ml_condition_wait", "caml_ml_debug_info_status", "caml_ml_domain_cpu_relax", "caml_ml_domain_id", "caml_ml_domain_set_name", "caml_ml_domain_unique_token", "caml_ml_enable_runtime_warnings", "caml_ml_flush", "caml_ml_input", "caml_ml_input_bigarray", "caml_ml_input_block", "caml_ml_input_char", "caml_ml_input_int", "caml_ml_input_scan_line", "caml_ml_is_buffered", "caml_ml_mutex_lock", "caml_ml_mutex_new", "caml_ml_mutex_try_lock", "caml_ml_mutex_unlock", "caml_ml_open_descriptor_in", "caml_ml_open_descriptor_in_with_flags", "caml_ml_open_descriptor_out", "caml_ml_open_descriptor_out_with_flags", "caml_ml_out_channels_list", "caml_ml_output", "caml_ml_output_bigarray", "caml_ml_output_bytes", "caml_ml_output_char", "caml_ml_output_int", "caml_ml_output_ta", "caml_ml_pos_in", "caml_ml_pos_in_64", "caml_ml_pos_out", "caml_ml_pos_out_64", "caml_ml_runtime_events_pause", "caml_ml_runtime_events_resume", "caml_ml_runtime_events_start", "caml_ml_runtime_warnings_enabled", "caml_ml_seek_in", "caml_ml_seek_in_64", "caml_ml_seek_out", "caml_ml_seek_out_64", "caml_ml_set_binary_mode", "caml_ml_set_buffered", "caml_ml_set_channel_name", "caml_ml_set_channel_output", "caml_ml_set_channel_refill", "caml_ml_string_length", "caml_mod", "caml_modf_float", "caml_mount_autoload", "caml_mul", "caml_mul_float", "caml_named_value", "caml_named_values", "caml_nativeint_add", "caml_nativeint_and", "caml_nativeint_bswap", "caml_nativeint_compare", "caml_nativeint_div", "caml_nativeint_format", "caml_nativeint_mod", "caml_nativeint_mul", "caml_nativeint_neg", "caml_nativeint_of_float", "caml_nativeint_of_int", "caml_nativeint_of_int32", "caml_nativeint_of_string", "caml_nativeint_or", "caml_nativeint_shift_left", "caml_nativeint_shift_right", "caml_nativeint_shift_right_unsigned", "caml_nativeint_sub", "caml_nativeint_to_float", "caml_nativeint_to_int", "caml_nativeint_to_int32", "caml_nativeint_unmarshal", "caml_nativeint_xor", "caml_neg_float", "caml_neq_float", "caml_new_lex_engine", "caml_new_string", "caml_nextafter_float", "caml_notequal", "caml_obj_add_offset", "caml_obj_block", "caml_obj_compare_and_swap", "caml_obj_dup", "caml_obj_is_block", "caml_obj_is_shared", "caml_obj_make_forward", "caml_obj_raw_field", "caml_obj_reachable_words", "caml_obj_set_raw_field", "caml_obj_set_tag", "caml_obj_tag", "caml_obj_truncate", "caml_obj_update_tag", "caml_obj_with_tag", "caml_ojs_new_arr", "caml_oo_last_id", "caml_output_val", "caml_output_value", "caml_output_value_to_buffer", "caml_output_value_to_bytes", "caml_output_value_to_string", "caml_parse_digit", "caml_parse_engine", "caml_parse_format", "caml_parse_sign_and_base", "caml_parser_trace", "caml_pos_in", "caml_pos_out", "caml_power_float", "caml_pure_js_expr", "caml_raise_constant", "caml_raise_end_of_file", "caml_raise_no_such_file", "caml_raise_not_a_dir", "caml_raise_not_found", "caml_raise_sys_error", "caml_raise_with_arg", "caml_raise_with_args", "caml_raise_with_string", "caml_raise_zero_divide", "caml_raw_backtrace_length", "caml_raw_backtrace_next_slot", "caml_raw_backtrace_slot", "caml_read_file_content", "caml_recommended_domain_count", "caml_record_backtrace", "caml_record_backtrace_flag", "caml_refill", "caml_register_channel_for_spacetime", "caml_register_global", "caml_register_named_value", "caml_restore_raw_backtrace", "caml_root", "caml_round_float", "caml_runtime_events_create_cursor", "caml_runtime_events_free_cursor", "caml_runtime_events_pause", "caml_runtime_events_read_poll", "caml_runtime_events_resume", "caml_runtime_events_start", "caml_runtime_events_user_register", "caml_runtime_events_user_resolve", "caml_runtime_events_user_write", "caml_runtime_parameters", "caml_runtime_variant", "caml_runtime_warnings", "caml_seek_in", "caml_seek_out", "caml_set_oo_id", "caml_set_parser_trace", "caml_set_static_env", "caml_signbit_float", "caml_sin_float", "caml_sinh_float", "caml_spacetime_enabled", "caml_spacetime_only_works_for_native_code", "caml_sqrt_float", "caml_str_initialize", "caml_str_repeat", "caml_string_bound_error", "caml_string_compare", "caml_string_equal", "caml_string_get", "caml_string_get16", "caml_string_get32", "caml_string_get64", "caml_string_greaterequal", "caml_string_greaterthan", "caml_string_hash", "caml_string_lessequal", "caml_string_lessthan", "caml_string_notequal", "caml_string_of_array", "caml_string_of_bytes", "caml_string_of_jsbytes", "caml_string_of_jsstring", "caml_string_set", "caml_string_set16", "caml_string_set32", "caml_string_set64", "caml_string_unsafe_get", "caml_string_unsafe_set", "caml_sub_float", "caml_subarray_to_jsbytes", "caml_sys_argv", "caml_sys_chdir", "caml_sys_close", "caml_sys_const_backend_type", "caml_sys_const_big_endian", "caml_sys_const_int_size", "caml_sys_const_max_wosize", "caml_sys_const_naked_pointers_checked", "caml_sys_const_ostype_cygwin", "caml_sys_const_ostype_unix", "caml_sys_const_ostype_win32", "caml_sys_const_word_size", "caml_sys_executable_name", "caml_sys_exit", "caml_sys_fds", "caml_sys_file_exists", "caml_sys_get_argv", "caml_sys_get_config", "caml_sys_getcwd", "caml_sys_getenv", "caml_sys_is_directory", "caml_sys_is_regular_file", "caml_sys_isatty", "caml_sys_mkdir", "caml_sys_modify_argv", "caml_sys_open", "caml_sys_open_for_node", "caml_sys_random_seed", "caml_sys_read_directory", "caml_sys_remove", "caml_sys_rename", "caml_sys_rmdir", "caml_sys_system_command", "caml_sys_time", "caml_sys_time_include_children", "caml_sys_unsafe_getenv", "caml_tan_float", "caml_tanh_float", "caml_to_js_string", "caml_trailing_slash", "caml_trampoline", "caml_trampoline_return", "caml_trunc_float", "caml_uint8_array_of_bytes", "caml_uint8_array_of_string", "caml_unix_cleanup", "caml_unix_closedir", "caml_unix_filedescr_of_fd", "caml_unix_findclose", "caml_unix_findfirst", "caml_unix_findnext", "caml_unix_getpwuid", "caml_unix_gettimeofday", "caml_unix_getuid", "caml_unix_gmtime", "caml_unix_has_symlink", "caml_unix_inet_addr_of_string", "caml_unix_isatty", "caml_unix_localtime", "caml_unix_lstat", "caml_unix_lstat_64", "caml_unix_mkdir", "caml_unix_mktime", "caml_unix_opendir", "caml_unix_readdir", "caml_unix_readlink", "caml_unix_rewinddir", "caml_unix_rmdir", "caml_unix_startup", "caml_unix_stat", "caml_unix_stat_64", "caml_unix_symlink", "caml_unix_time", "caml_unix_unlink", "caml_unmount", "caml_update_dummy", "caml_utf16_of_utf8", "caml_utf8_of_utf16", "caml_weak_blit", "caml_weak_check", "caml_weak_create", "caml_weak_get", "caml_weak_get_copy", "caml_weak_set", "caml_wrap_exception", "caml_xmlhttprequest_create", "caml_zstd_initialize", "compare_digits_nat", "compare_nat", "compare_nat_real", "complement_nat", "create_nat", "decr_nat", "deserialize_nat", "div_digit_nat", "div_helper", "div_nat", "fs_node_supported", "incr_nat", "initialize_nat", "is_digit_int", "is_digit_odd", "is_digit_zero", "jsoo_create_file", "jsoo_create_file_extern", "jsoo_effect_not_supported", "jsoo_floor_log2", "jsoo_is_ascii", "jsoo_mount_point", "jsoo_sys_getenv", "land_digit_nat", "length_nat", "lor_digit_nat", "lxor_digit_nat", "make_unix_err_args", "mult_digit_nat", "mult_nat", "nat_of_array", "nth_digit_nat", "nth_digit_nat_native", "num_digits_nat", "num_leading_zero_bits_in_digit", "os_type", "path_is_absolute", "re_match", "re_partial_match", "re_replacement_text", "re_search_backward", "re_search_forward", "re_string_match", "resolve_fs_device", "serialize_nat", "set_digit_nat", "set_digit_nat_native", "set_to_zero_nat", "shift_left_nat", "shift_right_nat", "square_nat", "sub_nat", "unix_closedir", "unix_getpwuid", "unix_gettimeofday", "unix_getuid", "unix_gmtime", "unix_has_symlink", "unix_inet_addr_of_string", "unix_isatty", "unix_localtime", "unix_lstat", "unix_lstat_64", "unix_mkdir", "unix_mktime", "unix_opendir", "unix_readdir", "unix_readlink", "unix_rewinddir", "unix_rmdir", "unix_stat", "unix_stat_64", "unix_symlink", "unix_time", "unix_unlink", "win_cleanup", "win_filedescr_of_channel", "win_findclose", "win_findfirst", "win_findnext", "win_handle_fd", "win_startup", "zstd_decompress"]), 0];
       return;
     })(globalThis);
     (function(globalThis2) {
@@ -39460,7 +39460,7 @@ var require_main_bc = __commonJS({
     })(globalThis);
     (function(globalThis2) {
       "use strict";
-      var runtime = globalThis2.jsoo_runtime, cst_S = "%S", cst_2 = "<2>", cst$2 = "@ ", cst$3 = "@,", caml_update_dummy2 = runtime.caml_update_dummy;
+      var runtime = globalThis2.jsoo_runtime, cst_S = "%S", cst_2 = "<2>", cst$2 = "@ ", cst$3 = "@,", caml_maybe_attach_backtrace2 = runtime.caml_maybe_attach_backtrace, caml_update_dummy2 = runtime.caml_update_dummy;
       function caml_call1(f, a0) {
         return (f.l >= 0 ? f.l : f.l = f.length) == 1 ? f(a0) : runtime.caml_call_gen(f, [a0]);
       }
@@ -39470,10 +39470,10 @@ var require_main_bc = __commonJS({
       function caml_call3(f, a0, a1, a2) {
         return (f.l >= 0 ? f.l : f.l = f.length) == 3 ? f(a0, a1, a2) : runtime.caml_call_gen(f, [a0, a1, a2]);
       }
-      var global_data = runtime.caml_get_global_data(), cst$1 = ".", cst = " )", cst$0 = "( ", Stdlib = global_data.Stdlib, Stdlib_String = global_data.Stdlib__String, Stdlib_List = global_data.Stdlib__List, Stdlib_Format = global_data.Stdlib__Format, pp = function _s_(_q_, _r_) {
-        return _s_.fun(_q_, _r_);
-      }, show = function _p_(_o_) {
-        return _p_.fun(_o_);
+      var global_data = runtime.caml_get_global_data(), cst$1 = ".", cst = " )", cst$0 = "( ", Stdlib = global_data.Stdlib, Assert_failure = global_data.Assert_failure, Stdlib_String = global_data.Stdlib__String, Stdlib_List = global_data.Stdlib__List, Stdlib_Format = global_data.Stdlib__Format, pp = function _t_(_r_, _s_) {
+        return _t_.fun(_r_, _s_);
+      }, show = function _q_(_p_) {
+        return _q_.fun(_p_);
       }, _a_ = [
         0,
         [
@@ -39520,11 +39520,12 @@ var require_main_bc = __commonJS({
       caml_update_dummy2(show, function(x2) {
         return caml_call3(Stdlib_Format[141], _h_, pp, x2);
       });
+      var _i_ = [0, "parsing/longident.ml", 27, 65];
       function make(ids) {
-        var _m_ = caml_call1(Stdlib_List[7], ids), _n_ = [0, caml_call1(Stdlib_List[6], ids)];
+        var _n_ = caml_call1(Stdlib_List[7], ids), _o_ = [0, caml_call1(Stdlib_List[6], ids)];
         return caml_call3(Stdlib_List[26], function(acc, x2) {
           return [1, acc, x2];
-        }, _n_, _m_);
+        }, _o_, _n_);
       }
       function is_infix(s2) {
         var match = runtime.caml_string_get(s2, 0);
@@ -39544,24 +39545,30 @@ var require_main_bc = __commonJS({
       function infixify(s2) {
         if (!is_infix(s2))
           return s2;
-        var _l_ = caml_call2(Stdlib[28], s2, cst);
-        return caml_call2(Stdlib[28], cst$0, _l_);
+        var _m_ = caml_call2(Stdlib[28], s2, cst);
+        return caml_call2(Stdlib[28], cst$0, _m_);
       }
       function flat(id) {
         if (0 === id[0]) {
           var s2 = id[1];
           return [0, infixify(s2), 0];
         }
-        var s$0 = id[2], id1 = id[1], _j_ = [0, infixify(s$0), 0], _k_ = flat(id1);
-        return caml_call2(Stdlib[37], _k_, _j_);
+        var s$0 = id[2], id1 = id[1], _k_ = [0, infixify(s$0), 0], _l_ = flat(id1);
+        return caml_call2(Stdlib[37], _l_, _k_);
       }
       function ident_of_string(s2) {
         var loc = s2[2], txt = s2[1];
         return [0, [0, txt], loc];
       }
       function string_of_longident(id) {
-        var _i_ = flat(id);
-        return caml_call2(Stdlib_String[7], cst$1, _i_);
+        var _j_ = flat(id);
+        return caml_call2(Stdlib_String[7], cst$1, _j_);
+      }
+      function string_of_shortident(id) {
+        if (0 !== id[0])
+          throw caml_maybe_attach_backtrace2([0, Assert_failure, _i_], 1);
+        var s2 = id[1];
+        return s2;
       }
       var Parsing_Longident = [
         0,
@@ -39572,9 +39579,10 @@ var require_main_bc = __commonJS({
         infixify,
         flat,
         ident_of_string,
-        string_of_longident
+        string_of_longident,
+        string_of_shortident
       ];
-      runtime.caml_register_global(15, Parsing_Longident, "Parsing__Longident");
+      runtime.caml_register_global(17, Parsing_Longident, "Parsing__Longident");
       return;
     })(globalThis);
     (function(globalThis2) {
@@ -45445,7 +45453,7 @@ var require_main_bc = __commonJS({
       function mod_def_to_typed(def) {
         switch (def[0]) {
           case 0:
-            var expr = def[2], lid = def[1], _bl_ = expr_to_typed(expr), _bm_ = lid[2], _bn_ = caml_call1(Parsing_Longident[8], lid[1]), ret = [0, [0, caml_call1(Typing_Ident[4], _bn_), _bm_], _bl_];
+            var expr = def[2], lid = def[1], _bl_ = expr_to_typed(expr), _bm_ = lid[2], _bn_ = caml_call1(Parsing_Longident[9], lid[1]), ret = [0, [0, caml_call1(Typing_Ident[4], _bn_), _bm_], _bl_];
             break;
           case 1:
             var decl = def[2], lid$0 = def[1];
@@ -45508,6 +45516,36 @@ var require_main_bc = __commonJS({
     })(globalThis);
     (function(globalThis2) {
       "use strict";
+      var runtime = globalThis2.jsoo_runtime, caml_maybe_attach_backtrace2 = runtime.caml_maybe_attach_backtrace, d_ref = [0, 0];
+      function reset_d_ref(param) {
+        d_ref[1] = 0;
+        return 0;
+      }
+      function add_d_ref(d) {
+        d_ref[1] = [0, d, d_ref[1]];
+        return 0;
+      }
+      var Typechecking_error = [248, "Typing.Report.Typechecking_error", runtime.caml_fresh_oo_id(0)];
+      function error(s2) {
+        throw caml_maybe_attach_backtrace2([0, Typechecking_error, s2], 1);
+      }
+      function report_term(s2, t) {
+        return add_d_ref([0, t[2][1], t[2][2], s2]);
+      }
+      var Typing_Report = [
+        0,
+        d_ref,
+        reset_d_ref,
+        add_d_ref,
+        Typechecking_error,
+        error,
+        report_term
+      ];
+      runtime.caml_register_global(1, Typing_Report, "Typing__Report");
+      return;
+    })(globalThis);
+    (function(globalThis2) {
+      "use strict";
       var runtime = globalThis2.jsoo_runtime, caml_maybe_attach_backtrace2 = runtime.caml_maybe_attach_backtrace, caml_wrap_exception2 = runtime.caml_wrap_exception;
       function caml_call1(f, a0) {
         return (f.l >= 0 ? f.l : f.l = f.length) == 1 ? f(a0) : runtime.caml_call_gen(f, [a0]);
@@ -45515,58 +45553,58 @@ var require_main_bc = __commonJS({
       function caml_call2(f, a0, a1) {
         return (f.l >= 0 ? f.l : f.l = f.length) == 2 ? f(a0, a1) : runtime.caml_call_gen(f, [a0, a1]);
       }
-      var global_data = runtime.caml_get_global_data(), empty = [0, 0, 0, 0], Stdlib_List = global_data.Stdlib__List, Stdlib_Option = global_data.Stdlib__Option, Typing_Env = global_data.Typing__Env, Typing_Ident = global_data.Typing__Ident, Stdlib = global_data.Stdlib, error = Stdlib[2], cst_unbound_value = "unbound value ", cst_unbound_type = "unbound type ", cst_unbound_module = "unbound module ";
+      var global_data = runtime.caml_get_global_data(), empty = [0, 0, 0, 0], Stdlib_List = global_data.Stdlib__List, Stdlib_Option = global_data.Stdlib__Option, Typing_Report = global_data.Typing__Report, Stdlib = global_data.Stdlib, Typing_Env = global_data.Typing__Env, Typing_Ident = global_data.Typing__Ident, cst_unbound_value = "unbound value ", cst_unbound_type = "unbound type ", cst_unbound_module = "unbound module ";
       function enter_value(id, sc) {
-        var _ae_ = sc[3], _af_ = sc[2], _ag_ = sc[1];
+        var _ai_ = sc[3], _aj_ = sc[2], _ak_ = sc[1];
         return [
           0,
-          [0, [0, caml_call1(Typing_Ident[5], id), id], _ag_],
-          _af_,
-          _ae_
+          [0, [0, caml_call1(Typing_Ident[5], id), id], _ak_],
+          _aj_,
+          _ai_
         ];
       }
       function enter_type(id, sc) {
-        var _ab_ = sc[3], _ac_ = sc[2], _ad_ = [0, [0, caml_call1(Typing_Ident[5], id), id], _ac_];
-        return [0, sc[1], _ad_, _ab_];
+        var _af_ = sc[3], _ag_ = sc[2], _ah_ = [0, [0, caml_call1(Typing_Ident[5], id), id], _ag_];
+        return [0, sc[1], _ah_, _af_];
       }
       function enter_module(id, sc) {
-        var _$_ = sc[3], _aa_ = [0, [0, caml_call1(Typing_Ident[5], id), id], _$_];
-        return [0, sc[1], sc[2], _aa_];
+        var _ad_ = sc[3], _ae_ = [0, [0, caml_call1(Typing_Ident[5], id), id], _ad_];
+        return [0, sc[1], sc[2], _ae_];
       }
       function scope_value(id, sc) {
         try {
-          var _X_ = sc[1], _Y_ = caml_call1(Typing_Ident[5], id), _Z_ = caml_call2(Stdlib_List[49], _Y_, _X_);
-          return _Z_;
-        } catch (___) {
-          var _V_ = caml_wrap_exception2(___);
-          if (_V_ !== Stdlib[8])
-            throw caml_maybe_attach_backtrace2(_V_, 0);
-          var _W_ = caml_call1(Typing_Ident[5], id);
-          return caml_call1(error, caml_call2(Stdlib[28], cst_unbound_value, _W_));
+          var _$_ = sc[1], _aa_ = caml_call1(Typing_Ident[5], id), _ab_ = caml_call2(Stdlib_List[49], _aa_, _$_);
+          return _ab_;
+        } catch (_ac_) {
+          var _Y_ = caml_wrap_exception2(_ac_);
+          if (_Y_ !== Stdlib[8])
+            throw caml_maybe_attach_backtrace2(_Y_, 0);
+          var _Z_ = caml_call1(Typing_Ident[5], id), ___ = caml_call2(Stdlib[28], cst_unbound_value, _Z_);
+          return caml_call1(Typing_Report[5], ___);
         }
       }
       function scope_type(id, sc) {
         try {
-          var _R_ = sc[2], _S_ = caml_call1(Typing_Ident[5], id), _T_2 = caml_call2(Stdlib_List[49], _S_, _R_);
-          return _T_2;
-        } catch (_U_) {
-          var _P_ = caml_wrap_exception2(_U_);
-          if (_P_ !== Stdlib[8])
-            throw caml_maybe_attach_backtrace2(_P_, 0);
-          var _Q_ = caml_call1(Typing_Ident[5], id);
-          return caml_call1(error, caml_call2(Stdlib[28], cst_unbound_type, _Q_));
+          var _U_ = sc[2], _V_ = caml_call1(Typing_Ident[5], id), _W_ = caml_call2(Stdlib_List[49], _V_, _U_);
+          return _W_;
+        } catch (_X_) {
+          var _R_ = caml_wrap_exception2(_X_);
+          if (_R_ !== Stdlib[8])
+            throw caml_maybe_attach_backtrace2(_R_, 0);
+          var _S_ = caml_call1(Typing_Ident[5], id), _T_2 = caml_call2(Stdlib[28], cst_unbound_type, _S_);
+          return caml_call1(Typing_Report[5], _T_2);
         }
       }
       function scope_module(id, sc) {
         try {
-          var _L_ = sc[3], _M_ = caml_call1(Typing_Ident[5], id), _N_ = caml_call2(Stdlib_List[49], _M_, _L_);
-          return _N_;
-        } catch (_O_) {
-          var _J_ = caml_wrap_exception2(_O_);
-          if (_J_ !== Stdlib[8])
-            throw caml_maybe_attach_backtrace2(_J_, 0);
-          var _K_ = caml_call1(Typing_Ident[5], id);
-          return caml_call1(error, caml_call2(Stdlib[28], cst_unbound_module, _K_));
+          var _N_ = sc[3], _O_ = caml_call1(Typing_Ident[5], id), _P_ = caml_call2(Stdlib_List[49], _O_, _N_);
+          return _P_;
+        } catch (_Q_) {
+          var _K_ = caml_wrap_exception2(_Q_);
+          if (_K_ !== Stdlib[8])
+            throw caml_maybe_attach_backtrace2(_K_, 0);
+          var _L_ = caml_call1(Typing_Ident[5], id), _M_ = caml_call2(Stdlib[28], cst_unbound_module, _L_);
+          return caml_call1(Typing_Report[5], _M_);
         }
       }
       function scope_path(scope_ident, path, sc) {
@@ -45577,79 +45615,90 @@ var require_main_bc = __commonJS({
         var field = path[2], root = path[1];
         return [1, scope_path(scope_module, root, sc), field];
       }
-      function value_path(_H_, _I_) {
-        return scope_path(scope_value, _H_, _I_);
+      function value_path(_I_, _J_) {
+        return scope_path(scope_value, _I_, _J_);
       }
-      function type_path(_F_, _G_) {
-        return scope_path(scope_type, _F_, _G_);
+      function type_path(_G_, _H_) {
+        return scope_path(scope_type, _G_, _H_);
       }
-      function module_path(_D_, _E_) {
-        return scope_path(scope_module, _D_, _E_);
+      function module_path(_E_, _F_) {
+        return scope_path(scope_module, _E_, _F_);
       }
       function scope_term(sc, term) {
-        var match = term[1];
-        if (typeof match === "number")
-          var newterm = 0;
-        else
-          switch (match[0]) {
-            case 0:
-              var n = match[1], newterm = [0, n];
-              break;
-            case 1:
-              var path = match[1], newterm = [1, value_path(path, sc)];
-              break;
-            case 2:
-              var body = match[3], id = match[2], l = match[1], newterm = [2, l, id, scope_term(enter_value(id, sc), body)];
-              break;
-            case 3:
-              var t2 = match[2], t1 = match[1], _x_ = caml_call2(
-                Stdlib_List[20],
-                function(param) {
-                  var tm = param[2], l2 = param[1];
-                  return [0, l2, scope_term(sc, tm)];
-                },
-                t2
-              ), newterm = [3, scope_term(sc, t1), _x_];
-              break;
-            case 4:
-              var t2$0 = match[3], t1$0 = match[2], id$0 = match[1], _y_ = scope_term(enter_value(id$0[1], sc), t2$0), newterm = [4, id$0, scope_term(sc, t1$0), _y_];
-              break;
-            case 5:
-              var e2 = match[3], e1 = match[2], l$0 = match[1], _z_ = scope_term(sc, e2), newterm = [5, l$0, scope_term(sc, e1), _z_];
-              break;
-            case 6:
-              var l$1 = match[2], e = match[1], newterm = [6, scope_term(sc, e), l$1];
-              break;
-            case 7:
-              var e$0 = match[2], tag = match[1], newterm = [7, tag, scope_term(sc, e$0)];
-              break;
-            case 8:
-              var pat = match[3], cases = match[2], e$1 = match[1], _A_ = caml_call2(
-                Stdlib_Option[7],
-                function(param) {
-                  var e3 = param[2], var$0 = param[1];
-                  return [0, var$0, scope_term(enter_value(var$0[1], sc), e3)];
-                },
-                pat
-              ), _B_ = caml_call2(
-                Stdlib_List[20],
-                function(param) {
-                  var e3 = param[3], var$0 = param[2], tag2 = param[1], new_sc = enter_value(var$0[1], sc);
-                  return [0, tag2, var$0, scope_term(new_sc, e3)];
-                },
-                cases
-              ), newterm = [8, scope_term(sc, e$1), _B_, _A_];
-              break;
-            default:
-              var t2$1 = match[2], t1$1 = match[1], _C_ = caml_call2(
-                Stdlib_List[20],
-                function(param) {
-                  var tm = param[2], l2 = param[1];
-                  return [0, l2, scope_term(sc, tm)];
-                },
-                t2$1
-              ), newterm = [9, scope_term(sc, t1$1), _C_];
-          }
+        try {
+          var match = term[1];
+          if (typeof match === "number")
+            var _x_ = 0;
+          else
+            switch (match[0]) {
+              case 0:
+                var n = match[1], _x_ = [0, n];
+                break;
+              case 1:
+                var path = match[1], _x_ = [1, value_path(path, sc)];
+                break;
+              case 2:
+                var body = match[3], id = match[2], l = match[1], _x_ = [2, l, id, scope_term(enter_value(id, sc), body)];
+                break;
+              case 3:
+                var t2 = match[2], t1 = match[1], _y_ = caml_call2(
+                  Stdlib_List[20],
+                  function(param) {
+                    var tm = param[2], l2 = param[1];
+                    return [0, l2, scope_term(sc, tm)];
+                  },
+                  t2
+                ), _x_ = [3, scope_term(sc, t1), _y_];
+                break;
+              case 4:
+                var t2$0 = match[3], t1$0 = match[2], id$0 = match[1], _z_ = scope_term(enter_value(id$0[1], sc), t2$0), _x_ = [4, id$0, scope_term(sc, t1$0), _z_];
+                break;
+              case 5:
+                var e2 = match[3], e1 = match[2], l$0 = match[1], _A_ = scope_term(sc, e2), _x_ = [5, l$0, scope_term(sc, e1), _A_];
+                break;
+              case 6:
+                var l$1 = match[2], e = match[1], _x_ = [6, scope_term(sc, e), l$1];
+                break;
+              case 7:
+                var e$0 = match[2], tag = match[1], _x_ = [7, tag, scope_term(sc, e$0)];
+                break;
+              case 8:
+                var pat = match[3], cases = match[2], e$1 = match[1], _B_ = caml_call2(
+                  Stdlib_Option[7],
+                  function(param) {
+                    var e3 = param[2], var$0 = param[1];
+                    return [0, var$0, scope_term(enter_value(var$0[1], sc), e3)];
+                  },
+                  pat
+                ), _C_ = caml_call2(
+                  Stdlib_List[20],
+                  function(param) {
+                    var e3 = param[3], var$0 = param[2], tag2 = param[1], new_sc = enter_value(var$0[1], sc);
+                    return [0, tag2, var$0, scope_term(new_sc, e3)];
+                  },
+                  cases
+                ), _x_ = [8, scope_term(sc, e$1), _C_, _B_];
+                break;
+              default:
+                var t2$1 = match[2], t1$1 = match[1], _D_ = caml_call2(
+                  Stdlib_List[20],
+                  function(param) {
+                    var tm = param[2], l2 = param[1];
+                    return [0, l2, scope_term(sc, tm)];
+                  },
+                  t2$1
+                ), _x_ = [9, scope_term(sc, t1$1), _D_];
+            }
+          var newterm = _x_;
+        } catch (exn$0) {
+          var exn = caml_wrap_exception2(exn$0);
+          if (exn[1] !== Typing_Report[4])
+            throw caml_maybe_attach_backtrace2(exn, 0);
+          var s2 = exn[2];
+          caml_call1(Stdlib[46], s2);
+          caml_call2(Typing_Report[6], s2, term);
+          var newterm = term[1];
+        }
         return [0, newterm, term[2], term[3], term[4]];
       }
       function scope_simple_type(sc, param) {
@@ -45764,7 +45813,6 @@ var require_main_bc = __commonJS({
       var Typing_Scope = [
         0,
         empty,
-        error,
         enter_value,
         enter_type,
         enter_module,
@@ -45785,7 +45833,7 @@ var require_main_bc = __commonJS({
         scope_module$0,
         scope_structure
       ];
-      runtime.caml_register_global(9, Typing_Scope, "Typing__Scope");
+      runtime.caml_register_global(10, Typing_Scope, "Typing__Scope");
       return;
     })(globalThis);
     (function(globalThis2) {
@@ -45812,13 +45860,13 @@ var require_main_bc = __commonJS({
       function init_scope_env(param) {
         var init_scope = [0, Typing_Scope[1]], init_env = [0, Typing_Env[5]];
         function enter_type(id, decl) {
-          init_scope[1] = caml_call2(Typing_Scope[4], id, init_scope[1]);
+          init_scope[1] = caml_call2(Typing_Scope[3], id, init_scope[1]);
           init_env[1] = caml_call3(Typing_Env[7], id, decl, init_env[1]);
           return;
         }
         function enter_val(name, ty) {
           var id = caml_call1(Typing_Ident[4], name);
-          init_scope[1] = caml_call2(Typing_Scope[3], id, init_scope[1]);
+          init_scope[1] = caml_call2(Typing_Scope[2], id, init_scope[1]);
           init_env[1] = caml_call3(Typing_Env[6], id, ty, init_env[1]);
           return 0;
         }
@@ -45908,7 +45956,7 @@ var require_main_bc = __commonJS({
     })(globalThis);
     (function(globalThis2) {
       "use strict";
-      var runtime = globalThis2.jsoo_runtime, cst_does_not_exsit_on_empty = " does not exsit on empty", cst_Unkonwn_label$1 = "Unkonwn label", cst_erase$1 = "erase", cst_repeated_module_name$1 = "repeated module name", cst_repeated_type_name$1 = "repeated type name", cst_repeated_value_name$1 = "repeated value name", cst_typing_infer_ml = "typing/infer.ml", cst_unify = "unify: ", cst_unify_s_does_not_exsit_on_ = "unify: %s does not exsit on empty", caml_check_bound2 = runtime.caml_check_bound, caml_equal2 = runtime.caml_equal, caml_make_vect2 = runtime.caml_make_vect, caml_maybe_attach_backtrace2 = runtime.caml_maybe_attach_backtrace, caml_string_equal2 = runtime.caml_string_equal, caml_wrap_exception2 = runtime.caml_wrap_exception;
+      var runtime = globalThis2.jsoo_runtime, cst_does_not_exsit_on_empty = " does not exsit on empty", cst$0 = ", ", cst_Unkonwn_label$1 = "Unkonwn label", cst_erase$1 = "erase", cst_repeated_module_name$1 = "repeated module name", cst_repeated_type_name$1 = "repeated type name", cst_repeated_value_name$1 = "repeated value name", cst_type_constructor_mismatch_ = "type constructor mismatch in unification: ", cst_type_constructor_mismatch_$0 = "type constructor mismatch in unification: %s, %s", cst_typing_infer_ml = "typing/infer.ml", cst_unify = "unify: ", cst_unify_s_does_not_exsit_on_ = "unify: %s does not exsit on empty", caml_check_bound2 = runtime.caml_check_bound, caml_equal2 = runtime.caml_equal, caml_make_vect2 = runtime.caml_make_vect, caml_maybe_attach_backtrace2 = runtime.caml_maybe_attach_backtrace, caml_string_equal2 = runtime.caml_string_equal, caml_wrap_exception2 = runtime.caml_wrap_exception;
       function caml_call1(f, a0) {
         return (f.l >= 0 ? f.l : f.l = f.length) == 1 ? f(a0) : runtime.caml_call_gen(f, [a0]);
       }
@@ -45921,7 +45969,7 @@ var require_main_bc = __commonJS({
       function caml_call4(f, a0, a1, a2, a3) {
         return (f.l >= 0 ? f.l : f.l = f.length) == 4 ? f(a0, a1, a2, a3) : runtime.caml_call_gen(f, [a0, a1, a2, a3]);
       }
-      var global_data = runtime.caml_get_global_data(), cst = ", ", Typing_Types = global_data.Typing__Types, Stdlib_List = global_data.Stdlib__List, Stdlib = global_data.Stdlib, Typing_Path = global_data.Typing__Path, Stdlib_Printf = global_data.Stdlib__Printf, Parsing_Asttypes = global_data.Parsing__Asttypes, Assert_failure = global_data.Assert_failure, Typing_Env = global_data.Typing__Env, Typing_Predef = global_data.Typing__Predef, Stdlib_Array = global_data.Stdlib__Array, Typing_Typed = global_data.Typing__Typed, Match_failure = global_data.Match_failure, Typing_Subst = global_data.Typing__Subst, Typing_Ident = global_data.Typing__Ident, Stdlib_String = global_data.Stdlib__String;
+      var global_data = runtime.caml_get_global_data(), cst = cst$0, Typing_Types = global_data.Typing__Types, Stdlib_List = global_data.Stdlib__List, Stdlib = global_data.Stdlib, Typing_Path = global_data.Typing__Path, Typing_Report = global_data.Typing__Report, Stdlib_Printf = global_data.Stdlib__Printf, Parsing_Asttypes = global_data.Parsing__Asttypes, Assert_failure = global_data.Assert_failure, Typing_Env = global_data.Typing__Env, Typing_Predef = global_data.Typing__Predef, Stdlib_Array = global_data.Stdlib__Array, Typing_Typed = global_data.Typing__Typed, Match_failure = global_data.Match_failure, Typing_Subst = global_data.Typing__Subst, Typing_Ident = global_data.Typing__Ident, Stdlib_String = global_data.Stdlib__String;
       function subst_vars(subst, ty) {
         var tyvar = caml_call1(Typing_Types[24], ty);
         if (typeof tyvar === "number")
@@ -45930,17 +45978,17 @@ var require_main_bc = __commonJS({
           case 0:
             var var$0 = tyvar[1];
             try {
-              var _aX_ = caml_call2(Stdlib_List[51], var$0, subst);
-              return _aX_;
-            } catch (_a1_) {
-              var _aW_ = caml_wrap_exception2(_a1_);
-              if (_aW_ === Stdlib[8])
+              var _a6_ = caml_call2(Stdlib_List[51], var$0, subst);
+              return _a6_;
+            } catch (_a__) {
+              var _a5_ = caml_wrap_exception2(_a__);
+              if (_a5_ === Stdlib[8])
                 return tyvar;
-              throw caml_maybe_attach_backtrace2(_aW_, 0);
+              throw caml_maybe_attach_backtrace2(_a5_, 0);
             }
           case 1:
-            var t2 = tyvar[3], t1 = tyvar[2], label = tyvar[1], _aY_ = subst_vars(subst, t2);
-            return [1, label, subst_vars(subst, t1), _aY_];
+            var t2 = tyvar[3], t1 = tyvar[2], label = tyvar[1], _a7_ = subst_vars(subst, t2);
+            return [1, label, subst_vars(subst, t1), _a7_];
           case 2:
             var tl = tyvar[2], p = tyvar[1];
             return [
@@ -45948,15 +45996,15 @@ var require_main_bc = __commonJS({
               p,
               caml_call2(
                 Stdlib_List[20],
-                function(_a0_) {
-                  return subst_vars(subst, _a0_);
+                function(_a9_) {
+                  return subst_vars(subst, _a9_);
                 },
                 tl
               )
             ];
           case 3:
-            var rest = tyvar[3], t1$0 = tyvar[2], label$0 = tyvar[1], _aZ_ = subst_vars(subst, rest);
-            return [3, label$0, subst_vars(subst, t1$0), _aZ_];
+            var rest = tyvar[3], t1$0 = tyvar[2], label$0 = tyvar[1], _a8_ = subst_vars(subst, rest);
+            return [3, label$0, subst_vars(subst, t1$0), _a8_];
           case 4:
             var row = tyvar[1];
             return [4, subst_vars(subst, row)];
@@ -45965,25 +46013,33 @@ var require_main_bc = __commonJS({
             return [5, subst_vars(subst, row$0)];
         }
       }
-      var Cannot_expand = [248, "Typing.Infer.Cannot_expand", runtime.caml_fresh_oo_id(0)], cst_cycle_in_unification = "cycle in unification", cst_type_constructor_mismatch_ = "type constructor mismatch in unification", _a_ = [
+      var Cannot_expand = [248, "Typing.Infer.Cannot_expand", runtime.caml_fresh_oo_id(0)], cst_cycle_in_unification = "cycle in unification", _a_ = [
         0,
-        [11, cst_unify, [2, 0, [11, cst_does_not_exsit_on_empty, 0]]],
-        cst_unify_s_does_not_exsit_on_
+        [11, cst_type_constructor_mismatch_, [2, 0, [11, cst$0, [2, 0, 0]]]],
+        cst_type_constructor_mismatch_$0
       ], _b_ = [
         0,
-        [11, "label1: ", [2, 0, [11, ", label2: ", [2, 0, 0]]]],
-        "label1: %s, label2: %s"
+        [11, cst_type_constructor_mismatch_, [2, 0, [11, cst$0, [2, 0, 0]]]],
+        cst_type_constructor_mismatch_$0
       ], _c_ = [
         0,
         [11, cst_unify, [2, 0, [11, cst_does_not_exsit_on_empty, 0]]],
         cst_unify_s_does_not_exsit_on_
-      ], cst_not_a_row = "not a row", _d_ = [0, cst_typing_infer_ml, 151, 6], _e_ = [4, 0], cst_Unkonwn_label = cst_Unkonwn_label$1, cst_erase = cst_erase$1, _f_ = [0, cst_typing_infer_ml, 314, 17], cst_Unkonwn_label$0 = cst_Unkonwn_label$1, cst_erase$0 = cst_erase$1, cst_Find_a_nolabel_prop = "Find a nolabel prop", cst_is_missing = " is missing", cst_Element_type_should_be_kno = "Element type should be known", _g_ = [0, cst_typing_infer_ml, 363, 2], cst_free_type_variable = "free type variable", cst_arity_error = "arity error", cst_module_type_mismatch = "module type mismatch", cst_unmatched_signature_compon = "unmatched signature component", cst_value_components_do_not_ma = "value components do not match", _h_ = [0, cst_typing_infer_ml, 451, 36], cst_type_components_do_not_mat = "type components do not match", cst_repeated_value_name = cst_repeated_value_name$1, cst_repeated_type_name = cst_repeated_type_name$1, cst_kind_mismatch_in_manifest_ = "kind mismatch in manifest type specification", cst_repeated_module_name = cst_repeated_module_name$1, cst_application_of_a_non_funct = "application of a non-functor", cst_application_of_a_functor_t = "application of a functor to a non-path", cst_repeated_value_name$0 = cst_repeated_value_name$1, cst_repeated_type_name$0 = cst_repeated_type_name$1, cst_kind_mismatch_in_type_defi = "kind mismatch in type definition", cst_repeated_module_name$0 = cst_repeated_module_name$1;
+      ], _d_ = [
+        0,
+        [11, "label1: ", [2, 0, [11, ", label2: ", [2, 0, 0]]]],
+        "label1: %s, label2: %s"
+      ], _e_ = [
+        0,
+        [11, cst_unify, [2, 0, [11, cst_does_not_exsit_on_empty, 0]]],
+        cst_unify_s_does_not_exsit_on_
+      ], cst_not_a_row = "not a row", _f_ = [0, cst_typing_infer_ml, 160, 6], _g_ = [4, 0], cst_Unkonwn_label = cst_Unkonwn_label$1, cst_erase = cst_erase$1, _h_ = [0, cst_typing_infer_ml, 323, 17], cst_Unkonwn_label$0 = cst_Unkonwn_label$1, cst_erase$0 = cst_erase$1, cst_Find_a_nolabel_prop = "Find a nolabel prop", cst_is_missing = " is missing", cst_Element_type_should_be_kno = "Element type should be known", _i_ = [0, cst_typing_infer_ml, 372, 2], cst_free_type_variable = "free type variable", cst_arity_error = "arity error", cst_Type_error = "Type error", cst_module_type_mismatch = "module type mismatch", cst_unmatched_signature_compon = "unmatched signature component", cst_value_components_do_not_ma = "value components do not match", _j_ = [0, cst_typing_infer_ml, 478, 36], cst_type_components_do_not_mat = "type components do not match", cst_repeated_value_name = cst_repeated_value_name$1, cst_repeated_type_name = cst_repeated_type_name$1, cst_kind_mismatch_in_manifest_ = "kind mismatch in manifest type specification", cst_repeated_module_name = cst_repeated_module_name$1, cst_application_of_a_non_funct = "application of a non-functor", cst_application_of_a_functor_t = "application of a functor to a non-path", cst_repeated_value_name$0 = cst_repeated_value_name$1, cst_repeated_type_name$0 = cst_repeated_type_name$1, cst_kind_mismatch_in_type_defi = "kind mismatch in type definition", cst_repeated_module_name$0 = cst_repeated_module_name$1;
       function expand_manifest(env, path, args) {
         var match = caml_call2(Typing_Env[15], path, env)[2];
         if (!match)
           throw caml_maybe_attach_backtrace2(Cannot_expand, 1);
-        var def = match[1], _aV_ = def[2];
-        return subst_vars(caml_call2(Stdlib_List[58], def[1], args), _aV_);
+        var def = match[1], _a4_ = def[2];
+        return subst_vars(caml_call2(Stdlib_List[58], def[1], args), _a4_);
       }
       function arg_label_match(label1, label2) {
         if (typeof label1 === "number") {
@@ -46007,44 +46063,44 @@ var require_main_bc = __commonJS({
             if (caml_call2(Typing_Path[3], path1, path2))
               return [0, repr1, repr2];
             try {
-              var _aQ_ = scrape_types(env, expand_manifest(env, path1, args1), repr2);
-              return _aQ_;
-            } catch (_aT_) {
-              var _aN_ = caml_wrap_exception2(_aT_);
-              if (_aN_ !== Cannot_expand)
-                throw caml_maybe_attach_backtrace2(_aN_, 0);
+              var _aZ_ = scrape_types(env, expand_manifest(env, path1, args1), repr2);
+              return _aZ_;
+            } catch (_a2_) {
+              var _aW_ = caml_wrap_exception2(_a2_);
+              if (_aW_ !== Cannot_expand)
+                throw caml_maybe_attach_backtrace2(_aW_, 0);
               try {
-                var _aP_ = scrape_types(env, repr1, expand_manifest(env, path2, args2));
-                return _aP_;
-              } catch (_aU_) {
-                var _aO_ = caml_wrap_exception2(_aU_);
-                if (_aO_ === Cannot_expand)
+                var _aY_ = scrape_types(env, repr1, expand_manifest(env, path2, args2));
+                return _aY_;
+              } catch (_a3_) {
+                var _aX_ = caml_wrap_exception2(_a3_);
+                if (_aX_ === Cannot_expand)
                   return [0, repr1, repr2];
-                throw caml_maybe_attach_backtrace2(_aO_, 0);
+                throw caml_maybe_attach_backtrace2(_aX_, 0);
               }
             }
           }
           var args$0 = repr1[2];
           try {
-            var _aM_ = scrape_types(env, expand_manifest(env, path1, args$0), repr2);
-            return _aM_;
-          } catch (_aS_) {
-            var _aL_ = caml_wrap_exception2(_aS_);
-            if (_aL_ === Cannot_expand)
+            var _aV_ = scrape_types(env, expand_manifest(env, path1, args$0), repr2);
+            return _aV_;
+          } catch (_a1_) {
+            var _aU_ = caml_wrap_exception2(_a1_);
+            if (_aU_ === Cannot_expand)
               return [0, repr1, repr2];
-            throw caml_maybe_attach_backtrace2(_aL_, 0);
+            throw caml_maybe_attach_backtrace2(_aU_, 0);
           }
         }
         if (typeof repr2 !== "number" && 2 === repr2[0]) {
           var args = repr2[2], path = repr2[1];
           try {
-            var _aK_ = scrape_types(env, repr1, expand_manifest(env, path, args));
-            return _aK_;
-          } catch (_aR_) {
-            var _aJ_ = caml_wrap_exception2(_aR_);
-            if (_aJ_ === Cannot_expand)
+            var _aT_ = scrape_types(env, repr1, expand_manifest(env, path, args));
+            return _aT_;
+          } catch (_a0_) {
+            var _aS_ = caml_wrap_exception2(_a0_);
+            if (_aS_ === Cannot_expand)
               return [0, repr1, repr2];
-            throw caml_maybe_attach_backtrace2(_aJ_, 0);
+            throw caml_maybe_attach_backtrace2(_aS_, 0);
           }
         }
         return [0, repr1, repr2];
@@ -46057,8 +46113,10 @@ var require_main_bc = __commonJS({
             return 0;
           switch (match[0]) {
             case 0:
-              var var$1 = match[1], _aH_ = var$0 === var$1 ? 1 : 0;
-              return _aH_ ? caml_call1(Stdlib[2], cst_cycle_in_unification) : _aH_;
+              var var$1 = match[1], _aQ_ = var$0 === var$1 ? 1 : 0;
+              if (_aQ_)
+                throw caml_maybe_attach_backtrace2([0, Typing_Report[4], cst_cycle_in_unification], 1);
+              return _aQ_;
             case 1:
               var t2 = match[3], t1 = match[2];
               occur_check(var$0, t1);
@@ -46068,8 +46126,8 @@ var require_main_bc = __commonJS({
               var tl = match[2];
               return caml_call2(
                 Stdlib_List[18],
-                function(_aI_) {
-                  return occur_check(var$0, _aI_);
+                function(_aR_) {
+                  return occur_check(var$0, _aR_);
                 },
                 tl
               );
@@ -46094,8 +46152,8 @@ var require_main_bc = __commonJS({
             return 0;
           switch (match[0]) {
             case 0:
-              var v = match[1], _aE_ = level_max < v[2] ? 1 : 0, _aF_ = _aE_ ? (v[2] = level_max, 0) : _aE_;
-              return _aF_;
+              var v = match[1], _aN_ = level_max < v[2] ? 1 : 0, _aO_ = _aN_ ? (v[2] = level_max, 0) : _aN_;
+              return _aO_;
             case 1:
               var t2 = match[3], t1 = match[2];
               update_levels(level_max, t1);
@@ -46105,8 +46163,8 @@ var require_main_bc = __commonJS({
               var tl = match[2];
               return caml_call2(
                 Stdlib_List[18],
-                function(_aG_) {
-                  return update_levels(level_max, _aG_);
+                function(_aP_) {
+                  return update_levels(level_max, _aP_);
                 },
                 tl
               );
@@ -46126,6 +46184,8 @@ var require_main_bc = __commonJS({
       function unify(env, t1, t2) {
         var t1$0 = t1, t2$0 = t2;
         for (; ; ) {
+          var _ay_ = caml_call1(Typing_Types[2], t2$0), _az_ = caml_call1(Typing_Types[2], t1$0), _aA_ = caml_call3(Stdlib_Printf[4], _a_, _az_, _ay_);
+          caml_call1(Stdlib[46], _aA_);
           var match = scrape_types(env, t1$0, t2$0), r1 = match[1], r2 = match[2];
           if (r1 === r2)
             return 0;
@@ -46133,13 +46193,13 @@ var require_main_bc = __commonJS({
             b: {
               c: {
                 if (typeof r1 === "number") {
-                  var _av_ = match[2];
-                  if (typeof _av_ !== "number")
-                    switch (_av_[0]) {
+                  var _aB_ = match[2];
+                  if (typeof _aB_ !== "number")
+                    switch (_aB_[0]) {
                       case 0:
                         break b;
                       case 3:
-                        var r = _av_, label = _av_[1];
+                        var r = _aB_, label = _aB_[1];
                         break c;
                     }
                   break a;
@@ -46160,8 +46220,8 @@ var require_main_bc = __commonJS({
                         case 1:
                           var t22 = match$0[3], t21 = match$0[2], arg_label2 = match$0[1];
                           if (1 - arg_label_match(arg_label1, arg_label2)) {
-                            var _ay_ = caml_call1(Parsing_Asttypes[2], arg_label2), _az_ = caml_call1(Parsing_Asttypes[2], arg_label1), _aA_ = caml_call3(Stdlib_Printf[4], _b_, _az_, _ay_);
-                            caml_call1(Stdlib[2], _aA_);
+                            var _aH_ = caml_call1(Parsing_Asttypes[2], arg_label2), _aI_ = caml_call1(Parsing_Asttypes[2], arg_label1), _aJ_ = caml_call3(Stdlib_Printf[4], _d_, _aI_, _aH_);
+                            throw caml_maybe_attach_backtrace2([0, Typing_Report[4], _aJ_], 1);
                           }
                           unify(env, t11, t21);
                           var t1$0 = t12, t2$0 = t22;
@@ -46179,8 +46239,8 @@ var require_main_bc = __commonJS({
                           if (caml_equal2(path1, path2))
                             return caml_call3(
                               Stdlib_List[28],
-                              function(_aC_, _aD_) {
-                                return unify(env, _aC_, _aD_);
+                              function(_aL_, _aM_) {
+                                return unify(env, _aL_, _aM_);
                               },
                               args1,
                               args2
@@ -46199,8 +46259,8 @@ var require_main_bc = __commonJS({
                             var row$0 = row;
                             for (; ; ) {
                               if (typeof row$0 === "number") {
-                                var _aB_ = caml_call2(Stdlib_Printf[4], _c_, label12);
-                                return caml_call1(Stdlib[2], _aB_);
+                                var _aK_ = caml_call2(Stdlib_Printf[4], _e_, label12);
+                                return caml_call1(Typing_Report[5], _aK_);
                               }
                               switch (row$0[0]) {
                                 case 0:
@@ -46223,7 +46283,7 @@ var require_main_bc = __commonJS({
                                   var rest$0 = row$0[3], t2$02 = row$0[2];
                                   return [3, label2, t2$02, rewrite_row$0(rest$0, label12, t13)];
                                 default:
-                                  return caml_call1(Stdlib[2], cst_not_a_row);
+                                  return caml_call1(Typing_Report[5], cst_not_a_row);
                               }
                             }
                           };
@@ -46259,10 +46319,10 @@ var require_main_bc = __commonJS({
                     break a;
                 }
               }
-              var _aw_ = caml_call1(Typing_Types[2], r);
-              caml_call1(Stdlib[46], _aw_);
-              var _ax_ = caml_call2(Stdlib_Printf[4], _a_, label);
-              return caml_call1(Stdlib[2], _ax_);
+              var _aF_ = caml_call1(Typing_Types[2], r);
+              caml_call1(Stdlib[46], _aF_);
+              var _aG_ = caml_call2(Stdlib_Printf[4], _c_, label);
+              return caml_call1(Typing_Report[5], _aG_);
             }
             var v = match[2][1];
             occur_check(v, r1);
@@ -46270,14 +46330,15 @@ var require_main_bc = __commonJS({
             v[1] = [0, r1];
             return 0;
           }
-          return caml_call1(Stdlib[2], cst_type_constructor_mismatch_);
+          var ty2 = match[2], _aC_ = caml_call1(Typing_Types[2], ty2), _aD_ = caml_call1(Typing_Types[2], r1), _aE_ = caml_call3(Stdlib_Printf[4], _b_, _aD_, _aC_);
+          return caml_call1(Typing_Report[5], _aE_);
         }
       }
       function instance(vty) {
         var vars = vty[1];
         if (!vars)
           return vty[2];
-        var _au_ = vty[2];
+        var _ax_ = vty[2];
         return subst_vars(
           caml_call2(
             Stdlib_List[20],
@@ -46286,7 +46347,7 @@ var require_main_bc = __commonJS({
             },
             vars
           ),
-          _au_
+          _ax_
         );
       }
       function flatten_arrow(arrow) {
@@ -46313,14 +46374,14 @@ var require_main_bc = __commonJS({
             var rest$0 = var$0[3], t = var$0[2];
             return [3, label1, t, row_remove_label(rest$0, label)];
         }
-        var _at_ = caml_call1(Typing_Types[2], row);
-        caml_call1(Stdlib[46], _at_);
-        throw caml_maybe_attach_backtrace2([0, Assert_failure, _d_], 1);
+        var _aw_ = caml_call1(Typing_Types[2], row);
+        caml_call1(Stdlib[46], _aw_);
+        throw caml_maybe_attach_backtrace2([0, Assert_failure, _f_], 1);
       }
       function infer_type(env, term) {
         var match = term[1];
         if (typeof match === "number")
-          var ty = _e_;
+          var ty = _g_;
         else
           switch (match[0]) {
             case 0:
@@ -46330,8 +46391,8 @@ var require_main_bc = __commonJS({
               var path = match[1], ty = instance(caml_call2(Typing_Env[14], path, env));
               break;
             case 2:
-              var body = match[3], arg_label = match[1], param = match[2], type_param = caml_call1(Typing_Types[29], 0), _T_2 = caml_call1(Typing_Types[2], type_param);
-              caml_call1(Stdlib[46], _T_2);
+              var body = match[3], arg_label = match[1], param = match[2], type_param = caml_call1(Typing_Types[29], 0), _W_ = caml_call1(Typing_Types[2], type_param);
+              caml_call1(Stdlib[46], _W_);
               a: {
                 if (typeof arg_label !== "number" && 1 === arg_label[0]) {
                   var type_param$0 = caml_call1(Typing_Predef[9], type_param);
@@ -46339,7 +46400,7 @@ var require_main_bc = __commonJS({
                 }
                 var type_param$0 = type_param;
               }
-              var _U_ = caml_call1(Typing_Types[30], type_param$0), type_body = infer_type(caml_call3(Typing_Env[6], param, _U_, env), body), ty = caml_call3(Typing_Predef[1], arg_label, type_param, type_body[3]);
+              var _X_ = caml_call1(Typing_Types[30], type_param$0), type_body = infer_type(caml_call3(Typing_Env[6], param, _X_, env), body), ty = caml_call3(Typing_Predef[1], arg_label, type_param, type_body[3]);
               break;
             case 3:
               var args = match[2], funct = match[1], type_funct = infer_type(env, funct), match$0 = flatten_arrow(type_funct[3]), ret_ty = match$0[2], args_tys = match$0[1];
@@ -46355,10 +46416,9 @@ var require_main_bc = __commonJS({
                     type_result
                   );
                   unify(env, type_funct[3], type_f);
-                  var _X_ = type_result;
+                  var ___ = type_result;
                   break a;
                 }
-                unify(env, ret_ty, Typing_Predef[12]);
                 var n = caml_call1(Stdlib_List[1], args_tys), sigma = caml_make_vect2(caml_call1(Stdlib_List[1], args_tys), -1);
                 caml_call2(
                   Stdlib_List[19],
@@ -46366,7 +46426,7 @@ var require_main_bc = __commonJS({
                     var expr = param2[2], label1 = param2[1], l = args_tys, i2 = 0;
                     for (; ; ) {
                       if (!l)
-                        return caml_call1(Stdlib[2], cst_Unkonwn_label);
+                        return caml_call1(Typing_Report[5], cst_Unkonwn_label);
                       var rest2 = l[2], match2 = l[1], ty2 = match2[2], label2 = match2[1];
                       if (arg_label_match(label1, label2) && -1 === caml_check_bound2(sigma, i2)[1 + i2]) {
                         unify(env, ty2, infer_type(env, expr)[3]);
@@ -46386,38 +46446,38 @@ var require_main_bc = __commonJS({
                     caml_check_bound2(sigma, i)[1 + i] = pos;
                   var pos$0 = pos + 1 | 0, i$0 = i + 1 | 0, i = i$0, pos = pos$0;
                 }
-                var sigma$0 = caml_call1(Stdlib_Array[9], sigma), _V_ = caml_call2(
+                var sigma$0 = caml_call1(Stdlib_Array[9], sigma), _Y_ = caml_call2(
                   Stdlib_List[46],
                   function(i2, pos2) {
-                    var _an_ = caml_call1(Stdlib_List[1], args) <= pos2 ? 1 : 0;
-                    if (!_an_)
-                      return _an_;
-                    var _ao_ = caml_call2(Stdlib_List[11], n, function(x2) {
+                    var _aq_ = caml_call1(Stdlib_List[1], args) <= pos2 ? 1 : 0;
+                    if (!_aq_)
+                      return _aq_;
+                    var _ar_ = caml_call2(Stdlib_List[11], n, function(x2) {
                       return x2;
                     });
                     return caml_call2(
                       Stdlib_List[34],
                       function(j) {
-                        var _ap_ = i2 < j ? 1 : 0;
-                        if (_ap_) {
-                          var _aq_ = 0 === caml_call2(Stdlib_List[8], args_tys, j)[1] ? 1 : 0;
-                          if (_aq_)
-                            var _ar_ = caml_call1(Stdlib_List[1], args), _as_ = caml_call2(Stdlib_List[8], sigma$0, j) < _ar_ ? 1 : 0;
+                        var _as_ = i2 < j ? 1 : 0;
+                        if (_as_) {
+                          var _at_ = 0 === caml_call2(Stdlib_List[8], args_tys, j)[1] ? 1 : 0;
+                          if (_at_)
+                            var _au_ = caml_call1(Stdlib_List[1], args), _av_ = caml_call2(Stdlib_List[8], sigma$0, j) < _au_ ? 1 : 0;
                           else
-                            var _as_ = _aq_;
+                            var _av_ = _at_;
                         } else
-                          var _as_ = _ap_;
-                        return _as_;
+                          var _av_ = _as_;
+                        return _av_;
                       },
-                      _ao_
+                      _ar_
                     );
                   },
                   sigma$0
-                ), k = caml_call1(Stdlib_List[1], _V_), extra = caml_call2(
+                ), k = caml_call1(Stdlib_List[1], _Y_), extra = caml_call2(
                   Stdlib_List[46],
                   function(i2, param2) {
-                    var _am_ = caml_call1(Stdlib_List[1], args);
-                    return _am_ <= caml_call2(Stdlib_List[8], sigma$0, i2) ? 1 : 0;
+                    var _ap_ = caml_call1(Stdlib_List[1], args);
+                    return _ap_ <= caml_call2(Stdlib_List[8], sigma$0, i2) ? 1 : 0;
                   },
                   args_tys
                 ), erase = function(ty2, k2) {
@@ -46426,33 +46486,33 @@ var require_main_bc = __commonJS({
                     if (0 === k$02)
                       return ty$0;
                     if (!ty$0)
-                      return caml_call1(Stdlib[2], cst_erase);
-                    var t = ty$0[1], _al_ = t[1];
-                    if (typeof _al_ !== "number" && 0 !== _al_[0]) {
+                      return caml_call1(Typing_Report[5], cst_erase);
+                    var t = ty$0[1], _ao_ = t[1];
+                    if (typeof _ao_ !== "number" && 0 !== _ao_[0]) {
                       var rest$0 = ty$0[2], k$1 = k$02 - 1 | 0, ty$0 = rest$0, k$02 = k$1;
                       continue;
                     }
                     var rest2 = ty$0[2];
                     return [0, t, erase(rest2, k$02 - 1 | 0)];
                   }
-                }, _W_ = erase(extra, k), _X_ = caml_call3(
+                }, _Z_ = erase(extra, k), ___ = caml_call3(
                   Stdlib_List[27],
                   function(param2, t2) {
                     var t1 = param2[2], label2 = param2[1];
                     return [1, label2, t1, t2];
                   },
-                  _W_,
+                  _Z_,
                   ret_ty
                 );
               }
-              var ty = _X_;
+              var ty = ___;
               break;
             case 4:
               var body$0 = match[3], arg = match[2], ident = match[1];
               caml_call1(Typing_Types[26], 0);
               var type_arg = infer_type(env, arg);
               caml_call1(Typing_Types[27], 0);
-              var _Y_ = caml_call1(Typing_Typed[5], type_arg[3]), ty = infer_type(caml_call3(Typing_Env[6], ident[1], _Y_, env), body$0)[3];
+              var _$_ = caml_call1(Typing_Typed[5], type_arg[3]), ty = infer_type(caml_call3(Typing_Env[6], ident[1], _$_, env), body$0)[3];
               break;
             case 5:
               var e2 = match[3], e1 = match[2], label = match[1], ty1 = infer_type(env, e1)[3], match$1 = infer_type(env, e2)[3];
@@ -46462,14 +46522,14 @@ var require_main_bc = __commonJS({
                 var ret = [4, [3, label[1], ty1, rest]], ty = ret;
                 break;
               }
-              throw caml_maybe_attach_backtrace2([0, Assert_failure, _f_], 1);
+              throw caml_maybe_attach_backtrace2([0, Assert_failure, _h_], 1);
             case 6:
-              var label$0 = match[2], e = match[1], field_ty = caml_call1(Typing_Types[29], 0), _Z_ = caml_call1(Typing_Types[29], 0), e_ty = [4, [3, label$0[1], field_ty, _Z_]];
+              var label$0 = match[2], e = match[1], field_ty = caml_call1(Typing_Types[29], 0), _aa_ = caml_call1(Typing_Types[29], 0), e_ty = [4, [3, label$0[1], field_ty, _aa_]];
               unify(env, e_ty, infer_type(env, e)[3]);
               var ty = field_ty;
               break;
             case 7:
-              var e$0 = match[2], tag = match[1], field_ty$0 = infer_type(env, e$0), ___ = caml_call1(Typing_Types[29], 0), ty = [5, [3, tag, field_ty$0[3], ___]];
+              var e$0 = match[2], tag = match[1], field_ty$0 = infer_type(env, e$0), _ab_ = caml_call1(Typing_Types[29], 0), ty = [5, [3, tag, field_ty$0[3], _ab_]];
               break;
             case 8:
               var pat = match[3], cases = match[2], e$1 = match[1], ret$0 = caml_call1(Typing_Types[29], 0), var_tys = caml_call2(
@@ -46482,14 +46542,14 @@ var require_main_bc = __commonJS({
               caml_call3(
                 Stdlib_List[28],
                 function(param2, vat_ty) {
-                  var e3 = param2[3], var$02 = param2[2], _ak_ = caml_call1(Typing_Types[30], vat_ty), new_env2 = caml_call3(Typing_Env[6], var$02[1], _ak_, env), e_ty2 = infer_type(new_env2, e3);
+                  var e3 = param2[3], var$02 = param2[2], _an_ = caml_call1(Typing_Types[30], vat_ty), new_env2 = caml_call3(Typing_Env[6], var$02[1], _an_, env), e_ty2 = infer_type(new_env2, e3);
                   return unify(env, e_ty2[3], ret$0);
                 },
                 cases,
                 var_tys
               );
               if (pat) {
-                var match$2 = pat[1], e$2 = match$2[2], var$0 = match$2[1], _$_ = caml_call1(Typing_Types[30], [5, rest_row]), new_env = caml_call3(Typing_Env[6], var$0[1], _$_, env), e_ty$0 = infer_type(new_env, e$2);
+                var match$2 = pat[1], e$2 = match$2[2], var$0 = match$2[1], _ac_ = caml_call1(Typing_Types[30], [5, rest_row]), new_env = caml_call3(Typing_Env[6], var$0[1], _ac_, env), e_ty$0 = infer_type(new_env, e$2);
                 unify(env, e_ty$0[3], ret$0);
               } else
                 unify(env, rest_row, 0);
@@ -46513,9 +46573,10 @@ var require_main_bc = __commonJS({
               var args$0 = match[2], funct$0 = match[1], type_funct$0 = infer_type(env, funct$0), match$3 = flatten_arrow(type_funct$0[3]), ret_ty$0 = match$3[2], args_tys$0 = match$3[1];
               a: {
                 if (typeof ret_ty$0 !== "number" && 0 === ret_ty$0[0]) {
-                  var ret_ty$1 = caml_call1(Stdlib[2], cst_Element_type_should_be_kno);
+                  var ret_ty$1 = caml_call1(Typing_Report[5], cst_Element_type_should_be_kno);
                   break a;
                 }
+                unify(env, ret_ty$0, Typing_Predef[12]);
                 var n$0 = caml_call1(Stdlib_List[1], args_tys$0), sigma$1 = caml_make_vect2(caml_call1(Stdlib_List[1], args_tys$0), -1);
                 caml_call2(
                   Stdlib_List[19],
@@ -46523,7 +46584,7 @@ var require_main_bc = __commonJS({
                     var expr = param2[2], label1 = param2[1], l = args_tys$0, i2 = 0;
                     for (; ; ) {
                       if (!l)
-                        return caml_call1(Stdlib[2], cst_Unkonwn_label$0);
+                        return caml_call1(Typing_Report[5], cst_Unkonwn_label$0);
                       var rest2 = l[2], match2 = l[1], ty2 = match2[2], label2 = match2[1];
                       if (arg_label_match(label1, label2) && -1 === caml_check_bound2(sigma$1, i2)[1 + i2]) {
                         unify(env, ty2, infer_type(env, expr)[3]);
@@ -46543,38 +46604,38 @@ var require_main_bc = __commonJS({
                     caml_check_bound2(sigma$1, i$1)[1 + i$1] = pos$2;
                   var pos$3 = pos$2 + 1 | 0, i$2 = i$1 + 1 | 0, i$1 = i$2, pos$2 = pos$3;
                 }
-                var sigma$2 = caml_call1(Stdlib_Array[9], sigma$1), _aa_ = caml_call2(
+                var sigma$2 = caml_call1(Stdlib_Array[9], sigma$1), _ad_ = caml_call2(
                   Stdlib_List[46],
                   function(i2, pos2) {
-                    var _ae_ = caml_call1(Stdlib_List[1], args$0) <= pos2 ? 1 : 0;
-                    if (!_ae_)
-                      return _ae_;
-                    var _af_ = caml_call2(Stdlib_List[11], n$0, function(x2) {
+                    var _ah_ = caml_call1(Stdlib_List[1], args$0) <= pos2 ? 1 : 0;
+                    if (!_ah_)
+                      return _ah_;
+                    var _ai_ = caml_call2(Stdlib_List[11], n$0, function(x2) {
                       return x2;
                     });
                     return caml_call2(
                       Stdlib_List[34],
                       function(j) {
-                        var _ag_ = i2 < j ? 1 : 0;
-                        if (_ag_) {
-                          var _ah_ = 0 === caml_call2(Stdlib_List[8], args_tys$0, j)[1] ? 1 : 0;
-                          if (_ah_)
-                            var _ai_ = caml_call1(Stdlib_List[1], args$0), _aj_ = caml_call2(Stdlib_List[8], sigma$2, j) < _ai_ ? 1 : 0;
+                        var _aj_ = i2 < j ? 1 : 0;
+                        if (_aj_) {
+                          var _ak_ = 0 === caml_call2(Stdlib_List[8], args_tys$0, j)[1] ? 1 : 0;
+                          if (_ak_)
+                            var _al_ = caml_call1(Stdlib_List[1], args$0), _am_ = caml_call2(Stdlib_List[8], sigma$2, j) < _al_ ? 1 : 0;
                           else
-                            var _aj_ = _ah_;
+                            var _am_ = _ak_;
                         } else
-                          var _aj_ = _ag_;
-                        return _aj_;
+                          var _am_ = _aj_;
+                        return _am_;
                       },
-                      _af_
+                      _ai_
                     );
                   },
                   sigma$2
-                ), k$0 = caml_call1(Stdlib_List[1], _aa_), extra$0 = caml_call2(
+                ), k$0 = caml_call1(Stdlib_List[1], _ad_), extra$0 = caml_call2(
                   Stdlib_List[46],
                   function(i2, param2) {
-                    var _ad_ = caml_call1(Stdlib_List[1], args$0);
-                    return _ad_ <= caml_call2(Stdlib_List[8], sigma$2, i2) ? 1 : 0;
+                    var _ag_ = caml_call1(Stdlib_List[1], args$0);
+                    return _ag_ <= caml_call2(Stdlib_List[8], sigma$2, i2) ? 1 : 0;
                   },
                   args_tys$0
                 ), erase$0 = function(ty2, k2) {
@@ -46583,9 +46644,9 @@ var require_main_bc = __commonJS({
                     if (0 === k$02)
                       return ty$0;
                     if (!ty$0)
-                      return caml_call1(Stdlib[2], cst_erase$0);
-                    var t = ty$0[1], _ac_ = t[1];
-                    if (typeof _ac_ !== "number" && 0 !== _ac_[0]) {
+                      return caml_call1(Typing_Report[5], cst_erase$0);
+                    var t = ty$0[1], _af_ = t[1];
+                    if (typeof _af_ !== "number" && 0 !== _af_[0]) {
                       var rest$0 = ty$0[2], k$1 = k$02 - 1 | 0, ty$0 = rest$0, k$02 = k$1;
                       continue;
                     }
@@ -46598,11 +46659,11 @@ var require_main_bc = __commonJS({
                   function(param2) {
                     var l = param2[1];
                     if (typeof l === "number")
-                      return caml_call1(Stdlib[2], cst_Find_a_nolabel_prop);
+                      return caml_call1(Typing_Report[5], cst_Find_a_nolabel_prop);
                     if (0 !== l[0])
                       return 0;
-                    var s2 = l[1], _ab_ = caml_call2(Stdlib[28], s2, cst_is_missing);
-                    return caml_call1(Stdlib[2], _ab_);
+                    var s2 = l[1], _ae_ = caml_call2(Stdlib[28], s2, cst_is_missing);
+                    return caml_call1(Typing_Report[5], _ae_);
                   },
                   d
                 );
@@ -46621,8 +46682,8 @@ var require_main_bc = __commonJS({
           if (typeof match !== "number")
             switch (match[0]) {
               case 0:
-                var v = match[1], _R_ = 1 - caml_call2(Stdlib_List[38], v, params);
-                return _R_ ? caml_call1(Stdlib[2], cst_free_type_variable) : _R_;
+                var v = match[1], _U_ = 1 - caml_call2(Stdlib_List[38], v, params);
+                return _U_ ? caml_call1(Typing_Report[5], cst_free_type_variable) : _U_;
               case 1:
                 var t2 = match[3], t1 = match[2];
                 check_simple_type(env, params, t1);
@@ -46631,21 +46692,21 @@ var require_main_bc = __commonJS({
               case 2:
                 var tl = match[2], path = match[1], arity = caml_call2(Typing_Env[15], path, env)[1][1];
                 if (caml_call1(Stdlib_List[1], tl) !== arity)
-                  caml_call1(Stdlib[2], cst_arity_error);
+                  caml_call1(Typing_Report[5], cst_arity_error);
                 return caml_call2(
                   Stdlib_List[18],
-                  function(_S_) {
-                    return check_simple_type(env, params, _S_);
+                  function(_V_) {
+                    return check_simple_type(env, params, _V_);
                   },
                   tl
                 );
             }
-          throw caml_maybe_attach_backtrace2([0, Match_failure, _g_], 1);
+          throw caml_maybe_attach_backtrace2([0, Match_failure, _i_], 1);
         }
       }
       function kind_deftype(env, def) {
-        var _P_ = caml_call2(Stdlib_List[20], Typing_Types[6], def[1]), _Q_ = caml_call2(Stdlib_String[7], cst, _P_);
-        caml_call1(Stdlib[46], _Q_);
+        var _S_ = caml_call2(Stdlib_List[20], Typing_Types[6], def[1]), _T_2 = caml_call2(Stdlib_String[7], cst, _S_);
+        caml_call1(Stdlib[46], _T_2);
         check_simple_type(env, def[1], def[2]);
         return [0, caml_call1(Stdlib_List[1], def[1])];
       }
@@ -46657,38 +46718,48 @@ var require_main_bc = __commonJS({
       }
       function type_term(env, term) {
         caml_call1(Typing_Types[26], 0);
-        var ty = infer_type(env, term);
+        try {
+          var _R_ = infer_type(env, term), ty = _R_;
+        } catch (exn$0) {
+          var exn = caml_wrap_exception2(exn$0);
+          if (exn[1] === Typing_Report[4]) {
+            var s2 = exn[2];
+            caml_call1(Typing_Report[3], [0, term[2][1], term[2][2], s2]);
+          } else
+            caml_call1(Typing_Report[3], [0, term[2][1], term[2][2], cst_Type_error]);
+          var ty = term;
+        }
         caml_call1(Typing_Types[27], 0);
         var ret = caml_call1(Typing_Typed[5], ty[3]);
         return ret;
       }
       function valtype_match(env, vty1, vty2) {
         try {
-          var _M_ = instance(vty2);
-          unify(env, instance(vty1), _M_);
-          var _N_ = 1;
-          return _N_;
-        } catch (_O_) {
+          var _O_ = instance(vty2);
+          unify(env, instance(vty1), _O_);
+          var _P_ = 1;
+          return _P_;
+        } catch (_Q_) {
           return 0;
         }
       }
       function deftype_equiv(env, kind, def1, def2) {
         function equiv(ty1, ty2) {
-          var _J_ = scrape_types(env, ty1, ty2), _K_ = _J_[1];
-          if (typeof _K_ !== "number")
-            switch (_K_[0]) {
+          var _L_ = scrape_types(env, ty1, ty2), _M_ = _L_[1];
+          if (typeof _M_ !== "number")
+            switch (_M_[0]) {
               case 0:
-                var match = _J_[2];
+                var match = _L_[2];
                 if (typeof match !== "number" && 0 === match[0]) {
-                  var v2 = match[1], v1 = _K_[1];
+                  var v2 = match[1], v1 = _M_[1];
                   return v1 === v2 ? 1 : 0;
                 }
                 break;
               case 2:
-                var match$0 = _J_[2];
+                var match$0 = _L_[2];
                 if (typeof match$0 !== "number" && 2 === match$0[0]) {
-                  var args2 = match$0[2], path2 = match$0[1], args1 = _K_[2], path1 = _K_[1], _L_ = caml_equal2(path1, path2);
-                  return _L_ ? caml_call3(Stdlib_List[35], equiv, args1, args2) : _L_;
+                  var args2 = match$0[2], path2 = match$0[1], args1 = _M_[2], path1 = _M_[1], _N_ = caml_equal2(path1, path2);
+                  return _N_ ? caml_call3(Stdlib_List[35], equiv, args1, args2) : _N_;
                 }
                 break;
             }
@@ -46701,8 +46772,8 @@ var require_main_bc = __commonJS({
           },
           def1[1],
           def2[1]
-        ), _I_ = subst_vars(subst, def2[2]);
-        return equiv(def1[2], _I_);
+        ), _K_ = subst_vars(subst, def2[2]);
+        return equiv(def1[2], _K_);
       }
       function kind_match(env, kind1, kind2) {
         return kind1[1] === kind2[1] ? 1 : 0;
@@ -46711,8 +46782,8 @@ var require_main_bc = __commonJS({
         function make_params(n) {
           if (0 >= n)
             return 0;
-          var _H_ = make_params(n - 1 | 0);
-          return [0, caml_call1(Typing_Types[28], 0), _H_];
+          var _J_ = make_params(n - 1 | 0);
+          return [0, caml_call1(Typing_Types[28], 0), _J_];
         }
         var params = make_params(kind[1]);
         return [
@@ -46736,8 +46807,8 @@ var require_main_bc = __commonJS({
               var sig2 = mty2$0[1], match = pair_signature_components(sig1, sig2), subst = match[2], paired_components = match[1], ext_env = caml_call2(Typing_Env[10], sig1, env$0);
               return caml_call2(
                 Stdlib_List[18],
-                function(_G_) {
-                  return specification_match(ext_env, subst, _G_);
+                function(_I_) {
+                  return specification_match(ext_env, subst, _I_);
                 },
                 paired_components
               );
@@ -46751,7 +46822,7 @@ var require_main_bc = __commonJS({
               continue;
             }
           }
-          return caml_call1(Stdlib[2], cst_module_type_mismatch);
+          return caml_call1(Typing_Report[5], cst_module_type_mismatch);
         }
       }
       function pair_signature_components(sig1, sig2) {
@@ -46766,8 +46837,8 @@ var require_main_bc = __commonJS({
                 case 0:
                   var id1 = item1[1];
                   if (0 === item2[0]) {
-                    var id2 = item2[1], _D_ = caml_call1(Typing_Ident[5], id2);
-                    if (caml_string_equal2(caml_call1(Typing_Ident[5], id1), _D_)) {
+                    var id2 = item2[1], _F_ = caml_call1(Typing_Ident[5], id2);
+                    if (caml_string_equal2(caml_call1(Typing_Ident[5], id1), _F_)) {
                       var match = [0, id1, id2, item1];
                       break a;
                     }
@@ -46776,8 +46847,8 @@ var require_main_bc = __commonJS({
                 case 1:
                   var id1$0 = item1[1];
                   if (1 === item2[0]) {
-                    var id2$0 = item2[1], _E_ = caml_call1(Typing_Ident[5], id2$0);
-                    if (caml_string_equal2(caml_call1(Typing_Ident[5], id1$0), _E_)) {
+                    var id2$0 = item2[1], _G_ = caml_call1(Typing_Ident[5], id2$0);
+                    if (caml_string_equal2(caml_call1(Typing_Ident[5], id1$0), _G_)) {
                       var match = [0, id1$0, id2$0, item1];
                       break a;
                     }
@@ -46786,8 +46857,8 @@ var require_main_bc = __commonJS({
                 default:
                   var id1$1 = item1[1];
                   if (2 === item2[0]) {
-                    var id2$1 = item2[1], _F_ = caml_call1(Typing_Ident[5], id2$1);
-                    if (caml_string_equal2(caml_call1(Typing_Ident[5], id1$1), _F_)) {
+                    var id2$1 = item2[1], _H_ = caml_call1(Typing_Ident[5], id2$1);
+                    if (caml_string_equal2(caml_call1(Typing_Ident[5], id1$1), _H_)) {
                       var match = [0, id1$1, id2$1, item1];
                       break a;
                     }
@@ -46796,7 +46867,7 @@ var require_main_bc = __commonJS({
               var param = rem1;
               continue;
             }
-            var match = caml_call1(Stdlib[2], cst_unmatched_signature_compon);
+            var match = caml_call1(Typing_Report[5], cst_unmatched_signature_compon);
           }
           var item1$0 = match[3], id2$2 = match[2], id1$2 = match[1], match$0 = pair_signature_components(sig1, rem2), subst = match$0[2], pairs = match$0[1];
           return [
@@ -46807,47 +46878,47 @@ var require_main_bc = __commonJS({
         }
       }
       function specification_match(env, subst, param) {
-        var _A_ = param[1];
-        switch (_A_[0]) {
+        var _C_ = param[1];
+        switch (_C_[0]) {
           case 0:
-            var match = param[2], vty1 = _A_[2];
+            var match = param[2], vty1 = _C_[2];
             if (0 === match[0]) {
-              var vty2 = match[2], _B_ = 1 - valtype_match(env, vty1, caml_call2(Typing_Subst[5], vty2, subst));
-              return _B_ ? caml_call1(Stdlib[2], cst_value_components_do_not_ma) : _B_;
+              var vty2 = match[2], _D_ = 1 - valtype_match(env, vty1, caml_call2(Typing_Subst[5], vty2, subst));
+              return _D_ ? caml_call1(Typing_Report[5], cst_value_components_do_not_ma) : _D_;
             }
             break;
           case 1:
-            var match$0 = param[2], decl1 = _A_[2], id = _A_[1];
+            var match$0 = param[2], decl1 = _C_[2], id = _C_[1];
             if (1 === match$0[0]) {
-              var decl2 = match$0[2], _C_ = 1 - typedecl_match(env, id, decl1, caml_call2(Typing_Subst[8], decl2, subst));
-              return _C_ ? caml_call1(Stdlib[2], cst_type_components_do_not_mat) : _C_;
+              var decl2 = match$0[2], _E_ = 1 - typedecl_match(env, id, decl1, caml_call2(Typing_Subst[8], decl2, subst));
+              return _E_ ? caml_call1(Typing_Report[5], cst_type_components_do_not_mat) : _E_;
             }
             break;
           default:
-            var match$1 = param[2], mty1 = _A_[2];
+            var match$1 = param[2], mty1 = _C_[2];
             if (2 === match$1[0]) {
               var mty2 = match$1[2];
               return modtype_match(env, mty1, caml_call2(Typing_Subst[9], mty2, subst));
             }
         }
-        throw caml_maybe_attach_backtrace2([0, Match_failure, _h_], 1);
+        throw caml_maybe_attach_backtrace2([0, Match_failure, _j_], 1);
       }
       function typedecl_match(env, id, decl1, decl2) {
-        var _w_ = kind_match(env, decl1[1], decl2[1]);
-        if (_w_) {
-          var _x_ = decl1[2], match = decl2[2];
+        var _y_ = kind_match(env, decl1[1], decl2[1]);
+        if (_y_) {
+          var _z_ = decl1[2], match = decl2[2];
           if (match) {
-            if (_x_) {
-              var typ2 = match[1], typ1 = _x_[1];
+            if (_z_) {
+              var typ2 = match[1], typ1 = _z_[1];
               return deftype_equiv(env, decl2[1], typ1, typ2);
             }
-            var typ2$0 = match[1], _y_ = deftype_of_path([0, id], decl1[1]);
-            return deftype_equiv(env, decl2[1], _y_, typ2$0);
+            var typ2$0 = match[1], _A_ = deftype_of_path([0, id], decl1[1]);
+            return deftype_equiv(env, decl2[1], _A_, typ2$0);
           }
-          var _z_ = 1;
+          var _B_ = 1;
         } else
-          var _z_ = _w_;
-        return _z_;
+          var _B_ = _y_;
+        return _B_;
       }
       function strengthen_modtype(path, mty) {
         if (0 !== mty[0])
@@ -46857,8 +46928,8 @@ var require_main_bc = __commonJS({
           0,
           caml_call2(
             Stdlib_List[20],
-            function(_v_) {
-              return strengthen_spec(path, _v_);
+            function(_x_) {
+              return strengthen_spec(path, _x_);
             },
             sg
           )
@@ -46873,9 +46944,9 @@ var require_main_bc = __commonJS({
             if (match)
               var ty = match[1], m = [0, ty];
             else
-              var _u_ = decl[1], m = [
+              var _w_ = decl[1], m = [
                 0,
-                deftype_of_path([1, path, caml_call1(Typing_Ident[5], id)], _u_)
+                deftype_of_path([1, path, caml_call1(Typing_Ident[5], id)], _w_)
               ];
             return [1, id, [0, decl[1], m]];
           default:
@@ -46907,28 +46978,28 @@ var require_main_bc = __commonJS({
           var match = param$0[1];
           switch (match[0]) {
             case 0:
-              var rem = param$0[2], vty = match[2], id = match[1], _q_ = caml_call1(Typing_Ident[5], id);
-              if (caml_call2(Stdlib_List[37], _q_, seen$0))
-                caml_call1(Stdlib[2], cst_repeated_value_name);
+              var rem = param$0[2], vty = match[2], id = match[1], _s_ = caml_call1(Typing_Ident[5], id);
+              if (caml_call2(Stdlib_List[37], _s_, seen$0))
+                caml_call1(Typing_Report[5], cst_repeated_value_name);
               check_valtype(env$0, vty);
               var seen$1 = [0, caml_call1(Typing_Ident[5], id), seen$0], seen$0 = seen$1, param$0 = rem;
               break;
             case 1:
-              var rem$0 = param$0[2], decl = match[2], id$0 = match[1], _r_ = caml_call1(Typing_Ident[5], id$0);
-              if (caml_call2(Stdlib_List[37], _r_, seen$0))
-                caml_call1(Stdlib[2], cst_repeated_type_name);
+              var rem$0 = param$0[2], decl = match[2], id$0 = match[1], _t_ = caml_call1(Typing_Ident[5], id$0);
+              if (caml_call2(Stdlib_List[37], _t_, seen$0))
+                caml_call1(Typing_Report[5], cst_repeated_type_name);
               var match$0 = decl[2];
               if (match$0) {
-                var typ = match$0[1], _s_ = decl[1];
-                if (1 - kind_match(env$0, kind_deftype(env$0, typ), _s_))
-                  caml_call1(Stdlib[2], cst_kind_mismatch_in_manifest_);
+                var typ = match$0[1], _u_ = decl[1];
+                if (1 - kind_match(env$0, kind_deftype(env$0, typ), _u_))
+                  caml_call1(Typing_Report[5], cst_kind_mismatch_in_manifest_);
               }
               var seen$2 = [0, caml_call1(Typing_Ident[5], id$0), seen$0], env$1 = caml_call3(Typing_Env[7], id$0, decl, env$0), env$0 = env$1, seen$0 = seen$2, param$0 = rem$0;
               break;
             default:
-              var rem$1 = param$0[2], mty = match[2], id$1 = match[1], _t_ = caml_call1(Typing_Ident[5], id$1);
-              if (caml_call2(Stdlib_List[37], _t_, seen$0))
-                caml_call1(Stdlib[2], cst_repeated_module_name);
+              var rem$1 = param$0[2], mty = match[2], id$1 = match[1], _v_ = caml_call1(Typing_Ident[5], id$1);
+              if (caml_call2(Stdlib_List[37], _v_, seen$0))
+                caml_call1(Typing_Report[5], cst_repeated_module_name);
               check_modtype(env$0, mty);
               var seen$3 = [0, caml_call1(Typing_Ident[5], id$1), seen$0], env$2 = caml_call3(Typing_Env[8], id$1, mty, env$0), env$0 = env$2, seen$0 = seen$3, param$0 = rem$1;
           }
@@ -46956,7 +47027,7 @@ var require_main_bc = __commonJS({
           case 3:
             var arg = match[2], funct = match[1], match$0 = type_module(env, funct)[3];
             if (0 === match$0[0])
-              var _o_ = caml_call1(Stdlib[2], cst_application_of_a_non_funct);
+              var _q_ = caml_call1(Typing_Report[5], cst_application_of_a_non_funct);
             else {
               var mty_res = match$0[3], mty_param = match$0[2], param$0 = match$0[1], mty_arg = type_module(env, arg)[3];
               modtype_match(env, mty_arg, mty_param);
@@ -46964,10 +47035,10 @@ var require_main_bc = __commonJS({
               if (0 === match$1[0])
                 var path$0 = match$1[1], path$1 = path$0;
               else
-                var path$1 = caml_call1(Stdlib[2], cst_application_of_a_functor_t);
-              var _p_ = caml_call3(Typing_Subst[2], param$0, path$1, Typing_Subst[1]), _o_ = caml_call2(Typing_Subst[9], mty_res, _p_);
+                var path$1 = caml_call1(Typing_Report[5], cst_application_of_a_functor_t);
+              var _r_ = caml_call3(Typing_Subst[2], param$0, path$1, Typing_Subst[1]), _q_ = caml_call2(Typing_Subst[9], mty_res, _r_);
             }
-            var ret = _o_;
+            var ret = _q_;
             break;
           default:
             var mty$0 = match[2], modl = match[1];
@@ -46989,28 +47060,28 @@ var require_main_bc = __commonJS({
       function type_definition(env, seen, param) {
         switch (param[0]) {
           case 0:
-            var term = param[2], id = param[1], _i_ = caml_call1(Typing_Ident[5], id[1]);
-            if (caml_call2(Stdlib_List[37], _i_, seen))
-              caml_call1(Stdlib[2], cst_repeated_value_name$0);
-            var _j_ = [0, caml_call1(Typing_Ident[5], id[1]), seen], _k_ = type_term(env, term);
-            return [0, [0, id[1], _k_], _j_];
+            var term = param[2], id = param[1], _k_ = caml_call1(Typing_Ident[5], id[1]);
+            if (caml_call2(Stdlib_List[37], _k_, seen))
+              caml_call1(Typing_Report[5], cst_repeated_value_name$0);
+            var _l_ = [0, caml_call1(Typing_Ident[5], id[1]), seen], _m_ = type_term(env, term);
+            return [0, [0, id[1], _m_], _l_];
           case 1:
-            var typ = param[3], kind = param[2], id$0 = param[1], _l_ = caml_call1(Typing_Ident[5], id$0);
-            if (caml_call2(Stdlib_List[37], _l_, seen))
-              caml_call1(Stdlib[2], cst_repeated_type_name$0);
+            var typ = param[3], kind = param[2], id$0 = param[1], _n_ = caml_call1(Typing_Ident[5], id$0);
+            if (caml_call2(Stdlib_List[37], _n_, seen))
+              caml_call1(Typing_Report[5], cst_repeated_type_name$0);
             if (1 - kind_match(env, kind_deftype(env, typ), kind))
-              caml_call1(Stdlib[2], cst_kind_mismatch_in_type_defi);
+              caml_call1(Typing_Report[5], cst_kind_mismatch_in_type_defi);
             return [
               0,
               [1, id$0, [0, kind, [0, typ]]],
               [0, caml_call1(Typing_Ident[5], id$0), seen]
             ];
           default:
-            var modl = param[2], id$1 = param[1], _m_ = caml_call1(Typing_Ident[5], id$1);
-            if (caml_call2(Stdlib_List[37], _m_, seen))
-              caml_call1(Stdlib[2], cst_repeated_module_name$0);
-            var _n_ = [0, caml_call1(Typing_Ident[5], id$1), seen];
-            return [0, [2, id$1, type_module(env, modl)[3]], _n_];
+            var modl = param[2], id$1 = param[1], _o_ = caml_call1(Typing_Ident[5], id$1);
+            if (caml_call2(Stdlib_List[37], _o_, seen))
+              caml_call1(Typing_Report[5], cst_repeated_module_name$0);
+            var _p_ = [0, caml_call1(Typing_Ident[5], id$1), seen];
+            return [0, [2, id$1, type_module(env, modl)[3]], _p_];
         }
       }
       var Typing_Infer = [
@@ -47048,12 +47119,12 @@ var require_main_bc = __commonJS({
         type_structure,
         type_definition
       ];
-      runtime.caml_register_global(51, Typing_Infer, "Typing__Infer");
+      runtime.caml_register_global(54, Typing_Infer, "Typing__Infer");
       return;
     })(globalThis);
     (function(globalThis2) {
       "use strict";
-      var runtime = globalThis2.jsoo_runtime, cst = "", cst$5 = " =", cst_S = "%S", cst_a = "%a", cst_d = "%d", cst$0 = "(@[", cst$2 = ",@ ", cst$7 = ";@ ", cst_2 = "<2>", cst$1 = "@ ", cst$8 = "@ }@]", cst$9 = "@,", cst$10 = "@,]@]", cst_s = "@[%s =@ ", cst_2$1 = "@[<2>[", cst_2$0 = "@[<2>{ ", cst$6 = "@]", cst$3 = "@])", cst_Main_loc = "Main.loc", cst_Main_loc_end = "Main.loc._end", cst_Main_loc_type = "Main.loc._type", cst_Main_loc_start = "Main.loc.start", cst_end$3 = "_end", cst_end$2 = "end", cst_file$1 = "file", cst_filechange$0 = "filechange", cst_start$2 = "start", cst_type$1 = "type", cst_unknown$0 = "unknown", cst$4 = "{ ", caml_equal2 = runtime.caml_equal, caml_greaterthan2 = runtime.caml_greaterthan, caml_js_wrap_meth_callback2 = runtime.caml_js_wrap_meth_callback, caml_lessequal2 = runtime.caml_lessequal, caml_maybe_attach_backtrace2 = runtime.caml_maybe_attach_backtrace, caml_notequal2 = runtime.caml_notequal, caml_string_notequal2 = runtime.caml_string_notequal, caml_update_dummy2 = runtime.caml_update_dummy;
+      var runtime = globalThis2.jsoo_runtime, cst = "", cst$5 = " =", cst_S = "%S", cst_a = "%a", cst_d = "%d", cst$0 = "(@[", cst$2 = ",@ ", cst$7 = ";@ ", cst_2 = "<2>", cst$1 = "@ ", cst$8 = "@ }@]", cst$9 = "@,", cst$10 = "@,]@]", cst_s = "@[%s =@ ", cst_2$1 = "@[<2>[", cst_2$0 = "@[<2>{ ", cst$6 = "@]", cst$3 = "@])", cst_Main_diag = "Main.diag", cst_Main_diag_end = "Main.diag._end", cst_Main_diag_msg = "Main.diag.msg", cst_Main_diag_start = "Main.diag.start", cst_Main_loc = "Main.loc", cst_Main_loc_end = "Main.loc._end", cst_Main_loc_type = "Main.loc._type", cst_Main_loc_start = "Main.loc.start", cst_end$4 = "_end", cst_end$3 = "end", cst_file$1 = "file", cst_filechange$0 = "filechange", cst_msg$1 = "msg", cst_start$3 = "start", cst_type$1 = "type", cst_unknown$0 = "unknown", cst$4 = "{ ", caml_equal2 = runtime.caml_equal, caml_greaterthan2 = runtime.caml_greaterthan, caml_js_wrap_meth_callback2 = runtime.caml_js_wrap_meth_callback, caml_lessequal2 = runtime.caml_lessequal, caml_maybe_attach_backtrace2 = runtime.caml_maybe_attach_backtrace, caml_notequal2 = runtime.caml_notequal, caml_string_notequal2 = runtime.caml_string_notequal, caml_update_dummy2 = runtime.caml_update_dummy;
       function caml_call1(f, a0) {
         return (f.l >= 0 ? f.l : f.l = f.length) == 1 ? f(a0) : runtime.caml_call_gen(f, [a0]);
       }
@@ -47071,13 +47142,18 @@ var require_main_bc = __commonJS({
         [1, cst_Main_loc_start],
         [1, cst_Main_loc_end],
         [1, cst_Main_loc_type]
+      ], state$0 = [
+        0,
+        [1, cst_Main_diag_start],
+        [1, cst_Main_diag_end],
+        [1, cst_Main_diag_msg]
       ], Ppx_deriving_yojson_runtime = global_data.Ppx_deriving_yojson_runtime, Stdlib_Format = global_data.Stdlib__Format, Stdlib_Hashtbl = global_data.Stdlib__Hashtbl;
       global_data.CamlinternalOO;
-      var Yojson_Safe = global_data.Yojson__Safe, Typing_Env = global_data.Typing__Env, Typing_Types = global_data.Typing__Types, Stdlib_List = global_data.Stdlib__List, Parsing_Location = global_data.Parsing__Location, Parsing_Parser_base = global_data.Parsing__Parser_base, Parsing_Parser = global_data.Parsing__Parser, Typing_Predef = global_data.Typing__Predef, Typing_Typed = global_data.Typing__Typed, Typing_Scope = global_data.Typing__Scope, Typing_Infer = global_data.Typing__Infer, Assert_failure = global_data.Assert_failure, Parsing_Syntax = global_data.Parsing__Syntax, Parsing_Lexer = global_data.Parsing__Lexer, Parsing_Token = global_data.Parsing__Token, Js_of_ocaml_Firebug = global_data.Js_of_ocaml__Firebug, Js_of_ocaml_Js = global_data.Js_of_ocaml__Js, loc_list_to_yojson = function _bx_(_bw_) {
-        return _bx_.fun(_bw_);
-      }, loc_list_of_yojson = function _bv_(_bu_) {
-        return _bv_.fun(_bu_);
-      }, cst_type = cst_type$1, cst_end = cst_end$2, cst_start = cst_start$2;
+      var Yojson_Safe = global_data.Yojson__Safe, Typing_Env = global_data.Typing__Env, Typing_Types = global_data.Typing__Types, Stdlib_List = global_data.Stdlib__List, Parsing_Location = global_data.Parsing__Location, Parsing_Parser_base = global_data.Parsing__Parser_base, Parsing_Parser = global_data.Parsing__Parser, Typing_Predef = global_data.Typing__Predef, Typing_Report = global_data.Typing__Report, Typing_Typed = global_data.Typing__Typed, Typing_Scope = global_data.Typing__Scope, Typing_Infer = global_data.Typing__Infer, Assert_failure = global_data.Assert_failure, Parsing_Syntax = global_data.Parsing__Syntax, Stdlib = global_data.Stdlib, Parsing_Lexer = global_data.Parsing__Lexer, Parsing_Token = global_data.Parsing__Token, Js_of_ocaml_Firebug = global_data.Js_of_ocaml__Firebug, Js_of_ocaml_Js = global_data.Js_of_ocaml__Js, loc_list_to_yojson = function _cb_(_ca_) {
+        return _cb_.fun(_ca_);
+      }, loc_list_of_yojson = function _b$_(_b__) {
+        return _b$_.fun(_b__);
+      }, cst_type = cst_type$1, cst_end = cst_end$3, cst_start = cst_start$3;
       caml_update_dummy2(
         loc_list_to_yojson,
         function(x2) {
@@ -47129,102 +47205,102 @@ var require_main_bc = __commonJS({
               Ppx_deriving_yojson_runtime[3],
               function(x$5) {
                 if (typeof x$5 !== "number" && 963043957 === x$5[1]) {
-                  var xs2 = x$5[2], xs$0 = xs2, state$0 = state;
+                  var xs2 = x$5[2], xs$0 = xs2, state$02 = state;
                   for (; ; ) {
-                    var arg2 = state$0[3], arg1 = state$0[2], arg0 = state$0[1];
+                    var arg2 = state$02[3], arg1 = state$02[2], arg0 = state$02[1];
                     if (!xs$0)
                       break;
-                    var _bd_ = xs$0[1], _be_ = _bd_[1];
-                    if (caml_string_notequal2(_be_, cst_end$2))
-                      if (caml_string_notequal2(_be_, cst_start$2)) {
-                        if (caml_string_notequal2(_be_, cst_type$1))
+                    var _bT_ = xs$0[1], _bU_ = _bT_[1];
+                    if (caml_string_notequal2(_bU_, cst_end$3))
+                      if (caml_string_notequal2(_bU_, cst_start$3)) {
+                        if (caml_string_notequal2(_bU_, cst_type$1))
                           return _b_;
-                        var xs$1 = xs$0[2], x2 = _bd_[2];
+                        var xs$1 = xs$0[2], x2 = _bT_[2];
                         a: {
                           if (typeof x2 !== "number" && -976970511 === x2[1]) {
-                            var x$0 = x2[2], _bf_ = [0, x$0];
+                            var x$0 = x2[2], _bV_ = [0, x$0];
                             break a;
                           }
-                          var _bf_ = _c_;
+                          var _bV_ = _c_;
                         }
-                        var state$1 = [0, arg0, arg1, _bf_], xs$0 = xs$1, state$0 = state$1;
+                        var state$1 = [0, arg0, arg1, _bV_], xs$0 = xs$1, state$02 = state$1;
                       } else {
-                        var xs$2 = xs$0[2], x$1 = _bd_[2];
+                        var xs$2 = xs$0[2], x$1 = _bT_[2];
                         a: {
                           if (typeof x$1 !== "number" && 848054398 === x$1[1]) {
-                            var _bg_ = x$1[2];
-                            if (_bg_) {
-                              var _bh_ = _bg_[2];
-                              if (_bh_ && !_bh_[2]) {
-                                var arg1$0 = _bh_[1], arg0$0 = _bg_[1];
+                            var _bW_ = x$1[2];
+                            if (_bW_) {
+                              var _bX_ = _bW_[2];
+                              if (_bX_ && !_bX_[2]) {
+                                var arg1$0 = _bX_[1], arg0$0 = _bW_[1];
                                 let arg02 = arg0$0;
                                 b: {
-                                  var _bi_ = function(arg12) {
+                                  var _bY_ = function(arg12) {
                                     a: {
-                                      var _bq_ = function(arg03) {
+                                      var _b6_ = function(arg03) {
                                         return [0, [0, arg03, arg12]];
                                       };
                                       if (typeof arg02 !== "number" && 3654863 === arg02[1]) {
-                                        var x3 = arg02[2], _br_ = [0, x3];
+                                        var x3 = arg02[2], _b7_ = [0, x3];
                                         break a;
                                       }
-                                      var _br_ = _e_;
+                                      var _b7_ = _e_;
                                     }
-                                    return caml_call2(Ppx_deriving_yojson_runtime[1], _br_, _bq_);
+                                    return caml_call2(Ppx_deriving_yojson_runtime[1], _b7_, _b6_);
                                   };
                                   if (typeof arg1$0 !== "number" && 3654863 === arg1$0[1]) {
-                                    var x$2 = arg1$0[2], _bj_ = [0, x$2];
+                                    var x$2 = arg1$0[2], _bZ_ = [0, x$2];
                                     break b;
                                   }
-                                  var _bj_ = _f_;
+                                  var _bZ_ = _f_;
                                 }
-                                var _bk_ = caml_call2(Ppx_deriving_yojson_runtime[1], _bj_, _bi_);
+                                var _b0_ = caml_call2(Ppx_deriving_yojson_runtime[1], _bZ_, _bY_);
                                 break a;
                               }
                             }
                           }
-                          var _bk_ = _d_;
+                          var _b0_ = _d_;
                         }
-                        var state$2 = [0, _bk_, arg1, arg2], xs$0 = xs$2, state$0 = state$2;
+                        var state$2 = [0, _b0_, arg1, arg2], xs$0 = xs$2, state$02 = state$2;
                       }
                     else {
-                      var xs$3 = xs$0[2], x$3 = _bd_[2];
+                      var xs$3 = xs$0[2], x$3 = _bT_[2];
                       a: {
                         if (typeof x$3 !== "number" && 848054398 === x$3[1]) {
-                          var _bl_ = x$3[2];
-                          if (_bl_) {
-                            var _bm_ = _bl_[2];
-                            if (_bm_ && !_bm_[2]) {
-                              var arg1$1 = _bm_[1], arg0$1 = _bl_[1];
+                          var _b1_ = x$3[2];
+                          if (_b1_) {
+                            var _b2_ = _b1_[2];
+                            if (_b2_ && !_b2_[2]) {
+                              var arg1$1 = _b2_[1], arg0$1 = _b1_[1];
                               let arg02 = arg0$1;
                               b: {
-                                var _bn_ = function(arg12) {
+                                var _b3_ = function(arg12) {
                                   a: {
-                                    var _bs_ = function(arg03) {
+                                    var _b8_ = function(arg03) {
                                       return [0, [0, arg03, arg12]];
                                     };
                                     if (typeof arg02 !== "number" && 3654863 === arg02[1]) {
-                                      var x3 = arg02[2], _bt_ = [0, x3];
+                                      var x3 = arg02[2], _b9_ = [0, x3];
                                       break a;
                                     }
-                                    var _bt_ = _h_;
+                                    var _b9_ = _h_;
                                   }
-                                  return caml_call2(Ppx_deriving_yojson_runtime[1], _bt_, _bs_);
+                                  return caml_call2(Ppx_deriving_yojson_runtime[1], _b9_, _b8_);
                                 };
                                 if (typeof arg1$1 !== "number" && 3654863 === arg1$1[1]) {
-                                  var x$4 = arg1$1[2], _bo_ = [0, x$4];
+                                  var x$4 = arg1$1[2], _b4_ = [0, x$4];
                                   break b;
                                 }
-                                var _bo_ = _i_;
+                                var _b4_ = _i_;
                               }
-                              var _bp_ = caml_call2(Ppx_deriving_yojson_runtime[1], _bo_, _bn_);
+                              var _b5_ = caml_call2(Ppx_deriving_yojson_runtime[1], _b4_, _b3_);
                               break a;
                             }
                           }
                         }
-                        var _bp_ = _g_;
+                        var _b5_ = _g_;
                       }
-                      var state$3 = [0, arg0, _bp_, arg2], xs$0 = xs$3, state$0 = state$3;
+                      var state$3 = [0, arg0, _b5_, arg2], xs$0 = xs$3, state$02 = state$3;
                     }
                   }
                   return caml_call2(
@@ -47256,15 +47332,15 @@ var require_main_bc = __commonJS({
           return _E_;
         }
       );
-      var pp_loc_list = function _bc_(_ba_, _bb_) {
-        return _bc_.fun(_ba_, _bb_);
-      }, show_loc_list = function _a$_(_a__) {
-        return _a$_.fun(_a__);
-      }, _j_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [11, cst$4, 0]], cst_2$0], cst_start$0 = cst_start$2, _k_ = [
+      var pp_loc_list = function _bS_(_bQ_, _bR_) {
+        return _bS_.fun(_bQ_, _bR_);
+      }, show_loc_list = function _bP_(_bO_) {
+        return _bP_.fun(_bO_);
+      }, _j_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [11, cst$4, 0]], cst_2$0], cst_start$0 = cst_start$3, _k_ = [
         0,
         [18, [1, [0, 0, cst]], [2, 0, [11, cst$5, [17, [0, cst$1, 1, 0], 0]]]],
         cst_s
-      ], _l_ = [0, [12, 40, [18, [1, [0, 0, cst]], 0]], cst$0], _m_ = [0, [4, 0, 0, 0, 0], cst_d], _n_ = [0, [12, 44, [17, [0, cst$1, 1, 0], 0]], cst$2], _o_ = [0, [4, 0, 0, 0, 0], cst_d], _p_ = [0, [17, 0, [12, 41, 0]], cst$3], _q_ = [0, [17, 0, 0], cst$6], _r_ = [0, [12, 59, [17, [0, cst$1, 1, 0], 0]], cst$7], cst_end$0 = cst_end$3, _s_ = [
+      ], _l_ = [0, [12, 40, [18, [1, [0, 0, cst]], 0]], cst$0], _m_ = [0, [4, 0, 0, 0, 0], cst_d], _n_ = [0, [12, 44, [17, [0, cst$1, 1, 0], 0]], cst$2], _o_ = [0, [4, 0, 0, 0, 0], cst_d], _p_ = [0, [17, 0, [12, 41, 0]], cst$3], _q_ = [0, [17, 0, 0], cst$6], _r_ = [0, [12, 59, [17, [0, cst$1, 1, 0], 0]], cst$7], cst_end$0 = cst_end$4, _s_ = [
         0,
         [18, [1, [0, 0, cst]], [2, 0, [11, cst$5, [17, [0, cst$1, 1, 0], 0]]]],
         cst_s
@@ -47302,8 +47378,8 @@ var require_main_bc = __commonJS({
               caml_call2(Stdlib_Format[137], fmt, _y_);
               caml_call2(Stdlib_Format[137], fmt, _z_);
               caml_call3(Stdlib_Format[137], fmt, _A_, cst_type$0);
-              var _a9_ = x3[3];
-              caml_call1(caml_call2(Stdlib_Format[137], fmt, _B_), _a9_);
+              var _bN_ = x3[3];
+              caml_call1(caml_call2(Stdlib_Format[137], fmt, _B_), _bN_);
               caml_call2(Stdlib_Format[137], fmt, _C_);
               caml_call2(Stdlib_Format[137], fmt, _D_);
               return 1;
@@ -47321,161 +47397,382 @@ var require_main_bc = __commonJS({
           return caml_call3(Stdlib_Format[141], _I_, pp_loc_list, x2);
         }
       );
-      var pp_docdata = function _a8_(_a6_, _a7_) {
-        return _a8_.fun(_a6_, _a7_);
-      }, show_docdata = function _a5_(_a4_) {
-        return _a5_.fun(_a4_);
-      }, _J_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [11, cst$4, 0]], cst_2$0], cst_start$1 = cst_start$2, _K_ = [
+      var _S_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [11, cst$4, 0]], cst_2$0], cst_start$2 = cst_start$3, _T_2 = [
         0,
         [18, [1, [0, 0, cst]], [2, 0, [11, cst$5, [17, [0, cst$1, 1, 0], 0]]]],
         cst_s
-      ], _L_ = [0, [12, 40, [18, [1, [0, 0, cst]], 0]], cst$0], _M_ = [0, [4, 0, 0, 0, 0], cst_d], _N_ = [0, [12, 44, [17, [0, cst$1, 1, 0], 0]], cst$2], _O_ = [0, [4, 0, 0, 0, 0], cst_d], _P_ = [0, [17, 0, [12, 41, 0]], cst$3], _Q_ = [0, [17, 0, 0], cst$6], _R_ = [0, [12, 59, [17, [0, cst$1, 1, 0], 0]], cst$7], cst_end$1 = cst_end$3, _S_ = [
+      ], _U_ = [0, [12, 40, [18, [1, [0, 0, cst]], 0]], cst$0], _V_ = [0, [4, 0, 0, 0, 0], cst_d], _W_ = [0, [12, 44, [17, [0, cst$1, 1, 0], 0]], cst$2], _X_ = [0, [4, 0, 0, 0, 0], cst_d], _Y_ = [0, [17, 0, [12, 41, 0]], cst$3], _Z_ = [0, [17, 0, 0], cst$6], ___ = [0, [12, 59, [17, [0, cst$1, 1, 0], 0]], cst$7], cst_end$2 = cst_end$4, _$_ = [
         0,
         [18, [1, [0, 0, cst]], [2, 0, [11, cst$5, [17, [0, cst$1, 1, 0], 0]]]],
         cst_s
-      ], _T_2 = [0, [12, 40, [18, [1, [0, 0, cst]], 0]], cst$0], _U_ = [0, [4, 0, 0, 0, 0], cst_d], _V_ = [0, [12, 44, [17, [0, cst$1, 1, 0], 0]], cst$2], _W_ = [0, [4, 0, 0, 0, 0], cst_d], _X_ = [0, [17, 0, [12, 41, 0]], cst$3], _Y_ = [0, [17, 0, 0], cst$6], _Z_ = [0, [12, 59, [17, [0, cst$1, 1, 0], 0]], cst$7], cst_msg = "msg", ___ = [
+      ], _aa_ = [0, [12, 40, [18, [1, [0, 0, cst]], 0]], cst$0], _ab_ = [0, [4, 0, 0, 0, 0], cst_d], _ac_ = [0, [12, 44, [17, [0, cst$1, 1, 0], 0]], cst$2], _ad_ = [0, [4, 0, 0, 0, 0], cst_d], _ae_ = [0, [17, 0, [12, 41, 0]], cst$3], _af_ = [0, [17, 0, 0], cst$6], _ag_ = [0, [12, 59, [17, [0, cst$1, 1, 0], 0]], cst$7], cst_msg$0 = cst_msg$1, _ah_ = [
         0,
         [18, [1, [0, 0, cst]], [2, 0, [11, cst$5, [17, [0, cst$1, 1, 0], 0]]]],
         cst_s
-      ], _$_ = [0, [3, 0, 0], cst_S], _aa_ = [0, [17, 0, 0], cst$6], _ab_ = [0, [17, [0, cst$1, 1, 0], [12, 125, [17, 0, 0]]], cst$8], _ac_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [11, cst$4, 0]], cst_2$0], cst_tokens = "tokens", _ad_ = [
-        0,
-        [18, [1, [0, 0, cst]], [2, 0, [11, cst$5, [17, [0, cst$1, 1, 0], 0]]]],
-        cst_s
-      ], _ae_ = [0, [17, 0, 0], cst$6], _af_ = [0, [12, 59, [17, [0, cst$1, 1, 0], 0]], cst$7], cst_formatted = "formatted", _ag_ = [
-        0,
-        [18, [1, [0, 0, cst]], [2, 0, [11, cst$5, [17, [0, cst$1, 1, 0], 0]]]],
-        cst_s
-      ], _ah_ = [0, [3, 0, 0], cst_S], _ai_ = [0, [17, 0, 0], cst$6], _aj_ = [0, [12, 59, [17, [0, cst$1, 1, 0], 0]], cst$7], cst_diagnostics = "diagnostics", _ak_ = [
-        0,
-        [18, [1, [0, 0, cst]], [2, 0, [11, cst$5, [17, [0, cst$1, 1, 0], 0]]]],
-        cst_s
-      ], _al_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [12, 91, 0]], cst_2$1], _am_ = [0, [12, 59, [17, [0, cst$1, 1, 0], 0]], cst$7], _an_ = [0, [17, [0, cst$9, 0, 0], [12, 93, [17, 0, 0]]], cst$10], _ao_ = [0, [17, 0, 0], cst$6], _ap_ = [0, [12, 59, [17, [0, cst$1, 1, 0], 0]], cst$7], cst_mod_term = "mod_term", _aq_ = [
-        0,
-        [18, [1, [0, 0, cst]], [2, 0, [11, cst$5, [17, [0, cst$1, 1, 0], 0]]]],
-        cst_s
-      ], _ar_ = [0, [17, 0, 0], cst$6], _as_ = [0, [17, [0, cst$1, 1, 0], [12, 125, [17, 0, 0]]], cst$8];
+      ], _ai_ = [0, [3, 0, 0], cst_S], _aj_ = [0, [17, 0, 0], cst$6], _ak_ = [0, [17, [0, cst$1, 1, 0], [12, 125, [17, 0, 0]]], cst$8];
+      function pp_diag(fmt, x2) {
+        caml_call2(Stdlib_Format[137], fmt, _S_);
+        caml_call3(Stdlib_Format[137], fmt, _T_2, cst_start$2);
+        var param = x2[1], a1 = param[2], a0 = param[1];
+        caml_call2(Stdlib_Format[137], fmt, _U_);
+        caml_call1(caml_call2(Stdlib_Format[137], fmt, _V_), a0);
+        caml_call2(Stdlib_Format[137], fmt, _W_);
+        caml_call1(caml_call2(Stdlib_Format[137], fmt, _X_), a1);
+        caml_call2(Stdlib_Format[137], fmt, _Y_);
+        caml_call2(Stdlib_Format[137], fmt, _Z_);
+        caml_call2(Stdlib_Format[137], fmt, ___);
+        caml_call3(Stdlib_Format[137], fmt, _$_, cst_end$2);
+        var param$0 = x2[2], a1$0 = param$0[2], a0$0 = param$0[1];
+        caml_call2(Stdlib_Format[137], fmt, _aa_);
+        caml_call1(caml_call2(Stdlib_Format[137], fmt, _ab_), a0$0);
+        caml_call2(Stdlib_Format[137], fmt, _ac_);
+        caml_call1(caml_call2(Stdlib_Format[137], fmt, _ad_), a1$0);
+        caml_call2(Stdlib_Format[137], fmt, _ae_);
+        caml_call2(Stdlib_Format[137], fmt, _af_);
+        caml_call2(Stdlib_Format[137], fmt, _ag_);
+        caml_call3(Stdlib_Format[137], fmt, _ah_, cst_msg$0);
+        var _bM_ = x2[3];
+        caml_call1(caml_call2(Stdlib_Format[137], fmt, _ai_), _bM_);
+        caml_call2(Stdlib_Format[137], fmt, _aj_);
+        return caml_call2(Stdlib_Format[137], fmt, _ak_);
+      }
+      var diag_list_to_yojson = function _bL_(_bK_) {
+        return _bL_.fun(_bK_);
+      }, diag_list_of_yojson = function _bJ_(_bI_) {
+        return _bJ_.fun(_bI_);
+      }, cst_msg = cst_msg$1, cst_end$1 = cst_end$3, cst_start$1 = cst_start$3;
       caml_update_dummy2(
-        pp_docdata,
+        diag_list_to_yojson,
+        function(x2) {
+          return [
+            0,
+            848054398,
+            caml_call2(
+              Ppx_deriving_yojson_runtime[4],
+              function(x$0) {
+                var x3 = x$0[3], fields = [0, [0, cst_msg, [0, -976970511, x3]], 0], param = x$0[2], arg1 = param[2], arg0 = param[1], fields$0 = [
+                  0,
+                  [
+                    0,
+                    cst_end$1,
+                    [
+                      0,
+                      848054398,
+                      [0, [0, 3654863, arg0], [0, [0, 3654863, arg1], 0]]
+                    ]
+                  ],
+                  fields
+                ], param$0 = x$0[1], arg1$0 = param$0[2], arg0$0 = param$0[1], fields$1 = [
+                  0,
+                  [
+                    0,
+                    cst_start$1,
+                    [
+                      0,
+                      848054398,
+                      [0, [0, 3654863, arg0$0], [0, [0, 3654863, arg1$0], 0]]
+                    ]
+                  ],
+                  fields$0
+                ];
+                return [0, 963043957, fields$1];
+              },
+              x2
+            )
+          ];
+        }
+      );
+      var _J_ = [1, cst_Main_diag], _K_ = [1, cst_Main_diag], _L_ = [1, cst_Main_diag_start], _M_ = [1, cst_Main_diag_start], _N_ = [1, cst_Main_diag_start], _O_ = [1, cst_Main_diag_msg], _P_ = [1, cst_Main_diag_end], _Q_ = [1, cst_Main_diag_end], _R_ = [1, cst_Main_diag_end], _al_ = [1, "Main.diag_list"];
+      caml_update_dummy2(
+        diag_list_of_yojson,
+        function(param) {
+          if (typeof param !== "number" && 848054398 === param[1]) {
+            var xs = param[2];
+            return caml_call3(
+              Ppx_deriving_yojson_runtime[3],
+              function(x$5) {
+                if (typeof x$5 !== "number" && 963043957 === x$5[1]) {
+                  var xs2 = x$5[2], xs$0 = xs2, state2 = state$0;
+                  for (; ; ) {
+                    var arg2 = state2[3], arg1 = state2[2], arg0 = state2[1];
+                    if (!xs$0)
+                      break;
+                    var _br_ = xs$0[1], _bs_ = _br_[1];
+                    if (caml_string_notequal2(_bs_, cst_end$3))
+                      if (caml_string_notequal2(_bs_, cst_msg$1)) {
+                        if (caml_string_notequal2(_bs_, cst_start$3))
+                          return _K_;
+                        var xs$1 = xs$0[2], x2 = _br_[2];
+                        a: {
+                          if (typeof x2 !== "number" && 848054398 === x2[1]) {
+                            var _bt_ = x2[2];
+                            if (_bt_) {
+                              var _bu_ = _bt_[2];
+                              if (_bu_ && !_bu_[2]) {
+                                var arg1$0 = _bu_[1], arg0$0 = _bt_[1];
+                                let arg02 = arg0$0;
+                                b: {
+                                  var _bv_ = function(arg12) {
+                                    a: {
+                                      var _bE_ = function(arg03) {
+                                        return [0, [0, arg03, arg12]];
+                                      };
+                                      if (typeof arg02 !== "number" && 3654863 === arg02[1]) {
+                                        var x3 = arg02[2], _bF_ = [0, x3];
+                                        break a;
+                                      }
+                                      var _bF_ = _M_;
+                                    }
+                                    return caml_call2(Ppx_deriving_yojson_runtime[1], _bF_, _bE_);
+                                  };
+                                  if (typeof arg1$0 !== "number" && 3654863 === arg1$0[1]) {
+                                    var x$0 = arg1$0[2], _bw_ = [0, x$0];
+                                    break b;
+                                  }
+                                  var _bw_ = _N_;
+                                }
+                                var _bx_ = caml_call2(Ppx_deriving_yojson_runtime[1], _bw_, _bv_);
+                                break a;
+                              }
+                            }
+                          }
+                          var _bx_ = _L_;
+                        }
+                        var state$1 = [0, _bx_, arg1, arg2], xs$0 = xs$1, state2 = state$1;
+                      } else {
+                        var xs$2 = xs$0[2], x$1 = _br_[2];
+                        a: {
+                          if (typeof x$1 !== "number" && -976970511 === x$1[1]) {
+                            var x$2 = x$1[2], _by_ = [0, x$2];
+                            break a;
+                          }
+                          var _by_ = _O_;
+                        }
+                        var state$2 = [0, arg0, arg1, _by_], xs$0 = xs$2, state2 = state$2;
+                      }
+                    else {
+                      var xs$3 = xs$0[2], x$3 = _br_[2];
+                      a: {
+                        if (typeof x$3 !== "number" && 848054398 === x$3[1]) {
+                          var _bz_ = x$3[2];
+                          if (_bz_) {
+                            var _bA_ = _bz_[2];
+                            if (_bA_ && !_bA_[2]) {
+                              var arg1$1 = _bA_[1], arg0$1 = _bz_[1];
+                              let arg02 = arg0$1;
+                              b: {
+                                var _bB_ = function(arg12) {
+                                  a: {
+                                    var _bG_ = function(arg03) {
+                                      return [0, [0, arg03, arg12]];
+                                    };
+                                    if (typeof arg02 !== "number" && 3654863 === arg02[1]) {
+                                      var x3 = arg02[2], _bH_ = [0, x3];
+                                      break a;
+                                    }
+                                    var _bH_ = _Q_;
+                                  }
+                                  return caml_call2(Ppx_deriving_yojson_runtime[1], _bH_, _bG_);
+                                };
+                                if (typeof arg1$1 !== "number" && 3654863 === arg1$1[1]) {
+                                  var x$4 = arg1$1[2], _bC_ = [0, x$4];
+                                  break b;
+                                }
+                                var _bC_ = _R_;
+                              }
+                              var _bD_ = caml_call2(Ppx_deriving_yojson_runtime[1], _bC_, _bB_);
+                              break a;
+                            }
+                          }
+                        }
+                        var _bD_ = _P_;
+                      }
+                      var state$3 = [0, arg0, _bD_, arg2], xs$0 = xs$3, state2 = state$3;
+                    }
+                  }
+                  return caml_call2(
+                    Ppx_deriving_yojson_runtime[1],
+                    arg2,
+                    function(arg22) {
+                      return caml_call2(
+                        Ppx_deriving_yojson_runtime[1],
+                        arg1,
+                        function(arg12) {
+                          return caml_call2(
+                            Ppx_deriving_yojson_runtime[1],
+                            arg0,
+                            function(arg02) {
+                              return [0, [0, arg02, arg12, arg22]];
+                            }
+                          );
+                        }
+                      );
+                    }
+                  );
+                }
+                return _J_;
+              },
+              0,
+              xs
+            );
+          }
+          return _al_;
+        }
+      );
+      var pp_diag_list = function _bq_(_bo_, _bp_) {
+        return _bq_.fun(_bo_, _bp_);
+      }, show_diag_list = function _bn_(_bm_) {
+        return _bn_.fun(_bm_);
+      }, _am_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [12, 91, 0]], cst_2$1], _an_ = [0, [12, 59, [17, [0, cst$1, 1, 0], 0]], cst$7], _ao_ = [0, [17, [0, cst$9, 0, 0], [12, 93, [17, 0, 0]]], cst$10];
+      caml_update_dummy2(
+        pp_diag_list,
         function(fmt, x2) {
-          caml_call2(Stdlib_Format[137], fmt, _ac_);
-          caml_call3(Stdlib_Format[137], fmt, _ad_, cst_tokens);
-          var _a0_ = x2[1];
-          caml_call1(caml_call1(pp_loc_list, fmt), _a0_);
-          caml_call2(Stdlib_Format[137], fmt, _ae_);
-          caml_call2(Stdlib_Format[137], fmt, _af_);
-          caml_call3(Stdlib_Format[137], fmt, _ag_, cst_formatted);
-          var _a1_ = x2[2];
-          caml_call1(caml_call2(Stdlib_Format[137], fmt, _ah_), _a1_);
-          caml_call2(Stdlib_Format[137], fmt, _ai_);
-          caml_call2(Stdlib_Format[137], fmt, _aj_);
-          caml_call3(Stdlib_Format[137], fmt, _ak_, cst_diagnostics);
-          var x$0 = x2[3];
-          caml_call2(Stdlib_Format[137], fmt, _al_);
+          caml_call2(Stdlib_Format[137], fmt, _am_);
           caml_call3(
             Stdlib_List[26],
             function(sep, x3) {
               if (sep)
-                caml_call2(Stdlib_Format[137], fmt, _am_);
-              caml_call2(Stdlib_Format[137], fmt, _J_);
-              caml_call3(Stdlib_Format[137], fmt, _K_, cst_start$1);
-              var param = x3[1], a1 = param[2], a0 = param[1];
-              caml_call2(Stdlib_Format[137], fmt, _L_);
-              caml_call1(caml_call2(Stdlib_Format[137], fmt, _M_), a0);
-              caml_call2(Stdlib_Format[137], fmt, _N_);
-              caml_call1(caml_call2(Stdlib_Format[137], fmt, _O_), a1);
-              caml_call2(Stdlib_Format[137], fmt, _P_);
-              caml_call2(Stdlib_Format[137], fmt, _Q_);
-              caml_call2(Stdlib_Format[137], fmt, _R_);
-              caml_call3(Stdlib_Format[137], fmt, _S_, cst_end$1);
-              var param$0 = x3[2], a1$0 = param$0[2], a0$0 = param$0[1];
-              caml_call2(Stdlib_Format[137], fmt, _T_2);
-              caml_call1(caml_call2(Stdlib_Format[137], fmt, _U_), a0$0);
-              caml_call2(Stdlib_Format[137], fmt, _V_);
-              caml_call1(caml_call2(Stdlib_Format[137], fmt, _W_), a1$0);
-              caml_call2(Stdlib_Format[137], fmt, _X_);
-              caml_call2(Stdlib_Format[137], fmt, _Y_);
-              caml_call2(Stdlib_Format[137], fmt, _Z_);
-              caml_call3(Stdlib_Format[137], fmt, ___, cst_msg);
-              var _a3_ = x3[3];
-              caml_call1(caml_call2(Stdlib_Format[137], fmt, _$_), _a3_);
-              caml_call2(Stdlib_Format[137], fmt, _aa_);
-              caml_call2(Stdlib_Format[137], fmt, _ab_);
+                caml_call2(Stdlib_Format[137], fmt, _an_);
+              pp_diag(fmt, x3);
+              return 1;
+            },
+            0,
+            x2
+          );
+          return caml_call2(Stdlib_Format[137], fmt, _ao_);
+        }
+      );
+      var _ap_ = [0, [15, 0], cst_a];
+      caml_update_dummy2(
+        show_diag_list,
+        function(x2) {
+          return caml_call3(Stdlib_Format[141], _ap_, pp_diag_list, x2);
+        }
+      );
+      var pp_docdata = function _bl_(_bj_, _bk_) {
+        return _bl_.fun(_bj_, _bk_);
+      }, show_docdata = function _bi_(_bh_) {
+        return _bi_.fun(_bh_);
+      }, _aq_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [11, cst$4, 0]], cst_2$0], cst_tokens = "tokens", _ar_ = [
+        0,
+        [18, [1, [0, 0, cst]], [2, 0, [11, cst$5, [17, [0, cst$1, 1, 0], 0]]]],
+        cst_s
+      ], _as_ = [0, [17, 0, 0], cst$6], _at_ = [0, [12, 59, [17, [0, cst$1, 1, 0], 0]], cst$7], cst_formatted = "formatted", _au_ = [
+        0,
+        [18, [1, [0, 0, cst]], [2, 0, [11, cst$5, [17, [0, cst$1, 1, 0], 0]]]],
+        cst_s
+      ], _av_ = [0, [3, 0, 0], cst_S], _aw_ = [0, [17, 0, 0], cst$6], _ax_ = [0, [12, 59, [17, [0, cst$1, 1, 0], 0]], cst$7], cst_diagnostics = "diagnostics", _ay_ = [
+        0,
+        [18, [1, [0, 0, cst]], [2, 0, [11, cst$5, [17, [0, cst$1, 1, 0], 0]]]],
+        cst_s
+      ], _az_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [12, 91, 0]], cst_2$1], _aA_ = [0, [12, 59, [17, [0, cst$1, 1, 0], 0]], cst$7], _aB_ = [0, [17, [0, cst$9, 0, 0], [12, 93, [17, 0, 0]]], cst$10], _aC_ = [0, [17, 0, 0], cst$6], _aD_ = [0, [12, 59, [17, [0, cst$1, 1, 0], 0]], cst$7], cst_mod_term = "mod_term", _aE_ = [
+        0,
+        [18, [1, [0, 0, cst]], [2, 0, [11, cst$5, [17, [0, cst$1, 1, 0], 0]]]],
+        cst_s
+      ], _aF_ = [0, [17, 0, 0], cst$6], _aG_ = [0, [17, [0, cst$1, 1, 0], [12, 125, [17, 0, 0]]], cst$8];
+      caml_update_dummy2(
+        pp_docdata,
+        function(fmt, x2) {
+          caml_call2(Stdlib_Format[137], fmt, _aq_);
+          caml_call3(Stdlib_Format[137], fmt, _ar_, cst_tokens);
+          var _be_ = x2[1];
+          caml_call1(caml_call1(pp_loc_list, fmt), _be_);
+          caml_call2(Stdlib_Format[137], fmt, _as_);
+          caml_call2(Stdlib_Format[137], fmt, _at_);
+          caml_call3(Stdlib_Format[137], fmt, _au_, cst_formatted);
+          var _bf_ = x2[2];
+          caml_call1(caml_call2(Stdlib_Format[137], fmt, _av_), _bf_);
+          caml_call2(Stdlib_Format[137], fmt, _aw_);
+          caml_call2(Stdlib_Format[137], fmt, _ax_);
+          caml_call3(Stdlib_Format[137], fmt, _ay_, cst_diagnostics);
+          var x$0 = x2[3];
+          caml_call2(Stdlib_Format[137], fmt, _az_);
+          caml_call3(
+            Stdlib_List[26],
+            function(sep, x3) {
+              if (sep)
+                caml_call2(Stdlib_Format[137], fmt, _aA_);
+              pp_diag(fmt, x3);
               return 1;
             },
             0,
             x$0
           );
-          caml_call2(Stdlib_Format[137], fmt, _an_);
-          caml_call2(Stdlib_Format[137], fmt, _ao_);
-          caml_call2(Stdlib_Format[137], fmt, _ap_);
-          caml_call3(Stdlib_Format[137], fmt, _aq_, cst_mod_term);
-          var _a2_ = x2[4];
-          caml_call1(caml_call1(Typing_Typed[6], fmt), _a2_);
-          caml_call2(Stdlib_Format[137], fmt, _ar_);
-          return caml_call2(Stdlib_Format[137], fmt, _as_);
+          caml_call2(Stdlib_Format[137], fmt, _aB_);
+          caml_call2(Stdlib_Format[137], fmt, _aC_);
+          caml_call2(Stdlib_Format[137], fmt, _aD_);
+          caml_call3(Stdlib_Format[137], fmt, _aE_, cst_mod_term);
+          var _bg_ = x2[4];
+          caml_call1(caml_call1(Typing_Typed[6], fmt), _bg_);
+          caml_call2(Stdlib_Format[137], fmt, _aF_);
+          return caml_call2(Stdlib_Format[137], fmt, _aG_);
         }
       );
-      var _at_ = [0, [15, 0], cst_a];
+      var _aH_ = [0, [15, 0], cst_a];
       caml_update_dummy2(
         show_docdata,
         function(x2) {
-          return caml_call3(Stdlib_Format[141], _at_, pp_docdata, x2);
+          return caml_call3(Stdlib_Format[141], _aH_, pp_docdata, x2);
         }
       );
       function js_log(s2) {
         Js_of_ocaml_Firebug[1].log(runtime.caml_jsstring_of_string(s2));
         return;
       }
-      function in_range(param, _aM_) {
-        var _aN_ = _aM_[2], c2 = _aN_[2], l2 = _aN_[1], match = _aM_[1], c1 = match[2], l1 = match[1], c = param[2], l = param[1], _aO_ = runtime.caml_lessthan(l1, l), _aP_ = _aO_ ? caml_greaterthan2(l2, l) : _aO_;
-        if (_aP_)
-          var _aQ_ = _aP_;
+      function in_range(param, _a2_) {
+        var _a3_ = _a2_[2], c2 = _a3_[2], l2 = _a3_[1], match = _a2_[1], c1 = match[2], l1 = match[1], c = param[2], l = param[1], _a4_ = runtime.caml_lessthan(l1, l), _a5_ = _a4_ ? caml_greaterthan2(l2, l) : _a4_;
+        if (_a5_)
+          var _a6_ = _a5_;
         else {
-          var _aR_ = caml_notequal2(l1, l2);
-          if (_aR_)
-            var _aS_ = caml_equal2(l1, l), _aT_ = _aS_ ? caml_lessequal2(c1, c) : _aS_;
+          var _a7_ = caml_notequal2(l1, l2);
+          if (_a7_)
+            var _a8_ = caml_equal2(l1, l), _a9_ = _a8_ ? caml_lessequal2(c1, c) : _a8_;
           else
-            var _aT_ = _aR_;
-          if (_aT_)
-            var _aQ_ = _aT_;
+            var _a9_ = _a7_;
+          if (_a9_)
+            var _a6_ = _a9_;
           else {
-            var _aU_ = caml_notequal2(l1, l2);
-            if (_aU_)
-              var _aV_ = caml_equal2(l2, l), _aW_ = _aV_ ? caml_greaterthan2(c2, c) : _aV_;
+            var _a__ = caml_notequal2(l1, l2);
+            if (_a__)
+              var _a$_ = caml_equal2(l2, l), _ba_ = _a$_ ? caml_greaterthan2(c2, c) : _a$_;
             else
-              var _aW_ = _aU_;
-            if (_aW_)
-              var _aQ_ = _aW_;
+              var _ba_ = _a__;
+            if (_ba_)
+              var _a6_ = _ba_;
             else {
-              var _aX_ = caml_equal2(l1, l2);
-              if (_aX_) {
-                var _aY_ = caml_equal2(l1, l);
-                if (_aY_)
-                  var _aZ_ = caml_lessequal2(c1, c), _aQ_ = _aZ_ ? caml_greaterthan2(c2, c) : _aZ_;
+              var _bb_ = caml_equal2(l1, l2);
+              if (_bb_) {
+                var _bc_ = caml_equal2(l1, l);
+                if (_bc_)
+                  var _bd_ = caml_lessequal2(c1, c), _a6_ = _bd_ ? caml_greaterthan2(c2, c) : _bd_;
                 else
-                  var _aQ_ = _aY_;
+                  var _a6_ = _bc_;
               } else
-                var _aQ_ = _aX_;
+                var _a6_ = _bb_;
             }
           }
         }
-        return _aQ_;
+        return _a6_;
       }
       function pos_of_position(s2) {
         return [0, s2[2] - 1 | 0, s2[4] - s2[3] | 0];
       }
-      var files = caml_call2(Stdlib_Hashtbl[1], 0, 1), cst_file = cst_file$1, cst_keyword = "keyword", cst_unknown = cst_unknown$0, cst_number = "number", cst_variable = "variable", cst_filechange = cst_filechange$0, cst_tokeinfo_done = "tokeinfo done", cst_file$0 = cst_file$1, cst_parse_done = "parse done", cst_type_done = "type done", _au_ = [0, "jslib/main.ml", 88, 17];
+      function make_diag(d) {
+        var _a0_ = d[3], _a1_ = pos_of_position(d[2]);
+        return [0, pos_of_position(d[1]), _a1_, _a0_];
+      }
+      var files = caml_call2(Stdlib_Hashtbl[1], 0, 1), cst_file = cst_file$1, cst_keyword = "keyword", cst_unknown = cst_unknown$0, cst_number = "number", cst_variable = "variable", cst_filechange = cst_filechange$0, cst_tokeinfo_done = "tokeinfo done", cst_file$0 = cst_file$1, cst_parse_done = "parse done", cst_type_done = "type done", _aI_ = [0, "jslib/main.ml", 98, 17];
       function in_loc_range(pos, loc) {
-        var _aL_ = pos_of_position(loc[2]);
-        return in_range(pos, [0, pos_of_position(loc[1]), _aL_]);
+        var _aZ_ = pos_of_position(loc[2]);
+        return in_range(pos, [0, pos_of_position(loc[1]), _aZ_]);
       }
       function in_mod_term_range(pos, mod_term) {
-        var _aK_ = pos_of_position(mod_term[2][2]);
-        return in_range(pos, [0, pos_of_position(mod_term[2][1]), _aK_]);
+        var _aY_ = pos_of_position(mod_term[2][2]);
+        return in_range(pos, [0, pos_of_position(mod_term[2][1]), _aY_]);
       }
       function in_term_range(pos, term) {
-        var _aJ_ = pos_of_position(term[2][2]);
-        return in_range(pos, [0, pos_of_position(term[2][1]), _aJ_]);
+        var _aX_ = pos_of_position(term[2][2]);
+        return in_range(pos, [0, pos_of_position(term[2][1]), _aX_]);
       }
       function t12(param, uri, src) {
         js_log(cst_filechange);
@@ -47494,26 +47791,26 @@ var require_main_bc = __commonJS({
               if (typeof tok !== "number")
                 switch (tok[0]) {
                   case 0:
-                    var _aH_ = cst_number;
+                    var _aV_ = cst_number;
                     break a;
                   case 1:
                   case 2:
-                    var _aH_ = cst_variable;
+                    var _aV_ = cst_variable;
                     break a;
                 }
-              var _aF_ = caml_call2(
+              var _aT_ = caml_call2(
                 Stdlib_List[20],
-                function(_aI_) {
-                  return _aI_[2];
+                function(_aW_) {
+                  return _aW_[2];
                 },
                 Parsing_Token[6]
-              ), _aG_ = caml_call2(Stdlib_List[37], tok, _aF_) ? cst_keyword : cst_unknown, _aH_ = _aG_;
+              ), _aU_ = caml_call2(Stdlib_List[37], tok, _aT_) ? cst_keyword : cst_unknown, _aV_ = _aU_;
             }
             return [
               0,
               [0, s2[2] - 1 | 0, s2[4] - s2[3] | 0],
               [0, e[2] - 1 | 0, e[4] - e[3] | 0],
-              _aH_
+              _aV_
             ];
           },
           tok_list
@@ -47528,31 +47825,22 @@ var require_main_bc = __commonJS({
         js_log(cst_tokeinfo_done);
         var p = caml_call2(Parsing_Parser_base[6], cst_file$0, src), mod_expr = caml_call1(Parsing_Parser[21], p);
         js_log(cst_parse_done);
-        var match = caml_call1(Typing_Predef[13], 0), init_env = match[2], init_scope = match[1], _aA_ = caml_call1(Typing_Typed[23], mod_expr), _aB_ = caml_call1(caml_call1(Typing_Scope[20], init_scope), _aA_), m = caml_call1(caml_call1(Typing_Infer[30], init_env), _aB_);
+        var match = caml_call1(Typing_Predef[13], 0), init_env = match[2], init_scope = match[1];
+        caml_call1(Typing_Report[2], 0);
+        var _aO_ = caml_call1(Typing_Typed[23], mod_expr), _aP_ = caml_call1(caml_call1(Typing_Scope[19], init_scope), _aO_), m = caml_call1(caml_call1(Typing_Infer[30], init_env), _aP_);
         js_log(cst_type_done);
         if (0 === caml_call1(Stdlib_List[1], p[6])) {
-          var match$0 = mod_expr[1], _aC_ = 0;
+          var _aQ_ = caml_call2(Stdlib_List[20], make_diag, Typing_Report[1][1]), match$0 = mod_expr[1];
           if (1 !== match$0[0])
-            throw caml_maybe_attach_backtrace2([0, Assert_failure, _au_], 1);
-          var defs = match$0[1], ret = [0, toks, caml_call1(Parsing_Syntax[43], defs), _aC_, m];
+            throw caml_maybe_attach_backtrace2([0, Assert_failure, _aI_], 1);
+          var defs = match$0[1], ret = [0, toks, caml_call1(Parsing_Syntax[43], defs), _aQ_, m];
         } else
-          var ret = [
-            0,
-            toks,
-            src,
-            caml_call2(
-              Stdlib_List[20],
-              function(d) {
-                var _aD_ = d[3], _aE_ = pos_of_position(d[2]);
-                return [0, pos_of_position(d[1]), _aE_, _aD_];
-              },
-              p[6]
-            ),
-            m
-          ];
+          var _aS_ = caml_call2(Stdlib[37], p[6], Typing_Report[1][1]), ret = [0, toks, src, caml_call2(Stdlib_List[20], make_diag, _aS_), m];
         js_log(uri);
         js_log(caml_call1(show_docdata, ret));
-        return caml_call3(Stdlib_Hashtbl[5], files, uri, ret);
+        caml_call3(Stdlib_Hashtbl[5], files, uri, ret);
+        var _aR_ = caml_call1(diag_list_to_yojson, ret[3]);
+        return caml_call5(Yojson_Safe[5], 0, 0, 0, 0, _aR_);
       }
       function t11(param, uri, l, c) {
         var pos = [0, l, c], mod_term = caml_call2(Stdlib_Hashtbl[6], files, uri)[4];
@@ -47572,8 +47860,8 @@ var require_main_bc = __commonJS({
                         var term = match2[2], id = match2[1];
                         if (!in_loc_range(pos, id[2]))
                           return in_term_range(pos, term) ? loop_term(pos, term) : acc;
-                        var _az_ = caml_call2(Typing_Env[14], [0, id[1]], def[3]);
-                        return caml_call2(caml_call1(Typing_Types[33], 0), 0, _az_);
+                        var _aN_ = caml_call2(Typing_Env[14], [0, id[1]], def[3]);
+                        return caml_call2(caml_call1(Typing_Types[33], 0), 0, _aN_);
                       case 1:
                         return acc;
                       default:
@@ -47608,7 +47896,7 @@ var require_main_bc = __commonJS({
         function loop_term(pos2, term) {
           var term$0 = term;
           for (; ; ) {
-            var _aw_ = caml_call1(Typing_Types[30], term$0[3]), str = caml_call3(Typing_Types[33], 0, 0, _aw_), match = term$0[1];
+            var _aK_ = caml_call1(Typing_Types[30], term$0[3]), str = caml_call3(Typing_Types[33], 0, 0, _aK_), match = term$0[1];
             if (typeof match !== "number")
               switch (match[0]) {
                 case 2:
@@ -47623,8 +47911,8 @@ var require_main_bc = __commonJS({
                     return loop_term_list(
                       pos2,
                       str,
-                      caml_call2(Stdlib_List[20], function(_ay_) {
-                        return _ay_[2];
+                      caml_call2(Stdlib_List[20], function(_aM_) {
+                        return _aM_[2];
                       }, tml)
                     );
                   var term$0 = term$2;
@@ -47634,8 +47922,8 @@ var require_main_bc = __commonJS({
                   js_log(caml_call1(Parsing_Location[4], id[2]));
                   if (!in_loc_range(pos2, id[2]))
                     return loop_term_list(pos2, str, [0, tm1, [0, tm2, 0]]);
-                  var _ax_ = caml_call2(Typing_Env[14], [0, id[1]], tm2[4]);
-                  return caml_call2(caml_call1(Typing_Types[33], 0), 0, _ax_);
+                  var _aL_ = caml_call2(Typing_Env[14], [0, id[1]], tm2[4]);
+                  return caml_call2(caml_call1(Typing_Types[33], 0), 0, _aL_);
                 case 5:
                   var tm2$0 = match[3], tm1$0 = match[2];
                   return loop_term_list(pos2, str, [0, tm1$0, [0, tm2$0, 0]]);
@@ -47659,8 +47947,8 @@ var require_main_bc = __commonJS({
         return caml_call2(Stdlib_Hashtbl[6], files, uri)[2];
       }
       function t9(param, uri) {
-        var _av_ = caml_call1(loc_list_to_yojson, caml_call2(Stdlib_Hashtbl[6], files, uri)[1]);
-        return caml_call5(Yojson_Safe[5], 0, 0, 0, 0, _av_);
+        var _aJ_ = caml_call1(loc_list_to_yojson, caml_call2(Stdlib_Hashtbl[6], files, uri)[1]);
+        return caml_call5(Yojson_Safe[5], 0, 0, 0, 0, _aJ_);
       }
       caml_call1(
         Js_of_ocaml_Js[51],
@@ -47672,7 +47960,7 @@ var require_main_bc = __commonJS({
         }
       );
       var Dune_exe_Main = [0];
-      runtime.caml_register_global(150, Dune_exe_Main, "Dune__exe__Main");
+      runtime.caml_register_global(157, Dune_exe_Main, "Dune__exe__Main");
       return;
     })(globalThis);
     (function(globalThis2) {
@@ -48011,7 +48299,29 @@ documents.onDidChangeContent((change) => {
   console.log("onDidChangeContent");
   const doc = change.document;
   console.log(doc.uri);
-  lib.filechange(doc.uri, doc.getText());
+  try {
+    const diagjson = lib.filechange(doc.uri, doc.getText());
+    const diag = JSON.parse(diagjson);
+    connection.sendDiagnostics({
+      uri: doc.uri,
+      diagnostics: diag.filter((d) => d.msg).map((d) => {
+        return {
+          "message": d.msg,
+          range: {
+            start: {
+              line: d.start[0],
+              character: d.start[1]
+            },
+            end: {
+              line: d.end[0],
+              character: d.end[1]
+            }
+          }
+        };
+      })
+    });
+  } catch {
+  }
 });
 connection.onDocumentFormatting(async ({ textDocument }) => {
   const doc = documents.get(textDocument.uri);

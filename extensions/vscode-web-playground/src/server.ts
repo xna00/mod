@@ -1,25 +1,23 @@
 import {
-	createConnection,
-	TextDocuments,
-	Diagnostic,
-	DiagnosticSeverity,
-	ProposedFeatures,
-	InitializeParams,
-	DidChangeConfigurationNotification,
+	BrowserMessageReader, BrowserMessageWriter,
 	CompletionItem,
 	CompletionItemKind,
+	DidChangeConfigurationNotification,
+	DocumentDiagnosticReportKind,
+	InitializeParams,
+	InitializeResult,
+	SemanticTokenModifiers,
+	SemanticTokenTypes,
 	TextDocumentPositionParams,
 	TextDocumentSyncKind,
-	InitializeResult,
-	DocumentDiagnosticReportKind,
-	type DocumentDiagnosticReport, BrowserMessageReader, BrowserMessageWriter,
-	SemanticTokenTypes, SemanticTokenModifiers
+	TextDocuments,
+	createConnection
 } from 'vscode-languageserver/browser';
 
 import {
 	TextDocument
 } from 'vscode-languageserver-textdocument';
-import * as lib from '../../_build/default/jslib/main.bc.js'
+import * as lib from '../../_build/default/jslib/main.bc.js';
 const messageReader = new BrowserMessageReader(self);
 const messageWriter = new BrowserMessageWriter(self);
 const connection = createConnection(messageReader, messageWriter);
@@ -180,7 +178,33 @@ documents.onDidChangeContent(change => {
 	console.log('onDidChangeContent')
 	const doc = change.document
 	console.log(doc.uri)
-	lib.filechange(doc.uri, doc.getText())
+	try {
+		const diagjson = lib.filechange(doc.uri, doc.getText())
+		const diag: DocData[string]['diagnostics'] = JSON.parse(diagjson)
+		connection.sendDiagnostics({
+			uri: doc.uri,
+			diagnostics: diag.filter(d => d.msg).map(d => {
+				return {
+					'message': d.msg,
+					range: {
+						start: {
+							line: d.start[0],
+							character: d.start[1]
+						},
+						end: {
+							line: d.end[0],
+							character: d.end[1]
+						}
+					}
+				}
+			})
+		})
+	} catch {
+
+	}
+	// connection.sendDiagnostics({
+	// 	'diagnostics'
+	// })
 
 });
 
