@@ -219,7 +219,7 @@ and mod_def_to_typed def =
     | Syntax.Value_str (lid, expr) ->
         Value_str
           ( {
-              txt = Ident.create (Longident.string_of_longident lid.txt);
+              txt = Ident.create (Longident.string_of_shortident lid.txt);
               loc = lid.loc;
             },
             expr_to_typed expr )

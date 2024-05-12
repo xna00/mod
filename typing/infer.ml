@@ -1,6 +1,7 @@
 open Types
 open Typed
 open Predef
+open Report
 
 let rec subst_vars subst ty =
   match typerepr ty with
@@ -51,7 +52,8 @@ let rec scrape_types env ty1 ty2 =
 
 let rec occur_check var ty =
   match typerepr ty with
-  | Var var' -> if var == var' then failwith "cycle in unification"
+  | Var var' ->
+      if var == var' then raise (Typechecking_error "cycle in unification")
   | Typeconstr (p, tl) -> List.iter (occur_check var) tl
   | Tarrow (_, t1, t2) ->
       occur_check var t1;
@@ -78,6 +80,9 @@ let rec update_levels level_max ty =
   | Tvariant row -> update_levels level_max row
 
 let rec unify env t1 t2 =
+  print_endline
+    (Printf.sprintf "type constructor mismatch in unification: %s, %s"
+       (show_simple_type t1) (show_simple_type t2));
   match scrape_types env t1 t2 with
   | r1, r2 when r1 == r2 -> ()
   | Var v, r2 ->
@@ -92,10 +97,11 @@ let rec unify env t1 t2 =
       List.iter2 (unify env) args1 args2
   | Tarrow (arg_label1, t11, t12), Tarrow (arg_label2, t21, t22) ->
       if not (arg_label_match arg_label1 arg_label2) then
-        failwith
-          (Printf.sprintf "label1: %s, label2: %s"
-             (Parsing.Asttypes.show_arg_label arg_label1)
-             (Parsing.Asttypes.show_arg_label arg_label2));
+        raise
+          (Typechecking_error
+             (Printf.sprintf "label1: %s, label2: %s"
+                (Parsing.Asttypes.show_arg_label arg_label1)
+                (Parsing.Asttypes.show_arg_label arg_label2)));
       unify env t11 t21;
       unify env t12 t22
   | Trecord row1, Trecord row2 -> unify env row1 row2
@@ -109,7 +115,7 @@ let rec unify env t1 t2 =
         | TRextend (label2, t2, rest) ->
             TRextend (label2, t2, rewrite_row rest label1 t1)
         | TRempty ->
-            failwith (Printf.sprintf "unify: %s does not exsit on empty" label1)
+            error (Printf.sprintf "unify: %s does not exsit on empty" label1)
         | Var { repres = Some row2; _ } -> rewrite_row row2 label1 t1
         | Var ({ repres = None; level } as varref) ->
             let var = newvar () in
@@ -117,15 +123,18 @@ let rec unify env t1 t2 =
             let rest2 = Var var in
             varref.repres <- Some (TRextend (label1, t1, rest2));
             rest2
-        | _ -> failwith "not a row"
+        | _ -> error "not a row"
       in
       let rest2 = rewrite_row row2 label1 t1 in
       unify env rest1 rest2
   | TRempty, (TRextend (label, _, _) as r)
   | (TRextend (label, _, _) as r), TRempty ->
       print_endline (show_simple_type r);
-      failwith (Printf.sprintf "unify: %s does not exsit on empty" label)
-  | _, _ -> failwith "type constructor mismatch in unification"
+      error (Printf.sprintf "unify: %s does not exsit on empty" label)
+  | ty1, ty2 ->
+      error
+        (Printf.sprintf "type constructor mismatch in unification: %s, %s"
+           (show_simple_type ty1) (show_simple_type ty2))
 
 let instance vty =
   match vty.quantif with
@@ -184,14 +193,13 @@ let rec infer_type env term : term =
             unify env type_funct.term_type type_f;
             type_result
         | _ ->
-            unify env ret_ty jsx_element_type;
             let n = List.length args_tys in
             let sigma = Array.make (List.length args_tys) (-1) in
             List.iteri
               (fun pos (label1, expr) ->
                 let rec loop l i =
                   match l with
-                  | [] -> failwith "Unkonwn label"
+                  | [] -> error "Unkonwn label"
                   | (label2, ty) :: rest ->
                       if arg_label_match label1 label2 && sigma.(i) = -1 then (
                         unify env ty (infer_type env expr).term_type;
@@ -230,7 +238,7 @@ let rec infer_type env term : term =
               | _, 0 -> ty
               | (Parsing.Asttypes.Optional _, _) :: rest, k -> erase rest (k - 1)
               | t :: rest, k -> t :: erase rest (k - 1)
-              | [], _ -> failwith "erase"
+              | [], _ -> error "erase"
             in
             List.fold_right
               (fun (label, t1) t2 -> Tarrow (label, t1, t2))
@@ -239,15 +247,16 @@ let rec infer_type env term : term =
         let type_funct = infer_type env funct in
         let args_tys, ret_ty = flatten_arrow type_funct.term_type in
         match ret_ty with
-        | Var _ -> failwith "Element type should be known"
+        | Var _ -> error "Element type should be known"
         | _ ->
+            unify env ret_ty jsx_element_type;
             let n = List.length args_tys in
             let sigma = Array.make (List.length args_tys) (-1) in
             List.iteri
               (fun pos (label1, expr) ->
                 let rec loop l i =
                   match l with
-                  | [] -> failwith "Unkonwn label"
+                  | [] -> error "Unkonwn label"
                   | (label2, ty) :: rest ->
                       if arg_label_match label1 label2 && sigma.(i) = -1 then (
                         unify env ty (infer_type env expr).term_type;
@@ -286,15 +295,15 @@ let rec infer_type env term : term =
               | _, 0 -> ty
               | (Parsing.Asttypes.Optional _, _) :: rest, k -> erase rest (k - 1)
               | t :: rest, k -> t :: erase rest (k - 1)
-              | [], _ -> failwith "erase"
+              | [], _ -> error "erase"
             in
             let d = erase extra k in
             List.iter
               (fun (l, _) ->
                 match l with
                 | Asttypes.Optional _ -> ()
-                | Asttypes.Nolabel -> failwith "Find a nolabel prop"
-                | Asttypes.Labelled s -> failwith (s ^ " is missing"))
+                | Asttypes.Nolabel -> error "Find a nolabel prop"
+                | Asttypes.Labelled s -> error (s ^ " is missing"))
               d;
             ret_ty)
     | Let (ident, arg, body) ->
@@ -361,10 +370,10 @@ let rec infer_type env term : term =
 
 let rec check_simple_type env params ty =
   match typerepr ty with
-  | Var v -> if not (List.memq v params) then failwith "free type variable"
+  | Var v -> if not (List.memq v params) then error "free type variable"
   | Typeconstr (path, tl) ->
       let arity = (Env.find_type path env).kind.arity in
-      if List.length tl <> arity then failwith "arity error";
+      if List.length tl <> arity then error "arity error";
       List.iter (check_simple_type env params) tl
   | Tarrow (_, t1, t2) ->
       check_simple_type env params t1;
@@ -380,7 +389,25 @@ let check_kind env kind = ()
 
 let type_term env term =
   begin_def ();
-  let ty = infer_type env term in
+  let ty =
+    try infer_type env term with
+    | Typechecking_error s ->
+        add_d_ref
+          {
+            msg = s;
+            start_pos = term.loc.loc_start;
+            end_pos = term.loc.loc_end;
+          };
+        term
+    | _ ->
+        add_d_ref
+          {
+            msg = "Type error";
+            start_pos = term.loc.loc_start;
+            end_pos = term.loc.loc_end;
+          };
+        term
+  in
   end_def ();
   let ret = generalize ty.term_type in
   ret
@@ -423,14 +450,14 @@ let rec modtype_match env mty1 mty2 =
       let res1' = Subst.subst_modtype res1 subst in
       modtype_match env arg2 arg1;
       modtype_match (Env.add_module param2 arg2 env) res1' res2
-  | _, _ -> failwith "module type mismatch"
+  | _, _ -> error "module type mismatch"
 
 and pair_signature_components sig1 sig2 =
   match sig2 with
   | [] -> ([], Subst.identity)
   | item2 :: rem2 ->
       let rec find_matching_component = function
-        | [] -> failwith "unmatched signature component"
+        | [] -> error "unmatched signature component"
         | item1 :: rem1 -> (
             match (item1, item2) with
             | Value_sig (id1, _), Value_sig (id2, _)
@@ -451,10 +478,10 @@ and pair_signature_components sig1 sig2 =
 and specification_match env subst = function
   | Value_sig (_, vty1), Value_sig (_, vty2) ->
       if not (valtype_match env vty1 (Subst.subst_valtype vty2 subst)) then
-        failwith "value components do not match"
+        error "value components do not match"
   | Type_sig (id, decl1), Type_sig (_, decl2) ->
       if not (typedecl_match env id decl1 (Subst.subst_typedecl decl2 subst))
-      then failwith "type components do not match"
+      then error "type components do not match"
   | Module_sig (_, mty1), Module_sig (_, mty2) ->
       modtype_match env mty1 (Subst.subst_modtype mty2 subst)
 
@@ -494,20 +521,20 @@ let rec check_modtype env = function
 and check_signature env seen = function
   | [] -> ()
   | Value_sig (id, vty) :: rem ->
-      if List.mem (Ident.name id) seen then failwith "repeated value name";
+      if List.mem (Ident.name id) seen then error "repeated value name";
       check_valtype env vty;
       check_signature env (Ident.name id :: seen) rem
   | Type_sig (id, decl) :: rem ->
-      if List.mem (Ident.name id) seen then failwith "repeated type name";
+      if List.mem (Ident.name id) seen then error "repeated type name";
       check_kind env decl.kind;
       (match decl.manifest with
       | None -> ()
       | Some typ ->
           if not (kind_match env (kind_deftype env typ) decl.kind) then
-            failwith "kind mismatch in manifest type specification");
+            error "kind mismatch in manifest type specification");
       check_signature (Env.add_type id decl env) (Ident.name id :: seen) rem
   | Module_sig (id, mty) :: rem ->
-      if List.mem (Ident.name id) seen then failwith "repeated module name";
+      if List.mem (Ident.name id) seen then error "repeated module name";
       check_modtype env mty;
       check_signature (Env.add_module id mty env) (Ident.name id :: seen) rem
 
@@ -530,11 +557,11 @@ let rec type_module env mod_term : mod_term =
             let path =
               match arg.mod_term_desc with
               | Longident path -> path
-              | _ -> failwith "application of a functor to a non-path"
+              | _ -> error "application of a functor to a non-path"
             in
             Subst.subst_modtype mty_res (Subst.add param path Subst.identity)
-        | _ -> failwith "application of a non-functor")
-    | Apply (funct, arg) -> failwith "application of a functor to a non-path"
+        | _ -> error "application of a non-functor")
+    | Apply (funct, arg) -> error "application of a functor to a non-path"
     | Constraint (modl, mty) ->
         check_modtype env mty;
         modtype_match env (type_module env modl).mod_term_type mty;
@@ -553,15 +580,15 @@ and type_structure env seen = function
 
 and type_definition env seen = function
   | Value_str (id, term) ->
-      if List.mem (Ident.name id.txt) seen then failwith "repeated value name";
+      if List.mem (Ident.name id.txt) seen then error "repeated value name";
       (Value_sig (id.txt, type_term env term), Ident.name id.txt :: seen)
   | Module_str (id, modl) ->
-      if List.mem (Ident.name id) seen then failwith "repeated module name";
+      if List.mem (Ident.name id) seen then error "repeated module name";
       ( Module_sig (id, (type_module env modl).mod_term_type),
         Ident.name id :: seen )
   | Type_str (id, kind, typ) ->
-      if List.mem (Ident.name id) seen then failwith "repeated type name";
+      if List.mem (Ident.name id) seen then error "repeated type name";
       check_kind env kind;
       if not (kind_match env (kind_deftype env typ) kind) then
-        failwith "kind mismatch in type definition";
+        error "kind mismatch in type definition";
       (Type_sig (id, { kind; manifest = Some typ }), Ident.name id :: seen)

@@ -14,6 +14,8 @@ type loc_list = loc list [@@deriving yojson, show { with_path = false }]
 type diag = { start : int * int; _end : int * int; [@key "end"] msg : string }
 [@@deriving yojson, show { with_path = false }]
 
+type diag_list = diag list [@@deriving yojson, show { with_path = false }]
+
 type docdata = {
   tokens : loc_list;
   formatted : string;
@@ -32,6 +34,13 @@ let in_range (l, c) ((l1, c1), (l2, c2)) =
 
 let pos_of_position (s : Location.position) =
   (s.pos_lnum - 1, s.pos_cnum - s.pos_bol)
+
+let make_diag (d : Parser_base.diagnostic) =
+  {
+    start = pos_of_position d.start_pos;
+    _end = pos_of_position d.end_pos;
+    msg = d.msg;
+  }
 
 let tokeinfo src =
   let scanner = Lexer.make "file" src in
@@ -72,6 +81,7 @@ let filechange (uri : string) src =
   let mod_expr = Parser.parse p in
   js_log "parse done";
   let init_scope, init_env = Predef.init_scope_env () in
+  Report.reset_d_ref ();
   let m =
     Typed.mod_expr_to_typed mod_expr
     |> Typing.Scope.scope_module init_scope
@@ -86,28 +96,21 @@ let filechange (uri : string) src =
           (match mod_expr.me_desc with
           | MEStructure defs -> Syntax.print_definition_list defs
           | _ -> assert false);
-        diagnostics = [];
+        diagnostics = List.map make_diag !Report.d_ref;
         mod_term = m;
       }
     else
       {
         tokens = toks;
         formatted = src;
-        diagnostics =
-          List.map
-            (fun (d : Parser_base.diagnostic) ->
-              {
-                start = pos_of_position d.start_pos;
-                _end = pos_of_position d.end_pos;
-                msg = d.msg;
-              })
-            p.diagnostics;
+        diagnostics = List.map make_diag (p.diagnostics @ !Report.d_ref);
         mod_term = m;
       }
   in
   js_log uri;
   js_log (show_docdata ret);
-  Hashtbl.add files uri ret
+  Hashtbl.add files uri ret;
+  ret.diagnostics |> diag_list_to_yojson |> Yojson.Safe.to_string
 
 let in_loc_range pos loc =
   in_range pos

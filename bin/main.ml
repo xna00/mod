@@ -18,15 +18,7 @@ let src =
 
 let src =
   {|
-  let a = 1
-module M = struct
-  let id = fun x -> x
-  let ( ++ ) = ( + )
-  let d = <div className={3}></div>
-  module N = struct
-    let make = div
-  end
-  let dd = <N className={3}></N>
+  let a = 1 + 1
 end
          |}
   |> String.trim

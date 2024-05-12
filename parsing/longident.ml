@@ -12,8 +12,7 @@ let is_infix s =
   | '*' | '/' | '+' | '-' | '>' | '<' | '=' -> true
   | _ -> false
 
-let infixify s =
-  if is_infix s then "( " ^ s ^ " )" else s
+let infixify s = if is_infix s then "( " ^ s ^ " )" else s
 
 let rec flat id =
   match id with
@@ -25,3 +24,4 @@ let ident_of_string s =
   Location.{ txt = Lident txt; loc }
 
 let string_of_longident id = String.concat "." (flat id)
+let string_of_shortident id = match id with Lident s -> s | _ -> assert false
