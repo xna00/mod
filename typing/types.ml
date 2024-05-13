@@ -49,7 +49,7 @@ and signature = specification list [@@deriving show { with_path = false }]
 and specification =
   | Value_sig of Ident.t * val_type (* val x: ty *)
   | Type_sig of Ident.t * type_decl (* type t :: k [= ty] *)
-  | Module_sig of Ident.t * mod_type
+  | Module_sig of Ident.t Parsing.Asttypes.loc * mod_type
 (* module X: mty *) [@@deriving show { with_path = false }]
 
 let unknown_mod_type () = Signature []
@@ -223,7 +223,7 @@ and print_specification ~offset spec =
             else
               Printf.sprintf "type (%s) %s = %s" paramss (Ident.name id) bodys)
     | Module_sig (id, mty) ->
-        Printf.sprintf "module %s: %s" (Ident.name id)
+        Printf.sprintf "module %s: %s" (Ident.name id.txt)
           (print_mod_type ~offset mty)
   in
   String.make offset ' ' ^ ret

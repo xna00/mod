@@ -69,7 +69,7 @@ and definition = {
 and definition_desc =
   | Value_str of Ident.t Asttypes.loc * term (* let x = expr *)
   | Type_str of Ident.t * kind * def_type (* type t :: k = ty *)
-  | Module_str of Ident.t * mod_term (* module X = mod *)
+  | Module_str of Ident.t Asttypes.loc * mod_term (* module X = mod *)
 [@@deriving show { with_path = false }]
 
 module Syntax = Parsing.Syntax
@@ -188,7 +188,10 @@ and specification_to_typed spec : specification =
           { kind = { arity = decl.kind }; manifest } )
   | Module_sig (lid, mty) ->
       Module_sig
-        ( Ident.create (Longident.string_of_longident lid.txt),
+        ( {
+            txt = Ident.create (Longident.string_of_longident lid.txt);
+            loc = lid.loc;
+          },
           mod_type_to_typed mty )
 
 let rec mod_expr_to_typed me : mod_term =
@@ -247,7 +250,10 @@ and mod_def_to_typed def =
             manifest )
     | Syntax.Module_str (lid, mt, me) ->
         Module_str
-          ( Ident.create (Longident.string_of_longident lid.txt),
+          ( {
+              txt = Ident.create (Longident.string_of_longident lid.txt);
+              loc = lid.loc;
+            },
             match mt with
             | None -> mod_expr_to_typed me
             | Some mty ->

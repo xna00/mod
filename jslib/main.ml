@@ -150,9 +150,11 @@ let type_info uri pos =
                   |> Types.print_val_type []
                 else if in_term_range pos term then loop_term pos term
                 else acc
-            | Typed.Module_str (_, m) ->
-                if in_mod_term_range pos m then loop_mod_term m
-                else Types.print_mod_type m.mod_term_type
+            | Typed.Module_str (id, m) ->
+                if in_loc_range pos id.loc then
+                  Types.print_mod_type m.mod_term_type
+                else if in_mod_term_range pos m then loop_mod_term m
+                else acc
             | _ -> acc)
           str structure
     | _ -> str

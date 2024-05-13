@@ -16,7 +16,7 @@ let add_spec item env =
   match item with
   | Value_sig (id, vty) -> add_value id vty env
   | Type_sig (id, decl) -> add_type id decl env
-  | Module_sig (id, mty) -> add_module id mty env
+  | Module_sig (id, mty) -> add_module id.txt mty env
 
 (* Why fold_right instead of fold_left? *)
 let add_signature = List.fold_right add_spec
@@ -42,10 +42,10 @@ and find_field p field subst = function
           (Subst.add id (Path.Pdot (p, Ident.name id)) subst)
           rem
   | Module_sig (id, mty) :: rem ->
-      if Ident.name id = field then Module (Subst.subst_modtype mty subst)
+      if Ident.name id.txt = field then Module (Subst.subst_modtype mty subst)
       else
         find_field p field
-          (Subst.add id (Path.Pdot (p, Ident.name id)) subst)
+          (Subst.add id.txt (Path.Pdot (p, Ident.name id.txt)) subst)
           rem
 
 and find_value path env =

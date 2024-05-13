@@ -140,7 +140,7 @@ and scope_signature sc = function
       :: scope_signature (enter_type id sc) rem
   | Module_sig (id, mty) :: rem ->
       Module_sig (id, scope_modtype sc mty)
-      :: scope_signature (enter_module id sc) rem
+      :: scope_signature (enter_module id.txt sc) rem
 
 let rec scope_module sc mod_term =
   let new_mod_term =
@@ -178,4 +178,4 @@ and scope_structure sc str =
         before_env = Env.empty;
         after_env = Env.empty;
       }
-      :: scope_structure (enter_module id sc) rem
+      :: scope_structure (enter_module id.txt sc) rem

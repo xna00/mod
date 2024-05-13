@@ -465,8 +465,8 @@ and pair_signature_components sig1 sig2 =
               when Ident.name id1 = Ident.name id2 ->
                 (id1, id2, item1)
             | Module_sig (id1, _), Module_sig (id2, _)
-              when Ident.name id1 = Ident.name id2 ->
-                (id1, id2, item1)
+              when Ident.name id1.txt = Ident.name id2.txt ->
+                (id1.txt, id2.txt, item1)
             | _ -> find_matching_component rem1)
       in
       let id1, id2, item1 = find_matching_component sig1 in
@@ -508,7 +508,7 @@ and strengthen_spec path item =
       in
       Type_sig (id, { kind = decl.kind; manifest = m })
   | Module_sig (id, mty) ->
-      Module_sig (id, strengthen_modtype (Pdot (path, Ident.name id)) mty)
+      Module_sig (id, strengthen_modtype (Pdot (path, Ident.name id.txt)) mty)
 
 let rec check_modtype env = function
   | Signature sg -> check_signature env [] sg
@@ -532,9 +532,9 @@ and check_signature env seen = function
             error "kind mismatch in manifest type specification");
       check_signature (Env.add_type id decl env) (Ident.name id :: seen) rem
   | Module_sig (id, mty) :: rem ->
-      if List.mem (Ident.name id) seen then error "repeated module name";
+      if List.mem (Ident.name id.txt) seen then error "repeated module name";
       check_modtype env mty;
-      check_signature (Env.add_module id mty env) (Ident.name id :: seen) rem
+      check_signature (Env.add_module id.txt mty env) (Ident.name id.txt :: seen) rem
 
 let rec type_module env mod_term : mod_term =
   let ret =
@@ -581,10 +581,10 @@ and type_definition env seen = function
       if List.mem (Ident.name id.txt) seen then error "repeated value name";
       (Value_sig (id.txt, type_term env term), Ident.name id.txt :: seen)
   | Module_str (id, modl) ->
-      if List.mem (Ident.name id) seen then error "repeated module name";
+      if List.mem (Ident.name id.txt) seen then error "repeated module name";
       let mty = (type_module env modl).mod_term_type in
       modl.mod_term_type <- mty;
-      (Module_sig (id, mty), Ident.name id :: seen)
+      (Module_sig (id, mty), Ident.name id.txt :: seen)
   | Type_str (id, kind, typ) ->
       if List.mem (Ident.name id) seen then error "repeated type name";
       check_kind env kind;
