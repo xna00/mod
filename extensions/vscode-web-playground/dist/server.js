@@ -46081,17 +46081,17 @@ var require_main_bc = __commonJS({
           case 0:
             var var$0 = tyvar[1];
             try {
-              var _a3_ = caml_call2(Stdlib_List[51], var$0, subst);
-              return _a3_;
-            } catch (_a7_) {
-              var _a2_ = caml_wrap_exception2(_a7_);
-              if (_a2_ === Stdlib[8])
+              var _a2_ = caml_call2(Stdlib_List[51], var$0, subst);
+              return _a2_;
+            } catch (_a6_) {
+              var _a1_ = caml_wrap_exception2(_a6_);
+              if (_a1_ === Stdlib[8])
                 return tyvar;
-              throw caml_maybe_attach_backtrace2(_a2_, 0);
+              throw caml_maybe_attach_backtrace2(_a1_, 0);
             }
           case 1:
-            var t2 = tyvar[3], t1 = tyvar[2], label = tyvar[1], _a4_ = subst_vars(subst, t2);
-            return [1, label, subst_vars(subst, t1), _a4_];
+            var t2 = tyvar[3], t1 = tyvar[2], label = tyvar[1], _a3_ = subst_vars(subst, t2);
+            return [1, label, subst_vars(subst, t1), _a3_];
           case 2:
             var tl = tyvar[2], p = tyvar[1];
             return [
@@ -46099,15 +46099,15 @@ var require_main_bc = __commonJS({
               p,
               caml_call2(
                 Stdlib_List[20],
-                function(_a6_) {
-                  return subst_vars(subst, _a6_);
+                function(_a5_) {
+                  return subst_vars(subst, _a5_);
                 },
                 tl
               )
             ];
           case 3:
-            var rest = tyvar[3], t1$0 = tyvar[2], label$0 = tyvar[1], _a5_ = subst_vars(subst, rest);
-            return [3, label$0, subst_vars(subst, t1$0), _a5_];
+            var rest = tyvar[3], t1$0 = tyvar[2], label$0 = tyvar[1], _a4_ = subst_vars(subst, rest);
+            return [3, label$0, subst_vars(subst, t1$0), _a4_];
           case 4:
             var row = tyvar[1];
             return [4, subst_vars(subst, row)];
@@ -46141,8 +46141,8 @@ var require_main_bc = __commonJS({
         var match = caml_call2(Typing_Env[15], path, env)[2];
         if (!match)
           throw caml_maybe_attach_backtrace2(Cannot_expand, 1);
-        var def = match[1], _a1_ = def[2];
-        return subst_vars(caml_call2(Stdlib_List[58], def[1], args), _a1_);
+        var def = match[1], _a0_ = def[2];
+        return subst_vars(caml_call2(Stdlib_List[58], def[1], args), _a0_);
       }
       function arg_label_match(label1, label2) {
         if (typeof label1 === "number") {
@@ -46166,44 +46166,44 @@ var require_main_bc = __commonJS({
             if (caml_call2(Typing_Path[3], path1, path2))
               return [0, repr1, repr2];
             try {
-              var _aW_ = scrape_types(env, expand_manifest(env, path1, args1), repr2);
-              return _aW_;
-            } catch (_aZ_) {
-              var _aT_ = caml_wrap_exception2(_aZ_);
-              if (_aT_ !== Cannot_expand)
-                throw caml_maybe_attach_backtrace2(_aT_, 0);
+              var _aV_ = scrape_types(env, expand_manifest(env, path1, args1), repr2);
+              return _aV_;
+            } catch (_aY_) {
+              var _aS_ = caml_wrap_exception2(_aY_);
+              if (_aS_ !== Cannot_expand)
+                throw caml_maybe_attach_backtrace2(_aS_, 0);
               try {
-                var _aV_ = scrape_types(env, repr1, expand_manifest(env, path2, args2));
-                return _aV_;
-              } catch (_a0_) {
-                var _aU_ = caml_wrap_exception2(_a0_);
-                if (_aU_ === Cannot_expand)
+                var _aU_ = scrape_types(env, repr1, expand_manifest(env, path2, args2));
+                return _aU_;
+              } catch (_aZ_) {
+                var _aT_ = caml_wrap_exception2(_aZ_);
+                if (_aT_ === Cannot_expand)
                   return [0, repr1, repr2];
-                throw caml_maybe_attach_backtrace2(_aU_, 0);
+                throw caml_maybe_attach_backtrace2(_aT_, 0);
               }
             }
           }
           var args$0 = repr1[2];
           try {
-            var _aS_ = scrape_types(env, expand_manifest(env, path1, args$0), repr2);
-            return _aS_;
-          } catch (_aY_) {
-            var _aR_ = caml_wrap_exception2(_aY_);
-            if (_aR_ === Cannot_expand)
+            var _aR_ = scrape_types(env, expand_manifest(env, path1, args$0), repr2);
+            return _aR_;
+          } catch (_aX_) {
+            var _aQ_ = caml_wrap_exception2(_aX_);
+            if (_aQ_ === Cannot_expand)
               return [0, repr1, repr2];
-            throw caml_maybe_attach_backtrace2(_aR_, 0);
+            throw caml_maybe_attach_backtrace2(_aQ_, 0);
           }
         }
         if (typeof repr2 !== "number" && 2 === repr2[0]) {
           var args = repr2[2], path = repr2[1];
           try {
-            var _aQ_ = scrape_types(env, repr1, expand_manifest(env, path, args));
-            return _aQ_;
-          } catch (_aX_) {
-            var _aP_ = caml_wrap_exception2(_aX_);
-            if (_aP_ === Cannot_expand)
+            var _aP_ = scrape_types(env, repr1, expand_manifest(env, path, args));
+            return _aP_;
+          } catch (_aW_) {
+            var _aO_ = caml_wrap_exception2(_aW_);
+            if (_aO_ === Cannot_expand)
               return [0, repr1, repr2];
-            throw caml_maybe_attach_backtrace2(_aP_, 0);
+            throw caml_maybe_attach_backtrace2(_aO_, 0);
           }
         }
         return [0, repr1, repr2];
@@ -46216,10 +46216,10 @@ var require_main_bc = __commonJS({
             return 0;
           switch (match[0]) {
             case 0:
-              var var$1 = match[1], _aN_ = var$0 === var$1 ? 1 : 0;
-              if (_aN_)
+              var var$1 = match[1], _aM_ = var$0 === var$1 ? 1 : 0;
+              if (_aM_)
                 throw caml_maybe_attach_backtrace2([0, Typing_Report[4], cst_cycle_in_unification], 1);
-              return _aN_;
+              return _aM_;
             case 1:
               var t2 = match[3], t1 = match[2];
               occur_check(var$0, t1);
@@ -46229,8 +46229,8 @@ var require_main_bc = __commonJS({
               var tl = match[2];
               return caml_call2(
                 Stdlib_List[18],
-                function(_aO_) {
-                  return occur_check(var$0, _aO_);
+                function(_aN_) {
+                  return occur_check(var$0, _aN_);
                 },
                 tl
               );
@@ -46255,8 +46255,8 @@ var require_main_bc = __commonJS({
             return 0;
           switch (match[0]) {
             case 0:
-              var v = match[1], _aK_ = level_max < v[2] ? 1 : 0, _aL_ = _aK_ ? (v[2] = level_max, 0) : _aK_;
-              return _aL_;
+              var v = match[1], _aJ_ = level_max < v[2] ? 1 : 0, _aK_ = _aJ_ ? (v[2] = level_max, 0) : _aJ_;
+              return _aK_;
             case 1:
               var t2 = match[3], t1 = match[2];
               update_levels(level_max, t1);
@@ -46266,8 +46266,8 @@ var require_main_bc = __commonJS({
               var tl = match[2];
               return caml_call2(
                 Stdlib_List[18],
-                function(_aM_) {
-                  return update_levels(level_max, _aM_);
+                function(_aL_) {
+                  return update_levels(level_max, _aL_);
                 },
                 tl
               );
@@ -46294,13 +46294,13 @@ var require_main_bc = __commonJS({
             b: {
               c: {
                 if (typeof r1 === "number") {
-                  var _ay_ = match[2];
-                  if (typeof _ay_ !== "number")
-                    switch (_ay_[0]) {
+                  var _ax_ = match[2];
+                  if (typeof _ax_ !== "number")
+                    switch (_ax_[0]) {
                       case 0:
                         break b;
                       case 3:
-                        var r = _ay_, label = _ay_[1];
+                        var r = _ax_, label = _ax_[1];
                         break c;
                     }
                   break a;
@@ -46321,8 +46321,8 @@ var require_main_bc = __commonJS({
                         case 1:
                           var t22 = match$0[3], t21 = match$0[2], arg_label2 = match$0[1];
                           if (1 - arg_label_match(arg_label1, arg_label2)) {
-                            var _aE_ = caml_call1(Parsing_Asttypes[4], arg_label2), _aF_ = caml_call1(Parsing_Asttypes[4], arg_label1), _aG_ = caml_call3(Stdlib_Printf[4], _c_, _aF_, _aE_);
-                            throw caml_maybe_attach_backtrace2([0, Typing_Report[4], _aG_], 1);
+                            var _aD_ = caml_call1(Parsing_Asttypes[4], arg_label2), _aE_ = caml_call1(Parsing_Asttypes[4], arg_label1), _aF_ = caml_call3(Stdlib_Printf[4], _c_, _aE_, _aD_);
+                            throw caml_maybe_attach_backtrace2([0, Typing_Report[4], _aF_], 1);
                           }
                           unify(env, t11, t21);
                           var t1$0 = t12, t2$0 = t22;
@@ -46340,8 +46340,8 @@ var require_main_bc = __commonJS({
                           if (caml_equal2(path1, path2))
                             return caml_call3(
                               Stdlib_List[28],
-                              function(_aI_, _aJ_) {
-                                return unify(env, _aI_, _aJ_);
+                              function(_aH_, _aI_) {
+                                return unify(env, _aH_, _aI_);
                               },
                               args1,
                               args2
@@ -46360,8 +46360,8 @@ var require_main_bc = __commonJS({
                             var row$0 = row;
                             for (; ; ) {
                               if (typeof row$0 === "number") {
-                                var _aH_ = caml_call2(Stdlib_Printf[4], _d_, label12);
-                                return caml_call1(Typing_Report[5], _aH_);
+                                var _aG_ = caml_call2(Stdlib_Printf[4], _d_, label12);
+                                return caml_call1(Typing_Report[5], _aG_);
                               }
                               switch (row$0[0]) {
                                 case 0:
@@ -46420,10 +46420,10 @@ var require_main_bc = __commonJS({
                     break a;
                 }
               }
-              var _aC_ = caml_call1(Typing_Types[2], r);
-              caml_call1(Stdlib[46], _aC_);
-              var _aD_ = caml_call2(Stdlib_Printf[4], _b_, label);
-              return caml_call1(Typing_Report[5], _aD_);
+              var _aB_ = caml_call1(Typing_Types[2], r);
+              caml_call1(Stdlib[46], _aB_);
+              var _aC_ = caml_call2(Stdlib_Printf[4], _b_, label);
+              return caml_call1(Typing_Report[5], _aC_);
             }
             var v = match[2][1];
             occur_check(v, r1);
@@ -46431,15 +46431,15 @@ var require_main_bc = __commonJS({
             v[1] = [0, r1];
             return 0;
           }
-          var ty2 = match[2], _az_ = caml_call1(Typing_Types[2], ty2), _aA_ = caml_call1(Typing_Types[2], r1), _aB_ = caml_call3(Stdlib_Printf[4], _a_, _aA_, _az_);
-          return caml_call1(Typing_Report[5], _aB_);
+          var ty2 = match[2], _ay_ = caml_call1(Typing_Types[2], ty2), _az_ = caml_call1(Typing_Types[2], r1), _aA_ = caml_call3(Stdlib_Printf[4], _a_, _az_, _ay_);
+          return caml_call1(Typing_Report[5], _aA_);
         }
       }
       function instance(vty) {
         var vars = vty[1];
         if (!vars)
           return vty[2];
-        var _ax_ = vty[2];
+        var _aw_ = vty[2];
         return subst_vars(
           caml_call2(
             Stdlib_List[20],
@@ -46448,7 +46448,7 @@ var require_main_bc = __commonJS({
             },
             vars
           ),
-          _ax_
+          _aw_
         );
       }
       function flatten_arrow(arrow) {
@@ -46475,8 +46475,8 @@ var require_main_bc = __commonJS({
             var rest$0 = var$0[3], t = var$0[2];
             return [3, label1, t, row_remove_label(rest$0, label)];
         }
-        var _aw_ = caml_call1(Typing_Types[2], row);
-        caml_call1(Stdlib[46], _aw_);
+        var _av_ = caml_call1(Typing_Types[2], row);
+        caml_call1(Stdlib[46], _av_);
         throw caml_maybe_attach_backtrace2([0, Assert_failure, _e_], 1);
       }
       function infer_type(env, term) {
@@ -46486,14 +46486,14 @@ var require_main_bc = __commonJS({
         else
           switch (match[0]) {
             case 0:
-              var n = match[1], _V_ = n ? Typing_Predef[4] : Typing_Predef[7], ty = _V_;
+              var n = match[1], _U_ = n ? Typing_Predef[4] : Typing_Predef[7], ty = _U_;
               break;
             case 1:
               var path = match[1], ty = instance(caml_call2(Typing_Env[14], path, env));
               break;
             case 2:
-              var body = match[3], arg_label = match[1], param = match[2], type_param = caml_call1(Typing_Types[29], 0), _W_ = caml_call1(Typing_Types[2], type_param);
-              caml_call1(Stdlib[46], _W_);
+              var body = match[3], arg_label = match[1], param = match[2], type_param = caml_call1(Typing_Types[29], 0), _V_ = caml_call1(Typing_Types[2], type_param);
+              caml_call1(Stdlib[46], _V_);
               a: {
                 if (typeof arg_label !== "number" && 1 === arg_label[0]) {
                   var type_param$0 = caml_call1(Typing_Predef[12], type_param);
@@ -46501,7 +46501,7 @@ var require_main_bc = __commonJS({
                 }
                 var type_param$0 = type_param;
               }
-              var _X_ = caml_call1(Typing_Types[30], type_param$0), type_body = infer_type(caml_call3(Typing_Env[6], param, _X_, env), body), ty = caml_call3(Typing_Predef[1], arg_label, type_param, type_body[3]);
+              var _W_ = caml_call1(Typing_Types[30], type_param$0), type_body = infer_type(caml_call3(Typing_Env[6], param, _W_, env), body), ty = caml_call3(Typing_Predef[1], arg_label, type_param, type_body[3]);
               break;
             case 3:
               var args = match[2], funct = match[1], type_funct = infer_type(env, funct), match$0 = flatten_arrow(type_funct[3]), ret_ty = match$0[2], args_tys = match$0[1];
@@ -46517,7 +46517,7 @@ var require_main_bc = __commonJS({
                     type_result
                   );
                   unify(env, type_funct[3], type_f);
-                  var ___ = type_result;
+                  var _Z_ = type_result;
                   break a;
                 }
                 var n$0 = caml_call1(Stdlib_List[1], args_tys), sigma = caml_make_vect2(caml_call1(Stdlib_List[1], args_tys), -1);
@@ -46547,38 +46547,38 @@ var require_main_bc = __commonJS({
                     caml_check_bound2(sigma, i)[1 + i] = pos;
                   var pos$0 = pos + 1 | 0, i$0 = i + 1 | 0, i = i$0, pos = pos$0;
                 }
-                var sigma$0 = caml_call1(Stdlib_Array[9], sigma), _Y_ = caml_call2(
+                var sigma$0 = caml_call1(Stdlib_Array[9], sigma), _X_ = caml_call2(
                   Stdlib_List[46],
                   function(i2, pos2) {
-                    var _aq_ = caml_call1(Stdlib_List[1], args) <= pos2 ? 1 : 0;
-                    if (!_aq_)
-                      return _aq_;
-                    var _ar_ = caml_call2(Stdlib_List[11], n$0, function(x2) {
+                    var _ap_ = caml_call1(Stdlib_List[1], args) <= pos2 ? 1 : 0;
+                    if (!_ap_)
+                      return _ap_;
+                    var _aq_ = caml_call2(Stdlib_List[11], n$0, function(x2) {
                       return x2;
                     });
                     return caml_call2(
                       Stdlib_List[34],
                       function(j) {
-                        var _as_ = i2 < j ? 1 : 0;
-                        if (_as_) {
-                          var _at_ = 0 === caml_call2(Stdlib_List[8], args_tys, j)[1] ? 1 : 0;
-                          if (_at_)
-                            var _au_ = caml_call1(Stdlib_List[1], args), _av_ = caml_call2(Stdlib_List[8], sigma$0, j) < _au_ ? 1 : 0;
+                        var _ar_ = i2 < j ? 1 : 0;
+                        if (_ar_) {
+                          var _as_ = 0 === caml_call2(Stdlib_List[8], args_tys, j)[1] ? 1 : 0;
+                          if (_as_)
+                            var _at_ = caml_call1(Stdlib_List[1], args), _au_ = caml_call2(Stdlib_List[8], sigma$0, j) < _at_ ? 1 : 0;
                           else
-                            var _av_ = _at_;
+                            var _au_ = _as_;
                         } else
-                          var _av_ = _as_;
-                        return _av_;
+                          var _au_ = _ar_;
+                        return _au_;
                       },
-                      _ar_
+                      _aq_
                     );
                   },
                   sigma$0
-                ), k = caml_call1(Stdlib_List[1], _Y_), extra = caml_call2(
+                ), k = caml_call1(Stdlib_List[1], _X_), extra = caml_call2(
                   Stdlib_List[46],
                   function(i2, param2) {
-                    var _ap_ = caml_call1(Stdlib_List[1], args);
-                    return _ap_ <= caml_call2(Stdlib_List[8], sigma$0, i2) ? 1 : 0;
+                    var _ao_ = caml_call1(Stdlib_List[1], args);
+                    return _ao_ <= caml_call2(Stdlib_List[8], sigma$0, i2) ? 1 : 0;
                   },
                   args_tys
                 ), erase = function(ty2, k2) {
@@ -46588,32 +46588,32 @@ var require_main_bc = __commonJS({
                       return ty$0;
                     if (!ty$0)
                       return caml_call1(Typing_Report[5], cst_erase);
-                    var t = ty$0[1], _ao_ = t[1];
-                    if (typeof _ao_ !== "number" && 0 !== _ao_[0]) {
+                    var t = ty$0[1], _an_ = t[1];
+                    if (typeof _an_ !== "number" && 0 !== _an_[0]) {
                       var rest$0 = ty$0[2], k$1 = k$02 - 1 | 0, ty$0 = rest$0, k$02 = k$1;
                       continue;
                     }
                     var rest2 = ty$0[2];
                     return [0, t, erase(rest2, k$02 - 1 | 0)];
                   }
-                }, _Z_ = erase(extra, k), ___ = caml_call3(
+                }, _Y_ = erase(extra, k), _Z_ = caml_call3(
                   Stdlib_List[27],
                   function(param2, t2) {
                     var t1 = param2[2], label2 = param2[1];
                     return [1, label2, t1, t2];
                   },
-                  _Z_,
+                  _Y_,
                   ret_ty
                 );
               }
-              var ty = ___;
+              var ty = _Z_;
               break;
             case 4:
               var body$0 = match[3], arg = match[2], ident = match[1];
               caml_call1(Typing_Types[26], 0);
               var type_arg = infer_type(env, arg);
               caml_call1(Typing_Types[27], 0);
-              var _$_ = caml_call1(Typing_Typed[5], type_arg[3]), ty = infer_type(caml_call3(Typing_Env[6], ident[1], _$_, env), body$0)[3];
+              var ___ = caml_call1(Typing_Typed[5], type_arg[3]), ty = infer_type(caml_call3(Typing_Env[6], ident[1], ___, env), body$0)[3];
               break;
             case 5:
               var e2 = match[3], e1 = match[2], label = match[1], ty1 = infer_type(env, e1)[3], match$1 = infer_type(env, e2)[3];
@@ -46625,12 +46625,12 @@ var require_main_bc = __commonJS({
               }
               throw caml_maybe_attach_backtrace2([0, Assert_failure, _g_], 1);
             case 6:
-              var label$0 = match[2], e = match[1], field_ty = caml_call1(Typing_Types[29], 0), _aa_ = caml_call1(Typing_Types[29], 0), e_ty = [4, [3, label$0[1], field_ty, _aa_]];
+              var label$0 = match[2], e = match[1], field_ty = caml_call1(Typing_Types[29], 0), _$_ = caml_call1(Typing_Types[29], 0), e_ty = [4, [3, label$0[1], field_ty, _$_]];
               unify(env, e_ty, infer_type(env, e)[3]);
               var ty = field_ty;
               break;
             case 7:
-              var e$0 = match[2], tag = match[1], field_ty$0 = infer_type(env, e$0), _ab_ = caml_call1(Typing_Types[29], 0), ty = [5, [3, tag, field_ty$0[3], _ab_]];
+              var e$0 = match[2], tag = match[1], field_ty$0 = infer_type(env, e$0), _aa_ = caml_call1(Typing_Types[29], 0), ty = [5, [3, tag, field_ty$0[3], _aa_]];
               break;
             case 8:
               var pat = match[3], cases = match[2], e$1 = match[1], ret$0 = caml_call1(Typing_Types[29], 0), var_tys = caml_call2(
@@ -46643,14 +46643,14 @@ var require_main_bc = __commonJS({
               caml_call3(
                 Stdlib_List[28],
                 function(param2, vat_ty) {
-                  var e3 = param2[3], var$02 = param2[2], _an_ = caml_call1(Typing_Types[30], vat_ty), new_env2 = caml_call3(Typing_Env[6], var$02[1], _an_, env), e_ty2 = infer_type(new_env2, e3);
+                  var e3 = param2[3], var$02 = param2[2], _am_ = caml_call1(Typing_Types[30], vat_ty), new_env2 = caml_call3(Typing_Env[6], var$02[1], _am_, env), e_ty2 = infer_type(new_env2, e3);
                   return unify(env, e_ty2[3], ret$0);
                 },
                 cases,
                 var_tys
               );
               if (pat) {
-                var match$2 = pat[1], e$2 = match$2[2], var$0 = match$2[1], _ac_ = caml_call1(Typing_Types[30], [5, rest_row]), new_env = caml_call3(Typing_Env[6], var$0[1], _ac_, env), e_ty$0 = infer_type(new_env, e$2);
+                var match$2 = pat[1], e$2 = match$2[2], var$0 = match$2[1], _ab_ = caml_call1(Typing_Types[30], [5, rest_row]), new_env = caml_call3(Typing_Env[6], var$0[1], _ab_, env), e_ty$0 = infer_type(new_env, e$2);
                 unify(env, e_ty$0[3], ret$0);
               } else
                 unify(env, rest_row, 0);
@@ -46705,38 +46705,38 @@ var require_main_bc = __commonJS({
                     caml_check_bound2(sigma$1, i$1)[1 + i$1] = pos$2;
                   var pos$3 = pos$2 + 1 | 0, i$2 = i$1 + 1 | 0, i$1 = i$2, pos$2 = pos$3;
                 }
-                var sigma$2 = caml_call1(Stdlib_Array[9], sigma$1), _ad_ = caml_call2(
+                var sigma$2 = caml_call1(Stdlib_Array[9], sigma$1), _ac_ = caml_call2(
                   Stdlib_List[46],
                   function(i2, pos2) {
-                    var _ah_ = caml_call1(Stdlib_List[1], args$0) <= pos2 ? 1 : 0;
-                    if (!_ah_)
-                      return _ah_;
-                    var _ai_ = caml_call2(Stdlib_List[11], n$1, function(x2) {
+                    var _ag_ = caml_call1(Stdlib_List[1], args$0) <= pos2 ? 1 : 0;
+                    if (!_ag_)
+                      return _ag_;
+                    var _ah_ = caml_call2(Stdlib_List[11], n$1, function(x2) {
                       return x2;
                     });
                     return caml_call2(
                       Stdlib_List[34],
                       function(j) {
-                        var _aj_ = i2 < j ? 1 : 0;
-                        if (_aj_) {
-                          var _ak_ = 0 === caml_call2(Stdlib_List[8], args_tys$0, j)[1] ? 1 : 0;
-                          if (_ak_)
-                            var _al_ = caml_call1(Stdlib_List[1], args$0), _am_ = caml_call2(Stdlib_List[8], sigma$2, j) < _al_ ? 1 : 0;
+                        var _ai_ = i2 < j ? 1 : 0;
+                        if (_ai_) {
+                          var _aj_ = 0 === caml_call2(Stdlib_List[8], args_tys$0, j)[1] ? 1 : 0;
+                          if (_aj_)
+                            var _ak_ = caml_call1(Stdlib_List[1], args$0), _al_ = caml_call2(Stdlib_List[8], sigma$2, j) < _ak_ ? 1 : 0;
                           else
-                            var _am_ = _ak_;
+                            var _al_ = _aj_;
                         } else
-                          var _am_ = _aj_;
-                        return _am_;
+                          var _al_ = _ai_;
+                        return _al_;
                       },
-                      _ai_
+                      _ah_
                     );
                   },
                   sigma$2
-                ), k$0 = caml_call1(Stdlib_List[1], _ad_), extra$0 = caml_call2(
+                ), k$0 = caml_call1(Stdlib_List[1], _ac_), extra$0 = caml_call2(
                   Stdlib_List[46],
                   function(i2, param2) {
-                    var _ag_ = caml_call1(Stdlib_List[1], args$0);
-                    return _ag_ <= caml_call2(Stdlib_List[8], sigma$2, i2) ? 1 : 0;
+                    var _af_ = caml_call1(Stdlib_List[1], args$0);
+                    return _af_ <= caml_call2(Stdlib_List[8], sigma$2, i2) ? 1 : 0;
                   },
                   args_tys$0
                 ), erase$0 = function(ty2, k2) {
@@ -46746,8 +46746,8 @@ var require_main_bc = __commonJS({
                       return ty$0;
                     if (!ty$0)
                       return caml_call1(Typing_Report[5], cst_erase$0);
-                    var t = ty$0[1], _af_ = t[1];
-                    if (typeof _af_ !== "number" && 0 !== _af_[0]) {
+                    var t = ty$0[1], _ae_ = t[1];
+                    if (typeof _ae_ !== "number" && 0 !== _ae_[0]) {
                       var rest$0 = ty$0[2], k$1 = k$02 - 1 | 0, ty$0 = rest$0, k$02 = k$1;
                       continue;
                     }
@@ -46763,8 +46763,8 @@ var require_main_bc = __commonJS({
                       return caml_call1(Typing_Report[5], cst_Find_a_nolabel_prop);
                     if (0 !== l[0])
                       return 0;
-                    var s2 = l[1], _ae_ = caml_call2(Stdlib[28], s2, cst_is_missing);
-                    return caml_call1(Typing_Report[5], _ae_);
+                    var s2 = l[1], _ad_ = caml_call2(Stdlib[28], s2, cst_is_missing);
+                    return caml_call1(Typing_Report[5], _ad_);
                   },
                   d
                 );
@@ -46783,8 +46783,8 @@ var require_main_bc = __commonJS({
           if (typeof match !== "number")
             switch (match[0]) {
               case 0:
-                var v = match[1], _T_2 = 1 - caml_call2(Stdlib_List[38], v, params);
-                return _T_2 ? caml_call1(Typing_Report[5], cst_free_type_variable) : _T_2;
+                var v = match[1], _S_ = 1 - caml_call2(Stdlib_List[38], v, params);
+                return _S_ ? caml_call1(Typing_Report[5], cst_free_type_variable) : _S_;
               case 1:
                 var t2 = match[3], t1 = match[2];
                 check_simple_type(env, params, t1);
@@ -46796,8 +46796,8 @@ var require_main_bc = __commonJS({
                   caml_call1(Typing_Report[5], cst_arity_error);
                 return caml_call2(
                   Stdlib_List[18],
-                  function(_U_) {
-                    return check_simple_type(env, params, _U_);
+                  function(_T_2) {
+                    return check_simple_type(env, params, _T_2);
                   },
                   tl
                 );
@@ -46806,8 +46806,8 @@ var require_main_bc = __commonJS({
         }
       }
       function kind_deftype(env, def) {
-        var _R_ = caml_call2(Stdlib_List[20], Typing_Types[6], def[1]), _S_ = caml_call2(Stdlib_String[7], cst, _R_);
-        caml_call1(Stdlib[46], _S_);
+        var _Q_ = caml_call2(Stdlib_List[20], Typing_Types[6], def[1]), _R_ = caml_call2(Stdlib_String[7], cst, _Q_);
+        caml_call1(Stdlib[46], _R_);
         check_simple_type(env, def[1], def[2]);
         return [0, caml_call1(Stdlib_List[1], def[1])];
       }
@@ -46820,7 +46820,7 @@ var require_main_bc = __commonJS({
       function type_term(env, term) {
         caml_call1(Typing_Types[26], 0);
         try {
-          var _Q_ = infer_type(env, term), ty = _Q_;
+          var _P_ = infer_type(env, term), ty = _P_;
         } catch (exn$0) {
           var exn = caml_wrap_exception2(exn$0);
           if (exn[1] === Typing_Report[4]) {
@@ -46836,31 +46836,31 @@ var require_main_bc = __commonJS({
       }
       function valtype_match(env, vty1, vty2) {
         try {
-          var _N_ = instance(vty2);
-          unify(env, instance(vty1), _N_);
-          var _O_ = 1;
-          return _O_;
-        } catch (_P_) {
+          var _M_ = instance(vty2);
+          unify(env, instance(vty1), _M_);
+          var _N_ = 1;
+          return _N_;
+        } catch (_O_) {
           return 0;
         }
       }
       function deftype_equiv(env, kind, def1, def2) {
         function equiv(ty1, ty2) {
-          var _K_ = scrape_types(env, ty1, ty2), _L_ = _K_[1];
-          if (typeof _L_ !== "number")
-            switch (_L_[0]) {
+          var _J_ = scrape_types(env, ty1, ty2), _K_ = _J_[1];
+          if (typeof _K_ !== "number")
+            switch (_K_[0]) {
               case 0:
-                var match = _K_[2];
+                var match = _J_[2];
                 if (typeof match !== "number" && 0 === match[0]) {
-                  var v2 = match[1], v1 = _L_[1];
+                  var v2 = match[1], v1 = _K_[1];
                   return v1 === v2 ? 1 : 0;
                 }
                 break;
               case 2:
-                var match$0 = _K_[2];
+                var match$0 = _J_[2];
                 if (typeof match$0 !== "number" && 2 === match$0[0]) {
-                  var args2 = match$0[2], path2 = match$0[1], args1 = _L_[2], path1 = _L_[1], _M_ = caml_equal2(path1, path2);
-                  return _M_ ? caml_call3(Stdlib_List[35], equiv, args1, args2) : _M_;
+                  var args2 = match$0[2], path2 = match$0[1], args1 = _K_[2], path1 = _K_[1], _L_ = caml_equal2(path1, path2);
+                  return _L_ ? caml_call3(Stdlib_List[35], equiv, args1, args2) : _L_;
                 }
                 break;
             }
@@ -46873,8 +46873,8 @@ var require_main_bc = __commonJS({
           },
           def1[1],
           def2[1]
-        ), _J_ = subst_vars(subst, def2[2]);
-        return equiv(def1[2], _J_);
+        ), _I_ = subst_vars(subst, def2[2]);
+        return equiv(def1[2], _I_);
       }
       function kind_match(env, kind1, kind2) {
         return kind1[1] === kind2[1] ? 1 : 0;
@@ -46883,8 +46883,8 @@ var require_main_bc = __commonJS({
         function make_params(n) {
           if (0 >= n)
             return 0;
-          var _I_ = make_params(n - 1 | 0);
-          return [0, caml_call1(Typing_Types[28], 0), _I_];
+          var _H_ = make_params(n - 1 | 0);
+          return [0, caml_call1(Typing_Types[28], 0), _H_];
         }
         var params = make_params(kind[1]);
         return [
@@ -46908,8 +46908,8 @@ var require_main_bc = __commonJS({
               var sig2 = mty2$0[1], match = pair_signature_components(sig1, sig2), subst = match[2], paired_components = match[1], ext_env = caml_call2(Typing_Env[10], sig1, env$0);
               return caml_call2(
                 Stdlib_List[18],
-                function(_H_) {
-                  return specification_match(ext_env, subst, _H_);
+                function(_G_) {
+                  return specification_match(ext_env, subst, _G_);
                 },
                 paired_components
               );
@@ -46938,8 +46938,8 @@ var require_main_bc = __commonJS({
                 case 0:
                   var id1 = item1[1];
                   if (0 === item2[0]) {
-                    var id2 = item2[1], _E_ = caml_call1(Typing_Ident[5], id2);
-                    if (caml_string_equal2(caml_call1(Typing_Ident[5], id1), _E_)) {
+                    var id2 = item2[1], _D_ = caml_call1(Typing_Ident[5], id2);
+                    if (caml_string_equal2(caml_call1(Typing_Ident[5], id1), _D_)) {
                       var match = [0, id1, id2, item1];
                       break a;
                     }
@@ -46948,8 +46948,8 @@ var require_main_bc = __commonJS({
                 case 1:
                   var id1$0 = item1[1];
                   if (1 === item2[0]) {
-                    var id2$0 = item2[1], _F_ = caml_call1(Typing_Ident[5], id2$0);
-                    if (caml_string_equal2(caml_call1(Typing_Ident[5], id1$0), _F_)) {
+                    var id2$0 = item2[1], _E_ = caml_call1(Typing_Ident[5], id2$0);
+                    if (caml_string_equal2(caml_call1(Typing_Ident[5], id1$0), _E_)) {
                       var match = [0, id1$0, id2$0, item1];
                       break a;
                     }
@@ -46958,8 +46958,8 @@ var require_main_bc = __commonJS({
                 default:
                   var id1$1 = item1[1];
                   if (2 === item2[0]) {
-                    var id2$1 = item2[1], _G_ = caml_call1(Typing_Ident[5], id2$1);
-                    if (caml_string_equal2(caml_call1(Typing_Ident[5], id1$1), _G_)) {
+                    var id2$1 = item2[1], _F_ = caml_call1(Typing_Ident[5], id2$1);
+                    if (caml_string_equal2(caml_call1(Typing_Ident[5], id1$1), _F_)) {
                       var match = [0, id1$1, id2$1, item1];
                       break a;
                     }
@@ -46979,24 +46979,24 @@ var require_main_bc = __commonJS({
         }
       }
       function specification_match(env, subst, param) {
-        var _B_ = param[1];
-        switch (_B_[0]) {
+        var _A_ = param[1];
+        switch (_A_[0]) {
           case 0:
-            var match = param[2], vty1 = _B_[2];
+            var match = param[2], vty1 = _A_[2];
             if (0 === match[0]) {
-              var vty2 = match[2], _C_ = 1 - valtype_match(env, vty1, caml_call2(Typing_Subst[5], vty2, subst));
-              return _C_ ? caml_call1(Typing_Report[5], cst_value_components_do_not_ma) : _C_;
+              var vty2 = match[2], _B_ = 1 - valtype_match(env, vty1, caml_call2(Typing_Subst[5], vty2, subst));
+              return _B_ ? caml_call1(Typing_Report[5], cst_value_components_do_not_ma) : _B_;
             }
             break;
           case 1:
-            var match$0 = param[2], decl1 = _B_[2], id = _B_[1];
+            var match$0 = param[2], decl1 = _A_[2], id = _A_[1];
             if (1 === match$0[0]) {
-              var decl2 = match$0[2], _D_ = 1 - typedecl_match(env, id, decl1, caml_call2(Typing_Subst[8], decl2, subst));
-              return _D_ ? caml_call1(Typing_Report[5], cst_type_components_do_not_mat) : _D_;
+              var decl2 = match$0[2], _C_ = 1 - typedecl_match(env, id, decl1, caml_call2(Typing_Subst[8], decl2, subst));
+              return _C_ ? caml_call1(Typing_Report[5], cst_type_components_do_not_mat) : _C_;
             }
             break;
           default:
-            var match$1 = param[2], mty1 = _B_[2];
+            var match$1 = param[2], mty1 = _A_[2];
             if (2 === match$1[0]) {
               var mty2 = match$1[2];
               return modtype_match(env, mty1, caml_call2(Typing_Subst[9], mty2, subst));
@@ -47005,21 +47005,21 @@ var require_main_bc = __commonJS({
         throw caml_maybe_attach_backtrace2([0, Match_failure, _i_], 1);
       }
       function typedecl_match(env, id, decl1, decl2) {
-        var _x_ = kind_match(env, decl1[1], decl2[1]);
-        if (_x_) {
-          var _y_ = decl1[2], match = decl2[2];
+        var _w_ = kind_match(env, decl1[1], decl2[1]);
+        if (_w_) {
+          var _x_ = decl1[2], match = decl2[2];
           if (match) {
-            if (_y_) {
-              var typ2 = match[1], typ1 = _y_[1];
+            if (_x_) {
+              var typ2 = match[1], typ1 = _x_[1];
               return deftype_equiv(env, decl2[1], typ1, typ2);
             }
-            var typ2$0 = match[1], _z_ = deftype_of_path([0, id], decl1[1]);
-            return deftype_equiv(env, decl2[1], _z_, typ2$0);
+            var typ2$0 = match[1], _y_ = deftype_of_path([0, id], decl1[1]);
+            return deftype_equiv(env, decl2[1], _y_, typ2$0);
           }
-          var _A_ = 1;
+          var _z_ = 1;
         } else
-          var _A_ = _x_;
-        return _A_;
+          var _z_ = _w_;
+        return _z_;
       }
       function strengthen_modtype(path, mty) {
         if (0 !== mty[0])
@@ -47029,8 +47029,8 @@ var require_main_bc = __commonJS({
           0,
           caml_call2(
             Stdlib_List[20],
-            function(_w_) {
-              return strengthen_spec(path, _w_);
+            function(_v_) {
+              return strengthen_spec(path, _v_);
             },
             sg
           )
@@ -47045,9 +47045,9 @@ var require_main_bc = __commonJS({
             if (match)
               var ty = match[1], m = [0, ty];
             else
-              var _v_ = decl[1], m = [
+              var _u_ = decl[1], m = [
                 0,
-                deftype_of_path([1, path, caml_call1(Typing_Ident[5], id)], _v_)
+                deftype_of_path([1, path, caml_call1(Typing_Ident[5], id)], _u_)
               ];
             return [1, id, [0, decl[1], m]];
           default:
@@ -47079,27 +47079,27 @@ var require_main_bc = __commonJS({
           var match = param$0[1];
           switch (match[0]) {
             case 0:
-              var rem = param$0[2], vty = match[2], id = match[1], _r_ = caml_call1(Typing_Ident[5], id);
-              if (caml_call2(Stdlib_List[37], _r_, seen$0))
+              var rem = param$0[2], vty = match[2], id = match[1], _q_ = caml_call1(Typing_Ident[5], id);
+              if (caml_call2(Stdlib_List[37], _q_, seen$0))
                 caml_call1(Typing_Report[5], cst_repeated_value_name);
               check_valtype(env$0, vty);
               var seen$1 = [0, caml_call1(Typing_Ident[5], id), seen$0], seen$0 = seen$1, param$0 = rem;
               break;
             case 1:
-              var rem$0 = param$0[2], decl = match[2], id$0 = match[1], _s_ = caml_call1(Typing_Ident[5], id$0);
-              if (caml_call2(Stdlib_List[37], _s_, seen$0))
+              var rem$0 = param$0[2], decl = match[2], id$0 = match[1], _r_ = caml_call1(Typing_Ident[5], id$0);
+              if (caml_call2(Stdlib_List[37], _r_, seen$0))
                 caml_call1(Typing_Report[5], cst_repeated_type_name);
               var match$0 = decl[2];
               if (match$0) {
-                var typ = match$0[1], _t_ = decl[1];
-                if (1 - kind_match(env$0, kind_deftype(env$0, typ), _t_))
+                var typ = match$0[1], _s_ = decl[1];
+                if (1 - kind_match(env$0, kind_deftype(env$0, typ), _s_))
                   caml_call1(Typing_Report[5], cst_kind_mismatch_in_manifest_);
               }
               var seen$2 = [0, caml_call1(Typing_Ident[5], id$0), seen$0], env$1 = caml_call3(Typing_Env[7], id$0, decl, env$0), env$0 = env$1, seen$0 = seen$2, param$0 = rem$0;
               break;
             default:
-              var rem$1 = param$0[2], mty = match[2], id$1 = match[1], _u_ = caml_call1(Typing_Ident[5], id$1);
-              if (caml_call2(Stdlib_List[37], _u_, seen$0))
+              var rem$1 = param$0[2], mty = match[2], id$1 = match[1], _t_ = caml_call1(Typing_Ident[5], id$1);
+              if (caml_call2(Stdlib_List[37], _t_, seen$0))
                 caml_call1(Typing_Report[5], cst_repeated_module_name);
               check_modtype(env$0, mty);
               var seen$3 = [0, caml_call1(Typing_Ident[5], id$1), seen$0], env$2 = caml_call3(Typing_Env[8], id$1, mty, env$0), env$0 = env$2, seen$0 = seen$3, param$0 = rem$1;
@@ -47128,7 +47128,7 @@ var require_main_bc = __commonJS({
           case 3:
             var arg = match[2], funct = match[1], match$0 = type_module(env, funct)[3];
             if (0 === match$0[0])
-              var _p_ = caml_call1(Typing_Report[5], cst_application_of_a_non_funct);
+              var _o_ = caml_call1(Typing_Report[5], cst_application_of_a_non_funct);
             else {
               var mty_res = match$0[3], mty_param = match$0[2], param$0 = match$0[1], mty_arg = type_module(env, arg)[3];
               modtype_match(env, mty_arg, mty_param);
@@ -47137,9 +47137,9 @@ var require_main_bc = __commonJS({
                 var path$0 = match$1[1], path$1 = path$0;
               else
                 var path$1 = caml_call1(Typing_Report[5], cst_application_of_a_functor_t);
-              var _q_ = caml_call3(Typing_Subst[2], param$0, path$1, Typing_Subst[1]), _p_ = caml_call2(Typing_Subst[9], mty_res, _q_);
+              var _p_ = caml_call3(Typing_Subst[2], param$0, path$1, Typing_Subst[1]), _o_ = caml_call2(Typing_Subst[9], mty_res, _p_);
             }
-            var ret = _p_;
+            var ret = _o_;
             break;
           default:
             var mty$0 = match[2], modl = match[1];
@@ -47181,8 +47181,13 @@ var require_main_bc = __commonJS({
             var modl = param[2], id$1 = param[1], _n_ = caml_call1(Typing_Ident[5], id$1);
             if (caml_call2(Stdlib_List[37], _n_, seen))
               caml_call1(Typing_Report[5], cst_repeated_module_name$0);
-            var _o_ = [0, caml_call1(Typing_Ident[5], id$1), seen];
-            return [0, [2, id$1, type_module(env, modl)[3]], _o_];
+            var mty = type_module(env, modl)[3];
+            modl[3] = mty;
+            return [
+              0,
+              [2, id$1, mty],
+              [0, caml_call1(Typing_Ident[5], id$1), seen]
+            ];
         }
       }
       var Typing_Infer = [
@@ -47248,7 +47253,7 @@ var require_main_bc = __commonJS({
         [1, cst_Main_diag_start],
         [1, cst_Main_diag_end],
         [1, cst_Main_diag_msg]
-      ], Ppx_deriving_yojson_runtime = global_data.Ppx_deriving_yojson_runtime, Stdlib_Format = global_data.Stdlib__Format, Stdlib_Hashtbl = global_data.Stdlib__Hashtbl;
+      ], str = cst, Ppx_deriving_yojson_runtime = global_data.Ppx_deriving_yojson_runtime, Stdlib_Format = global_data.Stdlib__Format, Stdlib_Hashtbl = global_data.Stdlib__Hashtbl;
       global_data.CamlinternalOO;
       var Yojson_Safe = global_data.Yojson__Safe, Typing_Env = global_data.Typing__Env, Typing_Types = global_data.Typing__Types, Stdlib_List = global_data.Stdlib__List, Parsing_Location = global_data.Parsing__Location, Parsing_Parser_base = global_data.Parsing__Parser_base, Parsing_Parser = global_data.Parsing__Parser, Typing_Predef = global_data.Typing__Predef, Typing_Report = global_data.Typing__Report, Typing_Typed = global_data.Typing__Typed, Typing_Scope = global_data.Typing__Scope, Typing_Infer = global_data.Typing__Infer, Stdlib = global_data.Stdlib, Assert_failure = global_data.Assert_failure, Parsing_Syntax = global_data.Parsing__Syntax, Parsing_Lexer = global_data.Parsing__Lexer, Parsing_Token = global_data.Parsing__Token, Js_of_ocaml_Firebug = global_data.Js_of_ocaml__Firebug, Js_of_ocaml_Js = global_data.Js_of_ocaml__Js, loc_list_to_yojson = function _cc_(_cb_) {
         return _cc_.fun(_cb_);
@@ -47953,7 +47958,7 @@ var require_main_bc = __commonJS({
         function loop_mod_term(mod_term2) {
           var mod_term$0 = mod_term2;
           for (; ; ) {
-            var str = caml_call2(Typing_Types[34], 0, mod_term$0[3]), match = mod_term$0[1];
+            var match = mod_term$0[1];
             switch (match[0]) {
               case 1:
                 var structure = match[1];
@@ -47972,7 +47977,7 @@ var require_main_bc = __commonJS({
                         return acc;
                       default:
                         var m = match2[2];
-                        return in_mod_term_range(pos, m) ? loop_mod_term(m) : acc;
+                        return in_mod_term_range(pos, m) ? loop_mod_term(m) : caml_call2(Typing_Types[34], 0, m[3]);
                     }
                   },
                   str,
@@ -48002,13 +48007,13 @@ var require_main_bc = __commonJS({
         function loop_term(pos2, term) {
           var term$0 = term;
           for (; ; ) {
-            var _aK_ = caml_call1(Typing_Types[30], term$0[3]), str = caml_call3(Typing_Types[33], 0, 0, _aK_), match = term$0[1];
+            var _aK_ = caml_call1(Typing_Types[30], term$0[3]), str2 = caml_call3(Typing_Types[33], 0, 0, _aK_), match = term$0[1];
             if (typeof match !== "number")
               switch (match[0]) {
                 case 2:
                   var term$1 = match[3];
                   if (!in_term_range(pos2, term$1))
-                    return str;
+                    return str2;
                   var term$0 = term$1;
                   continue;
                 case 3:
@@ -48016,7 +48021,7 @@ var require_main_bc = __commonJS({
                   if (!in_term_range(pos2, term$2))
                     return loop_term_list(
                       pos2,
-                      str,
+                      str2,
                       caml_call2(Stdlib_List[20], function(_aM_) {
                         return _aM_[2];
                       }, tml)
@@ -48027,23 +48032,23 @@ var require_main_bc = __commonJS({
                   var tm2 = match[3], tm1 = match[2], id = match[1];
                   js_log(caml_call1(Parsing_Location[4], id[2]));
                   if (!in_loc_range(pos2, id[2]))
-                    return loop_term_list(pos2, str, [0, tm1, [0, tm2, 0]]);
+                    return loop_term_list(pos2, str2, [0, tm1, [0, tm2, 0]]);
                   var _aL_ = caml_call2(Typing_Env[14], [0, id[1]], tm2[4]);
                   return caml_call2(caml_call1(Typing_Types[33], 0), 0, _aL_);
                 case 5:
                   var tm2$0 = match[3], tm1$0 = match[2];
-                  return loop_term_list(pos2, str, [0, tm1$0, [0, tm2$0, 0]]);
+                  return loop_term_list(pos2, str2, [0, tm1$0, [0, tm2$0, 0]]);
               }
-            return str;
+            return str2;
           }
         }
-        function loop_term_list(pos2, str, tml) {
+        function loop_term_list(pos2, str2, tml) {
           return caml_call3(
             Stdlib_List[26],
             function(acc, tm) {
               return in_term_range(pos2, tm) ? loop_term(pos2, tm) : acc;
             },
-            str,
+            str2,
             tml
           );
         }
@@ -48066,7 +48071,7 @@ var require_main_bc = __commonJS({
         }
       );
       var Dune_exe_Main = [0];
-      runtime.caml_register_global(158, Dune_exe_Main, "Dune__exe__Main");
+      runtime.caml_register_global(159, Dune_exe_Main, "Dune__exe__Main");
       return;
     })(globalThis);
     (function(globalThis2) {
