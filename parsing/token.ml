@@ -1,6 +1,6 @@
 type t =
-  | NUMBER of int
-  | STRING
+  | NUMBER of string
+  | STRING of string
   | UIDENT of string
   | LIDENT of string
   | INFIX1 of string

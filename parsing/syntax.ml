@@ -1,10 +1,12 @@
 open Asttypes
 
-type expr = { desc : expr_desc; loc : Location.t }
+type constant = Pconst_string of string | Pconst_number of string
 [@@deriving show { with_path = false }]
 
+type expr = { desc : expr_desc; loc : Location.t }
+
 and expr_desc =
-  | EConstant of int (* integer constants *)
+  | EConstant of constant (* integer constants *)
   | ELongident of Longident.t loc (* id or mod.mod...id *)
   | EFunction of arg_label * string loc * expr (* fun id -> expr *)
   | EApply of expr * (arg_label * expr) list (* expr(expr) *)
@@ -26,9 +28,12 @@ let is_infix s =
 let label_name l =
   match l with Nolabel -> "" | Labelled s -> s | Optional s -> s
 
+let string_of_constant c =
+  match c with Pconst_string s -> s | Pconst_number s -> s
+
 let rec print_expr ?(parenthesis = false) ?(offset = 0) e =
   match e.desc with
-  | EConstant i -> string_of_int i
+  | EConstant c -> string_of_constant c
   | ELongident id ->
       Longident.infixify (String.concat "." (Longident.flat id.txt))
   | EFunction (l, { txt; _ }, body) ->

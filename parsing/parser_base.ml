@@ -132,10 +132,10 @@ let lident parser =
           expect RPARENT parser;
           s)
         else (
-          err ~start_pos:loc_start ~end_pos:parser.end_pos parser "";
+          report parser;
           raise Parse_error)
     | _ ->
-        err ~start_pos:loc_start ~end_pos:parser.end_pos parser "";
+        report parser;
         raise Parse_error
   in
   let loc_end = parser.prev_end_pos in

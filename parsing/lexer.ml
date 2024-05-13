@@ -61,8 +61,11 @@ let scan_number scanner =
       | _ -> ()
   in
   loop ();
+  if (not (at_end scanner)) && scanner.ch = '.' then (
+    advance scanner;
+    loop ());
   let s = String.sub scanner.src start (scanner.offset - start) in
-  NUMBER (int_of_string s)
+  NUMBER s
 
 let scan_string scanner =
   let start_pos = position scanner in
@@ -81,8 +84,8 @@ let scan_string scanner =
           loop ()
   in
   loop ();
-  let _ = String.sub scanner.src start (scanner.offset - start) in
-  STRING
+  let s = String.sub scanner.src (start - 1) (scanner.offset - start + 1) in
+  STRING s
 
 let scan_ident scanner =
   let start = scanner.offset in

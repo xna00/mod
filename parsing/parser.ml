@@ -165,7 +165,10 @@ and atom_expr p =
     match p.token with
     | NUMBER n ->
         advance p;
-        EConstant n
+        EConstant (Pconst_number n)
+    | STRING s ->
+        advance p;
+        EConstant (Pconst_string s)
     | LIDENT s ->
         advance p;
         ELongident { txt = Longident.Lident s; loc = Location.dummy_loc }

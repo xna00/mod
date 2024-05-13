@@ -1,3 +1,6 @@
+type constant = Const_string | Const_number
+[@@deriving show { with_path = false }]
+
 type arg_label =
   | Nolabel
   | Labelled of string  (** [label:T -> ...] *)

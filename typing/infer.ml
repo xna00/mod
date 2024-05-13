@@ -80,9 +80,6 @@ let rec update_levels level_max ty =
   | Tvariant row -> update_levels level_max row
 
 let rec unify env t1 t2 =
-  print_endline
-    (Printf.sprintf "type constructor mismatch in unification: %s, %s"
-       (show_simple_type t1) (show_simple_type t2));
   match scrape_types env t1 t2 with
   | r1, r2 when r1 == r2 -> ()
   | Var v, r2 ->
@@ -162,7 +159,8 @@ let rec row_remove_label row label =
 let rec infer_type env term : term =
   let ty =
     match term.term_desc with
-    | Constant n -> int_type
+    | Constant n -> (
+        match n with Const_number -> int_type | Const_string -> string_type)
     | Longident path -> instance (Env.find_value path env)
     | Function (arg_label, param, body) ->
         let type_param = unknown () in

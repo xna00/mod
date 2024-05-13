@@ -61,6 +61,7 @@ let tokeinfo src =
                 match tok with
                 | UIDENT _ | LIDENT _ -> "variable"
                 | NUMBER _ -> "number"
+                | STRING _ -> "string"
                 | tok when List.mem tok (List.map snd Token.keywords) ->
                     "keyword"
                 | _ -> "unknown");
@@ -88,6 +89,7 @@ let filechange (uri : string) src =
     |> Infer.type_module init_env
   in
   js_log "type done";
+  js_log (string_of_int (List.length p.diagnostics));
   let ret =
     if List.length p.diagnostics = 0 then
       {

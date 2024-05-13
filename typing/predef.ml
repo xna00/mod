@@ -1,9 +1,12 @@
 open Types
 
 let arrow_type arg_label t1 t2 = Tarrow (arg_label, t1, t2)
-let ident_int = Ident.create "int"
+let ident_int = Ident.create "number"
 let path_int = Path.Pident ident_int
 let int_type = Typeconstr (path_int, [])
+let ident_string = Ident.create "string"
+let path_string = Path.Pident ident_string
+let string_type = Typeconstr (path_string, [])
 let ident_star = Ident.create "*"
 let path_star = Path.Pident ident_star
 let ident_option = Ident.create "option"

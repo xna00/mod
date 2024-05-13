@@ -10,7 +10,7 @@ type term = {
 [@@deriving show { with_path = false }]
 
 and term_desc =
-  | Constant of int (* integer constants *)
+  | Constant of Asttypes.constant (* integer constants *)
   | Longident of Path.t (* id or mod.mod...id *)
   | Function of Parsing.Asttypes.arg_label * Ident.t * term (* fun id -> expr *)
   | Apply of term * (Parsing.Asttypes.arg_label * term) list (* expr(expr) *)
@@ -104,7 +104,11 @@ let rec expr_to_typed expr =
   let open Syntax in
   let ret =
     match expr.desc with
-    | EConstant i -> Constant i
+    | EConstant i ->
+        Constant
+          (match i with
+          | Pconst_string _ -> Const_string
+          | Pconst_number _ -> Const_number)
     | ELongident i -> Longident (Path.path_of_longident i.txt)
     | EFunction (arg_label, { txt; _ }, expr) ->
         Function (arg_label, Ident.create txt, expr_to_typed expr)
