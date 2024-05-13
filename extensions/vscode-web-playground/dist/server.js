@@ -43885,7 +43885,16 @@ var require_main_bc = __commonJS({
             default:
               var a1$1 = param[2], a0$1 = param[1];
               caml_call2(Stdlib_Format[137], fmt, _aJ_);
-              caml_call1(caml_call1(Typing_Ident[1], fmt), a0$1);
+              caml_call1(
+                caml_call2(
+                  Parsing_Asttypes[5],
+                  function(fmt2) {
+                    return caml_call1(Typing_Ident[1], fmt2);
+                  },
+                  fmt
+                ),
+                a0$1
+              );
               caml_call2(Stdlib_Format[137], fmt, _aK_);
               caml_call1(caml_call1(pp_mod_type, fmt), a1$1);
               return caml_call2(Stdlib_Format[137], fmt, _aL_);
@@ -44144,7 +44153,7 @@ var require_main_bc = __commonJS({
             var ret = _bd_;
             break;
           default:
-            var mty = spec[2], id$1 = spec[1], _bk_ = print_mod_type([0, offset], mty), _bl_ = caml_call1(Typing_Ident[5], id$1), ret = caml_call3(Stdlib_Printf[4], _a8_, _bl_, _bk_);
+            var mty = spec[2], id$1 = spec[1], _bk_ = print_mod_type([0, offset], mty), _bl_ = caml_call1(Typing_Ident[5], id$1[1]), ret = caml_call3(Stdlib_Printf[4], _a8_, _bl_, _bk_);
         }
         var _a$_ = caml_call2(Stdlib_String[1], offset, 32);
         return caml_call2(Stdlib[28], _a$_, ret);
@@ -44436,7 +44445,7 @@ var require_main_bc = __commonJS({
             return add_type(id$0, decl, env);
           default:
             var mty = item[2], id$1 = item[1];
-            return add_module(id$1, mty, env);
+            return add_module(id$1[1], mty, env);
         }
       }
       var add_signature = caml_call1(Stdlib_List[27], add_spec), cst_structure_expected_in_dot_ = cst_structure_expected_in_dot_$1, cst_no_such_field_in_structure = "no such field in structure", cst_value_field_expected = cst_value_field_expected$1, cst_type_field_expected = cst_type_field_expected$1, cst_module_field_expected = cst_module_field_expected$1, cst_structure_expected_in_dot_$0 = cst_structure_expected_in_dot_$1, cst_value_field_expected$0 = cst_value_field_expected$1, cst_type_field_expected$0 = cst_type_field_expected$1, cst_module_field_expected$0 = cst_module_field_expected$1;
@@ -44475,9 +44484,9 @@ var require_main_bc = __commonJS({
               break;
             default:
               var rem$1 = param$0[2], mty = match[2], id$1 = match[1];
-              if (caml_string_equal2(caml_call1(Typing_Ident[5], id$1), field))
+              if (caml_string_equal2(caml_call1(Typing_Ident[5], id$1[1]), field))
                 return [2, caml_call2(Typing_Subst[9], mty, subst$0)];
-              var _j_ = [1, p, caml_call1(Typing_Ident[5], id$1)], subst$2 = caml_call3(Typing_Subst[2], id$1, _j_, subst$0), subst$0 = subst$2, param$0 = rem$1;
+              var _j_ = [1, p, caml_call1(Typing_Ident[5], id$1[1])], subst$2 = caml_call3(Typing_Subst[2], id$1[1], _j_, subst$0), subst$0 = subst$2, param$0 = rem$1;
           }
         }
       }
@@ -44580,14 +44589,14 @@ var require_main_bc = __commonJS({
       function caml_call3(f, a0, a1, a2) {
         return (f.l >= 0 ? f.l : f.l = f.length) == 3 ? f(a0, a1, a2) : runtime.caml_call_gen(f, [a0, a1, a2]);
       }
-      var global_data = runtime.caml_get_global_data(), cst = ")", Stdlib_List = global_data.Stdlib__List, Typing_Path = global_data.Typing__Path, Typing_Ident = global_data.Typing__Ident, Typing_Env = global_data.Typing__Env, Typing_Types = global_data.Typing__Types, Parsing_Longident = global_data.Parsing__Longident, Stdlib = global_data.Stdlib, Parsing_Syntax = global_data.Parsing__Syntax, Parsing_Location = global_data.Parsing__Location, Stdlib_Format = global_data.Stdlib__Format, Parsing_Asttypes = global_data.Parsing__Asttypes, pp_term = function _cP_(_cN_, _cO_) {
-        return _cP_.fun(_cN_, _cO_);
-      }, show_term = function _cM_(_cL_) {
-        return _cM_.fun(_cL_);
-      }, pp_term_desc = function _cK_(_cI_, _cJ_) {
-        return _cK_.fun(_cI_, _cJ_);
-      }, show_term_desc = function _cH_(_cG_) {
-        return _cH_.fun(_cG_);
+      var global_data = runtime.caml_get_global_data(), cst = ")", Stdlib_List = global_data.Stdlib__List, Typing_Path = global_data.Typing__Path, Typing_Ident = global_data.Typing__Ident, Typing_Env = global_data.Typing__Env, Typing_Types = global_data.Typing__Types, Parsing_Longident = global_data.Parsing__Longident, Stdlib = global_data.Stdlib, Parsing_Syntax = global_data.Parsing__Syntax, Parsing_Location = global_data.Parsing__Location, Stdlib_Format = global_data.Stdlib__Format, Parsing_Asttypes = global_data.Parsing__Asttypes, pp_term = function _cR_(_cP_, _cQ_) {
+        return _cR_.fun(_cP_, _cQ_);
+      }, show_term = function _cO_(_cN_) {
+        return _cO_.fun(_cN_);
+      }, pp_term_desc = function _cM_(_cK_, _cL_) {
+        return _cM_.fun(_cK_, _cL_);
+      }, show_term_desc = function _cJ_(_cI_) {
+        return _cJ_.fun(_cI_);
       }, _a_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [11, cst$5, 0]], cst_2$0], cst_term_desc = "term_desc", _b_ = [
         0,
         [
@@ -44626,23 +44635,23 @@ var require_main_bc = __commonJS({
         function(fmt, x2) {
           caml_call2(Stdlib_Format[137], fmt, _a_);
           caml_call3(Stdlib_Format[137], fmt, _b_, cst_term_desc);
-          var _cC_ = x2[1];
-          caml_call1(caml_call1(pp_term_desc, fmt), _cC_);
+          var _cE_ = x2[1];
+          caml_call1(caml_call1(pp_term_desc, fmt), _cE_);
           caml_call2(Stdlib_Format[137], fmt, _c_);
           caml_call2(Stdlib_Format[137], fmt, _d_);
           caml_call3(Stdlib_Format[137], fmt, _e_, cst_loc);
-          var _cD_ = x2[2];
-          caml_call1(caml_call1(Parsing_Location[3], fmt), _cD_);
+          var _cF_ = x2[2];
+          caml_call1(caml_call1(Parsing_Location[3], fmt), _cF_);
           caml_call2(Stdlib_Format[137], fmt, _f_);
           caml_call2(Stdlib_Format[137], fmt, _g_);
           caml_call3(Stdlib_Format[137], fmt, _h_, cst_term_type);
-          var _cE_ = x2[3];
-          caml_call1(caml_call1(Typing_Types[1], fmt), _cE_);
+          var _cG_ = x2[3];
+          caml_call1(caml_call1(Typing_Types[1], fmt), _cG_);
           caml_call2(Stdlib_Format[137], fmt, _i_);
           caml_call2(Stdlib_Format[137], fmt, _j_);
           caml_call3(Stdlib_Format[137], fmt, _k_, cst_term_env);
-          var _cF_ = x2[4];
-          caml_call1(caml_call1(Typing_Env[3], fmt), _cF_);
+          var _cH_ = x2[4];
+          caml_call1(caml_call1(Typing_Env[3], fmt), _cH_);
           caml_call2(Stdlib_Format[137], fmt, _l_);
           return caml_call2(Stdlib_Format[137], fmt, _m_);
         }
@@ -45006,26 +45015,26 @@ var require_main_bc = __commonJS({
         }
         return [0, gen_vars(0, ty), ty];
       }
-      var pp_mod_term = function _cB_(_cz_, _cA_) {
-        return _cB_.fun(_cz_, _cA_);
-      }, show_mod_term = function _cy_(_cx_) {
-        return _cy_.fun(_cx_);
-      }, pp_mod_term_desc = function _cw_(_cu_, _cv_) {
-        return _cw_.fun(_cu_, _cv_);
-      }, show_mod_term_desc = function _ct_(_cs_) {
-        return _ct_.fun(_cs_);
-      }, pp_structure = function _cr_(_cp_, _cq_) {
-        return _cr_.fun(_cp_, _cq_);
-      }, show_structure = function _co_(_cn_) {
-        return _co_.fun(_cn_);
-      }, pp_definition = function _cm_(_ck_, _cl_) {
-        return _cm_.fun(_ck_, _cl_);
-      }, show_definition = function _cj_(_ci_) {
-        return _cj_.fun(_ci_);
-      }, pp_definition_desc = function _ch_(_cf_, _cg_) {
-        return _ch_.fun(_cf_, _cg_);
-      }, show_definition_desc = function _ce_(_cd_) {
-        return _ce_.fun(_cd_);
+      var pp_mod_term = function _cD_(_cB_, _cC_) {
+        return _cD_.fun(_cB_, _cC_);
+      }, show_mod_term = function _cA_(_cz_) {
+        return _cA_.fun(_cz_);
+      }, pp_mod_term_desc = function _cy_(_cw_, _cx_) {
+        return _cy_.fun(_cw_, _cx_);
+      }, show_mod_term_desc = function _cv_(_cu_) {
+        return _cv_.fun(_cu_);
+      }, pp_structure = function _ct_(_cr_, _cs_) {
+        return _ct_.fun(_cr_, _cs_);
+      }, show_structure = function _cq_(_cp_) {
+        return _cq_.fun(_cp_);
+      }, pp_definition = function _co_(_cm_, _cn_) {
+        return _co_.fun(_cm_, _cn_);
+      }, show_definition = function _cl_(_ck_) {
+        return _cl_.fun(_ck_);
+      }, pp_definition_desc = function _cj_(_ch_, _ci_) {
+        return _cj_.fun(_ch_, _ci_);
+      }, show_definition_desc = function _cg_(_cf_) {
+        return _cg_.fun(_cf_);
       }, _at_ = [0, [18, [1, [0, [11, cst_2, 0], cst_2]], [11, cst$5, 0]], cst_2$0], cst_mod_term_desc = "mod_term_desc", _au_ = [
         0,
         [
@@ -45064,23 +45073,23 @@ var require_main_bc = __commonJS({
         function(fmt, x2) {
           caml_call2(Stdlib_Format[137], fmt, _at_);
           caml_call3(Stdlib_Format[137], fmt, _au_, cst_mod_term_desc);
-          var _b$_ = x2[1];
-          caml_call1(caml_call1(pp_mod_term_desc, fmt), _b$_);
+          var _cb_ = x2[1];
+          caml_call1(caml_call1(pp_mod_term_desc, fmt), _cb_);
           caml_call2(Stdlib_Format[137], fmt, _av_);
           caml_call2(Stdlib_Format[137], fmt, _aw_);
           caml_call3(Stdlib_Format[137], fmt, _ax_, cst_loc$0);
-          var _ca_ = x2[2];
-          caml_call1(caml_call1(Parsing_Location[3], fmt), _ca_);
+          var _cc_ = x2[2];
+          caml_call1(caml_call1(Parsing_Location[3], fmt), _cc_);
           caml_call2(Stdlib_Format[137], fmt, _ay_);
           caml_call2(Stdlib_Format[137], fmt, _az_);
           caml_call3(Stdlib_Format[137], fmt, _aA_, cst_mod_term_type);
-          var _cb_ = x2[3];
-          caml_call1(caml_call1(Typing_Types[17], fmt), _cb_);
+          var _cd_ = x2[3];
+          caml_call1(caml_call1(Typing_Types[17], fmt), _cd_);
           caml_call2(Stdlib_Format[137], fmt, _aB_);
           caml_call2(Stdlib_Format[137], fmt, _aC_);
           caml_call3(Stdlib_Format[137], fmt, _aD_, cst_mod_term_env);
-          var _cc_ = x2[4];
-          caml_call1(caml_call1(Typing_Env[3], fmt), _cc_);
+          var _ce_ = x2[4];
+          caml_call1(caml_call1(Typing_Env[3], fmt), _ce_);
           caml_call2(Stdlib_Format[137], fmt, _aE_);
           return caml_call2(Stdlib_Format[137], fmt, _aF_);
         }
@@ -45256,18 +45265,18 @@ var require_main_bc = __commonJS({
         function(fmt, x2) {
           caml_call2(Stdlib_Format[137], fmt, _a0_);
           caml_call3(Stdlib_Format[137], fmt, _a1_, cst_definition_desc);
-          var _b8_ = x2[1];
-          caml_call1(caml_call1(pp_definition_desc, fmt), _b8_);
+          var _b__ = x2[1];
+          caml_call1(caml_call1(pp_definition_desc, fmt), _b__);
           caml_call2(Stdlib_Format[137], fmt, _a2_);
           caml_call2(Stdlib_Format[137], fmt, _a3_);
           caml_call3(Stdlib_Format[137], fmt, _a4_, cst_before_env);
-          var _b9_ = x2[2];
-          caml_call1(caml_call1(Typing_Env[3], fmt), _b9_);
+          var _b$_ = x2[2];
+          caml_call1(caml_call1(Typing_Env[3], fmt), _b$_);
           caml_call2(Stdlib_Format[137], fmt, _a5_);
           caml_call2(Stdlib_Format[137], fmt, _a6_);
           caml_call3(Stdlib_Format[137], fmt, _a7_, cst_after_env);
-          var _b__ = x2[3];
-          caml_call1(caml_call1(Typing_Env[3], fmt), _b__);
+          var _ca_ = x2[3];
+          caml_call1(caml_call1(Typing_Env[3], fmt), _ca_);
           caml_call2(Stdlib_Format[137], fmt, _a8_);
           return caml_call2(Stdlib_Format[137], fmt, _a9_);
         }
@@ -45348,7 +45357,16 @@ var require_main_bc = __commonJS({
             default:
               var a1$1 = param[2], a0$1 = param[1];
               caml_call2(Stdlib_Format[137], fmt, _bg_);
-              caml_call1(caml_call1(Typing_Ident[1], fmt), a0$1);
+              caml_call1(
+                caml_call2(
+                  Parsing_Asttypes[5],
+                  function(fmt2) {
+                    return caml_call1(Typing_Ident[1], fmt2);
+                  },
+                  fmt
+                ),
+                a0$1
+              );
               caml_call2(Stdlib_Format[137], fmt, _bh_);
               caml_call1(caml_call1(pp_mod_term, fmt), a1$1);
               return caml_call2(Stdlib_Format[137], fmt, _bi_);
@@ -45369,12 +45387,12 @@ var require_main_bc = __commonJS({
       }
       function find_type_variable(name) {
         try {
-          var _b6_ = caml_call2(Stdlib_List[49], name, variables[1]);
-          return _b6_;
-        } catch (_b7_) {
-          var _b5_ = caml_wrap_exception2(_b7_);
-          if (_b5_ !== Stdlib[8])
-            throw caml_maybe_attach_backtrace2(_b5_, 0);
+          var _b8_ = caml_call2(Stdlib_List[49], name, variables[1]);
+          return _b8_;
+        } catch (_b9_) {
+          var _b7_ = caml_wrap_exception2(_b9_);
+          if (_b7_ !== Stdlib[8])
+            throw caml_maybe_attach_backtrace2(_b7_, 0);
           var v = caml_call1(Typing_Types[28], 0);
           variables[1] = [0, [0, name, v], variables[1]];
           return v;
@@ -45390,13 +45408,13 @@ var require_main_bc = __commonJS({
               var s2 = match[1], ret = [0, find_type_variable(s2)];
               break;
             case 1:
-              var t2 = match[3], t1 = match[2], l = match[1], _b1_ = map_simple_type(t2), ret = [1, l, map_simple_type(t1), _b1_];
+              var t2 = match[3], t1 = match[2], l = match[1], _b3_ = map_simple_type(t2), ret = [1, l, map_simple_type(t1), _b3_];
               break;
             case 2:
-              var tyl = match[2], lid = match[1], _b2_ = caml_call2(Stdlib_List[20], map_simple_type, tyl), ret = [2, caml_call1(Typing_Path[4], lid[1]), _b2_];
+              var tyl = match[2], lid = match[1], _b4_ = caml_call2(Stdlib_List[20], map_simple_type, tyl), ret = [2, caml_call1(Typing_Path[4], lid[1]), _b4_];
               break;
             case 3:
-              var t2$0 = match[3], t1$0 = match[2], l$0 = match[1], _b3_ = map_simple_type(t2$0), _b4_ = map_simple_type(t1$0), ret = [3, l$0[1], _b4_, _b3_];
+              var t2$0 = match[3], t1$0 = match[2], l$0 = match[1], _b5_ = map_simple_type(t2$0), _b6_ = map_simple_type(t1$0), ret = [3, l$0[1], _b6_, _b5_];
               break;
             case 4:
               var row = match[1], ret = [4, map_simple_type(row)];
@@ -45413,29 +45431,29 @@ var require_main_bc = __commonJS({
         else
           switch (match[0]) {
             case 0:
-              var i = match[1], _bN_ = 0 === i[0] ? 0 : 1, ret = [0, _bN_];
+              var i = match[1], _bP_ = 0 === i[0] ? 0 : 1, ret = [0, _bP_];
               break;
             case 1:
               var i$0 = match[1], ret = [1, caml_call1(Typing_Path[4], i$0[1])];
               break;
             case 2:
-              var expr$0 = match[3], txt = match[2][1], arg_label = match[1], _bO_ = expr_to_typed(expr$0), ret = [2, arg_label, caml_call1(Typing_Ident[4], txt), _bO_];
+              var expr$0 = match[3], txt = match[2][1], arg_label = match[1], _bQ_ = expr_to_typed(expr$0), ret = [2, arg_label, caml_call1(Typing_Ident[4], txt), _bQ_];
               break;
             case 3:
-              var args = match[2], f = match[1], _bP_ = caml_call2(
+              var args = match[2], f = match[1], _bR_ = caml_call2(
                 Stdlib_List[20],
                 function(param) {
                   var e3 = param[2], l2 = param[1];
                   return [0, l2, expr_to_typed(e3)];
                 },
                 args
-              ), ret = [3, expr_to_typed(f), _bP_];
+              ), ret = [3, expr_to_typed(f), _bR_];
               break;
             case 4:
-              var e2 = match[3], e1 = match[2], s2 = match[1], _bQ_ = expr_to_typed(e2), _bR_ = expr_to_typed(e1), _bS_ = s2[2], ret = [4, [0, caml_call1(Typing_Ident[4], s2[1]), _bS_], _bR_, _bQ_];
+              var e2 = match[3], e1 = match[2], s2 = match[1], _bS_ = expr_to_typed(e2), _bT_ = expr_to_typed(e1), _bU_ = s2[2], ret = [4, [0, caml_call1(Typing_Ident[4], s2[1]), _bU_], _bT_, _bS_];
               break;
             case 5:
-              var e2$0 = match[3], e1$0 = match[2], l = match[1], _bT_ = expr_to_typed(e2$0), ret = [5, l, expr_to_typed(e1$0), _bT_];
+              var e2$0 = match[3], e1$0 = match[2], l = match[1], _bV_ = expr_to_typed(e2$0), ret = [5, l, expr_to_typed(e1$0), _bV_];
               break;
             case 6:
               var l$0 = match[2], e = match[1], ret = [6, expr_to_typed(e), l$0];
@@ -45446,35 +45464,35 @@ var require_main_bc = __commonJS({
             case 8:
               var o = match[3], cases = match[2], e1$1 = match[1];
               if (o)
-                var match$0 = o[1], e$1 = match$0[2], v = match$0[1], _bU_ = expr_to_typed(e$1), _bV_ = v[2], _bW_ = [0, [0, [0, caml_call1(Typing_Ident[4], v[1]), _bV_], _bU_]];
+                var match$0 = o[1], e$1 = match$0[2], v = match$0[1], _bW_ = expr_to_typed(e$1), _bX_ = v[2], _bY_ = [0, [0, [0, caml_call1(Typing_Ident[4], v[1]), _bX_], _bW_]];
               else
-                var _bW_ = 0;
-              var _bX_ = caml_call2(
+                var _bY_ = 0;
+              var _bZ_ = caml_call2(
                 Stdlib_List[20],
                 function(param) {
-                  var e3 = param[3], v2 = param[2], tag2 = param[1], _bZ_ = expr_to_typed(e3), _b0_ = v2[2];
+                  var e3 = param[3], v2 = param[2], tag2 = param[1], _b1_ = expr_to_typed(e3), _b2_ = v2[2];
                   return [
                     0,
                     tag2,
-                    [0, caml_call1(Typing_Ident[4], v2[1]), _b0_],
-                    _bZ_
+                    [0, caml_call1(Typing_Ident[4], v2[1]), _b2_],
+                    _b1_
                   ];
                 },
                 cases
-              ), ret = [8, expr_to_typed(e1$1), _bX_, _bW_];
+              ), ret = [8, expr_to_typed(e1$1), _bZ_, _bY_];
               break;
             default:
-              var el = match[2], e$2 = match[1], _bY_ = caml_call2(
+              var el = match[2], e$2 = match[1], _b0_ = caml_call2(
                 Stdlib_List[20],
                 function(param) {
                   var e3 = param[2], l2 = param[1];
                   return [0, l2, expr_to_typed(e3)];
                 },
                 el
-              ), ret = [9, expr_to_typed(e$2), _bY_];
+              ), ret = [9, expr_to_typed(e$2), _b0_];
           }
-        var _bL_ = Typing_Env[5], _bM_ = caml_call1(Typing_Types[29], 0);
-        return [0, ret, expr[2], _bM_, _bL_];
+        var _bN_ = Typing_Env[5], _bO_ = caml_call1(Typing_Types[29], 0);
+        return [0, ret, expr[2], _bO_, _bN_];
       }
       function mod_type_to_typed(mty) {
         var match = mty[1];
@@ -45485,8 +45503,8 @@ var require_main_bc = __commonJS({
             caml_call2(Stdlib_List[20], specification_to_typed, signature)
           ];
         }
-        var mty2 = match[3], mty1 = match[2], lid = match[1], _bI_ = mod_type_to_typed(mty2), _bJ_ = mod_type_to_typed(mty1), _bK_ = caml_call1(Parsing_Longident[8], lid[1]);
-        return [1, caml_call1(Typing_Ident[4], _bK_), _bJ_, _bI_];
+        var mty2 = match[3], mty1 = match[2], lid = match[1], _bK_ = mod_type_to_typed(mty2), _bL_ = mod_type_to_typed(mty1), _bM_ = caml_call1(Parsing_Longident[8], lid[1]);
+        return [1, caml_call1(Typing_Ident[4], _bM_), _bL_, _bK_];
       }
       function specification_to_typed(spec) {
         switch (spec[0]) {
@@ -45496,8 +45514,8 @@ var require_main_bc = __commonJS({
             caml_call1(Typing_Types[26], 0);
             var ty = map_simple_type(sty);
             caml_call1(Typing_Types[27], 0);
-            var ty$0 = generalize(ty), _bD_ = caml_call1(Parsing_Longident[8], lid[1]);
-            return [0, caml_call1(Typing_Ident[4], _bD_), ty$0];
+            var ty$0 = generalize(ty), _bE_ = caml_call1(Parsing_Longident[8], lid[1]);
+            return [0, caml_call1(Typing_Ident[4], _bE_), ty$0];
           case 1:
             var decl = spec[2], lid$0 = spec[1];
             reset_type_variables(0);
@@ -45512,11 +45530,11 @@ var require_main_bc = __commonJS({
               ), manifest = [0, [0, params, map_simple_type(def[2])]];
             else
               var manifest = 0;
-            var _bE_ = [0, [0, decl[1]], manifest], _bF_ = caml_call1(Parsing_Longident[8], lid$0[1]);
-            return [1, caml_call1(Typing_Ident[4], _bF_), _bE_];
+            var _bF_ = [0, [0, decl[1]], manifest], _bG_ = caml_call1(Parsing_Longident[8], lid$0[1]);
+            return [1, caml_call1(Typing_Ident[4], _bG_), _bF_];
           default:
-            var mty = spec[2], lid$1 = spec[1], _bG_ = mod_type_to_typed(mty), _bH_ = caml_call1(Parsing_Longident[8], lid$1[1]);
-            return [2, caml_call1(Typing_Ident[4], _bH_), _bG_];
+            var mty = spec[2], lid$1 = spec[1], _bH_ = mod_type_to_typed(mty), _bI_ = lid$1[2], _bJ_ = caml_call1(Parsing_Longident[8], lid$1[1]);
+            return [2, [0, caml_call1(Typing_Ident[4], _bJ_), _bI_], _bH_];
         }
       }
       function mod_expr_to_typed(me) {
@@ -45529,16 +45547,16 @@ var require_main_bc = __commonJS({
             var structure = match[1], ret = [1, mod_structure(structure)];
             break;
           case 2:
-            var me1 = match[3], mty = match[2], lid$0 = match[1], _by_ = mod_expr_to_typed(me1), _bz_ = mod_type_to_typed(mty), _bA_ = caml_call1(Parsing_Longident[8], lid$0[1]), ret = [2, caml_call1(Typing_Ident[4], _bA_), _bz_, _by_];
+            var me1 = match[3], mty = match[2], lid$0 = match[1], _bz_ = mod_expr_to_typed(me1), _bA_ = mod_type_to_typed(mty), _bB_ = caml_call1(Parsing_Longident[8], lid$0[1]), ret = [2, caml_call1(Typing_Ident[4], _bB_), _bA_, _bz_];
             break;
           case 3:
-            var me2 = match[2], me1$0 = match[1], _bB_ = mod_expr_to_typed(me2), ret = [3, mod_expr_to_typed(me1$0), _bB_];
+            var me2 = match[2], me1$0 = match[1], _bC_ = mod_expr_to_typed(me2), ret = [3, mod_expr_to_typed(me1$0), _bC_];
             break;
           default:
-            var mt = match[2], me$0 = match[1], _bC_ = mod_type_to_typed(mt), ret = [4, mod_expr_to_typed(me$0), _bC_];
+            var mt = match[2], me$0 = match[1], _bD_ = mod_type_to_typed(mt), ret = [4, mod_expr_to_typed(me$0), _bD_];
         }
-        var _bw_ = Typing_Env[5], _bx_ = caml_call1(Typing_Types[23], 0);
-        return [0, ret, me[2], _bx_, _bw_];
+        var _bx_ = Typing_Env[5], _by_ = caml_call1(Typing_Types[23], 0);
+        return [0, ret, me[2], _by_, _bx_];
       }
       function mod_structure(defs) {
         return caml_call2(
@@ -45578,7 +45596,7 @@ var require_main_bc = __commonJS({
               var _bq_ = Typing_Env[5], _br_ = caml_call1(Typing_Types[23], 0), _bs_ = Parsing_Location[7], _bt_ = mod_type_to_typed(mty), _bu_ = [0, [4, mod_expr_to_typed(me), _bt_], _bs_, _br_, _bq_];
             } else
               var _bu_ = mod_expr_to_typed(me);
-            var _bv_ = caml_call1(Parsing_Longident[8], lid$1[1]), ret = [2, caml_call1(Typing_Ident[4], _bv_), _bu_];
+            var _bv_ = lid$1[2], _bw_ = caml_call1(Parsing_Longident[8], lid$1[1]), ret = [2, [0, caml_call1(Typing_Ident[4], _bw_), _bv_], _bu_];
         }
         return [0, ret, Typing_Env[5], Typing_Env[5]];
       }
@@ -45869,7 +45887,7 @@ var require_main_bc = __commonJS({
             var rem$0 = param[2], decl = match[2], id$0 = match[1], _n_ = scope_signature(enter_type(id$0, sc), rem$0);
             return [0, [1, id$0, scope_typedecl(sc, decl)], _n_];
           default:
-            var rem$1 = param[2], mty = match[2], id$1 = match[1], _o_ = scope_signature(enter_module(id$1, sc), rem$1);
+            var rem$1 = param[2], mty = match[2], id$1 = match[1], _o_ = scope_signature(enter_module(id$1[1], sc), rem$1);
             return [0, [2, id$1, scope_modtype(sc, mty)], _o_];
         }
       }
@@ -45905,7 +45923,7 @@ var require_main_bc = __commonJS({
             var dty = match[3], kind = match[2], id$0 = match[1], rem$0 = str[2], _d_ = scope_structure(enter_type(id$0, sc), rem$0), _e_ = Typing_Env[5], _f_ = Typing_Env[5];
             return [0, [0, [1, id$0, kind, scope_deftype(sc, dty)], _f_, _e_], _d_];
           default:
-            var m = match[2], id$1 = match[1], rem$1 = str[2], _g_ = scope_structure(enter_module(id$1, sc), rem$1), _h_ = Typing_Env[5], _i_ = Typing_Env[5];
+            var m = match[2], id$1 = match[1], rem$1 = str[2], _g_ = scope_structure(enter_module(id$1[1], sc), rem$1), _h_ = Typing_Env[5], _i_ = Typing_Env[5];
             return [0, [0, [2, id$1, scope_module$0(sc, m)], _i_, _h_], _g_];
         }
       }
@@ -46958,9 +46976,9 @@ var require_main_bc = __commonJS({
                 default:
                   var id1$1 = item1[1];
                   if (2 === item2[0]) {
-                    var id2$1 = item2[1], _F_ = caml_call1(Typing_Ident[5], id2$1);
-                    if (caml_string_equal2(caml_call1(Typing_Ident[5], id1$1), _F_)) {
-                      var match = [0, id1$1, id2$1, item1];
+                    var id2$1 = item2[1], _F_ = caml_call1(Typing_Ident[5], id2$1[1]);
+                    if (caml_string_equal2(caml_call1(Typing_Ident[5], id1$1[1]), _F_)) {
+                      var match = [0, id1$1[1], id2$1[1], item1];
                       break a;
                     }
                   }
@@ -47055,7 +47073,7 @@ var require_main_bc = __commonJS({
             return [
               2,
               id$0,
-              strengthen_modtype([1, path, caml_call1(Typing_Ident[5], id$0)], mty)
+              strengthen_modtype([1, path, caml_call1(Typing_Ident[5], id$0[1])], mty)
             ];
         }
       }
@@ -47098,11 +47116,11 @@ var require_main_bc = __commonJS({
               var seen$2 = [0, caml_call1(Typing_Ident[5], id$0), seen$0], env$1 = caml_call3(Typing_Env[7], id$0, decl, env$0), env$0 = env$1, seen$0 = seen$2, param$0 = rem$0;
               break;
             default:
-              var rem$1 = param$0[2], mty = match[2], id$1 = match[1], _t_ = caml_call1(Typing_Ident[5], id$1);
+              var rem$1 = param$0[2], mty = match[2], id$1 = match[1], _t_ = caml_call1(Typing_Ident[5], id$1[1]);
               if (caml_call2(Stdlib_List[37], _t_, seen$0))
                 caml_call1(Typing_Report[5], cst_repeated_module_name);
               check_modtype(env$0, mty);
-              var seen$3 = [0, caml_call1(Typing_Ident[5], id$1), seen$0], env$2 = caml_call3(Typing_Env[8], id$1, mty, env$0), env$0 = env$2, seen$0 = seen$3, param$0 = rem$1;
+              var seen$3 = [0, caml_call1(Typing_Ident[5], id$1[1]), seen$0], env$2 = caml_call3(Typing_Env[8], id$1[1], mty, env$0), env$0 = env$2, seen$0 = seen$3, param$0 = rem$1;
           }
         }
       }
@@ -47178,7 +47196,7 @@ var require_main_bc = __commonJS({
               [0, caml_call1(Typing_Ident[5], id$0), seen]
             ];
           default:
-            var modl = param[2], id$1 = param[1], _n_ = caml_call1(Typing_Ident[5], id$1);
+            var modl = param[2], id$1 = param[1], _n_ = caml_call1(Typing_Ident[5], id$1[1]);
             if (caml_call2(Stdlib_List[37], _n_, seen))
               caml_call1(Typing_Report[5], cst_repeated_module_name$0);
             var mty = type_module(env, modl)[3];
@@ -47186,7 +47204,7 @@ var require_main_bc = __commonJS({
             return [
               0,
               [2, id$1, mty],
-              [0, caml_call1(Typing_Ident[5], id$1), seen]
+              [0, caml_call1(Typing_Ident[5], id$1[1]), seen]
             ];
         }
       }
@@ -47976,8 +47994,8 @@ var require_main_bc = __commonJS({
                       case 1:
                         return acc;
                       default:
-                        var m = match2[2];
-                        return in_mod_term_range(pos, m) ? loop_mod_term(m) : caml_call2(Typing_Types[34], 0, m[3]);
+                        var m = match2[2], id$0 = match2[1];
+                        return in_loc_range(pos, id$0[2]) ? caml_call2(Typing_Types[34], 0, m[3]) : in_mod_term_range(pos, m) ? loop_mod_term(m) : acc;
                     }
                   },
                   str,
