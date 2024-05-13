@@ -42406,15 +42406,8 @@ var require_main_bc = __commonJS({
                   default:
                     break a;
                 }
-              else
-                switch (_N_[0]) {
-                  case 0:
-                  case 2:
-                  case 3:
-                    break;
-                  default:
-                    break a;
-                }
+              else if (3 < _N_[0])
+                break a;
               var f2 = select_expr(p), _O_ = loop(0);
               return [0, [0, [0, lid[1]], f2], _O_];
             }
@@ -45969,7 +45962,7 @@ var require_main_bc = __commonJS({
       function option_type(ty) {
         return [2, path_option, [0, ty, 0]];
       }
-      var ident_jsx_element = caml_call1(Typing_Ident[4], "jsx_element"), path_jsx_element = [0, ident_jsx_element], jsx_element_type = [2, path_jsx_element, 0], cst_bool = "bool", _a_ = [0, [0, 2], 0], _b_ = [0, [0, 0], 0], _c_ = [0, [0, 0], 0], _d_ = [0, [0, 1], 0], _e_ = [0, [0, 0], 0], cst_false = "false", cst_true = "true", _f_ = [0, "==", [0, "<>", [0, "<", [0, "<=", [0, ">", [0, ">=", 0]]]]]], _g_ = [0, "+", [0, "-", [0, cst$1, [0, "/", 0]]]], cst_fst = "fst", cst_snd = "snd", cst_conditional = "conditional", cst_none = "none", cst_some = "some", _h_ = [1, "className"], cst_div = "div";
+      var ident_jsx_element = caml_call1(Typing_Ident[4], "jsx_element"), path_jsx_element = [0, ident_jsx_element], jsx_element_type = [2, path_jsx_element, 0], cst_bool = "bool", _a_ = [0, [0, 2], 0], _b_ = [0, [0, 0], 0], _c_ = [0, [0, 0], 0], _d_ = [0, [0, 0], 0], _e_ = [0, [0, 1], 0], _f_ = [0, [0, 0], 0], cst_false = "false", cst_true = "true", _g_ = [0, "==", [0, "<>", [0, "<", [0, "<=", [0, ">", [0, ">=", 0]]]]]], _h_ = [0, "+", [0, "-", [0, cst$1, [0, "/", 0]]]], cst_fst = "fst", cst_snd = "snd", cst_conditional = "conditional", cst_none = "none", cst_some = "some", _i_ = [1, "className"], cst_div = "div";
       function init_scope_env(param) {
         var init_scope = [0, Typing_Scope[1]], init_env = [0, Typing_Env[5]];
         function enter_type(id, decl) {
@@ -45986,9 +45979,10 @@ var require_main_bc = __commonJS({
         var ident_bool = caml_call1(Typing_Ident[4], cst_bool), path_bool = [0, ident_bool], bool_type = [2, path_bool, 0];
         enter_type(ident_star, _a_);
         enter_type(ident_int, _b_);
-        enter_type(ident_bool, _c_);
-        enter_type(ident_option, _d_);
-        enter_type(ident_jsx_element, _e_);
+        enter_type(ident_string, _c_);
+        enter_type(ident_bool, _d_);
+        enter_type(ident_option, _e_);
+        enter_type(ident_jsx_element, _f_);
         enter_val(cst_false, [0, 0, bool_type]);
         enter_val(cst_true, [0, 0, bool_type]);
         caml_call2(
@@ -45996,14 +45990,14 @@ var require_main_bc = __commonJS({
           function(name) {
             return enter_val(name, [0, 0, [1, 0, int_type, [1, 0, int_type, bool_type]]]);
           },
-          _f_
+          _g_
         );
         caml_call2(
           Stdlib_List[18],
           function(name) {
             return enter_val(name, [0, 0, [1, 0, int_type, [1, 0, int_type, int_type]]]);
           },
-          _g_
+          _h_
         );
         var alpha = caml_call1(Typing_Types[28], 0), beta = caml_call1(Typing_Types[28], 0), talpha = [0, alpha], tbeta = [0, beta];
         enter_val(
@@ -46045,7 +46039,7 @@ var require_main_bc = __commonJS({
         );
         enter_val(cst_none, [0, [0, alpha, 0], option_type(talpha)]);
         enter_val(cst_some, [0, [0, alpha, 0], [1, 0, talpha, option_type(talpha)]]);
-        enter_val(cst_div, [0, [0, alpha, 0], [1, _h_, talpha, jsx_element_type]]);
+        enter_val(cst_div, [0, [0, alpha, 0], [1, _i_, string_type, jsx_element_type]]);
         return [0, init_scope[1], init_env[1]];
       }
       var Typing_Predef = [
@@ -46067,7 +46061,7 @@ var require_main_bc = __commonJS({
         jsx_element_type,
         init_scope_env
       ];
-      runtime.caml_register_global(28, Typing_Predef, "Typing__Predef");
+      runtime.caml_register_global(29, Typing_Predef, "Typing__Predef");
       return;
     })(globalThis);
     (function(globalThis2) {

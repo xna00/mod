@@ -16170,13 +16170,13 @@ let m x = match x with
 let e = <div></div>
 let button ~className ?size = <div className={className}> </div>
 
-let e2 = <button className={1}></button>
+let e2 = <button className={"text-red"}></button>
 
 module M = struct
 	let make = button ~size:3
 end
 
-let e4 = <M className={0}></M>
+let e4 = <M className={""}></M>
 `.trim();
 
 // src/memfs.ts
