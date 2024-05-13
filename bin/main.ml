@@ -18,7 +18,7 @@ let src =
 
 let src =
   {|
-  let a = 1 + 1
+  let button = fun ~className -> div ~className:className    
 end
          |}
   |> String.trim

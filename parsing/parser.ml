@@ -112,7 +112,7 @@ and apply_expr p =
         let lid = lident p in
         expect COLON p;
         match p.token with
-        | NUMBER _ | LIDENT _ | UIDENT _ | LBRACE | LPARENT ->
+        | NUMBER _ | LIDENT _ | UIDENT _ | LBRACE | LPARENT | STRING _ ->
             let f = select_expr p in
             (Labelled lid.txt, f) :: loop ()
         | _ ->

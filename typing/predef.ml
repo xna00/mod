@@ -37,6 +37,7 @@ let init_scope_env () =
      { MLMod.kind = { ML.arity = 2 }; MLMod.manifest = None }; *)
   enter_type ident_star { kind = { arity = 2 }; manifest = None };
   enter_type ident_int { kind = { arity = 0 }; manifest = None };
+  enter_type ident_string { kind = { arity = 0 }; manifest = None };
   enter_type ident_bool { kind = { arity = 0 }; manifest = None };
   enter_type ident_option { kind = { arity = 1 }; manifest = None };
   enter_type ident_jsx_element { kind = { arity = 0 }; manifest = None };
@@ -107,7 +108,8 @@ let init_scope_env () =
   enter_val "div"
     {
       quantif = [ alpha ];
-      body = Types.(arrow_type (Optional "className") talpha jsx_element_type);
+      body =
+        Types.(arrow_type (Optional "className") string_type jsx_element_type);
     };
 
   (!init_scope, !init_env)
