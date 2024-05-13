@@ -46,7 +46,7 @@ let generalize ty =
 type mod_term = {
   mod_term_desc : mod_term_desc;
   loc : Parsing.Location.t;
-  mod_term_type : mod_type;
+  mutable mod_term_type : mod_type;
   mutable mod_term_env : Env.t;
 }
 

@@ -582,8 +582,9 @@ and type_definition env seen = function
       (Value_sig (id.txt, type_term env term), Ident.name id.txt :: seen)
   | Module_str (id, modl) ->
       if List.mem (Ident.name id) seen then error "repeated module name";
-      ( Module_sig (id, (type_module env modl).mod_term_type),
-        Ident.name id :: seen )
+      let mty = (type_module env modl).mod_term_type in
+      modl.mod_term_type <- mty;
+      (Module_sig (id, mty), Ident.name id :: seen)
   | Type_str (id, kind, typ) ->
       if List.mem (Ident.name id) seen then error "repeated type name";
       check_kind env kind;

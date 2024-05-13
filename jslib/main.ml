@@ -132,7 +132,7 @@ let in_term_range pos (term : Typed.term) =
 let type_info uri pos =
   let mod_term = (Hashtbl.find files uri).mod_term in
   let rec loop_mod_term mod_term =
-    let str = Types.print_mod_type mod_term.Typed.mod_term_type in
+    let str = "" in
     match mod_term.Typed.mod_term_desc with
     | Typed.Apply (m1, m2) ->
         if in_mod_term_range pos m1 then loop_mod_term m1
@@ -151,7 +151,8 @@ let type_info uri pos =
                 else if in_term_range pos term then loop_term pos term
                 else acc
             | Typed.Module_str (_, m) ->
-                if in_mod_term_range pos m then loop_mod_term m else acc
+                if in_mod_term_range pos m then loop_mod_term m
+                else Types.print_mod_type m.mod_term_type
             | _ -> acc)
           str structure
     | _ -> str
