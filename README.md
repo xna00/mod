@@ -1,5 +1,6 @@
 # Mod
 
+Mod is a toy language for learning.
 
 <!-- 
 ## TODO
