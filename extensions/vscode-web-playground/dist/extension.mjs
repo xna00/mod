@@ -16163,7 +16163,7 @@ import {
 
 // src/exampleFiles.ts
 var test_mod = `
-(* Hover to inspect the type of a expression *)
+(* Hover to inspect the type of an expression *)
 
 let a = 1
 let id = fun x -> x
